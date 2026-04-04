@@ -1,0 +1,523 @@
+{
+  "project_free_tree": {
+    "root_ids": [
+      "node_container_blk_project_root"
+    ],
+    "nodes": {
+      "node_container_blk_project_root": {
+        "id": "node_container_blk_project_root",
+        "kind": "folder",
+        "name": "PROJET",
+        "block_id": "blk_project_root",
+        "children": [
+          "node_container_blk_characters_root",
+          "node_container_blk_story_root",
+          "node_container_blk_lib_root",
+          "node_container_blk_internal_lib_root"
+        ]
+      },
+      "node_container_blk_characters_root": {
+        "id": "node_container_blk_characters_root",
+        "kind": "folder",
+        "name": "Characters Root",
+        "block_id": "blk_characters_root",
+        "children": [
+          "node_container_blk_character_ariane",
+          "node_container_blk_character_noe",
+          "node_container_blk_character_eric_26b1d4"
+        ]
+      },
+      "node_container_blk_character_ariane": {
+        "id": "node_container_blk_character_ariane",
+        "kind": "folder",
+        "name": "Ariane",
+        "block_id": "blk_character_ariane",
+        "children": [
+          "node_container_blk_character_ariane_form_casual",
+          "node_container_blk_character_ariane_form_stealth"
+        ]
+      },
+      "node_container_blk_character_ariane_form_casual": {
+        "id": "node_container_blk_character_ariane_form_casual",
+        "kind": "folder",
+        "name": "Ariane Form Casual",
+        "block_id": "blk_character_ariane_form_casual",
+        "children": [
+          "node_block_blk_img_ariane_casual_01",
+          "node_block_blk_img_ariane_casual_02",
+          "node_block_blk_img_ariane_casual_03",
+          "node_block_blk_vid_ariane_casual_01",
+          "node_block_blk_text_2b9cd1d27be5"
+        ]
+      },
+      "node_block_blk_img_ariane_casual_01": {
+        "id": "node_block_blk_img_ariane_casual_01",
+        "kind": "block_ref",
+        "name": "Ariane Casual Img 01",
+        "block_id": "blk_img_ariane_casual_01",
+        "children": []
+      },
+      "node_block_blk_img_ariane_casual_02": {
+        "id": "node_block_blk_img_ariane_casual_02",
+        "kind": "block_ref",
+        "name": "Ariane Casual Img 02",
+        "block_id": "blk_img_ariane_casual_02",
+        "children": []
+      },
+      "node_block_blk_img_ariane_casual_03": {
+        "id": "node_block_blk_img_ariane_casual_03",
+        "kind": "block_ref",
+        "name": "Ariane Casual Img 03",
+        "block_id": "blk_img_ariane_casual_03",
+        "children": []
+      },
+      "node_block_blk_vid_ariane_casual_01": {
+        "id": "node_block_blk_vid_ariane_casual_01",
+        "kind": "block_ref",
+        "name": "Ariane Casual Vid 01",
+        "block_id": "blk_vid_ariane_casual_01",
+        "children": []
+      },
+      "node_block_blk_text_2b9cd1d27be5": {
+        "id": "node_block_blk_text_2b9cd1d27be5",
+        "kind": "block_ref",
+        "name": "GPT_PromptGenGrid3x3.prompt",
+        "block_id": "blk_text_2b9cd1d27be5",
+        "children": []
+      },
+      "node_container_blk_character_ariane_form_stealth": {
+        "id": "node_container_blk_character_ariane_form_stealth",
+        "kind": "folder",
+        "name": "Ariane Form Stealth",
+        "block_id": "blk_character_ariane_form_stealth",
+        "children": [
+          "node_block_blk_img_ariane_stealth_01",
+          "node_block_blk_img_ariane_stealth_02",
+          "node_block_blk_img_ariane_stealth_03",
+          "node_block_blk_vid_ariane_stealth_01"
+        ]
+      },
+      "node_block_blk_img_ariane_stealth_01": {
+        "id": "node_block_blk_img_ariane_stealth_01",
+        "kind": "block_ref",
+        "name": "Ariane Stealth Img 01",
+        "block_id": "blk_img_ariane_stealth_01",
+        "children": []
+      },
+      "node_block_blk_img_ariane_stealth_02": {
+        "id": "node_block_blk_img_ariane_stealth_02",
+        "kind": "block_ref",
+        "name": "Ariane Stealth Img 02",
+        "block_id": "blk_img_ariane_stealth_02",
+        "children": []
+      },
+      "node_block_blk_img_ariane_stealth_03": {
+        "id": "node_block_blk_img_ariane_stealth_03",
+        "kind": "block_ref",
+        "name": "Ariane Stealth Img 03",
+        "block_id": "blk_img_ariane_stealth_03",
+        "children": []
+      },
+      "node_block_blk_vid_ariane_stealth_01": {
+        "id": "node_block_blk_vid_ariane_stealth_01",
+        "kind": "block_ref",
+        "name": "Ariane Stealth Vid 01",
+        "block_id": "blk_vid_ariane_stealth_01",
+        "children": []
+      },
+      "node_container_blk_character_noe": {
+        "id": "node_container_blk_character_noe",
+        "kind": "folder",
+        "name": "Noe",
+        "block_id": "blk_character_noe",
+        "children": [
+          "node_container_blk_character_noe_form_default"
+        ]
+      },
+      "node_container_blk_character_noe_form_default": {
+        "id": "node_container_blk_character_noe_form_default",
+        "kind": "folder",
+        "name": "Noe Form Default",
+        "block_id": "blk_character_noe_form_default",
+        "children": [
+          "node_block_blk_img_noe_default_01",
+          "node_block_blk_img_noe_default_02",
+          "node_block_blk_img_noe_default_03",
+          "node_block_blk_vid_noe_default_01"
+        ]
+      },
+      "node_block_blk_img_noe_default_01": {
+        "id": "node_block_blk_img_noe_default_01",
+        "kind": "block_ref",
+        "name": "Noe Default Img 01",
+        "block_id": "blk_img_noe_default_01",
+        "children": []
+      },
+      "node_block_blk_img_noe_default_02": {
+        "id": "node_block_blk_img_noe_default_02",
+        "kind": "block_ref",
+        "name": "Noe Default Img 02",
+        "block_id": "blk_img_noe_default_02",
+        "children": []
+      },
+      "node_block_blk_img_noe_default_03": {
+        "id": "node_block_blk_img_noe_default_03",
+        "kind": "block_ref",
+        "name": "Noe Default Img 03",
+        "block_id": "blk_img_noe_default_03",
+        "children": []
+      },
+      "node_block_blk_vid_noe_default_01": {
+        "id": "node_block_blk_vid_noe_default_01",
+        "kind": "block_ref",
+        "name": "Noe Default Vid 01",
+        "block_id": "blk_vid_noe_default_01",
+        "children": []
+      },
+      "node_container_blk_character_eric_26b1d4": {
+        "id": "node_container_blk_character_eric_26b1d4",
+        "kind": "folder",
+        "name": "Eric",
+        "block_id": "blk_character_eric_26b1d4",
+        "children": [
+          "node_container_blk_character_form_references_93eac6",
+          "node_container_blk_character_form_character_sheet_4f6efe"
+        ]
+      },
+      "node_container_blk_character_form_references_93eac6": {
+        "id": "node_container_blk_character_form_references_93eac6",
+        "kind": "folder",
+        "name": "Eric - References",
+        "block_id": "blk_character_form_references_93eac6",
+        "children": [
+          "node_block_blk_slot_front_view_6f92bd",
+          "node_block_blk_slot_side_view_5c4e63",
+          "node_block_blk_slot_back_view_58e116",
+          "node_block_blk_slot_face_reference_df6bfd",
+          "node_block_blk_slot_voice_reference_15a5f5"
+        ]
+      },
+      "node_block_blk_slot_front_view_6f92bd": {
+        "id": "node_block_blk_slot_front_view_6f92bd",
+        "kind": "block_ref",
+        "name": "Front View",
+        "block_id": "blk_slot_front_view_6f92bd",
+        "children": []
+      },
+      "node_block_blk_slot_side_view_5c4e63": {
+        "id": "node_block_blk_slot_side_view_5c4e63",
+        "kind": "block_ref",
+        "name": "Side View",
+        "block_id": "blk_slot_side_view_5c4e63",
+        "children": []
+      },
+      "node_block_blk_slot_back_view_58e116": {
+        "id": "node_block_blk_slot_back_view_58e116",
+        "kind": "block_ref",
+        "name": "Back View",
+        "block_id": "blk_slot_back_view_58e116",
+        "children": []
+      },
+      "node_block_blk_slot_face_reference_df6bfd": {
+        "id": "node_block_blk_slot_face_reference_df6bfd",
+        "kind": "block_ref",
+        "name": "Face Reference",
+        "block_id": "blk_slot_face_reference_df6bfd",
+        "children": []
+      },
+      "node_block_blk_slot_voice_reference_15a5f5": {
+        "id": "node_block_blk_slot_voice_reference_15a5f5",
+        "kind": "block_ref",
+        "name": "Voice Reference",
+        "block_id": "blk_slot_voice_reference_15a5f5",
+        "children": []
+      },
+      "node_container_blk_character_form_character_sheet_4f6efe": {
+        "id": "node_container_blk_character_form_character_sheet_4f6efe",
+        "kind": "folder",
+        "name": "Eric - Character Sheet",
+        "block_id": "blk_character_form_character_sheet_4f6efe",
+        "children": [
+          "node_block_blk_slot_sheet_main_5e5b68",
+          "node_block_blk_slot_pose_turnaround_aeaf98",
+          "node_block_blk_slot_notes_98793e",
+          "node_block_blk_slot_prompt_base_3780c3"
+        ]
+      },
+      "node_block_blk_slot_sheet_main_5e5b68": {
+        "id": "node_block_blk_slot_sheet_main_5e5b68",
+        "kind": "block_ref",
+        "name": "Character Sheet",
+        "block_id": "blk_slot_sheet_main_5e5b68",
+        "children": []
+      },
+      "node_block_blk_slot_pose_turnaround_aeaf98": {
+        "id": "node_block_blk_slot_pose_turnaround_aeaf98",
+        "kind": "block_ref",
+        "name": "Pose Turnaround",
+        "block_id": "blk_slot_pose_turnaround_aeaf98",
+        "children": []
+      },
+      "node_block_blk_slot_notes_98793e": {
+        "id": "node_block_blk_slot_notes_98793e",
+        "kind": "block_ref",
+        "name": "Notes",
+        "block_id": "blk_slot_notes_98793e",
+        "children": []
+      },
+      "node_block_blk_slot_prompt_base_3780c3": {
+        "id": "node_block_blk_slot_prompt_base_3780c3",
+        "kind": "block_ref",
+        "name": "Prompt Base",
+        "block_id": "blk_slot_prompt_base_3780c3",
+        "children": []
+      },
+      "node_container_blk_story_root": {
+        "id": "node_container_blk_story_root",
+        "kind": "folder",
+        "name": "Story Root",
+        "block_id": "blk_story_root",
+        "children": [
+          "node_container_blk_story_shot_01",
+          "node_container_blk_story_shot_02",
+          "node_container_blk_story_shot_03",
+          "node_container_blk_story_shot_04",
+          "node_container_blk_story_shot_05"
+        ]
+      },
+      "node_container_blk_story_shot_01": {
+        "id": "node_container_blk_story_shot_01",
+        "kind": "folder",
+        "name": "Shot 01",
+        "block_id": "blk_story_shot_01",
+        "children": [
+          "node_block_blk_img_story_shot_01",
+          "node_block_blk_vid_story_shot_01"
+        ]
+      },
+      "node_block_blk_img_story_shot_01": {
+        "id": "node_block_blk_img_story_shot_01",
+        "kind": "block_ref",
+        "name": "Shot 01 Image",
+        "block_id": "blk_img_story_shot_01",
+        "children": []
+      },
+      "node_block_blk_vid_story_shot_01": {
+        "id": "node_block_blk_vid_story_shot_01",
+        "kind": "block_ref",
+        "name": "Shot 01 Video",
+        "block_id": "blk_vid_story_shot_01",
+        "children": []
+      },
+      "node_container_blk_story_shot_02": {
+        "id": "node_container_blk_story_shot_02",
+        "kind": "folder",
+        "name": "Shot 02",
+        "block_id": "blk_story_shot_02",
+        "children": [
+          "node_block_blk_img_story_shot_02",
+          "node_block_blk_vid_story_shot_02"
+        ]
+      },
+      "node_block_blk_img_story_shot_02": {
+        "id": "node_block_blk_img_story_shot_02",
+        "kind": "block_ref",
+        "name": "Shot 02 Image",
+        "block_id": "blk_img_story_shot_02",
+        "children": []
+      },
+      "node_block_blk_vid_story_shot_02": {
+        "id": "node_block_blk_vid_story_shot_02",
+        "kind": "block_ref",
+        "name": "Shot 02 Video",
+        "block_id": "blk_vid_story_shot_02",
+        "children": []
+      },
+      "node_container_blk_story_shot_03": {
+        "id": "node_container_blk_story_shot_03",
+        "kind": "folder",
+        "name": "Shot 03",
+        "block_id": "blk_story_shot_03",
+        "children": [
+          "node_block_blk_img_story_shot_03",
+          "node_block_blk_vid_story_shot_03"
+        ]
+      },
+      "node_block_blk_img_story_shot_03": {
+        "id": "node_block_blk_img_story_shot_03",
+        "kind": "block_ref",
+        "name": "Shot 03 Image",
+        "block_id": "blk_img_story_shot_03",
+        "children": []
+      },
+      "node_block_blk_vid_story_shot_03": {
+        "id": "node_block_blk_vid_story_shot_03",
+        "kind": "block_ref",
+        "name": "Shot 03 Video",
+        "block_id": "blk_vid_story_shot_03",
+        "children": []
+      },
+      "node_container_blk_story_shot_04": {
+        "id": "node_container_blk_story_shot_04",
+        "kind": "folder",
+        "name": "Shot 04",
+        "block_id": "blk_story_shot_04",
+        "children": [
+          "node_block_blk_img_story_shot_04",
+          "node_block_blk_vid_story_shot_04"
+        ]
+      },
+      "node_block_blk_img_story_shot_04": {
+        "id": "node_block_blk_img_story_shot_04",
+        "kind": "block_ref",
+        "name": "Shot 04 Image",
+        "block_id": "blk_img_story_shot_04",
+        "children": []
+      },
+      "node_block_blk_vid_story_shot_04": {
+        "id": "node_block_blk_vid_story_shot_04",
+        "kind": "block_ref",
+        "name": "Shot 04 Video",
+        "block_id": "blk_vid_story_shot_04",
+        "children": []
+      },
+      "node_container_blk_story_shot_05": {
+        "id": "node_container_blk_story_shot_05",
+        "kind": "folder",
+        "name": "Shot 05",
+        "block_id": "blk_story_shot_05",
+        "children": [
+          "node_block_blk_img_story_shot_05",
+          "node_block_blk_vid_story_shot_05"
+        ]
+      },
+      "node_block_blk_img_story_shot_05": {
+        "id": "node_block_blk_img_story_shot_05",
+        "kind": "block_ref",
+        "name": "Shot 05 Image",
+        "block_id": "blk_img_story_shot_05",
+        "children": []
+      },
+      "node_block_blk_vid_story_shot_05": {
+        "id": "node_block_blk_vid_story_shot_05",
+        "kind": "block_ref",
+        "name": "Shot 05 Video",
+        "block_id": "blk_vid_story_shot_05",
+        "children": []
+      },
+      "node_container_blk_lib_root": {
+        "id": "node_container_blk_lib_root",
+        "kind": "folder",
+        "name": "Library Root",
+        "block_id": "blk_lib_root",
+        "children": [
+          "node_container_blk_lib_prompts"
+        ]
+      },
+      "node_container_blk_lib_prompts": {
+        "id": "node_container_blk_lib_prompts",
+        "kind": "folder",
+        "name": "Prompts Library",
+        "block_id": "blk_lib_prompts",
+        "children": [
+          "node_block_blk_lib_prompt_01",
+          "node_block_blk_lib_prompt_02",
+          "node_block_blk_lib_prompt_03",
+          "node_block_blk_lib_prompt_04",
+          "node_block_blk_lib_prompt_05",
+          "node_block_blk_lib_prompt_06",
+          "node_block_blk_lib_prompt_07",
+          "node_block_blk_lib_prompt_08",
+          "node_block_blk_lib_prompt_09",
+          "node_block_blk_lib_prompt_10"
+        ]
+      },
+      "node_block_blk_lib_prompt_01": {
+        "id": "node_block_blk_lib_prompt_01",
+        "kind": "block_ref",
+        "name": "LIB Prompt 01",
+        "block_id": "blk_lib_prompt_01",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_02": {
+        "id": "node_block_blk_lib_prompt_02",
+        "kind": "block_ref",
+        "name": "LIB Prompt 02",
+        "block_id": "blk_lib_prompt_02",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_03": {
+        "id": "node_block_blk_lib_prompt_03",
+        "kind": "block_ref",
+        "name": "LIB Prompt 03",
+        "block_id": "blk_lib_prompt_03",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_04": {
+        "id": "node_block_blk_lib_prompt_04",
+        "kind": "block_ref",
+        "name": "LIB Prompt 04",
+        "block_id": "blk_lib_prompt_04",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_05": {
+        "id": "node_block_blk_lib_prompt_05",
+        "kind": "block_ref",
+        "name": "LIB Prompt 05",
+        "block_id": "blk_lib_prompt_05",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_06": {
+        "id": "node_block_blk_lib_prompt_06",
+        "kind": "block_ref",
+        "name": "LIB Prompt 06",
+        "block_id": "blk_lib_prompt_06",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_07": {
+        "id": "node_block_blk_lib_prompt_07",
+        "kind": "block_ref",
+        "name": "LIB Prompt 07",
+        "block_id": "blk_lib_prompt_07",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_08": {
+        "id": "node_block_blk_lib_prompt_08",
+        "kind": "block_ref",
+        "name": "LIB Prompt 08",
+        "block_id": "blk_lib_prompt_08",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_09": {
+        "id": "node_block_blk_lib_prompt_09",
+        "kind": "block_ref",
+        "name": "LIB Prompt 09",
+        "block_id": "blk_lib_prompt_09",
+        "children": []
+      },
+      "node_block_blk_lib_prompt_10": {
+        "id": "node_block_blk_lib_prompt_10",
+        "kind": "block_ref",
+        "name": "LIB Prompt 10",
+        "block_id": "blk_lib_prompt_10",
+        "children": []
+      },
+      "node_container_blk_internal_lib_root": {
+        "id": "node_container_blk_internal_lib_root",
+        "kind": "folder",
+        "name": "INTERNALLIB",
+        "block_id": "blk_internal_lib_root",
+        "children": [
+          "node_block_blk_internal_lib_empty"
+        ]
+      },
+      "node_block_blk_internal_lib_empty": {
+        "id": "node_block_blk_internal_lib_empty",
+        "kind": "block_ref",
+        "name": "Drop Resources Here",
+        "block_id": "blk_internal_lib_empty",
+        "children": []
+      }
+    }
+  }
+}

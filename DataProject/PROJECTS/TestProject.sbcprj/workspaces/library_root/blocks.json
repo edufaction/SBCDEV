@@ -1,0 +1,430 @@
+[
+  {
+    "id": "blk_lib_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "Library Root",
+    "description": "Root container for library items",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_project_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "root",
+      "library"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE",
+      "workspace_role": "library_root"
+    },
+    "contains": [
+      "blk_lib_prompts"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_lib_prompts",
+    "type": "container",
+    "profile": "library_folder",
+    "name": "Prompts Library",
+    "description": "Prompt files imported from DATATEST",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompts"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_lib_prompt_01",
+      "blk_lib_prompt_02",
+      "blk_lib_prompt_03",
+      "blk_lib_prompt_04",
+      "blk_lib_prompt_05",
+      "blk_lib_prompt_06",
+      "blk_lib_prompt_07",
+      "blk_lib_prompt_08",
+      "blk_lib_prompt_09",
+      "blk_lib_prompt_10"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_lib_prompt_01",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 01",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "The character CAVALIER in reference 1 is on horseback and is talking to the character PIETON in reference 2, who is standing next to the horse.",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_003.txt",
+      "prompt": "The character CAVALIER in reference 1 is on horseback and is talking to the character PIETON in reference 2, who is standing next to the horse.",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_02",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 02",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "The caractere as REFERENCE 1, with strict face in REFERENCE 2",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_009.txt",
+      "prompt": "The caractere as REFERENCE 1, with strict face in REFERENCE 2",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_03",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 03",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_010.txt",
+      "prompt": "",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_04",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 04",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Camera angle: eye-level Vertical position: camera aligned exactly with the subject’s eye line Tilt: none Perspective intent: neutral, observational Strict rule: do NOT tilt up or down; horizon must remain level",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_006.txt",
+      "prompt": "Camera angle: eye-level Vertical position: camera aligned exactly with the subject’s eye line Tilt: none Perspective intent: neutral, observational Strict rule: do NOT tilt up or down; horizon must remain level",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_05",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 05",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Sur la base du texte ci dessous, crée moi un prompt optimisé pour GPT IMAGE :",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_001.txt",
+      "prompt": "Sur la base du texte ci dessous, crée moi un prompt optimisé pour GPT IMAGE :",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_06",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 06",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Shot size: Wide Shot (WS) Subject framing: subject fully visible or nearly full-body, clearly separated from the environment Subject scale: balanced subject–environment relationship Depth: moderate to deep focus, spatial context clearly readable Narrative int…",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_002.txt",
+      "prompt": "Shot size: Wide Shot (WS) Subject framing: subject fully visible or nearly full-body, clearly separated from the environment Subject scale: balanced subject–environment relationship Depth: moderate to deep focus, spatial context clearly readable Narrative int…",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_07",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 07",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "donne moi un prompt en anglais pour générer une image de tete de chapitre, , le personnage de 50 ans sera en image 1 et la photo de référence en image 2 sur la base du texte ci aprés :",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_008.txt",
+      "prompt": "donne moi un prompt en anglais pour générer une image de tete de chapitre, , le personnage de 50 ans sera en image 1 et la photo de référence en image 2 sur la base du texte ci aprés :",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_08",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 08",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Inside an airship, in the cockpit, the character has her back to the controls. Sitting not far from her, my character 2 looks at her. She is standing, in a three-quarter view.",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_005.txt",
+      "prompt": "Inside an airship, in the cockpit, the character has her back to the controls. Sitting not far from her, my character 2 looks at her. She is standing, in a three-quarter view.",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_09",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 09",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Young woman in her forties, mechanic — REFERENCE BODY 1",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_007.txt",
+      "prompt": "Young woman in her forties, mechanic — REFERENCE BODY 1",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_lib_prompt_10",
+    "type": "prompt",
+    "profile": "preset",
+    "name": "LIB Prompt 10",
+    "description": "Prompt file from DATATEST prompt library",
+    "prompt_ref": "",
+    "prompt_generated": "Character 1 is talking with Character 2.",
+    "comment": "",
+    "shared": true,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_lib_prompts": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "lib",
+      "prompt",
+      "preset"
+    ],
+    "content": {
+      "prompt_ref": "storage/files/SBC2_PRM_004.txt",
+      "prompt": "Character 1 is talking with Character 2.",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  }
+]

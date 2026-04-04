@@ -1,0 +1,75 @@
+[
+  {
+    "id": "blk_internal_lib_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "INTERNALLIB",
+    "description": "Virtual workspace root for drag and drop block creation.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_project_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "virtual",
+      "workspace_root"
+    ],
+    "content": {
+      "workspace_role": "internal_lib"
+    },
+    "contains": [
+      "blk_internal_lib_empty"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_internal_lib_empty",
+    "type": "empty",
+    "profile": "internal_lib_empty",
+    "name": "Drop Resources Here",
+    "description": "Drop a resource thumbnail on INTERNALLIB to create a new block in this container.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_internal_lib_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "virtual",
+      "empty",
+      "dropzone"
+    ],
+    "content": {
+      "virtual": true,
+      "drop_target": true,
+      "internal_lib": true
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  }
+]

@@ -1,0 +1,1172 @@
+[
+  {
+    "id": "blk_characters_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "Characters Root",
+    "description": "Root container for characters",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_project_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "root",
+      "characters"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE",
+      "workspace_role": "characters_root"
+    },
+    "contains": [
+      "blk_character_ariane",
+      "blk_character_noe",
+      "blk_character_eric_26b1d4"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_ariane",
+    "type": "container",
+    "profile": "character",
+    "name": "Ariane",
+    "description": "Main character Ariane",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_characters_root": "Principals"
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "hero"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_character_ariane_form_casual",
+      "blk_character_ariane_form_stealth"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_noe",
+    "type": "container",
+    "profile": "character",
+    "name": "Noe",
+    "description": "Secondary character Noe",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_characters_root": "Principals"
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "support"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_character_noe_form_default"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_ariane_form_casual",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Ariane Form Casual",
+    "description": "Ariane casual form",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "ariane",
+      "casual"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_ariane_casual_01",
+      "blk_img_ariane_casual_02",
+      "blk_img_ariane_casual_03",
+      "blk_vid_ariane_casual_01",
+      "blk_text_2b9cd1d27be5"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_ariane_casual_01",
+    "type": "image",
+    "profile": "reference",
+    "name": "Ariane Casual Img 01",
+    "description": "Image asset for Ariane Casual Img 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_002.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_ariane_casual_02",
+    "type": "image",
+    "profile": "reference",
+    "name": "Ariane Casual Img 02",
+    "description": "Image asset for Ariane Casual Img 02",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_024.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_ariane_casual_03",
+    "type": "image",
+    "profile": "reference",
+    "name": "Ariane Casual Img 03",
+    "description": "Image asset for Ariane Casual Img 03",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_016.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_ariane_casual_01",
+    "type": "video",
+    "profile": "asset",
+    "name": "Ariane Casual Vid 01",
+    "description": "Video asset for Ariane Casual Vid 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_017.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_ariane_form_stealth",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Ariane Form Stealth",
+    "description": "Ariane stealth form",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "ariane",
+      "stealth"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_ariane_stealth_01",
+      "blk_img_ariane_stealth_02",
+      "blk_img_ariane_stealth_03",
+      "blk_vid_ariane_stealth_01"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_ariane_stealth_01",
+    "type": "image",
+    "profile": "generated",
+    "name": "Ariane Stealth Img 01",
+    "description": "Image asset for Ariane Stealth Img 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_stealth": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_032.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_ariane_stealth_02",
+    "type": "image",
+    "profile": "generated",
+    "name": "Ariane Stealth Img 02",
+    "description": "Image asset for Ariane Stealth Img 02",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_stealth": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_003.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_ariane_stealth_03",
+    "type": "image",
+    "profile": "generated",
+    "name": "Ariane Stealth Img 03",
+    "description": "Image asset for Ariane Stealth Img 03",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_stealth": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_015.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_ariane_stealth_01",
+    "type": "video",
+    "profile": "variation",
+    "name": "Ariane Stealth Vid 01",
+    "description": "Video asset for Ariane Stealth Vid 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_stealth": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_018.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_noe_form_default",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Noe Form Default",
+    "description": "Noe default form",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_noe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "noe",
+      "default"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_noe_default_01",
+      "blk_img_noe_default_02",
+      "blk_img_noe_default_03",
+      "blk_vid_noe_default_01"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_noe_default_01",
+    "type": "image",
+    "profile": "reference",
+    "name": "Noe Default Img 01",
+    "description": "Image asset for Noe Default Img 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_noe_form_default": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_009.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_noe_default_02",
+    "type": "image",
+    "profile": "reference",
+    "name": "Noe Default Img 02",
+    "description": "Image asset for Noe Default Img 02",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_noe_form_default": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_028.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_img_noe_default_03",
+    "type": "image",
+    "profile": "reference",
+    "name": "Noe Default Img 03",
+    "description": "Image asset for Noe Default Img 03",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_noe_form_default": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_025.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_noe_default_01",
+    "type": "video",
+    "profile": "asset",
+    "name": "Noe Default Vid 01",
+    "description": "Video asset for Noe Default Vid 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_noe_form_default": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "character",
+      "form",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_019.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_text_2b9cd1d27be5",
+    "type": "text",
+    "profile": "note",
+    "name": "GPT_PromptGenGrid3x3.prompt",
+    "description": "Imported from Finder: GPT_PromptGenGrid3x3.prompt.txt",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "imported",
+      "finder_drop",
+      "text"
+    ],
+    "content": {
+      "storage_path": "storage/files/GPT_PromptGenGrid3x3.prompt.txt",
+      "mime_type": "text/plain",
+      "original_name": "GPT_PromptGenGrid3x3.prompt.txt"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_eric_26b1d4",
+    "type": "container",
+    "profile": "character",
+    "name": "Eric",
+    "description": "Template root for character: Eric",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_characters_root": "Secondary"
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character",
+      "character_standard"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard"
+    },
+    "contains": [
+      "blk_character_form_references_93eac6",
+      "blk_character_form_character_sheet_4f6efe"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_form_references_93eac6",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Eric - References",
+    "description": "Template form 'References' for Eric",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_eric_26b1d4": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character_form",
+      "references"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard",
+      "template_form_key": "references",
+      "template_form_name": "References"
+    },
+    "contains": [
+      "blk_slot_front_view_6f92bd",
+      "blk_slot_side_view_5c4e63",
+      "blk_slot_back_view_58e116",
+      "blk_slot_face_reference_df6bfd",
+      "blk_slot_voice_reference_15a5f5"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_slot_front_view_6f92bd",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Front View",
+    "description": "Template slot 'Front View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_93eac6": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "front_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "front_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_side_view_5c4e63",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Side View",
+    "description": "Template slot 'Side View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_93eac6": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "side_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "side_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_back_view_58e116",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Back View",
+    "description": "Template slot 'Back View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_93eac6": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "back_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "back_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_face_reference_df6bfd",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Face Reference",
+    "description": "Template slot 'Face Reference'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_93eac6": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "face_reference"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "face_reference",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_voice_reference_15a5f5",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Voice Reference",
+    "description": "Template slot 'Voice Reference'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_93eac6": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "voice_reference"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "voice_reference",
+      "expected_types": [
+        "audio"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_form_character_sheet_4f6efe",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Eric - Character Sheet",
+    "description": "Template form 'Character Sheet' for Eric",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_eric_26b1d4": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character_form",
+      "character_sheet"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard",
+      "template_form_key": "character_sheet",
+      "template_form_name": "Character Sheet"
+    },
+    "contains": [
+      "blk_slot_sheet_main_5e5b68",
+      "blk_slot_pose_turnaround_aeaf98",
+      "blk_slot_notes_98793e",
+      "blk_slot_prompt_base_3780c3"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_slot_sheet_main_5e5b68",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Character Sheet",
+    "description": "Template slot 'Character Sheet'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_4f6efe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "sheet_main"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "sheet_main",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_pose_turnaround_aeaf98",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Pose Turnaround",
+    "description": "Template slot 'Pose Turnaround'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_4f6efe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "pose_turnaround"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "pose_turnaround",
+      "expected_types": [
+        "video"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_notes_98793e",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Notes",
+    "description": "Template slot 'Notes'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_4f6efe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "notes"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "notes",
+      "expected_types": [
+        "text"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_prompt_base_3780c3",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Prompt Base",
+    "description": "Template slot 'Prompt Base'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_4f6efe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "prompt_base"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "prompt_base",
+      "expected_types": [
+        "prompt"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  }
+]

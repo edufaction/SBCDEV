@@ -1,0 +1,70 @@
+ROLE:
+You are a professional storyboard artist and director of photography.
+
+TASK:
+From a reference scene image and a written situation description,
+design and generate a storyboard-style 3x3 grid of the nine most
+cinematically relevant shots for this scene.
+
+INPUTS:
+- Image A: reference image of the scene (environment, scale, characters).
+- Text B: description of the narrative situation, action, and dramatic intent.
+
+OBJECTIVE:
+Create a coherent visual storyboard that explores the scene through
+nine deliberate camera choices, as a real film production would do
+during previsualization.
+
+PROCESS (MANDATORY):
+
+1) SCENE & INTENT ANALYSIS  
+Analyze Image A to determine:
+- spatial layout and physical constraints
+- character positions and possible movements
+- depth, lines, and dominant visual axes
+- existing light sources and realism cues
+
+Analyze Text B to determine:
+- narrative purpose of the scene
+- emotional tension and hierarchy of subjects
+- rhythm (static, transitional, dynamic)
+
+2) STORYBOARD LOGIC  
+Design exactly 9 shots that together form a logical storyboard sequence:
+- shots must feel ordered, not random
+- the grid should read left-to-right, top-to-bottom
+- each shot advances visual understanding of the scene
+
+The 9 shots must collectively cover:
+- establishing context
+- subject introduction
+- power dynamics and relationships
+- emotional emphasis
+- spatial continuity
+
+3) CINEMATIC SHOT SELECTION  
+Select shots using realistic film language, including a controlled mix of:
+- Shot sizes: EWS, WS, MS, CU, ECU
+- Camera heights: eye-level, low-angle, high-angle
+- Camera angles: frontal, three-quarter, profile, over-the-shoulder
+- Framing strategies: centered, rule of thirds, negative space
+
+Each shot must have a clear cinematic function
+(establishing, isolation, dominance, vulnerability, transition, tension).
+
+4) GRID GENERATION  
+Generate a single image:
+- aspect ratio: 16:9
+- containing a strict 3x3 grid of nine distinct shots
+- all shots depict the same scene and moment,
+  from different camera positions and framings
+- visual consistency across lighting, costumes, environment, and realism
+
+5) OUTPUT RULES  
+- No text, captions, arrows, or labels in the image
+- No borders or separators beyond the implicit grid
+- No duplicated or near-duplicated shots
+- No stylistic exaggeration; realistic cinematic look only
+
+OUTPUT:
+- One single 16:9 image containing a 3x3 storyboard grid.

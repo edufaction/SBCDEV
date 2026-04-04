@@ -1,0 +1,143 @@
+/* Left Sidebar Menu */
+QFrame#Sidebar {
+    background-color: @surface_container_low;
+    border: none;
+}
+
+QWidget#SidebarHeader {
+    background: transparent;
+}
+
+QLabel#SidebarBrandCrest {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 @primary,
+        stop: 1 @secondary
+    );
+    color: @on_primary_fixed;
+    border-radius: 14px;
+    font-family: @font_family_display;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+QLabel#SidebarBrandTitle {
+    color: @on_surface;
+    background: transparent;
+    font-family: @font_family_display;
+    font-size: 15px;
+    font-weight: 650;
+}
+
+QLabel#SidebarBrandSubtitle {
+    color: @on_surface_variant;
+    background: transparent;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+}
+
+QPushButton[sidebarNav="true"] {
+    background-color: transparent;
+    color: @on_surface_variant;
+    border: none;
+    border-radius: 0px;
+    padding: @spacing_4 14px @spacing_4 14px;
+    text-align: left;
+    font-weight: 550;
+}
+
+QPushButton[sidebarToggle="true"] {
+    background-color: transparent;
+    color: @on_surface_variant;
+    border: none;
+    border-radius: @rounded_md;
+    padding: @spacing_2;
+    min-width: 34px;
+}
+
+QPushButton[sidebarToggle="true"]:hover {
+    background-color: @surface_container_high;
+    color: @on_surface;
+}
+
+QFrame#Sidebar[collapsed="true"] QPushButton[sidebarNav="true"] {
+    text-align: center;
+    padding: @spacing_4 @spacing_2;
+}
+
+QFrame#Sidebar[collapsed="true"] QPushButton[sidebarNav="true"]:checked,
+QFrame#Sidebar[collapsed="true"] QPushButton[sidebarNav="true"][active="true"] {
+    border-left: none;
+    border-radius: @rounded_md;
+    padding-left: @spacing_2;
+}
+
+QPushButton[sidebarNav="true"]:hover {
+    background-color: @surface_container_high;
+    color: @on_surface;
+}
+
+QPushButton[sidebarNav="true"]:checked,
+QPushButton[sidebarNav="true"][active="true"] {
+    color: @on_surface;
+    font-weight: 600;
+    border-left: 2px solid @primary;
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 0,
+        stop: 0 @primary_alpha_15,
+        stop: 0.6 @primary_alpha_05,
+        stop: 1.0 transparent
+    );
+    padding-left: 12px;
+}
+
+QPushButton[sidebarNav="true"]:checked:hover,
+QPushButton[sidebarNav="true"][active="true"]:hover {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 0,
+        stop: 0 @primary_alpha_25,
+        stop: 1.0 transparent
+    );
+}
+
+QWidget#SidebarProfile {
+    background-color: @surface_container_high;
+    border-radius: @rounded_md;
+}
+
+QLabel#SidebarProfileAvatar {
+    background-color: @secondary_container;
+    color: @on_secondary_container;
+    border-radius: 14px;
+    font-family: @font_family_mono;
+    font-size: 10px;
+    font-weight: 650;
+}
+
+QLabel#SidebarProfileName {
+    background: transparent;
+    color: @on_surface;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel#SidebarProfileRole {
+    background: transparent;
+    color: @on_surface_variant;
+    font-size: 10px;
+}
+
+QLabel[workspaceTitle="true"] {
+    color: @on_surface_variant;
+    letter-spacing: 0.7px;
+    font-size: 11px;
+    font-weight: 620;
+}
+
+QLabel#WorkspaceHeader,
+QLabel#WorkspaceFooter {
+    background-color: @surface_container;
+}

@@ -1,0 +1,11 @@
+[project]
+name = "sbc2-core"
+version = "0.1.0"
+description = "Core domain for film AI asset management"
+requires-python = ">=3.11"
+dependencies = ["platformdirs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]

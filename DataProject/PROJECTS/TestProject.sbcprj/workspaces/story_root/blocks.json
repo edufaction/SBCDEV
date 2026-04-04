@@ -1,0 +1,576 @@
+[
+  {
+    "id": "blk_story_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "Story Root",
+    "description": "Root container for story shots",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_project_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "root",
+      "story"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE",
+      "workspace_role": "story_root"
+    },
+    "contains": [
+      "blk_story_shot_01",
+      "blk_story_shot_02",
+      "blk_story_shot_03",
+      "blk_story_shot_04",
+      "blk_story_shot_05"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_story_shot_01",
+    "type": "container",
+    "profile": "shot",
+    "name": "Shot 01",
+    "description": "Story shot 01",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_story_shot_01",
+      "blk_vid_story_shot_01"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_story_shot_01",
+    "type": "image",
+    "profile": "generated",
+    "name": "Shot 01 Image",
+    "description": "Image asset for Shot 01 Image",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_01": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_010.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_story_shot_01",
+    "type": "video",
+    "profile": "asset",
+    "name": "Shot 01 Video",
+    "description": "Video asset for Shot 01 Video",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_01": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_008.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_story_shot_02",
+    "type": "container",
+    "profile": "shot",
+    "name": "Shot 02",
+    "description": "Story shot 02",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_story_shot_02",
+      "blk_vid_story_shot_02"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_story_shot_02",
+    "type": "image",
+    "profile": "generated",
+    "name": "Shot 02 Image",
+    "description": "Image asset for Shot 02 Image",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_02": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_007.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_story_shot_02",
+    "type": "video",
+    "profile": "asset",
+    "name": "Shot 02 Video",
+    "description": "Video asset for Shot 02 Video",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_02": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_013.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_story_shot_03",
+    "type": "container",
+    "profile": "shot",
+    "name": "Shot 03",
+    "description": "Story shot 03",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_story_shot_03",
+      "blk_vid_story_shot_03"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_story_shot_03",
+    "type": "image",
+    "profile": "generated",
+    "name": "Shot 03 Image",
+    "description": "Image asset for Shot 03 Image",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_03": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_039.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_story_shot_03",
+    "type": "video",
+    "profile": "asset",
+    "name": "Shot 03 Video",
+    "description": "Video asset for Shot 03 Video",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_03": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_012.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_story_shot_04",
+    "type": "container",
+    "profile": "shot",
+    "name": "Shot 04",
+    "description": "Story shot 04",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_story_shot_04",
+      "blk_vid_story_shot_04"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_story_shot_04",
+    "type": "image",
+    "profile": "generated",
+    "name": "Shot 04 Image",
+    "description": "Image asset for Shot 04 Image",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_04": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_017.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_story_shot_04",
+    "type": "video",
+    "profile": "asset",
+    "name": "Shot 04 Video",
+    "description": "Video asset for Shot 04 Video",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_04": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_001.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_story_shot_05",
+    "type": "container",
+    "profile": "shot",
+    "name": "Shot 05",
+    "description": "Story shot 05",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [
+      "blk_img_story_shot_05",
+      "blk_vid_story_shot_05"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_img_story_shot_05",
+    "type": "image",
+    "profile": "generated",
+    "name": "Shot 05 Image",
+    "description": "Image asset for Shot 05 Image",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_05": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_IMG_014.png",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_vid_story_shot_05",
+    "type": "video",
+    "profile": "asset",
+    "name": "Shot 05 Video",
+    "description": "Video asset for Shot 05 Video",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_shot_05": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/SBC2_VID_015.mp4",
+      "source": "TESTPROJ_DATATEST_RELATIVE"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  }
+]

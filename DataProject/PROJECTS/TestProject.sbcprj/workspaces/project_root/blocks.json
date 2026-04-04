@@ -1,0 +1,42 @@
+[
+  {
+    "id": "blk_project_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "PROJET",
+    "description": "Project root container.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {},
+    "functional_name": "",
+    "tags": [
+      "workspace_root",
+      "project_root"
+    ],
+    "content": {
+      "workspace_role": "project_root"
+    },
+    "contains": [
+      "blk_characters_root",
+      "blk_story_root",
+      "blk_lib_root",
+      "blk_internal_lib_root"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  }
+]

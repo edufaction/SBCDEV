@@ -1,0 +1,45 @@
+/* SBC2 Design System: High-Performance Desktop Production */
+
+QWidget {
+    background-color: @surface_dim;
+    color: @on_surface;
+    font-family: @font_family_body;
+    font-size: @font_size_px;
+    selection-background-color: @selection;
+    selection-color: @on_surface;
+    outline: none;
+}
+
+QMainWindow,
+QDialog {
+    background-color: @surface_dim;
+}
+
+QToolTip {
+    color: @on_surface;
+    background-color: @surface_container_highest;
+    border: 1px solid @outline_ghost;
+    border-radius: @rounded_sm;
+    padding: @spacing_2 @spacing_3;
+}
+
+/* No-line sectioning via chroma separation and tonal layering */
+QFrame[panel="true"],
+QFrame[panel=true],
+QWidget[panel="true"],
+QWidget[panel=true] {
+    background-color: @surface_container;
+    border: none;
+    border-radius: @rounded_md;
+    padding: @spacing_4;
+}
+
+QFrame[panelAlt="true"],
+QFrame[panelAlt=true],
+QWidget[panelAlt="true"],
+QWidget[panelAlt=true] {
+    background-color: @surface_container_high;
+    border: none;
+    border-radius: @rounded_md;
+    padding: @spacing_4;
+}

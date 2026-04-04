@@ -1,0 +1,17 @@
+{
+  "id": "project_42d563ba",
+  "kind": "project",
+  "name": "TESTPROJ_DATATEST_RELATIVE",
+  "version": 1,
+  "description": "Ceci est un projet de test",
+  "preview_image_path": "storage/files/SBC2_IMG_024.png",
+  "author_name": "-",
+  "author_email": "-",
+  "created_at": "2026-04-01T15:00:15Z",
+  "updated_at": "2026-04-03T20:48:07Z",
+  "mounted_libraries": [],
+  "storage_layout_version": 2,
+  "legacy_blocks_migrated": true,
+  "legacy_blocks_source": "blocks.json",
+  "legacy_blocks_migrated_at": "2026-04-03T20:48:07Z"
+}

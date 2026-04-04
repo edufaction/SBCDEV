@@ -1,0 +1,80 @@
+/* Media cards: no divider line, separation by spacing + tonal shift. */
+QWidget[thumbnailCard="true"] {
+    background-color: @surface_container_high;
+    border: none;
+    border-radius: 10px;
+    padding: @spacing_2;
+}
+
+QWidget[thumbnailCard="true"]:hover {
+    background-color: @surface_container_highest;
+}
+
+QFrame[carouselItem="true"],
+QWidget[carouselItem="true"] {
+    background-color: @surface_container_high;
+    border: none;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+QFrame[carouselItem="true"][selected="true"],
+QWidget[carouselItem="true"][selected="true"] {
+    background-color: @surface_container_highest;
+}
+
+/* Production-specific patterns */
+QWidget[timelineTrack="true"],
+QFrame[timelineTrack="true"] {
+    background-color: @surface_container_lowest;
+    border: none;
+    border-radius: @rounded_sm;
+}
+
+QLabel[sceneChip="true"] {
+    background-color: @secondary_container;
+    color: @on_secondary_container;
+    border: none;
+    border-radius: @rounded_sm;
+    padding: @spacing_1 @spacing_2;
+    font-family: @font_family_mono;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+QProgressBar[aiProgress="true"] {
+    background-color: @surface_variant;
+    color: @on_surface_variant;
+    border: none;
+    border-radius: @rounded_sm;
+    text-align: center;
+}
+
+QProgressBar[aiProgress="true"]::chunk {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 0,
+        stop: 0 @tertiary,
+        stop: 1 @primary
+    );
+    border-radius: @rounded_sm;
+}
+
+QFrame[statTile="true"],
+QWidget[statTile="true"] {
+    background-color: @surface_container_highest;
+    border: 1px solid @outline_ghost;
+    border-radius: 10px;
+}
+
+QLabel[statIcon="true"],
+QLabel[statIcon=true] {
+    background-color: @surface_container_high;
+    border: 1px solid @outline_ghost;
+    border-radius: 10px;
+}
+
+QLabel[statValue="true"],
+QLabel[statValue=true] {
+    color: @on_surface;
+}

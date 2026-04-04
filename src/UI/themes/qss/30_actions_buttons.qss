@@ -1,0 +1,136 @@
+/* Buttons */
+QPushButton,
+QToolButton {
+    background-color: transparent;
+    color: @on_surface;
+    border: 1px solid @outline_20;
+    border-radius: @rounded_md;
+    padding: @spacing_3 @spacing_5;
+}
+
+QPushButton:hover,
+QToolButton:hover {
+    background-color: @surface_container_highest;
+}
+
+QPushButton:pressed,
+QToolButton:pressed {
+    background-color: @surface_container_high;
+}
+
+/* Primary / Hero action: signature gradient. */
+QPushButton[accent="true"],
+QPushButton[accent=true],
+QToolButton[accent="true"],
+QToolButton[accent=true],
+QPushButton[primary="true"],
+QPushButton[primary=true],
+QToolButton[primary="true"],
+QToolButton[primary=true] {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 @primary,
+        stop: 1 @secondary
+    );
+    color: @on_primary_fixed;
+    border: none;
+    border-radius: @rounded_md;
+    font-weight: 620;
+    padding: @spacing_4 @spacing_6;
+}
+
+QPushButton[accent="true"]:hover,
+QPushButton[accent=true]:hover,
+QToolButton[accent="true"]:hover,
+QToolButton[accent=true]:hover,
+QPushButton[primary="true"]:hover,
+QPushButton[primary=true]:hover,
+QToolButton[primary="true"]:hover,
+QToolButton[primary=true]:hover {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 @primary_hover,
+        stop: 1 @secondary
+    );
+}
+
+QPushButton[accent="true"]:pressed,
+QPushButton[accent=true]:pressed,
+QToolButton[accent="true"]:pressed,
+QToolButton[accent=true]:pressed,
+QPushButton[primary="true"]:pressed,
+QPushButton[primary=true]:pressed,
+QToolButton[primary="true"]:pressed,
+QToolButton[primary=true]:pressed {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 @primary_dim,
+        stop: 1 @secondary_dim
+    );
+}
+
+/* Secondary ghost action */
+QPushButton[ghost="true"],
+QPushButton[ghost=true],
+QToolButton[ghost="true"],
+QToolButton[ghost=true] {
+    background-color: transparent;
+    border: 1px solid @outline_20;
+    color: @on_surface;
+}
+
+QPushButton[ghost="true"]:hover,
+QPushButton[ghost=true]:hover,
+QToolButton[ghost="true"]:hover,
+QToolButton[ghost=true]:hover {
+    background-color: @surface_container_highest;
+}
+
+/* AI/Magic action */
+QPushButton[aiMagic="true"],
+QPushButton[aiMagic=true],
+QToolButton[aiMagic="true"],
+QToolButton[aiMagic=true] {
+    background-color: @surface_container_high;
+    color: @on_surface;
+    border: 2px solid @tertiary_container;
+    border-radius: @rounded_md;
+    padding: @spacing_4 @spacing_6;
+}
+
+/* Settings tabs */
+QTabWidget#SettingsTabs::pane {
+    border: none;
+    border-top: 1px solid @outline_20;
+    background: transparent;
+}
+
+QTabWidget#SettingsTabs QTabBar::tab {
+    background-color: @surface_container_highest;
+    color: @on_surface_variant;
+    border: none;
+    border-top-left-radius: @rounded_md;
+    border-top-right-radius: @rounded_md;
+    padding: @spacing_3 @spacing_5;
+    margin-right: @spacing_2;
+}
+
+QTabWidget#SettingsTabs QTabBar::tab:hover:!selected {
+    background-color: @surface_container_high;
+    color: @on_surface;
+}
+
+QTabWidget#SettingsTabs QTabBar::tab:selected {
+    background: qlineargradient(
+        x1: 0, y1: 0,
+        x2: 1, y2: 1,
+        stop: 0 @secondary,
+        stop: 1 @primary
+    );
+    color: @on_primary_fixed;
+    border: none;
+    font-weight: 620;
+}

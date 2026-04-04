@@ -1,0 +1,5 @@
+Camera angle: eye-level
+Vertical position: camera aligned exactly with the subject’s eye line
+Tilt: none
+Perspective intent: neutral, observational
+Strict rule: do NOT tilt up or down; horizon must remain level
