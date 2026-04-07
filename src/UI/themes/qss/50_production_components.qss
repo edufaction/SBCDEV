@@ -76,5 +76,5 @@ QLabel[statIcon=true] {
 
 QLabel[statValue="true"],
 QLabel[statValue=true] {
-    color: @on_surface;
+    color: @secondary;
 }

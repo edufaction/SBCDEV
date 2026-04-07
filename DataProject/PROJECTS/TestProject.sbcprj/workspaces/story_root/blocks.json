@@ -31,7 +31,10 @@
       "blk_story_shot_02",
       "blk_story_shot_03",
       "blk_story_shot_04",
-      "blk_story_shot_05"
+      "blk_story_shot_05",
+      "blk_shot_bb19940ea1",
+      "blk_shot_1de8dcde19",
+      "blk_shot_0eb74fb829"
     ],
     "inputs": [],
     "tree": {
@@ -59,7 +62,7 @@
       "kind": "local"
     },
     "container_paths": {
-      "blk_story_root": ""
+      "blk_story_root": "intro"
     },
     "functional_name": "",
     "tags": [
@@ -165,7 +168,7 @@
       "kind": "local"
     },
     "container_paths": {
-      "blk_story_root": ""
+      "blk_story_root": "Messe basse"
     },
     "functional_name": "",
     "tags": [
@@ -572,5 +575,116 @@
     "inputs": [],
     "tree": null,
     "graph": null
+  },
+  {
+    "id": "blk_shot_bb19940ea1",
+    "type": "container",
+    "profile": "shot",
+    "name": "New Shot",
+    "description": "Story shot container: New Shot",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "kind": "story_shot"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_shot_1de8dcde19",
+    "type": "container",
+    "profile": "shot",
+    "name": "New Shot",
+    "description": "Story shot container: New Shot",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "kind": "story_shot"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_shot_0eb74fb829",
+    "type": "container",
+    "profile": "shot",
+    "name": "New Shot",
+    "description": "Story shot container: New Shot",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_story_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "story",
+      "shot"
+    ],
+    "content": {
+      "kind": "story_shot"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
   }
 ]

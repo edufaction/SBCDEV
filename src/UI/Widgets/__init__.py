@@ -2,6 +2,7 @@
 
 from .asset_grid_widget import AssetGridWidget
 from .block_property_widget import BlockPropertyWidget
+from .carousel_3d_widget import Carousel3DWidget
 from .empty_state_widget import EmptyStateWidget
 from .filter_bar_widget import FilterBarWidget
 from .free_tree_widget import FreeTreeWidget
@@ -16,9 +17,12 @@ from .project_workspace_widget import ProjectWorkspaceWidget
 from .search_bar_widget import SearchBarWidget
 from .settings_workspace_widget import SettingsWorkspaceWidget
 from .sidebar_menu import SidebarMenu
+from .story_shot_workspace_widget import StoryShotWorkspaceWidget
 from .thumbnail_list_view import ThumbnailListView
 from .thumbnail_widget import ThumbnailWidget
 from .thumbnail_utils import resolve_block_asset_path
+from .workspace_frame_widget import WorkspaceFrameWidget
+from .workspace_tree_panel_widget import WorkspaceTreePanelWidget
 
 __all__ = [
     "ThumbnailWidget",
@@ -30,11 +34,15 @@ __all__ = [
     "SearchBarWidget",
     "FilterBarWidget",
     "HorizontalCarouselWidget",
+    "Carousel3DWidget",
     "InfoStatTileWidget",
     "InspectorSectionWidget",
     "EmptyStateWidget",
     "MediaPreviewWidget",
     "SidebarMenu",
+    "StoryShotWorkspaceWidget",
+    "WorkspaceFrameWidget",
+    "WorkspaceTreePanelWidget",
     "FreeTreeWidget",
     "BlockPropertyWidget",
     "ProjectWorkspaceWidget",

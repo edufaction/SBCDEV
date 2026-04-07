@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Callable
 
 from PySide6.QtCore import QEvent, QRectF, QSize, Qt, Signal
-from PySide6.QtGui import QColor, QCursor, QFontMetrics, QIcon, QPainter, QPixmap
+from PySide6.QtGui import QColor, QCursor, QFontMetrics, QIcon, QPainter, QPainterPath, QPixmap
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import (
     QButtonGroup,
@@ -65,7 +65,7 @@ class SidebarMenu(QFrame):
         layout.addStretch(1)
 
         for key, text, icon_name in (
-            ("project", "PROJECT", "project_notebook.svg"),
+            ("project", "PROJETS", "project_notebook.svg"),
             ("support", "SUPPORT", "story_world_message_circle_user.svg"),
             ("settings", "SETTINGS", "actions_adjustments_search.svg"),
         ):
@@ -146,8 +146,10 @@ class SidebarMenu(QFrame):
         crest = QLabel(container)
         crest.setObjectName("SidebarBrandCrest")
         crest.setFixedSize(28, 28)
-        crest.setText("A")
         crest.setAlignment(Qt.AlignCenter)
+        if not self._apply_app_logo_to_crest(crest):
+            crest.setProperty("hasLogo", False)
+            crest.setText("A")
 
         text_col = QVBoxLayout()
         text_col.setContentsMargins(0, 0, 0, 0)
@@ -163,6 +165,56 @@ class SidebarMenu(QFrame):
         row.addWidget(crest)
         row.addLayout(text_col, 1)
         return container
+
+    def _apply_app_logo_to_crest(self, crest: QLabel) -> bool:
+        icon_path = self._resolve_app_logo_path()
+        if icon_path is None:
+            return False
+
+        source = QPixmap(str(icon_path))
+        if source.isNull():
+            return False
+
+        crest_size = max(1, min(crest.width(), crest.height()))
+        scaled = source.scaled(crest_size, crest_size, Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        source_x = max(0, (scaled.width() - crest_size) // 2)
+        source_y = max(0, (scaled.height() - crest_size) // 2)
+        circular = QPixmap(crest_size, crest_size)
+        circular.fill(Qt.transparent)
+
+        painter = QPainter(circular)
+        painter.setRenderHint(QPainter.Antialiasing, True)
+        clip_path = QPainterPath()
+        clip_path.addEllipse(QRectF(0, 0, crest_size, crest_size))
+        painter.setClipPath(clip_path)
+        painter.drawPixmap(
+            QRectF(0, 0, crest_size, crest_size),
+            scaled,
+            QRectF(source_x, source_y, crest_size, crest_size),
+        )
+        painter.end()
+
+        crest.setProperty("hasLogo", True)
+        crest.setText("")
+        crest.setPixmap(circular)
+        crest.style().unpolish(crest)
+        crest.style().polish(crest)
+        crest.update()
+        return True
+
+    def _resolve_app_logo_path(self) -> Path | None:
+        app_icons_root = Path(__file__).resolve().parents[1] / "AppIcons"
+        candidate_dirs = (app_icons_root / "Base", app_icons_root)
+        preferred = ("app.png", "icon.png", "512x512.png", "256x256.png", "icon.ico", "icon.icns")
+
+        for icons_dir in candidate_dirs:
+            if not icons_dir.exists():
+                continue
+            for filename in preferred:
+                candidate = icons_dir / filename
+                if candidate.exists():
+                    return candidate
+        return None
 
     def _build_profile_widget(self) -> QWidget:
         container = QWidget(self)

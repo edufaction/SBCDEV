@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.project_workspace_widget</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.project_workspace_widget</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/project_workspace_widget.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/project_workspace_widget.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>(<a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>, <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.project_workspace_widget.html#ProjectWorkspaceWidget">ProjectWorkspaceWidget</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ProjectWorkspaceWidget">class <strong>ProjectWorkspaceWidget</strong></a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ProjectWorkspaceWidget">ProjectWorkspaceWidget</a>(parent:&nbsp;<a href="PySide6.QtWidgets.html#QWidget">QWidget</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Project&nbsp;workspace&nbsp;with&nbsp;actions&nbsp;and&nbsp;project&nbsp;metadata&nbsp;panel.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.project_workspace_widget.html#ProjectWorkspaceWidget">ProjectWorkspaceWidget</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-__init__"><strong>__init__</strong></a>(self, parent: QWidget | None = None) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<strong>close_project_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>new_project_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>open_project_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>project_tree_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-resizeEvent"><strong>resizeEvent</strong></a>(self, event) -&gt; None</dt></dl>
+
+<strong>save_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>select_visual_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-set_project_metadata"><strong>set_project_metadata</strong></a>(self, *, project_path: Path | None, metadata: dict | None) -&gt; None</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-set_save_feedback"><strong>set_save_feedback</strong></a>(self, message: str) -&gt; None</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("ProjectWorkspaceWidg..._requested(QVariantMap), parameters=QVariantMap
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-changeEvent"><strong>changeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ProjectWorkspaceWidget-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ProjectWorkspaceWidget-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="ProjectWorkspaceWidget-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

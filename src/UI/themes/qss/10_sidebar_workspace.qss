@@ -22,6 +22,14 @@ QLabel#SidebarBrandCrest {
     font-weight: 700;
 }
 
+QLabel#SidebarBrandCrest[hasLogo="true"],
+QLabel#SidebarBrandCrest[hasLogo=true] {
+    background: transparent;
+    border: none;
+    border-radius: 14px;
+    padding: 0px;
+}
+
 QLabel#SidebarBrandTitle {
     color: @on_surface;
     background: transparent;

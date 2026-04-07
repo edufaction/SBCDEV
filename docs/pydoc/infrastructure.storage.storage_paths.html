@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module infrastructure.storage.storage_paths</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="infrastructure.html" class="white">infrastructure</a>.<a href="infrastructure.storage.html" class="white">storage</a>.storage_paths</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/storage_paths.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/storage_paths.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="infrastructure.storage.storage_paths.html#StorageRoots">StorageRoots</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="StorageRoots">class <strong>StorageRoots</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#StorageRoots">StorageRoots</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;projects_root:&nbsp;__dataclass_type_projects_root__,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;user_libraries_root:&nbsp;__dataclass_type_user_libraries_root__,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;application_libraries_root:&nbsp;__dataclass_type_application_libraries_root__<br>
+)&nbsp;-&amp;gt;&nbsp;__dataclass___init___return_type__<br>
+&nbsp;<br>
+Concrete&nbsp;roots&nbsp;used&nbsp;by&nbsp;persistence&nbsp;services.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;projects_root:&nbsp;Root&nbsp;folder&nbsp;where&nbsp;``*.sbcprj``&nbsp;workspaces&nbsp;are&nbsp;created&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discovered.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;user_libraries_root:&nbsp;User-managed&nbsp;external&nbsp;libraries&nbsp;root.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;application_libraries_root:&nbsp;Application-provided&nbsp;libraries&nbsp;root.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="StorageRoots-__delattr__"><strong>__delattr__</strong></a>(self, name)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="StorageRoots-__eq__"><strong>__eq__</strong></a>(self, other)</dt><dd><span class="code">Return&nbsp;self==value.</span></dd></dl>
+
+<dl><dt><a name="StorageRoots-__hash__"><strong>__hash__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;hash(self).</span></dd></dl>
+
+<dl><dt><a name="StorageRoots-__init__"><strong>__init__</strong></a>(
+    self,
+    projects_root: __dataclass_type_projects_root__,
+    user_libraries_root: __dataclass_type_user_libraries_root__,
+    application_libraries_root: __dataclass_type_application_libraries_root__
+) -&gt; __dataclass___init___return_type__</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="StorageRoots-__replace__"><strong>__replace__</strong></a> = _replace(self, /, **changes)<span class="grey"><span class="heading-text"> from <a href="dataclasses.html">dataclasses</a></span></span></dt></dl>
+
+<dl><dt><a name="StorageRoots-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="StorageRoots-__setattr__"><strong>__setattr__</strong></a>(self, name, value)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {'application_libraries_root': 'Path', 'projects_root': 'Path', 'user_libraries_root': 'Path'}</dl>
+
+<dl><dt><strong>__dataclass_fields__</strong> = {'application_libraries_root': Field(name='application_libraries_root',type='Pa...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'projects_root': Field(name='projects_root',type='Path',default=&lt;...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'user_libraries_root': Field(name='user_libraries_root',type='Path',def...xy({}),kw_only=False,doc=None,_field_type=_FIELD)}</dl>
+
+<dl><dt><strong>__dataclass_params__</strong> = _DataclassParams(init=True,repr=True,eq=True,ord...rue,kw_only=False,slots=False,weakref_slot=False)</dl>
+
+<dl><dt><strong>__match_args__</strong> = ('projects_root', 'user_libraries_root', 'application_libraries_root')</dl>
+
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-resolve_storage_roots"><strong>resolve_storage_roots</strong></a>(*, ensure_exists: bool = True) -&gt; StorageRoots</dt><dd><span class="code">Resolve&nbsp;effective&nbsp;storage&nbsp;roots&nbsp;for&nbsp;the&nbsp;current&nbsp;runtime.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ensure_exists:&nbsp;When&nbsp;``True``,&nbsp;create&nbsp;resolved&nbsp;directories&nbsp;if&nbsp;they&nbsp;do&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exist&nbsp;yet.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:class:`<a href="#StorageRoots">StorageRoots</a>`&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;absolute&nbsp;resolved&nbsp;paths.<br>
+&nbsp;<br>
+Resolution&nbsp;policy:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;``SBC2_PROJECTS_DIR``&nbsp;overrides&nbsp;projects&nbsp;root,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;``SBC2_USER_LIBRARIES_DIR``&nbsp;overrides&nbsp;user&nbsp;libraries&nbsp;root,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;``SBC2_APPLICATION_LIBRARIES_DIR``&nbsp;overrides&nbsp;app&nbsp;libraries&nbsp;root,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;otherwise&nbsp;defaults&nbsp;derive&nbsp;from&nbsp;the&nbsp;data&nbsp;root.</span></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.themes.__init__</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.themes.html" class="white">themes</a>.__init__</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/themes/__init__.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/themes/__init__.py</a></td></tr></table>
+    <p><span class="code">Theme&nbsp;system&nbsp;for&nbsp;SBC2&nbsp;UI.</span></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-active_theme_name"><strong>active_theme_name</strong></a>(
+    app: QApplication | None = None,
+    *,
+    fallback_theme_name: str = 'dark'
+) -&gt; str</dt></dl>
+ <dl><dt><a name="-active_theme_tokens"><strong>active_theme_tokens</strong></a>(
+    app: QApplication | None = None,
+    *,
+    fallback_theme_name: str = 'dark'
+) -&gt; dict[str, str]</dt></dl>
+ <dl><dt><a name="-active_theme_tokens_ref"><strong>active_theme_tokens_ref</strong></a>(
+    app: QApplication | None = None,
+    *,
+    fallback_theme_name: str = 'dark'
+) -&gt; dict[str, str]</dt></dl>
+ <dl><dt><a name="-apply_theme"><strong>apply_theme</strong></a>(
+    app: QApplication,
+    *,
+    theme_name: str = 'dark',
+    font_size: int = 12,
+    qss_path: str | Path | None = None
+) -&gt; None</dt></dl>
+ <dl><dt><a name="-initialize_widget_primitives"><strong>initialize_widget_primitives</strong></a>(root: QWidget) -&gt; None</dt><dd><span class="code">Initialize&nbsp;baseline&nbsp;look-and-feel&nbsp;primitives&nbsp;for&nbsp;a&nbsp;widget&nbsp;subtree.</span></dd></dl>
+ <dl><dt><a name="-install_widget_primitives"><strong>install_widget_primitives</strong></a>(app: QApplication) -&gt; None</dt><dd><span class="code">Install&nbsp;baseline&nbsp;primitives&nbsp;for&nbsp;current&nbsp;top-level&nbsp;widgets&nbsp;(one-shot).</span></dd></dl>
+ <dl><dt><a name="-load_qss_template"><strong>load_qss_template</strong></a>(path: str | Path | None = None) -&gt; str</dt></dl>
+ <dl><dt><a name="-render_qss_template"><strong>render_qss_template</strong></a>(qss_text: str, tokens: dict[str, str]) -&gt; str</dt></dl>
+ <dl><dt><a name="-resolve_type_color"><strong>resolve_type_color</strong></a>(
+    block_type: BlockType,
+    *,
+    tokens: Mapping[str, str] | None = None,
+    theme_name: str | None = None
+) -&gt; QColor</dt></dl>
+ <dl><dt><a name="-theme_tokens"><strong>theme_tokens</strong></a>(name: str) -&gt; dict[str, str]</dt></dl>
+ <dl><dt><a name="-type_badge_label"><strong>type_badge_label</strong></a>(block_type: BlockType) -&gt; str</dt></dl>
+ <dl><dt><a name="-type_token_key"><strong>type_token_key</strong></a>(block_type: BlockType) -&gt; str</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>FONT_SIZES</strong> = [11, 12, 13, 14, 15, 16]<br>
+<strong>FONT_SIZE_DEFAULT</strong> = 12<br>
+<strong>SBC2_THEME_QSS_DIR</strong> = PosixPath('/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/themes/qss')<br>
+<strong>SBC2_THEME_QSS_PATH</strong> = PosixPath('/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/themes/app.qss')<br>
+<strong>THEME_NAMES</strong> = ['dark', 'dim', 'light']<br>
+<strong>__all__</strong> = ['FONT_SIZE_DEFAULT', 'FONT_SIZES', 'THEME_NAMES', 'theme_tokens', 'SBC2_THEME_QSS_DIR', 'SBC2_THEME_QSS_PATH', 'active_theme_name', 'active_theme_tokens', 'active_theme_tokens_ref', 'apply_theme', 'load_qss_template', 'render_qss_template', 'type_token_key', 'type_badge_label', 'resolve_type_color', 'initialize_widget_primitives', 'install_widget_primitives']</td></tr></table>
+</body></html>

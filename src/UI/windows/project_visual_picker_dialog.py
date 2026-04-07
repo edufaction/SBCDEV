@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDialog, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from domain import Block
-from UI.Widgets import HorizontalCarouselWidget, PanelContainerWidget
+from UI.Widgets import Carousel3DWidget, PanelContainerWidget
 from UI.themes import initialize_widget_primitives
 from UI.windows.window_helpers import load_app_icon
 
@@ -27,8 +27,8 @@ class ProjectVisualPickerDialog(QDialog):
         icon = load_app_icon()
         if icon is not None:
             self.setWindowIcon(icon)
-        self.resize(980, 420)
-        self.setMinimumSize(760, 340)
+        self.resize(980, 520)
+        self.setMinimumSize(760, 460)
         self.setModal(True)
 
         ordered_blocks = list(blocks)
@@ -48,15 +48,18 @@ class ProjectVisualPickerDialog(QDialog):
         self._selection_info = QLabel("No selection", self)
         self._selection_info.setProperty("technical", True)
 
-        self._carousel = HorizontalCarouselWidget(self)
-        self._carousel.block_selected.connect(self._on_block_selected)
-        self._carousel.set_blocks(ordered_blocks, project_root=project_root)
+        self._carousel = Carousel3DWidget(self)
 
         self._cancel_button = QPushButton("Cancel", self)
         self._cancel_button.setProperty("ghost", True)
         self._validate_button = QPushButton("Validate", self)
         self._validate_button.setProperty("primary", True)
         self._validate_button.setEnabled(self._selected_block is not None)
+
+        self._carousel.block_selected.connect(self._on_block_selected)
+        self._carousel.set_blocks(ordered_blocks, project_root=project_root)
+        if initial_selected_block_id:
+            self._carousel.set_selected_block_id(initial_selected_block_id, animated=False)
 
         actions = QWidget(self)
         actions_layout = QHBoxLayout(actions)
@@ -94,7 +97,8 @@ class ProjectVisualPickerDialog(QDialog):
 
     def _on_block_selected(self, block: Block) -> None:
         self._selected_block = block
-        self._validate_button.setEnabled(True)
+        if hasattr(self, "_validate_button"):
+            self._validate_button.setEnabled(True)
         self._refresh_selection_text()
 
     def _refresh_selection_text(self) -> None:

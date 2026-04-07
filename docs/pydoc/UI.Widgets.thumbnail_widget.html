@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.thumbnail_widget</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.thumbnail_widget</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/thumbnail_widget.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/thumbnail_widget.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="hashlib.html">hashlib</a><br>
+</td><td class="multicolumn"><a href="struct.html">struct</a><br>
+</td><td class="multicolumn"><a href="tempfile.html">tempfile</a><br>
+</td><td class="multicolumn"><a href="zlib.html">zlib</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>(<a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>, <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.thumbnail_widget.html#ThumbnailWidget">ThumbnailWidget</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ThumbnailWidget">class <strong>ThumbnailWidget</strong></a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ThumbnailWidget">ThumbnailWidget</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;block:&nbsp;Block,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;project_root:&nbsp;Path&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on_click:&nbsp;Callable[[Block],&nbsp;None]&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on_double_click:&nbsp;Callable[[Block],&nbsp;None]&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;drag_enabled:&nbsp;bool&nbsp;=&nbsp;False,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent:&nbsp;<a href="PySide6.QtWidgets.html#QWidget">QWidget</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Render&nbsp;a&nbsp;thumbnail&nbsp;area&nbsp;and&nbsp;block&nbsp;label&nbsp;based&nbsp;on&nbsp;block&nbsp;type/content.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.thumbnail_widget.html#ThumbnailWidget">ThumbnailWidget</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ThumbnailWidget-__init__"><strong>__init__</strong></a>(
+    self,
+    block: Block,
+    *,
+    project_root: Path | None = None,
+    on_click: Callable[[Block], None] | None = None,
+    on_double_click: Callable[[Block], None] | None = None,
+    drag_enabled: bool = False,
+    parent: QWidget | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-changeEvent"><strong>changeEvent</strong></a>(self, event) -&gt; None</dt></dl>
+
+<strong>clicked</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>double_clicked</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, event: QMouseEvent) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, event: QMouseEvent) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(self, event: QMouseEvent) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-resizeEvent"><strong>resizeEvent</strong></a>(self, event) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-set_block"><strong>set_block</strong></a>(self, block: Block, *, project_root: Path | None = None) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-set_click_handlers"><strong>set_click_handlers</strong></a>(
+    self,
+    *,
+    on_click: Callable[[Block], None] | None = None,
+    on_double_click: Callable[[Block], None] | None = None
+) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-set_drag_enabled"><strong>set_drag_enabled</strong></a>(self, enabled: bool) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-sizeHint"><strong>sizeHint</strong></a>(self) -&gt; QSize</dt></dl>
+
+<hr>
+Readonly properties defined here:<br>
+<dl><dt><strong>block</strong></dt>
+</dl>
+<dl><dt><strong>meta_text</strong></dt>
+</dl>
+<dl><dt><strong>title_text</strong></dt>
+</dl>
+<dl><dt><strong>type_badge_style</strong></dt>
+</dl>
+<dl><dt><strong>type_badge_text</strong></dt>
+</dl>
+<dl><dt><strong>type_badge_type_key</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("ThumbnailWidget" inh...e=double_clicked(PyObject), parameters=PyObject
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ThumbnailWidget-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ThumbnailWidget-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailWidget-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailWidget-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailWidget-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ThumbnailWidget-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ThumbnailWidget-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailWidget-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-resolve_block_asset_path"><strong>resolve_block_asset_path</strong></a>(block: Block, project_root: Path | None) -&gt; Path | None</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>BLOCK_IDS_MIME</strong> = 'application/x-sbc2-block-ids'<br>
+<strong>Callable</strong> = typing.Callable<br>
+<strong>HORIZONTAL_GAP</strong> = 8<br>
+<strong>MEDIA_ASPECT_HEIGHT</strong> = 9<br>
+<strong>MEDIA_ASPECT_WIDTH</strong> = 16<br>
+<strong>MIN_DETAILS_WIDTH</strong> = 140<br>
+<strong>MIN_MEDIA_WIDTH</strong> = 160</td></tr></table>
+</body></html>

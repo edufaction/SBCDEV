@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module services.block_service</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="services.html" class="white">services</a>.block_service</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/services/block_service.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/services/block_service.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="services.block_service.html#BlockService">BlockService</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BlockService">class <strong>BlockService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BlockService">BlockService</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;repository:&nbsp;BlockRepository,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;container_rules:&nbsp;ContainerRulesService&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Generic&nbsp;block&nbsp;service&nbsp;backed&nbsp;by&nbsp;BlockRepository.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="BlockService-__init__"><strong>__init__</strong></a>(
+    self,
+    repository: BlockRepository,
+    container_rules: ContainerRulesService | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="BlockService-add_input"><strong>add_input</strong></a>(
+    self,
+    *,
+    target_id: str,
+    source_block_id: str,
+    port: PortType,
+    name: str = '',
+    enabled: bool = True,
+    order: int = 0,
+    metadata: dict[str, Any] | None = None
+) -&gt; Block</dt><dd><span class="code">Add&nbsp;an&nbsp;incoming&nbsp;connection&nbsp;on&nbsp;target&nbsp;block.</span></dd></dl>
+
+<dl><dt><a name="BlockService-add_to_container"><strong>add_to_container</strong></a>(self, container_id: str, block_id: str) -&gt; Block</dt><dd><span class="code">Attach&nbsp;block&nbsp;id&nbsp;to&nbsp;container.contains.</span></dd></dl>
+
+<dl><dt><a name="BlockService-create_block"><strong>create_block</strong></a>(
+    self,
+    *,
+    block_type: BlockType,
+    profile: str,
+    name: str,
+    block_id: str | None = None,
+    description: str = '',
+    prompt_ref: str = '',
+    prompt_generated: str = '',
+    comment: str = '',
+    shared: bool = False,
+    domain: BlockDomain = &lt;BlockDomain.LIB: 'lib'&gt;,
+    access_mode: BlockAccessMode = &lt;BlockAccessMode.OWNED: 'owned'&gt;,
+    provenance: dict[str, Any] | None = None,
+    functional_name: str = '',
+    tags: list[str] | None = None,
+    content: dict[str, Any] | None = None
+) -&gt; Block</dt><dd><span class="code">Create&nbsp;and&nbsp;persist&nbsp;a&nbsp;generic&nbsp;block.</span></dd></dl>
+
+<dl><dt><a name="BlockService-delete_block"><strong>delete_block</strong></a>(self, block_id: str) -&gt; None</dt><dd><span class="code">Delete&nbsp;a&nbsp;block&nbsp;and&nbsp;remove&nbsp;references&nbsp;from&nbsp;all&nbsp;other&nbsp;blocks.</span></dd></dl>
+
+<dl><dt><a name="BlockService-get_block"><strong>get_block</strong></a>(self, block_id: str) -&gt; Block</dt></dl>
+
+<dl><dt><a name="BlockService-get_inputs_for_port"><strong>get_inputs_for_port</strong></a>(
+    self,
+    block: Block,
+    port: PortType,
+    only_enabled: bool = True
+) -&gt; list[InputConnection]</dt><dd><span class="code">Return&nbsp;inputs&nbsp;filtered&nbsp;by&nbsp;port&nbsp;and&nbsp;enabled&nbsp;flag.</span></dd></dl>
+
+<dl><dt><a name="BlockService-list_blocks"><strong>list_blocks</strong></a>(self) -&gt; list[Block]</dt></dl>
+
+<dl><dt><a name="BlockService-remove_from_container"><strong>remove_from_container</strong></a>(self, container_id: str, block_id: str) -&gt; Block</dt><dd><span class="code">Detach&nbsp;block&nbsp;id&nbsp;from&nbsp;container.contains.</span></dd></dl>
+
+<dl><dt><a name="BlockService-remove_input"><strong>remove_input</strong></a>(
+    self,
+    *,
+    target_id: str,
+    source_block_id: str,
+    port: PortType | None = None,
+    name: str | None = None
+) -&gt; Block</dt><dd><span class="code">Remove&nbsp;incoming&nbsp;connection(s)&nbsp;on&nbsp;target&nbsp;block.</span></dd></dl>
+
+<dl><dt><a name="BlockService-update_block"><strong>update_block</strong></a>(self, block: Block) -&gt; Block</dt><dd><span class="code">Persist&nbsp;an&nbsp;already&nbsp;existing&nbsp;block&nbsp;instance.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

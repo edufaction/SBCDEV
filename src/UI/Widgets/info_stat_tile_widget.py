@@ -39,7 +39,7 @@ class InfoStatTileWidget(QFrame):
         self._value_label = QLabel(str(self._value), self)
         self._value_label.setProperty("displayMd", True)
         self._value_label.setProperty("statValue", True)
-        self._value_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        self._value_label.setAlignment(Qt.AlignCenter)
 
         labels_col = QWidget(self)
         labels_layout = QVBoxLayout(labels_col)

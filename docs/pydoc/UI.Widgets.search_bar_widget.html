@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.search_bar_widget</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.search_bar_widget</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/search_bar_widget.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/search_bar_widget.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>(<a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>, <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.search_bar_widget.html#SearchBarWidget">SearchBarWidget</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="SearchBarWidget">class <strong>SearchBarWidget</strong></a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#SearchBarWidget">SearchBarWidget</a>(parent:&nbsp;<a href="PySide6.QtWidgets.html#QWidget">QWidget</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None,&nbsp;*,&nbsp;placeholder:&nbsp;str&nbsp;=&nbsp;'')&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Standardized&nbsp;search&nbsp;bar&nbsp;wrapper&nbsp;with&nbsp;explicit&nbsp;signals.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.search_bar_widget.html#SearchBarWidget">SearchBarWidget</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SearchBarWidget-__init__"><strong>__init__</strong></a>(self, parent: QWidget | None = None, *, placeholder: str = '') -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<strong>clear_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>search_submitted</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-set_placeholder"><strong>set_placeholder</strong></a>(self, text: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-set_text"><strong>set_text</strong></a>(self, text: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-text"><strong>text</strong></a>(self) -&gt; str</dt></dl>
+
+<strong>text_changed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<hr>
+Readonly properties defined here:<br>
+<dl><dt><strong>line_edit</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("SearchBarWidget" inh...
+  #35 type=Signal, signature=clear_requested()
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="SearchBarWidget-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="SearchBarWidget-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="SearchBarWidget-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="SearchBarWidget-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-changeEvent"><strong>changeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-resizeEvent"><strong>resizeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="SearchBarWidget-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="SearchBarWidget-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SearchBarWidget-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="SearchBarWidget-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SearchBarWidget-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SearchBarWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SearchBarWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="SearchBarWidget-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="SearchBarWidget-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="SearchBarWidget-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

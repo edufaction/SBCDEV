@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module infrastructure.storage.workspace_storage_service</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="infrastructure.html" class="white">infrastructure</a>.<a href="infrastructure.storage.html" class="white">storage</a>.workspace_storage_service</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/workspace_storage_service.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/workspace_storage_service.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="json.html">json</a><br>
+</td><td class="multicolumn"><a href="mimetypes.html">mimetypes</a><br>
+</td><td class="multicolumn"><a href="shutil.html">shutil</a><br>
+</td><td class="multicolumn"><a href="subprocess.html">subprocess</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="infrastructure.storage.workspace_storage_service.html#LibraryStorageService">LibraryStorageService</a>
+</dt><dt class="heading-text"><a href="infrastructure.storage.workspace_storage_service.html#ProjectStorageService">ProjectStorageService</a>
+</dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="LibraryStorageService">class <strong>LibraryStorageService</strong></a>(<a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#LibraryStorageService">LibraryStorageService</a>()&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Storage&nbsp;service&nbsp;specialization&nbsp;for&nbsp;standalone&nbsp;library&nbsp;workspaces.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="infrastructure.storage.workspace_storage_service.html#LibraryStorageService">LibraryStorageService</a></dd>
+<dd><a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LibraryStorageService-__init__"><strong>__init__</strong></a>(self) -&gt; None</dt><dd><span class="code">Initialize&nbsp;a&nbsp;storage&nbsp;service&nbsp;for&nbsp;one&nbsp;logical&nbsp;workspace&nbsp;kind.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Default&nbsp;kind&nbsp;assigned&nbsp;to&nbsp;newly&nbsp;created&nbsp;workspaces<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;no&nbsp;explicit&nbsp;kind&nbsp;is&nbsp;provided.</span></dd></dl>
+
+<hr>
+Methods inherited from <a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>:<br>
+<dl><dt><a name="LibraryStorageService-add_mounted_library"><strong>add_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    library_path: str | Path,
+    label: str = '',
+    enabled: bool = True,
+    read_only: bool = True,
+    mount_id: str | None = None
+) -&gt; dict[str, Any]</dt><dd><span class="code">Add&nbsp;or&nbsp;update&nbsp;one&nbsp;mounted&nbsp;library&nbsp;entry.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;path&nbsp;already&nbsp;exists&nbsp;in&nbsp;metadata,&nbsp;the&nbsp;existing&nbsp;item&nbsp;is&nbsp;updated<br>
+in&nbsp;place.&nbsp;Otherwise,&nbsp;a&nbsp;new&nbsp;canonical&nbsp;mount&nbsp;descriptor&nbsp;is&nbsp;appended.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-create_library"><strong>create_library</strong></a>(self, library_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;library&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-create_project"><strong>create_project</strong></a>(self, project_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;project&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-create_workspace"><strong>create_workspace</strong></a>(
+    self,
+    workspace_path: Path,
+    name: str,
+    *,
+    workspace_kind: str | None = None
+) -&gt; None</dt><dd><span class="code">Create&nbsp;a&nbsp;workspace&nbsp;directory&nbsp;with&nbsp;the&nbsp;canonical&nbsp;SBC2&nbsp;layout.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;initializes&nbsp;storage&nbsp;folders,&nbsp;baseline&nbsp;metadata,&nbsp;workspace<br>
+partition&nbsp;folder,&nbsp;and&nbsp;an&nbsp;empty&nbsp;UI&nbsp;state&nbsp;payload.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Target&nbsp;workspace&nbsp;root&nbsp;directory.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;Human-readable&nbsp;workspace&nbsp;name&nbsp;persisted&nbsp;in&nbsp;metadata.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Optional&nbsp;kind&nbsp;override&nbsp;(for&nbsp;example&nbsp;project&nbsp;or&nbsp;library).</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-import_file"><strong>import_file</strong></a>(self, workspace_path: Path, source_file: Path) -&gt; dict[str, str]</dt><dd><span class="code">Import&nbsp;one&nbsp;external&nbsp;file&nbsp;into&nbsp;workspace-managed&nbsp;storage.<br>
+&nbsp;<br>
+Video&nbsp;files&nbsp;are&nbsp;normalized&nbsp;to&nbsp;a&nbsp;UI-safe&nbsp;MP4&nbsp;variant&nbsp;when&nbsp;ffmpeg&nbsp;is<br>
+available;&nbsp;otherwise&nbsp;the&nbsp;source&nbsp;file&nbsp;is&nbsp;copied&nbsp;as-is.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;descriptor&nbsp;with&nbsp;storage&nbsp;path,&nbsp;mime&nbsp;type&nbsp;and&nbsp;original&nbsp;name.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-list_mounted_libraries"><strong>list_mounted_libraries</strong></a>(self, workspace_path: Path) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Return&nbsp;normalized&nbsp;mounted&nbsp;library&nbsp;descriptors&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-load_blocks"><strong>load_blocks</strong></a>(self, workspace_path: Path) -&gt; list[Block]</dt><dd><span class="code">Load&nbsp;all&nbsp;blocks&nbsp;from&nbsp;partitioned&nbsp;workspace&nbsp;files.<br>
+&nbsp;<br>
+The&nbsp;current&nbsp;storage&nbsp;layout&nbsp;marker&nbsp;is&nbsp;also&nbsp;enforced&nbsp;on&nbsp;metadata.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-load_project_metadata"><strong>load_project_metadata</strong></a>(self, project_path: Path) -&gt; dict</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;load_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-load_ui_state"><strong>load_ui_state</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace,&nbsp;or&nbsp;an&nbsp;empty&nbsp;mapping.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-load_workspace_metadata"><strong>load_workspace_metadata</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;workspace&nbsp;metadata&nbsp;and&nbsp;normalize&nbsp;mounted&nbsp;library&nbsp;entries.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Workspace&nbsp;directory&nbsp;containing&nbsp;project.json.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Metadata&nbsp;dictionary&nbsp;with&nbsp;guaranteed&nbsp;list-form&nbsp;mounted_libraries.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-remove_mounted_library"><strong>remove_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    mount_id: str | None = None,
+    library_path: str | Path | None = None
+) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Remove&nbsp;mounted&nbsp;library&nbsp;entries&nbsp;by&nbsp;id&nbsp;and&nbsp;or&nbsp;path.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-resolve_path"><strong>resolve_path</strong></a>(self, workspace_path: Path, relative_path: str) -&gt; Path</dt><dd><span class="code">Resolve&nbsp;a&nbsp;stored&nbsp;path&nbsp;against&nbsp;workspace&nbsp;root&nbsp;when&nbsp;needed.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-save_blocks"><strong>save_blocks</strong></a>(self, workspace_path: Path, blocks: list[Block]) -&gt; None</dt><dd><span class="code">Persist&nbsp;blocks&nbsp;partitioned&nbsp;by&nbsp;workspace-root&nbsp;ownership.<br>
+&nbsp;<br>
+Partitioning&nbsp;keeps&nbsp;each&nbsp;logical&nbsp;root&nbsp;in&nbsp;its&nbsp;own&nbsp;blocks&nbsp;file&nbsp;while<br>
+preserving&nbsp;deterministic&nbsp;ordering.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-save_mounted_libraries"><strong>save_mounted_libraries</strong></a>(self, workspace_path: Path, mounts: list[dict[str, Any]]) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Replace&nbsp;mounted&nbsp;library&nbsp;list&nbsp;after&nbsp;canonical&nbsp;normalization.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-save_project_metadata"><strong>save_project_metadata</strong></a>(self, project_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;save_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-save_ui_state"><strong>save_ui_state</strong></a>(self, workspace_path: Path, ui_state: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="LibraryStorageService-save_workspace_metadata"><strong>save_workspace_metadata</strong></a>(self, workspace_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;workspace&nbsp;metadata&nbsp;with&nbsp;schema&nbsp;defaults&nbsp;and&nbsp;timestamps.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;keeps&nbsp;created_at&nbsp;stable&nbsp;when&nbsp;possible,&nbsp;updates&nbsp;updated_at&nbsp;on<br>
+every&nbsp;save,&nbsp;and&nbsp;normalizes&nbsp;mounted_libraries&nbsp;into&nbsp;canonical&nbsp;shape.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ProjectStorageService">class <strong>ProjectStorageService</strong></a>(<a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ProjectStorageService">ProjectStorageService</a>()&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Storage&nbsp;service&nbsp;specialization&nbsp;for&nbsp;project&nbsp;workspaces.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="infrastructure.storage.workspace_storage_service.html#ProjectStorageService">ProjectStorageService</a></dd>
+<dd><a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ProjectStorageService-__init__"><strong>__init__</strong></a>(self) -&gt; None</dt><dd><span class="code">Initialize&nbsp;a&nbsp;storage&nbsp;service&nbsp;for&nbsp;one&nbsp;logical&nbsp;workspace&nbsp;kind.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Default&nbsp;kind&nbsp;assigned&nbsp;to&nbsp;newly&nbsp;created&nbsp;workspaces<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;no&nbsp;explicit&nbsp;kind&nbsp;is&nbsp;provided.</span></dd></dl>
+
+<hr>
+Methods inherited from <a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>:<br>
+<dl><dt><a name="ProjectStorageService-add_mounted_library"><strong>add_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    library_path: str | Path,
+    label: str = '',
+    enabled: bool = True,
+    read_only: bool = True,
+    mount_id: str | None = None
+) -&gt; dict[str, Any]</dt><dd><span class="code">Add&nbsp;or&nbsp;update&nbsp;one&nbsp;mounted&nbsp;library&nbsp;entry.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;path&nbsp;already&nbsp;exists&nbsp;in&nbsp;metadata,&nbsp;the&nbsp;existing&nbsp;item&nbsp;is&nbsp;updated<br>
+in&nbsp;place.&nbsp;Otherwise,&nbsp;a&nbsp;new&nbsp;canonical&nbsp;mount&nbsp;descriptor&nbsp;is&nbsp;appended.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-create_library"><strong>create_library</strong></a>(self, library_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;library&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-create_project"><strong>create_project</strong></a>(self, project_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;project&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-create_workspace"><strong>create_workspace</strong></a>(
+    self,
+    workspace_path: Path,
+    name: str,
+    *,
+    workspace_kind: str | None = None
+) -&gt; None</dt><dd><span class="code">Create&nbsp;a&nbsp;workspace&nbsp;directory&nbsp;with&nbsp;the&nbsp;canonical&nbsp;SBC2&nbsp;layout.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;initializes&nbsp;storage&nbsp;folders,&nbsp;baseline&nbsp;metadata,&nbsp;workspace<br>
+partition&nbsp;folder,&nbsp;and&nbsp;an&nbsp;empty&nbsp;UI&nbsp;state&nbsp;payload.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Target&nbsp;workspace&nbsp;root&nbsp;directory.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;Human-readable&nbsp;workspace&nbsp;name&nbsp;persisted&nbsp;in&nbsp;metadata.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Optional&nbsp;kind&nbsp;override&nbsp;(for&nbsp;example&nbsp;project&nbsp;or&nbsp;library).</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-import_file"><strong>import_file</strong></a>(self, workspace_path: Path, source_file: Path) -&gt; dict[str, str]</dt><dd><span class="code">Import&nbsp;one&nbsp;external&nbsp;file&nbsp;into&nbsp;workspace-managed&nbsp;storage.<br>
+&nbsp;<br>
+Video&nbsp;files&nbsp;are&nbsp;normalized&nbsp;to&nbsp;a&nbsp;UI-safe&nbsp;MP4&nbsp;variant&nbsp;when&nbsp;ffmpeg&nbsp;is<br>
+available;&nbsp;otherwise&nbsp;the&nbsp;source&nbsp;file&nbsp;is&nbsp;copied&nbsp;as-is.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;descriptor&nbsp;with&nbsp;storage&nbsp;path,&nbsp;mime&nbsp;type&nbsp;and&nbsp;original&nbsp;name.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-list_mounted_libraries"><strong>list_mounted_libraries</strong></a>(self, workspace_path: Path) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Return&nbsp;normalized&nbsp;mounted&nbsp;library&nbsp;descriptors&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-load_blocks"><strong>load_blocks</strong></a>(self, workspace_path: Path) -&gt; list[Block]</dt><dd><span class="code">Load&nbsp;all&nbsp;blocks&nbsp;from&nbsp;partitioned&nbsp;workspace&nbsp;files.<br>
+&nbsp;<br>
+The&nbsp;current&nbsp;storage&nbsp;layout&nbsp;marker&nbsp;is&nbsp;also&nbsp;enforced&nbsp;on&nbsp;metadata.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-load_project_metadata"><strong>load_project_metadata</strong></a>(self, project_path: Path) -&gt; dict</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;load_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-load_ui_state"><strong>load_ui_state</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace,&nbsp;or&nbsp;an&nbsp;empty&nbsp;mapping.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-load_workspace_metadata"><strong>load_workspace_metadata</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;workspace&nbsp;metadata&nbsp;and&nbsp;normalize&nbsp;mounted&nbsp;library&nbsp;entries.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Workspace&nbsp;directory&nbsp;containing&nbsp;project.json.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Metadata&nbsp;dictionary&nbsp;with&nbsp;guaranteed&nbsp;list-form&nbsp;mounted_libraries.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-remove_mounted_library"><strong>remove_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    mount_id: str | None = None,
+    library_path: str | Path | None = None
+) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Remove&nbsp;mounted&nbsp;library&nbsp;entries&nbsp;by&nbsp;id&nbsp;and&nbsp;or&nbsp;path.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-resolve_path"><strong>resolve_path</strong></a>(self, workspace_path: Path, relative_path: str) -&gt; Path</dt><dd><span class="code">Resolve&nbsp;a&nbsp;stored&nbsp;path&nbsp;against&nbsp;workspace&nbsp;root&nbsp;when&nbsp;needed.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-save_blocks"><strong>save_blocks</strong></a>(self, workspace_path: Path, blocks: list[Block]) -&gt; None</dt><dd><span class="code">Persist&nbsp;blocks&nbsp;partitioned&nbsp;by&nbsp;workspace-root&nbsp;ownership.<br>
+&nbsp;<br>
+Partitioning&nbsp;keeps&nbsp;each&nbsp;logical&nbsp;root&nbsp;in&nbsp;its&nbsp;own&nbsp;blocks&nbsp;file&nbsp;while<br>
+preserving&nbsp;deterministic&nbsp;ordering.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-save_mounted_libraries"><strong>save_mounted_libraries</strong></a>(self, workspace_path: Path, mounts: list[dict[str, Any]]) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Replace&nbsp;mounted&nbsp;library&nbsp;list&nbsp;after&nbsp;canonical&nbsp;normalization.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-save_project_metadata"><strong>save_project_metadata</strong></a>(self, project_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;save_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-save_ui_state"><strong>save_ui_state</strong></a>(self, workspace_path: Path, ui_state: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="ProjectStorageService-save_workspace_metadata"><strong>save_workspace_metadata</strong></a>(self, workspace_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;workspace&nbsp;metadata&nbsp;with&nbsp;schema&nbsp;defaults&nbsp;and&nbsp;timestamps.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;keeps&nbsp;created_at&nbsp;stable&nbsp;when&nbsp;possible,&nbsp;updates&nbsp;updated_at&nbsp;on<br>
+every&nbsp;save,&nbsp;and&nbsp;normalizes&nbsp;mounted_libraries&nbsp;into&nbsp;canonical&nbsp;shape.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="infrastructure.storage.workspace_storage_service.html#WorkspaceStorageService">WorkspaceStorageService</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="WorkspaceStorageService">class <strong>WorkspaceStorageService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#WorkspaceStorageService">WorkspaceStorageService</a>(*,&nbsp;workspace_kind:&nbsp;str&nbsp;=&nbsp;'project')&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Persistence&nbsp;service&nbsp;for&nbsp;workspace&nbsp;data&nbsp;(projects&nbsp;and&nbsp;libraries).<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;encapsulates&nbsp;file-system&nbsp;structure,&nbsp;metadata&nbsp;normalization,<br>
+and&nbsp;block&nbsp;partitioning&nbsp;by&nbsp;workspace&nbsp;root.&nbsp;It&nbsp;is&nbsp;intentionally&nbsp;shared&nbsp;by<br>
+project&nbsp;and&nbsp;library&nbsp;storage&nbsp;to&nbsp;keep&nbsp;one&nbsp;storage&nbsp;grammar&nbsp;across&nbsp;the&nbsp;app.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="WorkspaceStorageService-__init__"><strong>__init__</strong></a>(self, *, workspace_kind: str = 'project') -&gt; None</dt><dd><span class="code">Initialize&nbsp;a&nbsp;storage&nbsp;service&nbsp;for&nbsp;one&nbsp;logical&nbsp;workspace&nbsp;kind.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Default&nbsp;kind&nbsp;assigned&nbsp;to&nbsp;newly&nbsp;created&nbsp;workspaces<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;no&nbsp;explicit&nbsp;kind&nbsp;is&nbsp;provided.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-add_mounted_library"><strong>add_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    library_path: str | Path,
+    label: str = '',
+    enabled: bool = True,
+    read_only: bool = True,
+    mount_id: str | None = None
+) -&gt; dict[str, Any]</dt><dd><span class="code">Add&nbsp;or&nbsp;update&nbsp;one&nbsp;mounted&nbsp;library&nbsp;entry.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;path&nbsp;already&nbsp;exists&nbsp;in&nbsp;metadata,&nbsp;the&nbsp;existing&nbsp;item&nbsp;is&nbsp;updated<br>
+in&nbsp;place.&nbsp;Otherwise,&nbsp;a&nbsp;new&nbsp;canonical&nbsp;mount&nbsp;descriptor&nbsp;is&nbsp;appended.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-create_library"><strong>create_library</strong></a>(self, library_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;library&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-create_project"><strong>create_project</strong></a>(self, project_path: Path, name: str) -&gt; None</dt><dd><span class="code">Convenience&nbsp;wrapper&nbsp;creating&nbsp;a&nbsp;workspace&nbsp;with&nbsp;project&nbsp;kind.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-create_workspace"><strong>create_workspace</strong></a>(
+    self,
+    workspace_path: Path,
+    name: str,
+    *,
+    workspace_kind: str | None = None
+) -&gt; None</dt><dd><span class="code">Create&nbsp;a&nbsp;workspace&nbsp;directory&nbsp;with&nbsp;the&nbsp;canonical&nbsp;SBC2&nbsp;layout.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;initializes&nbsp;storage&nbsp;folders,&nbsp;baseline&nbsp;metadata,&nbsp;workspace<br>
+partition&nbsp;folder,&nbsp;and&nbsp;an&nbsp;empty&nbsp;UI&nbsp;state&nbsp;payload.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Target&nbsp;workspace&nbsp;root&nbsp;directory.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;Human-readable&nbsp;workspace&nbsp;name&nbsp;persisted&nbsp;in&nbsp;metadata.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_kind:&nbsp;Optional&nbsp;kind&nbsp;override&nbsp;(for&nbsp;example&nbsp;project&nbsp;or&nbsp;library).</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-import_file"><strong>import_file</strong></a>(self, workspace_path: Path, source_file: Path) -&gt; dict[str, str]</dt><dd><span class="code">Import&nbsp;one&nbsp;external&nbsp;file&nbsp;into&nbsp;workspace-managed&nbsp;storage.<br>
+&nbsp;<br>
+Video&nbsp;files&nbsp;are&nbsp;normalized&nbsp;to&nbsp;a&nbsp;UI-safe&nbsp;MP4&nbsp;variant&nbsp;when&nbsp;ffmpeg&nbsp;is<br>
+available;&nbsp;otherwise&nbsp;the&nbsp;source&nbsp;file&nbsp;is&nbsp;copied&nbsp;as-is.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;descriptor&nbsp;with&nbsp;storage&nbsp;path,&nbsp;mime&nbsp;type&nbsp;and&nbsp;original&nbsp;name.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-list_mounted_libraries"><strong>list_mounted_libraries</strong></a>(self, workspace_path: Path) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Return&nbsp;normalized&nbsp;mounted&nbsp;library&nbsp;descriptors&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-load_blocks"><strong>load_blocks</strong></a>(self, workspace_path: Path) -&gt; list[Block]</dt><dd><span class="code">Load&nbsp;all&nbsp;blocks&nbsp;from&nbsp;partitioned&nbsp;workspace&nbsp;files.<br>
+&nbsp;<br>
+The&nbsp;current&nbsp;storage&nbsp;layout&nbsp;marker&nbsp;is&nbsp;also&nbsp;enforced&nbsp;on&nbsp;metadata.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-load_project_metadata"><strong>load_project_metadata</strong></a>(self, project_path: Path) -&gt; dict</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;load_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-load_ui_state"><strong>load_ui_state</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace,&nbsp;or&nbsp;an&nbsp;empty&nbsp;mapping.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-load_workspace_metadata"><strong>load_workspace_metadata</strong></a>(self, workspace_path: Path) -&gt; dict</dt><dd><span class="code">Load&nbsp;workspace&nbsp;metadata&nbsp;and&nbsp;normalize&nbsp;mounted&nbsp;library&nbsp;entries.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;workspace_path:&nbsp;Workspace&nbsp;directory&nbsp;containing&nbsp;project.json.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Metadata&nbsp;dictionary&nbsp;with&nbsp;guaranteed&nbsp;list-form&nbsp;mounted_libraries.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-remove_mounted_library"><strong>remove_mounted_library</strong></a>(
+    self,
+    workspace_path: Path,
+    *,
+    mount_id: str | None = None,
+    library_path: str | Path | None = None
+) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Remove&nbsp;mounted&nbsp;library&nbsp;entries&nbsp;by&nbsp;id&nbsp;and&nbsp;or&nbsp;path.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-resolve_path"><strong>resolve_path</strong></a>(self, workspace_path: Path, relative_path: str) -&gt; Path</dt><dd><span class="code">Resolve&nbsp;a&nbsp;stored&nbsp;path&nbsp;against&nbsp;workspace&nbsp;root&nbsp;when&nbsp;needed.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-save_blocks"><strong>save_blocks</strong></a>(self, workspace_path: Path, blocks: list[Block]) -&gt; None</dt><dd><span class="code">Persist&nbsp;blocks&nbsp;partitioned&nbsp;by&nbsp;workspace-root&nbsp;ownership.<br>
+&nbsp;<br>
+Partitioning&nbsp;keeps&nbsp;each&nbsp;logical&nbsp;root&nbsp;in&nbsp;its&nbsp;own&nbsp;blocks&nbsp;file&nbsp;while<br>
+preserving&nbsp;deterministic&nbsp;ordering.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-save_mounted_libraries"><strong>save_mounted_libraries</strong></a>(self, workspace_path: Path, mounts: list[dict[str, Any]]) -&gt; list[dict[str, Any]]</dt><dd><span class="code">Replace&nbsp;mounted&nbsp;library&nbsp;list&nbsp;after&nbsp;canonical&nbsp;normalization.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-save_project_metadata"><strong>save_project_metadata</strong></a>(self, project_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Backward-compatible&nbsp;alias&nbsp;for&nbsp;save_workspace_metadata.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-save_ui_state"><strong>save_ui_state</strong></a>(self, workspace_path: Path, ui_state: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;UI&nbsp;state&nbsp;payload&nbsp;for&nbsp;a&nbsp;workspace.</span></dd></dl>
+
+<dl><dt><a name="WorkspaceStorageService-save_workspace_metadata"><strong>save_workspace_metadata</strong></a>(self, workspace_path: Path, metadata: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;workspace&nbsp;metadata&nbsp;with&nbsp;schema&nbsp;defaults&nbsp;and&nbsp;timestamps.<br>
+&nbsp;<br>
+The&nbsp;method&nbsp;keeps&nbsp;created_at&nbsp;stable&nbsp;when&nbsp;possible,&nbsp;updates&nbsp;updated_at&nbsp;on<br>
+every&nbsp;save,&nbsp;and&nbsp;normalizes&nbsp;mounted_libraries&nbsp;into&nbsp;canonical&nbsp;shape.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>NAMESPACE_URL</strong> = UUID('6ba7b811-9dad-11d1-80b4-00c04fd430c8')</td></tr></table>
+</body></html>

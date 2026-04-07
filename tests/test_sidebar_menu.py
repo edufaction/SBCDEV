@@ -104,7 +104,7 @@ def test_sidebar_menu_burger_toggles_collapsed_icon_only_mode() -> None:
     assert sidebar.is_collapsed is False
     assert sidebar.width() >= expanded_width
     assert sidebar.nav_button("dashboard").text() == "DASHBOARD"
-    assert sidebar.nav_button("project").text() == "PROJECT"
+    assert sidebar.nav_button("project").text() == "PROJETS"
 
 
 def test_main_window_sidebar_navigation_updates_workspace_header() -> None:
@@ -119,6 +119,7 @@ def test_main_window_sidebar_navigation_updates_workspace_header() -> None:
 
     assert window._section_key == "asset_library"
     assert window._workspace_header.text() == "ASSET LIBRARY"
+    assert window._workspace_stack.currentWidget() is window._workspace_asset_library_page
 
 
 def test_main_window_tools_navigation_shows_tools_workspace() -> None:

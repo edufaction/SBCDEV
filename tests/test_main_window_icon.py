@@ -11,7 +11,7 @@ from PySide6.QtTest import QTest
 
 import UI.windows.main_window as main_window_module
 from domain import Block, BlockDomain, BlockType
-from infrastructure.storage import ProjectStorageService
+from infrastructure.storage import ProjectStorageService, UserConfigService
 from UI.Widgets import BlockPropertyWidget, ThumbnailListView
 from UI.windows.main_window import (
     FreeTreeWindow,
@@ -183,6 +183,40 @@ def test_open_project_dialog_lists_only_sbcprj_directories(tmp_path, monkeypatch
     assert window._project_root == valid_project.resolve()
 
 
+def test_open_project_dialog_can_update_projects_root_when_initial_root_is_empty(tmp_path, monkeypatch) -> None:
+    _ = _app()
+    initial_projects_root = tmp_path / "projects_a"
+    initial_projects_root.mkdir(parents=True, exist_ok=True)
+    selected_projects_root = tmp_path / "projects_b"
+    selected_projects_root.mkdir(parents=True, exist_ok=True)
+
+    config_file = tmp_path / "user_config.json"
+    monkeypatch.setenv("SBC2_USER_CONFIG_FILE", str(config_file))
+    monkeypatch.setenv("SBC2_PROJECTS_DIR", str(initial_projects_root))
+    monkeypatch.setenv("SBC2_USER_LIBRARIES_DIR", str(tmp_path / "libraries_user"))
+    monkeypatch.setenv("SBC2_APPLICATION_LIBRARIES_DIR", str(tmp_path / "libraries_app"))
+
+    storage = ProjectStorageService()
+    selected_project = selected_projects_root / "project_b.sbcprj"
+    storage.create_project(selected_project, "Project B")
+
+    monkeypatch.setattr(
+        "UI.windows.main_window.QFileDialog.getExistingDirectory",
+        lambda *_args, **_kwargs: str(selected_projects_root),
+    )
+    monkeypatch.setattr(
+        "UI.windows.main_window.QInputDialog.getItem",
+        lambda *_args, **_kwargs: ("project_b.sbcprj", True),
+    )
+
+    window = MainWindow()
+    window._open_project_from_dialog()
+
+    assert window._storage_roots.projects_root == selected_projects_root.resolve()
+    assert window._project_root == selected_project.resolve()
+    assert UserConfigService(config_file=config_file).load_projects_root_path() == selected_projects_root.resolve()
+
+
 def test_closing_main_window_closes_all_secondary_windows() -> None:
     app = _app()
     window = MainWindow()
@@ -228,6 +262,7 @@ def test_dashboard_shows_project_workspace_and_stats() -> None:
     app.processEvents()
 
     assert window._workspace_stack.currentWidget() is window._workspace_dashboard_page
+    assert window._project_workspace_panel.isVisible()
     assert window._project_workspace.isVisible()
     assert window._dashboard_stats_frame.isVisible()
     assert "images" in window._dashboard_stat_tiles
@@ -271,19 +306,25 @@ def test_sidebar_project_navigation_shows_project_workspace() -> None:
     app.processEvents()
 
     assert window._workspace_stack.currentWidget() is window._workspace_project_page
-    assert window._workspace_header.text() == "PROJECT"
-    assert window._project_page_empty_state._title_label.text() == "PROJECT WORKSPACE MOVED"
-    assert window._project_page_empty_state._action_button.text() == "OPEN DASHBOARD"
+    assert window._workspace_header.text() == "PROJETS"
+    assert window._projects_page_empty_state.isVisible()
+    assert window._projects_page_empty_state._title_label.text() == "PROJETS"
 
-    QTest.mouseClick(window._project_page_empty_state._action_button, Qt.LeftButton)
+
+def test_sidebar_character_navigation_shows_character_workspace() -> None:
+    app = _app()
+    window = MainWindow()
+    window.show()
     app.processEvents()
 
-    assert window._workspace_stack.currentWidget() is window._workspace_dashboard_page
-    assert window._project_workspace._value_labels["name"].text()
-    assert window._project_workspace._value_labels["created_at"].text()
-    assert window._project_workspace._value_labels["updated_at"].text()
-    assert window._project_workspace._save_button.property("primary") is True
-    assert not window._project_workspace._description_text.isReadOnly()
+    character_button = window._sidebar.nav_button("character_studio")
+    assert character_button is not None
+    QTest.mouseClick(character_button, Qt.LeftButton)
+    app.processEvents()
+
+    assert window._workspace_stack.currentWidget() is window._workspace_character_studio_page
+    assert window._workspace_header.text() == "CHARACTER STUDIO"
+    assert window._character_workspace_panel.isVisible()
 
 
 def test_project_workspace_save_persists_author_email_description(tmp_path) -> None:

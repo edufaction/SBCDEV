@@ -11,7 +11,12 @@ from services import BlockService, FreeGraphService, FreeTreeService
 
 
 class UseCaseService:
-    """Thin orchestration layer for product use cases."""
+    """Application orchestration facade built on lower-level services.
+
+    UseCaseService keeps UI-facing workflows concise by coordinating:
+    block CRUD, container linkage, graph and tree operations, and block
+    creation from mounted library sources with provenance semantics.
+    """
 
     def __init__(
         self,
@@ -44,7 +49,11 @@ class UseCaseService:
         access_mode: str | BlockAccessMode = BlockAccessMode.OWNED,
         provenance: dict[str, Any] | None = None,
     ) -> Block:
-        """Create a generic block."""
+        """Create a block with normalized enum inputs and provenance defaults.
+
+        This method is the preferred entry point for UI and higher-level
+        workflows because it centralizes id generation and value coercion.
+        """
         resolved_type = self._as_block_type(type)
         resolved_block_id = block_id or f"blk_{uuid4().hex[:12]}"
 
@@ -125,7 +134,14 @@ class UseCaseService:
         parent_container_id: str | None = None,
         name: str | None = None,
     ) -> Block:
-        """Create a local block from an external library block, either as clone or as read-only link."""
+        """Create a project block from a mounted library source block.
+
+        Depending on ``as_link`` the new block is either:
+            - an owned clone (editable locally),
+            - or a read-only link preserving external source semantics.
+
+        Provenance metadata is always written to keep source traceability.
+        """
         access_mode = BlockAccessMode.LINK if as_link else BlockAccessMode.OWNED
         provenance_kind = BlockProvenanceKind.LIB_LINK if as_link else BlockProvenanceKind.LIB_CLONE
         provenance: dict[str, Any] = {

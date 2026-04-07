@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.panel_header_widget</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.panel_header_widget</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/panel_header_widget.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/panel_header_widget.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>(<a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>, <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.panel_header_widget.html#PanelHeaderWidget">PanelHeaderWidget</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="PanelHeaderWidget">class <strong>PanelHeaderWidget</strong></a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#PanelHeaderWidget">PanelHeaderWidget</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;title:&nbsp;str&nbsp;=&nbsp;'',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;subtitle:&nbsp;str&nbsp;=&nbsp;'',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent:&nbsp;<a href="PySide6.QtWidgets.html#QWidget">QWidget</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Reusable&nbsp;panel&nbsp;header&nbsp;with&nbsp;title/subtitle&nbsp;and&nbsp;optional&nbsp;right-side&nbsp;actions.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.panel_header_widget.html#PanelHeaderWidget">PanelHeaderWidget</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PanelHeaderWidget-__init__"><strong>__init__</strong></a>(
+    self,
+    title: str = '',
+    *,
+    subtitle: str = '',
+    parent: QWidget | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-clear_actions"><strong>clear_actions</strong></a>(self) -&gt; None</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-set_action_widgets"><strong>set_action_widgets</strong></a>(self, widgets: Iterable[QWidget]) -&gt; None</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-set_actions"><strong>set_actions</strong></a>(self, actions: Iterable[QAction]) -&gt; None</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-set_icon"><strong>set_icon</strong></a>(self, icon: QIcon | QPixmap | None) -&gt; None</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-set_subtitle"><strong>set_subtitle</strong></a>(self, text: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-set_title"><strong>set_title</strong></a>(self, text: str) -&gt; None</dt></dl>
+
+<hr>
+Readonly properties defined here:<br>
+<dl><dt><strong>subtitle_label</strong></dt>
+</dl>
+<dl><dt><strong>title_label</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("PanelHeaderWidget" inherits "QWidget":
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-changeEvent"><strong>changeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-resizeEvent"><strong>resizeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="PanelHeaderWidget-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="PanelHeaderWidget-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="PanelHeaderWidget-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="PanelHeaderWidget-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

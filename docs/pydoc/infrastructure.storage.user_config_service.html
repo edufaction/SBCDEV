@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module infrastructure.storage.user_config_service</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="infrastructure.html" class="white">infrastructure</a>.<a href="infrastructure.storage.html" class="white">storage</a>.user_config_service</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/user_config_service.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/infrastructure/storage/user_config_service.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="json.html">json</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="infrastructure.storage.user_config_service.html#UserConfigService">UserConfigService</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="UserConfigService">class <strong>UserConfigService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#UserConfigService">UserConfigService</a>(*,&nbsp;config_file:&nbsp;Path&nbsp;|&nbsp;None&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Read/write&nbsp;user-level&nbsp;application&nbsp;settings.<br>
+&nbsp;<br>
+This&nbsp;service&nbsp;is&nbsp;used&nbsp;for&nbsp;preferences&nbsp;that&nbsp;are&nbsp;independent&nbsp;from&nbsp;a&nbsp;specific<br>
+project&nbsp;workspace,&nbsp;for&nbsp;example:<br>
+&nbsp;<br>
+-&nbsp;last&nbsp;opened&nbsp;project&nbsp;path,<br>
+-&nbsp;preferred&nbsp;root&nbsp;folder&nbsp;where&nbsp;projects&nbsp;are&nbsp;discovered.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="UserConfigService-__init__"><strong>__init__</strong></a>(self, *, config_file: Path | None = None) -&gt; None</dt><dd><span class="code">Initialize&nbsp;a&nbsp;config&nbsp;service.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config_file:&nbsp;Optional&nbsp;explicit&nbsp;config&nbsp;file&nbsp;location.&nbsp;When&nbsp;omitted,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;default&nbsp;resolved&nbsp;location&nbsp;is&nbsp;used.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-load"><strong>load</strong></a>(self) -&gt; dict</dt><dd><span class="code">Load&nbsp;the&nbsp;raw&nbsp;config&nbsp;payload.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;dictionary&nbsp;payload.&nbsp;Returns&nbsp;an&nbsp;empty&nbsp;dict&nbsp;if&nbsp;the&nbsp;file&nbsp;does&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;exist,&nbsp;cannot&nbsp;be&nbsp;parsed,&nbsp;or&nbsp;does&nbsp;not&nbsp;contain&nbsp;a&nbsp;JSON&nbsp;<a href="builtins.html#object">object</a>.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-load_last_project_path"><strong>load_last_project_path</strong></a>(self) -&gt; Path | None</dt><dd><span class="code">Return&nbsp;the&nbsp;most&nbsp;recently&nbsp;opened&nbsp;project&nbsp;path,&nbsp;if&nbsp;any.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-load_projects_root_path"><strong>load_projects_root_path</strong></a>(self) -&gt; Path | None</dt><dd><span class="code">Return&nbsp;the&nbsp;preferred&nbsp;root&nbsp;directory&nbsp;where&nbsp;projects&nbsp;are&nbsp;listed.<br>
+&nbsp;<br>
+This&nbsp;preference&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;*Open&nbsp;Project*&nbsp;workflow&nbsp;to&nbsp;remember&nbsp;the<br>
+last&nbsp;selected&nbsp;projects&nbsp;directory&nbsp;across&nbsp;sessions.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-save"><strong>save</strong></a>(self, payload: dict) -&gt; None</dt><dd><span class="code">Persist&nbsp;a&nbsp;full&nbsp;config&nbsp;payload&nbsp;atomically.<br>
+&nbsp;<br>
+The&nbsp;write&nbsp;uses&nbsp;a&nbsp;temporary&nbsp;file&nbsp;in&nbsp;the&nbsp;same&nbsp;directory&nbsp;followed&nbsp;by&nbsp;an<br>
+atomic&nbsp;``replace``&nbsp;to&nbsp;avoid&nbsp;partial&nbsp;writes&nbsp;on&nbsp;crashes/interruption.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;payload:&nbsp;JSON-serializable&nbsp;mapping&nbsp;to&nbsp;persist.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-save_last_project_path"><strong>save_last_project_path</strong></a>(self, project_path: Path | None) -&gt; None</dt><dd><span class="code">Persist&nbsp;or&nbsp;clear&nbsp;the&nbsp;most&nbsp;recently&nbsp;opened&nbsp;project&nbsp;path.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;project_path:&nbsp;Resolved&nbsp;path&nbsp;to&nbsp;store,&nbsp;or&nbsp;``None``&nbsp;to&nbsp;remove&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setting.</span></dd></dl>
+
+<dl><dt><a name="UserConfigService-save_projects_root_path"><strong>save_projects_root_path</strong></a>(self, projects_root: Path | None) -&gt; None</dt><dd><span class="code">Persist&nbsp;or&nbsp;clear&nbsp;the&nbsp;preferred&nbsp;projects&nbsp;root&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;projects_root:&nbsp;Directory&nbsp;to&nbsp;store,&nbsp;or&nbsp;``None``&nbsp;to&nbsp;clear&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preference.</span></dd></dl>
+
+<hr>
+Class methods defined here:<br>
+<dl><dt><a name="UserConfigService-resolve_config_file"><strong>resolve_config_file</strong></a>() -&gt; Path</dt><dd><span class="code">Return&nbsp;the&nbsp;config&nbsp;file&nbsp;path&nbsp;used&nbsp;by&nbsp;this&nbsp;service.<br>
+&nbsp;<br>
+Priority:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;``SBC2_USER_CONFIG_FILE``&nbsp;environment&nbsp;variable,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;default&nbsp;``user_config.json``&nbsp;in&nbsp;:meth:`resolve_config_dir`.</span></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="UserConfigService-resolve_config_dir"><strong>resolve_config_dir</strong></a>() -&gt; Path</dt><dd><span class="code">Return&nbsp;the&nbsp;user&nbsp;config&nbsp;directory&nbsp;for&nbsp;SBC2.<br>
+&nbsp;<br>
+Resolution&nbsp;strategy:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;``platformdirs``&nbsp;user&nbsp;config&nbsp;path&nbsp;when&nbsp;available,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;``~/.sbc2``&nbsp;fallback&nbsp;when&nbsp;the&nbsp;dependency&nbsp;is&nbsp;unavailable.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

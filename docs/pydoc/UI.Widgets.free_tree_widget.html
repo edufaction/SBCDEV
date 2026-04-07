@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.free_tree_widget</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.free_tree_widget</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/free_tree_widget.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/free_tree_widget.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="mimetypes.html">mimetypes</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>(<a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>, <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.free_tree_widget.html#FreeTreeWidget">FreeTreeWidget</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="FreeTreeWidget">class <strong>FreeTreeWidget</strong></a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#FreeTreeWidget">FreeTreeWidget</a>(parent:&nbsp;<a href="PySide6.QtWidgets.html#QWidget">QWidget</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Editable&nbsp;FreeTree&nbsp;widget&nbsp;with&nbsp;folder&nbsp;management&nbsp;and&nbsp;block&nbsp;drag-and-drop.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.free_tree_widget.html#FreeTreeWidget">FreeTreeWidget</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FreeTreeWidget-__init__"><strong>__init__</strong></a>(self, parent: QWidget | None = None) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-add_folder"><strong>add_folder</strong></a>(self, name: str, parent_node_id: str | None = None) -&gt; str | None</dt></dl>
+
+<strong>block_selected</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<strong>blocks_changed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-current_tree"><strong>current_tree</strong></a>(self) -&gt; FreeTree</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-find_node_id_for_block"><strong>find_node_id_for_block</strong></a>(self, block_id: str) -&gt; str | None</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-move_node"><strong>move_node</strong></a>(self, node_id: str, new_parent_id: str | None) -&gt; None</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-remove_folder"><strong>remove_folder</strong></a>(self, folder_node_id: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-set_block_relative_path"><strong>set_block_relative_path</strong></a>(
+    self,
+    block_id: str,
+    container_id: str,
+    relative_path: str
+) -&gt; bool</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-set_blocks"><strong>set_blocks</strong></a>(
+    self,
+    blocks: list[Block],
+    *,
+    persisted_tree: FreeTree | None = None,
+    project_root: Path | None = None
+) -&gt; None</dt></dl>
+
+<strong>tree_changed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("FreeTreeWidget" inhe...PyObject,QString), parameters=PyObject, QString
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="FreeTreeWidget-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-changeEvent"><strong>changeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-resizeEvent"><strong>resizeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="FreeTreeWidget-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="FreeTreeWidget-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWidget-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="FreeTreeWidget-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="FreeTreeWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="FreeTreeWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="FreeTreeWidget-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="FreeTreeWidget-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="FreeTreeWidget-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>BLOCK_IDS_MIME</strong> = 'application/x-sbc2-block-ids'<br>
+<strong>ROLE_BLOCK_ID</strong> = 558<br>
+<strong>ROLE_NODE_ID</strong> = 556<br>
+<strong>ROLE_NODE_KIND</strong> = 557<br>
+<strong>ROLE_NODE_LOCKED</strong> = 559</td></tr></table>
+</body></html>

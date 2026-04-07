@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
@@ -12,6 +11,7 @@ from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
+    QFileDialog,
     QFrame,
     QGridLayout,
     QHBoxLayout,
@@ -25,7 +25,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from application import FreeTreeWorkspaceController
+from application import FreeTreeWorkspaceController, StoryWorkspaceService
+from application.workspaces import ProjectWorkspaceService, SettingsWorkspaceService
 from domain import Block, BlockDomain, BlockType, FreeGraph, FreeTree, FreeTreeNode
 from infrastructure.storage import ProjectStorageService, UserConfigService, resolve_storage_roots
 from UI.Widgets import (
@@ -34,8 +35,8 @@ from UI.Widgets import (
     ProjectWorkspaceWidget,
     SettingsWorkspaceWidget,
     SidebarMenu,
-    resolve_block_asset_path,
 )
+from UI.Frames import CharacterWorkspacePanel, ProjectWorkspacePanel, SettingsWorkspacePanel, StoryWorkspacePanel
 from UI.themes import (
     FONT_SIZE_DEFAULT,
     active_theme_name,
@@ -63,7 +64,12 @@ INTERNAL_LIB_EMPTY_BLOCK_ID = "blk_internal_lib_empty"
 PROJECT_DIR_SUFFIX = ".sbcprj"
 
 class MainWindow(QMainWindow):
-    """Main empty application window."""
+    """Primary application shell coordinating workspaces and secondary windows.
+
+    MainWindow wires dashboard, tools, settings, and project interactions.
+    It also owns project lifecycle actions: create, open, close, metadata save,
+    and synchronization of child windows using the current block state.
+    """
 
     def __init__(self, *, blocks: list[Block] | None = None, project_root: Path | None = None) -> None:
         super().__init__()
@@ -105,7 +111,13 @@ class MainWindow(QMainWindow):
         self._thumbnail_window: ThumbnailListWindow | None = None
         self._media_carousel_window: MediaCarouselWindow | None = None
         self._free_tree_window: FreeTreeWindow | None = None
+        self._project_workspace_service = ProjectWorkspaceService()
+        self._settings_workspace_service = SettingsWorkspaceService()
+        self._story_workspace_service = StoryWorkspaceService()
         self._storage_roots = resolve_storage_roots()
+        configured_projects_root = self._user_config.load_projects_root_path()
+        if configured_projects_root is not None:
+            self._update_projects_root(configured_projects_root, persist=False)
         self._icons_dir = Path(__file__).resolve().parents[2] / "icons"
         self._action_icon_cache: dict[tuple[str, str], QIcon] = {}
         self._sidebar = SidebarMenu(self, on_navigation=self._on_sidebar_navigation)
@@ -121,20 +133,26 @@ class MainWindow(QMainWindow):
         self._workspace_actions_frame = QFrame(self)
         self._workspace_actions_frame.setProperty("panelAlt", True)
         self._settings_workspace = SettingsWorkspaceWidget(self)
-        self._settings_workspace.theme_changed.connect(self._apply_theme_from_settings)
-        self._settings_workspace.set_current_theme(active_theme_name())
-        self._settings_workspace.set_storage_paths(
+        self._project_workspace = ProjectWorkspaceWidget(self)
+        self._project_workspace_panel = ProjectWorkspacePanel(self._project_workspace, self)
+        self._character_workspace_panel = CharacterWorkspacePanel(self)
+        self._character_workspace_panel.relative_path_changed.connect(self._on_character_block_relative_path_changed)
+        self._story_workspace_panel = StoryWorkspacePanel(self)
+        self._story_workspace_panel.relative_path_changed.connect(self._on_story_block_relative_path_changed)
+        self._settings_workspace_panel = SettingsWorkspacePanel(self._settings_workspace, self)
+        self._settings_workspace_panel.theme_changed.connect(self._apply_theme_from_settings)
+        self._settings_workspace_panel.set_current_theme(active_theme_name())
+        self._settings_workspace_panel.set_storage_paths(
             projects_root=self._storage_roots.projects_root,
             user_libraries_root=self._storage_roots.user_libraries_root,
             application_libraries_root=self._storage_roots.application_libraries_root,
         )
-        self._project_workspace = ProjectWorkspaceWidget(self)
-        self._project_workspace.new_project_requested.connect(self._create_new_project)
-        self._project_workspace.open_project_requested.connect(self._open_project_from_dialog)
-        self._project_workspace.close_project_requested.connect(self._close_current_project)
-        self._project_workspace.project_tree_requested.connect(self._open_free_tree_window)
-        self._project_workspace.select_visual_requested.connect(self._select_project_visual_from_carousel)
-        self._project_workspace.save_requested.connect(self._save_project_metadata_from_workspace)
+        self._project_workspace_panel.new_project_requested.connect(self._create_new_project)
+        self._project_workspace_panel.open_project_requested.connect(self._open_project_from_dialog)
+        self._project_workspace_panel.close_project_requested.connect(self._close_current_project)
+        self._project_workspace_panel.project_tree_requested.connect(self._open_free_tree_window)
+        self._project_workspace_panel.select_visual_requested.connect(self._select_project_visual_from_carousel)
+        self._project_workspace_panel.save_requested.connect(self._save_project_metadata_from_workspace)
         # Public aliases kept for compatibility with existing tests/callers.
         self._new_project_button = self._project_workspace._new_project_button
         self._open_project_button = self._project_workspace._open_project_button
@@ -208,8 +226,36 @@ class MainWindow(QMainWindow):
         dashboard_layout = QVBoxLayout(self._workspace_dashboard_page)
         dashboard_layout.setContentsMargins(0, 0, 0, 0)
         dashboard_layout.setSpacing(9)
-        dashboard_layout.addWidget(self._project_workspace, 1)
+        dashboard_layout.addWidget(self._project_workspace_panel, 1)
         dashboard_layout.addWidget(self._dashboard_stats_frame, 0)
+
+        self._workspace_asset_library_page = QWidget(self)
+        asset_library_layout = QVBoxLayout(self._workspace_asset_library_page)
+        asset_library_layout.setContentsMargins(0, 0, 0, 0)
+        asset_library_layout.setSpacing(9)
+        self._asset_library_empty_state = EmptyStateWidget(
+            "ASSET LIBRARY",
+            description="Aucune vue active pour le moment.",
+            parent=self._workspace_asset_library_page,
+        )
+        asset_library_layout.addWidget(self._asset_library_empty_state, 1)
+
+        self._workspace_character_studio_page = QWidget(self)
+        character_studio_layout = QVBoxLayout(self._workspace_character_studio_page)
+        character_studio_layout.setContentsMargins(0, 0, 0, 0)
+        character_studio_layout.setSpacing(9)
+        character_studio_layout.addWidget(self._character_workspace_panel, 1)
+
+        self._workspace_ai_presets_page = QWidget(self)
+        ai_presets_layout = QVBoxLayout(self._workspace_ai_presets_page)
+        ai_presets_layout.setContentsMargins(0, 0, 0, 0)
+        ai_presets_layout.setSpacing(9)
+        self._ai_presets_empty_state = EmptyStateWidget(
+            "AI PRESETS",
+            description="Aucune vue active pour le moment.",
+            parent=self._workspace_ai_presets_page,
+        )
+        ai_presets_layout.addWidget(self._ai_presets_empty_state, 1)
 
         self._workspace_tools_page = QWidget(self)
         tools_layout = QVBoxLayout(self._workspace_tools_page)
@@ -222,26 +268,46 @@ class MainWindow(QMainWindow):
         settings_layout = QVBoxLayout(self._workspace_settings_page)
         settings_layout.setContentsMargins(0, 0, 0, 0)
         settings_layout.setSpacing(9)
-        settings_layout.addWidget(self._settings_workspace, 1)
+        settings_layout.addWidget(self._settings_workspace_panel, 1)
+
+        self._workspace_story_page = QWidget(self)
+        story_layout = QVBoxLayout(self._workspace_story_page)
+        story_layout.setContentsMargins(0, 0, 0, 0)
+        story_layout.setSpacing(9)
+        story_layout.addWidget(self._story_workspace_panel, 1)
 
         self._workspace_project_page = QWidget(self)
         project_layout = QVBoxLayout(self._workspace_project_page)
         project_layout.setContentsMargins(0, 0, 0, 0)
         project_layout.setSpacing(9)
-        self._project_page_empty_state = EmptyStateWidget(
-            "PROJECT WORKSPACE MOVED",
-            description="Project actions and metadata are now available on DASHBOARD.",
-            action_text="OPEN DASHBOARD",
+        self._projects_page_empty_state = EmptyStateWidget(
+            "PROJETS",
+            description="Cet espace sera dédié à la gestion de tous les projets.",
             parent=self._workspace_project_page,
         )
-        self._project_page_empty_state.action_requested.connect(lambda: self._navigate_to_workspace_section("dashboard"))
-        project_layout.addWidget(self._project_page_empty_state, 1)
+        project_layout.addWidget(self._projects_page_empty_state, 1)
+
+        self._workspace_support_page = QWidget(self)
+        support_layout = QVBoxLayout(self._workspace_support_page)
+        support_layout.setContentsMargins(0, 0, 0, 0)
+        support_layout.setSpacing(9)
+        self._support_empty_state = EmptyStateWidget(
+            "SUPPORT",
+            description="Aucune vue active pour le moment.",
+            parent=self._workspace_support_page,
+        )
+        support_layout.addWidget(self._support_empty_state, 1)
 
         self._workspace_stack = QStackedWidget(self)
         self._workspace_stack.addWidget(self._workspace_dashboard_page)
+        self._workspace_stack.addWidget(self._workspace_asset_library_page)
+        self._workspace_stack.addWidget(self._workspace_character_studio_page)
+        self._workspace_stack.addWidget(self._workspace_ai_presets_page)
         self._workspace_stack.addWidget(self._workspace_tools_page)
         self._workspace_stack.addWidget(self._workspace_settings_page)
+        self._workspace_stack.addWidget(self._workspace_story_page)
         self._workspace_stack.addWidget(self._workspace_project_page)
+        self._workspace_stack.addWidget(self._workspace_support_page)
         self._workspace_stack.setCurrentWidget(self._workspace_dashboard_page)
 
         workspace_panel = QWidget(self)
@@ -266,15 +332,33 @@ class MainWindow(QMainWindow):
 
     def _on_sidebar_navigation(self, key: str) -> None:
         self._section_key = key
-        self._workspace_header.setText(key.replace("_", " ").upper())
+        header_text = key.replace("_", " ").upper()
+        if key == "project":
+            header_text = "PROJETS"
+        self._workspace_header.setText(header_text)
         if key == "tools":
             self._workspace_stack.setCurrentWidget(self._workspace_tools_page)
+            return
+        if key == "asset_library":
+            self._workspace_stack.setCurrentWidget(self._workspace_asset_library_page)
+            return
+        if key == "character_studio":
+            self._workspace_stack.setCurrentWidget(self._workspace_character_studio_page)
+            return
+        if key == "ai_presets":
+            self._workspace_stack.setCurrentWidget(self._workspace_ai_presets_page)
             return
         if key == "settings":
             self._workspace_stack.setCurrentWidget(self._workspace_settings_page)
             return
+        if key == "story_planner":
+            self._workspace_stack.setCurrentWidget(self._workspace_story_page)
+            return
         if key == "project":
             self._workspace_stack.setCurrentWidget(self._workspace_project_page)
+            return
+        if key == "support":
+            self._workspace_stack.setCurrentWidget(self._workspace_support_page)
             return
         self._workspace_stack.setCurrentWidget(self._workspace_dashboard_page)
 
@@ -292,66 +376,81 @@ class MainWindow(QMainWindow):
             return
         self._workspace_footer.setText(f"Project: {self._project_root}")
 
-    @staticmethod
-    def _format_fs_datetime(timestamp: float) -> str:
-        dt = datetime.fromtimestamp(timestamp, tz=timezone.utc).replace(microsecond=0)
-        return dt.isoformat().replace("+00:00", "Z")
-
     def _project_preview_from_blocks(self) -> str:
-        if self._project_root is None:
-            return ""
-        for block in self._blocks:
-            if block.type != BlockType.IMAGE:
-                continue
-            resolved = resolve_block_asset_path(block, self._project_root)
-            if resolved is not None and resolved.exists():
-                return str(resolved)
-        return ""
+        return self._project_workspace_service.project_preview_from_blocks(self._blocks, self._project_root)
 
     def _project_metadata_view(self) -> dict:
-        if self._project_root is None or not self._project_root.exists():
-            return {
-                "name": "-",
-                "description": "",
-                "preview_image_path": "",
-                "created_at": "-",
-                "updated_at": "-",
-                "author_name": "-",
-                "author_email": "-",
-            }
-        storage = ProjectStorageService()
-        metadata: dict = {}
-        try:
-            metadata = storage.load_project_metadata(self._project_root)
-        except Exception:
-            metadata = {}
-
-        stats = self._project_root.stat()
-        name = str(metadata.get("name", "") or self._project_root.name)
-        description = str(metadata.get("description", "") or "")
-        preview_image_path = str(metadata.get("preview_image_path", "") or "")
-        if not preview_image_path:
-            preview_image_path = self._project_preview_from_blocks()
-        created_at = str(metadata.get("created_at", "") or self._format_fs_datetime(stats.st_ctime))
-        updated_at = str(metadata.get("updated_at", "") or self._format_fs_datetime(stats.st_mtime))
-        author_name = str(metadata.get("author_name", "") or "-")
-        author_email = str(metadata.get("author_email", "") or "-")
-        return {
-            "name": name,
-            "description": description,
-            "preview_image_path": preview_image_path,
-            "created_at": created_at,
-            "updated_at": updated_at,
-            "author_name": author_name,
-            "author_email": author_email,
-        }
+        return self._project_workspace_service.project_metadata_view(
+            project_root=self._project_root,
+            blocks=self._blocks,
+        )
 
     def _refresh_project_workspace(self) -> None:
-        self._project_workspace.set_project_metadata(
+        self._project_workspace_panel.set_project_metadata(
             project_path=self._project_root,
             metadata=self._project_metadata_view(),
         )
+        self._character_workspace_panel.set_blocks(self._blocks, project_root=self._project_root)
+        self._story_workspace_panel.set_blocks(self._blocks, project_root=self._project_root)
         self._refresh_dashboard_stats()
+
+    def _on_character_block_relative_path_changed(self, block_id: str, container_id: str, relative_path: str) -> None:
+        if self._project_root is None:
+            self._character_workspace_panel.set_message("Open a project first.")
+            return
+        changed = self._character_workspace_panel.set_block_relative_path(
+            block_id=block_id,
+            container_id=container_id,
+            relative_path=relative_path,
+        )
+        if not changed:
+            self._character_workspace_panel.set_message("No path change applied.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._character_workspace_panel.set_message("Character tree path updated.")
+
+    def _on_story_block_relative_path_changed(self, block_id: str, container_id: str, relative_path: str) -> None:
+        if self._project_root is None:
+            self._story_workspace_panel.set_message("Open a project first.")
+            return
+        changed = self._story_workspace_panel.set_block_relative_path(
+            block_id=block_id,
+            container_id=container_id,
+            relative_path=relative_path,
+        )
+        if not changed:
+            self._story_workspace_panel.set_message("No path change applied.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._story_workspace_panel.set_message("Story tree path updated.")
+
+    def _create_story_shot_from_workspace(self, raw_name: str) -> None:
+        if self._project_root is None:
+            self._story_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            shot = self._story_workspace_service.create_shot(self._blocks, name=raw_name)
+        except Exception:
+            self._story_workspace_panel.set_message("Shot creation failed.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._story_workspace_panel.set_message(f"Shot created: {shot.name or shot.id}")
+
+    def _update_story_shot_from_workspace(self, payload: dict) -> None:
+        if self._project_root is None:
+            self._story_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            shot = self._story_workspace_service.update_shot_from_payload(self._blocks, payload)
+        except ValueError as exc:
+            self._story_workspace_panel.set_message(str(exc))
+            return
+        except Exception:
+            self._story_workspace_panel.set_message("Shot update failed.")
+            return
+
+        self._persist_project_blocks(self._blocks)
+        self._story_workspace_panel.set_message(f"Shot saved: {shot.name or shot.id}")
 
     def _build_dashboard_stat_tiles(self) -> None:
         specs: list[tuple[str, str, str]] = [
@@ -374,35 +473,7 @@ class MainWindow(QMainWindow):
             self._dashboard_stats_grid.setColumnStretch(col, 1)
 
     def _project_stats_view(self) -> dict[str, int]:
-        counts = {
-            "images": 0,
-            "videos": 0,
-            "characters": 0,
-            "shots": 0,
-            "forms": 0,
-            "prompts": 0,
-            "audio": 0,
-            "total": 0,
-        }
-        for block in self._blocks:
-            if block.profile == "workspace_root":
-                continue
-            counts["total"] += 1
-            if block.type == BlockType.IMAGE:
-                counts["images"] += 1
-            if block.type == BlockType.VIDEO:
-                counts["videos"] += 1
-            if block.type == BlockType.AUDIO:
-                counts["audio"] += 1
-            if block.type == BlockType.PROMPT:
-                counts["prompts"] += 1
-            if block.profile == "character":
-                counts["characters"] += 1
-            if block.profile == "character_form":
-                counts["forms"] += 1
-            if block.profile == "shot":
-                counts["shots"] += 1
-        return counts
+        return self._project_workspace_service.project_stats_view(self._blocks)
 
     def _refresh_dashboard_stats(self) -> None:
         stats = self._project_stats_view()
@@ -437,7 +508,7 @@ class MainWindow(QMainWindow):
             initialize_widget_primitives(self._free_tree_window)
         self._refresh_workspace_action_icons()
         self._sidebar.set_active(self._section_key)
-        self._settings_workspace.set_current_theme(theme_name)
+        self._settings_workspace_panel.set_current_theme(theme_name)
 
     def _create_new_project(self) -> None:
         name, accepted = QInputDialog.getText(self, "Nouveau Projet", "Nom du projet:")
@@ -461,18 +532,35 @@ class MainWindow(QMainWindow):
         self._load_project(project_path)
 
     def _open_project_from_dialog(self) -> None:
+        """Open a project selected by the user.
+
+        Behavior:
+            - List projects from current configured projects root.
+            - If none exists, prompt user to choose another projects folder.
+            - Persist selected projects folder for future sessions.
+            - Let user pick a project directory and load it.
+        """
+
         projects = self._list_sbc_project_directories()
+        if not projects:
+            selected_root = self._select_projects_root_from_dialog()
+            if selected_root is None:
+                return
+            self._update_projects_root(selected_root, persist=True)
+            projects = self._list_sbc_project_directories()
+
         if not projects:
             QMessageBox.information(
                 self,
-                "Ouvrir Projet",
-                f"Aucun projet '{PROJECT_DIR_SUFFIX}' trouvé dans:\n{self._storage_roots.projects_root}",
+                "Open Project",
+                f"No '{PROJECT_DIR_SUFFIX}' project found in:\n{self._storage_roots.projects_root}",
             )
             return
+
         selected_name, accepted = QInputDialog.getItem(
             self,
-            "Ouvrir Projet",
-            "Projet:",
+            "Open Project",
+            "Project:",
             [path.name for path in projects],
             0,
             False,
@@ -483,6 +571,39 @@ class MainWindow(QMainWindow):
         if selected_path is None:
             return
         self._load_project(selected_path)
+
+    def _select_projects_root_from_dialog(self) -> Path | None:
+        """Show a folder chooser for the root directory containing projects."""
+
+        selected = QFileDialog.getExistingDirectory(
+            self,
+            "Select Projects Folder",
+            str(self._storage_roots.projects_root),
+            QFileDialog.ShowDirsOnly,
+        )
+        if not selected:
+            return None
+        return Path(selected).expanduser().resolve()
+
+    def _update_projects_root(self, projects_root: Path, *, persist: bool) -> None:
+        """Apply a new projects root to runtime storage settings.
+
+        Args:
+            projects_root: New directory to use for project discovery and creation.
+            persist: When True, save selection in user config for next launches.
+        """
+
+        self._storage_roots = self._settings_workspace_service.apply_projects_root(projects_root)
+        if persist:
+            self._user_config.save_projects_root_path(self._storage_roots.projects_root)
+
+        settings_panel = getattr(self, "_settings_workspace_panel", None)
+        if settings_panel is not None:
+            settings_panel.set_storage_paths(
+                projects_root=self._storage_roots.projects_root,
+                user_libraries_root=self._storage_roots.user_libraries_root,
+                application_libraries_root=self._storage_roots.application_libraries_root,
+            )
 
     def _load_project(self, project_path: Path) -> None:
         resolved_path = project_path.expanduser().resolve()
@@ -506,7 +627,7 @@ class MainWindow(QMainWindow):
         self._user_config.save_last_project_path(None)
         self._update_workspace_footer()
         self._refresh_project_workspace()
-        self._project_workspace.set_save_feedback("")
+        self._project_workspace_panel.set_save_feedback("")
         self._close_secondary_windows()
 
     def _close_secondary_windows(self) -> None:
@@ -541,20 +662,14 @@ class MainWindow(QMainWindow):
             metadata = storage.load_project_metadata(self._project_root)
         except Exception:
             metadata = {}
-        metadata.update(
-            {
-                "author_name": str(payload.get("author_name", "") or ""),
-                "author_email": str(payload.get("author_email", "") or ""),
-                "description": str(payload.get("description", "") or ""),
-            }
-        )
+        metadata = self._project_workspace_service.merge_metadata_payload(metadata, payload)
         try:
             storage.save_project_metadata(self._project_root, metadata)
         except Exception:
-            self._project_workspace.set_save_feedback("Save failed")
+            self._project_workspace_panel.set_save_feedback("Save failed")
             return
         self._refresh_project_workspace()
-        self._project_workspace.set_save_feedback("Saved")
+        self._project_workspace_panel.set_save_feedback("Saved")
 
     def _select_project_visual_from_carousel(self) -> None:
         if self._project_root is None:
@@ -562,7 +677,7 @@ class MainWindow(QMainWindow):
 
         image_blocks = self._project_image_blocks()
         if not image_blocks:
-            self._project_workspace.set_save_feedback("No image block available")
+            self._project_workspace_panel.set_save_feedback("No image block available")
             return
 
         storage = ProjectStorageService()
@@ -585,61 +700,36 @@ class MainWindow(QMainWindow):
         if selected_block is None:
             return
 
-        selected_path = resolve_block_asset_path(selected_block, self._project_root)
+        selected_path = self._project_workspace_service.resolve_block_asset_path(selected_block, self._project_root)
         if selected_path is None or not selected_path.exists():
-            self._project_workspace.set_save_feedback("Selected image not found")
+            self._project_workspace_panel.set_save_feedback("Selected image not found")
             return
 
         metadata["preview_image_path"] = self._serialize_preview_path(selected_path)
         try:
             storage.save_project_metadata(self._project_root, metadata)
         except Exception:
-            self._project_workspace.set_save_feedback("Save failed")
+            self._project_workspace_panel.set_save_feedback("Save failed")
             return
 
         self._refresh_project_workspace()
-        self._project_workspace.set_save_feedback("Project visual updated")
+        self._project_workspace_panel.set_save_feedback("Project visual updated")
 
     def _project_image_blocks(self) -> list[Block]:
-        if self._project_root is None:
-            return []
-        image_blocks: list[Block] = []
-        for block in self._blocks:
-            if block.type != BlockType.IMAGE:
-                continue
-            resolved = resolve_block_asset_path(block, self._project_root)
-            if resolved is None or not resolved.exists():
-                continue
-            image_blocks.append(block)
-        return image_blocks
+        return self._project_workspace_service.image_blocks(self._blocks, self._project_root)
 
     def _find_block_id_for_preview_path(self, preview_path: str, image_blocks: list[Block]) -> str | None:
-        if self._project_root is None:
-            return None
-        text = str(preview_path or "").strip()
-        if not text:
-            return None
-        target = Path(text).expanduser()
-        if not target.is_absolute():
-            target = (self._project_root / target).resolve()
-        else:
-            target = target.resolve()
-
-        for block in image_blocks:
-            resolved = resolve_block_asset_path(block, self._project_root)
-            if resolved is None:
-                continue
-            if resolved.resolve() == target:
-                return block.id
-        return None
+        return self._project_workspace_service.find_block_id_for_preview_path(
+            project_root=self._project_root,
+            preview_path=preview_path,
+            image_blocks=image_blocks,
+        )
 
     def _serialize_preview_path(self, resolved_path: Path) -> str:
-        if self._project_root is None:
-            return str(resolved_path)
-        try:
-            return resolved_path.resolve().relative_to(self._project_root.resolve()).as_posix()
-        except Exception:
-            return str(resolved_path.resolve())
+        return self._project_workspace_service.serialize_preview_path(
+            project_root=self._project_root,
+            resolved_path=resolved_path,
+        )
 
     @staticmethod
     def _sanitize_project_folder_name(name: str) -> str:
@@ -1377,6 +1467,8 @@ class MainWindow(QMainWindow):
         super().closeEvent(event)
 
 def run_main_window() -> None:
+    """Bootstrap and execute the Qt application main window."""
+
     app = QApplication.instance() or QApplication(sys.argv)
     icon = _load_app_icon()
     if icon is not None:

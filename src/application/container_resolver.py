@@ -10,13 +10,22 @@ from services import BlockService
 
 
 class ContainerResolver:
-    """Read-only projection for one container block."""
+    """Read-only projection builder for one container block.
+
+    The resolver transforms raw relationships into a UI-ready payload:
+    grouped content lists, input buckets, and lightweight graph edges.
+    """
 
     def __init__(self, block_service: BlockService) -> None:
         self._block_service = block_service
 
     def resolve(self, container_id: str) -> dict[str, Any]:
-        """Resolve container content, grouped views, and a simple graph payload."""
+        """Resolve one container into a compact structured projection.
+
+        The returned dictionary intentionally duplicates some views (by type,
+        by input port, graph nodes and edges) to keep UI rendering simple and
+        avoid recomputation in widgets.
+        """
         container = self._block_service.get_block(container_id)
         all_blocks = self._block_service.list_blocks()
         blocks_by_id = {block.id: block for block in all_blocks}

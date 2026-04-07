@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.sidebar_menu</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.sidebar_menu</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/sidebar_menu.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/sidebar_menu.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>(<a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.sidebar_menu.html#SidebarMenu">SidebarMenu</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="SidebarMenu">class <strong>SidebarMenu</strong></a>(<a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#SidebarMenu">SidebarMenu</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent:&nbsp;QWidget&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on_navigation:&nbsp;Callable[[str],&nbsp;None]&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Left&nbsp;production&nbsp;sidebar&nbsp;with&nbsp;branded&nbsp;navigation.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.sidebar_menu.html#SidebarMenu">SidebarMenu</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SidebarMenu-__init__"><strong>__init__</strong></a>(
+    self,
+    parent: QWidget | None = None,
+    *,
+    on_navigation: Callable[[str], None] | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="SidebarMenu-changeEvent"><strong>changeEvent</strong></a>(self, event) -&gt; None</dt></dl>
+
+<dl><dt><a name="SidebarMenu-nav_button"><strong>nav_button</strong></a>(self, key: str) -&gt; QPushButton | None</dt></dl>
+
+<strong>navigation_requested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-set_active"><strong>set_active</strong></a>(self, key: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="SidebarMenu-set_collapsed"><strong>set_collapsed</strong></a>(self, collapsed: bool) -&gt; None</dt></dl>
+
+<dl><dt><a name="SidebarMenu-toggle_button"><strong>toggle_button</strong></a>(self) -&gt; QPushButton</dt></dl>
+
+<dl><dt><a name="SidebarMenu-toggle_collapsed"><strong>toggle_collapsed</strong></a>(self) -&gt; None</dt></dl>
+
+<hr>
+Readonly properties defined here:<br>
+<dl><dt><strong>active_key</strong></dt>
+</dl>
+<dl><dt><strong>is_collapsed</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("SidebarMenu" inherit...vigation_requested(QString), parameters=QString
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>:<br>
+<dl><dt><a name="SidebarMenu-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="SidebarMenu-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="SidebarMenu-drawFrame"><strong>drawFrame</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameRect"><strong>frameRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameShadow"><strong>frameShadow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameShape"><strong>frameShape</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameStyle"><strong>frameStyle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameWidth"><strong>frameWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-initStyleOption"><strong>initStyleOption</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-lineWidth"><strong>lineWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-midLineWidth"><strong>midLineWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFrameRect"><strong>setFrameRect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFrameShadow"><strong>setFrameShadow</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFrameShape"><strong>setFrameShape</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFrameStyle"><strong>setFrameStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setLineWidth"><strong>setLineWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMidLineWidth"><strong>setMidLineWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>:<br>
+<dl><dt><a name="SidebarMenu-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>:<br>
+<dl><dt><strong>Shadow</strong> = &lt;enum 'Shadow'&gt;</dl>
+
+<dl><dt><strong>Shape</strong> = &lt;enum 'Shape'&gt;</dl>
+
+<dl><dt><strong>StyleMask</strong> = &lt;enum 'StyleMask'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="SidebarMenu-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="SidebarMenu-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-resizeEvent"><strong>resizeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="SidebarMenu-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="SidebarMenu-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SidebarMenu-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="SidebarMenu-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="SidebarMenu-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SidebarMenu-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="SidebarMenu-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="SidebarMenu-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="SidebarMenu-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="SidebarMenu-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="SidebarMenu-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>Callable</strong> = typing.Callable</td></tr></table>
+</body></html>

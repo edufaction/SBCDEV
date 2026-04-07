@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module application.__init__</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="application.html" class="white">application</a>.__init__</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/application/__init__.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/application/__init__.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="application.block_template_service.html#BlockTemplateService">application.block_template_service.BlockTemplateService</a>
+</dt><dt class="heading-text"><a href="application.container_resolver.html#ContainerResolver">application.container_resolver.ContainerResolver</a>
+</dt><dt class="heading-text"><a href="application.free_tree_workspace_controller.html#FreeTreeItemSnapshot">application.free_tree_workspace_controller.FreeTreeItemSnapshot</a>
+</dt><dt class="heading-text"><a href="application.free_tree_workspace_controller.html#FreeTreeWorkspaceController">application.free_tree_workspace_controller.FreeTreeWorkspaceController</a>
+</dt><dt class="heading-text"><a href="application.use_case_service.html#UseCaseService">application.use_case_service.UseCaseService</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BlockTemplateService">class <strong>BlockTemplateService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BlockTemplateService">BlockTemplateService</a>(templates:&nbsp;dict[str,&nbsp;CharacterTemplateSpec]&nbsp;|&nbsp;None&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Factory&nbsp;for&nbsp;template-based&nbsp;block&nbsp;hierarchies.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="BlockTemplateService-__init__"><strong>__init__</strong></a>(self, templates: dict[str, CharacterTemplateSpec] | None = None) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="BlockTemplateService-available_character_templates"><strong>available_character_templates</strong></a>(self) -&gt; list[CharacterTemplateSpec]</dt></dl>
+
+<dl><dt><a name="BlockTemplateService-instantiate_character_template"><strong>instantiate_character_template</strong></a>(
+    self,
+    *,
+    character_name: str,
+    template_key: str = 'character_standard',
+    domain: BlockDomain = &lt;BlockDomain.CHARACTERS: 'characters'&gt;
+) -&gt; list[Block]</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ContainerResolver">class <strong>ContainerResolver</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ContainerResolver">ContainerResolver</a>(block_service:&nbsp;BlockService)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Read-only&nbsp;projection&nbsp;builder&nbsp;for&nbsp;one&nbsp;container&nbsp;block.<br>
+&nbsp;<br>
+The&nbsp;resolver&nbsp;transforms&nbsp;raw&nbsp;relationships&nbsp;into&nbsp;a&nbsp;UI-ready&nbsp;payload:<br>
+grouped&nbsp;content&nbsp;lists,&nbsp;input&nbsp;buckets,&nbsp;and&nbsp;lightweight&nbsp;graph&nbsp;edges.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="ContainerResolver-__init__"><strong>__init__</strong></a>(self, block_service: BlockService) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="ContainerResolver-resolve"><strong>resolve</strong></a>(self, container_id: str) -&gt; dict[str, Any]</dt><dd><span class="code">Resolve&nbsp;one&nbsp;container&nbsp;into&nbsp;a&nbsp;compact&nbsp;structured&nbsp;projection.<br>
+&nbsp;<br>
+The&nbsp;returned&nbsp;dictionary&nbsp;intentionally&nbsp;duplicates&nbsp;some&nbsp;views&nbsp;(by&nbsp;type,<br>
+by&nbsp;input&nbsp;port,&nbsp;graph&nbsp;nodes&nbsp;and&nbsp;edges)&nbsp;to&nbsp;keep&nbsp;UI&nbsp;rendering&nbsp;simple&nbsp;and<br>
+avoid&nbsp;recomputation&nbsp;in&nbsp;widgets.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="FreeTreeItemSnapshot">class <strong>FreeTreeItemSnapshot</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#FreeTreeItemSnapshot">FreeTreeItemSnapshot</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;node_id:&nbsp;__dataclass_type_node_id__,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;node_kind:&nbsp;__dataclass_type_node_kind__,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;__dataclass_type_name__,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;block_id:&nbsp;__dataclass_type_block_id__&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;children:&nbsp;__dataclass_type_children__&nbsp;=&nbsp;&amp;lt;factory&amp;gt;<br>
+)&nbsp;-&amp;gt;&nbsp;__dataclass___init___return_type__<br>
+&nbsp;<br>
+Serializable&nbsp;tree&nbsp;row&nbsp;snapshot&nbsp;used&nbsp;by&nbsp;the&nbsp;UI&nbsp;layer&nbsp;after&nbsp;drag-and-drop.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="FreeTreeItemSnapshot-__eq__"><strong>__eq__</strong></a>(self, other)</dt><dd><span class="code">Return&nbsp;self==value.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeItemSnapshot-__init__"><strong>__init__</strong></a>(
+    self,
+    node_id: __dataclass_type_node_id__,
+    node_kind: __dataclass_type_node_kind__,
+    name: __dataclass_type_name__,
+    block_id: __dataclass_type_block_id__ = None,
+    children: __dataclass_type_children__ = &lt;factory&gt;
+) -&gt; __dataclass___init___return_type__</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeItemSnapshot-__replace__"><strong>__replace__</strong></a> = _replace(self, /, **changes)<span class="grey"><span class="heading-text"> from <a href="dataclasses.html">dataclasses</a></span></span></dt></dl>
+
+<dl><dt><a name="FreeTreeItemSnapshot-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>block_id</strong></dt>
+</dl>
+<dl><dt><strong>children</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<dl><dt><strong>node_id</strong></dt>
+</dl>
+<dl><dt><strong>node_kind</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {'block_id': 'str | None', 'children': 'list[FreeTreeItemSnapshot]', 'name': 'str', 'node_id': 'str', 'node_kind': 'str'}</dl>
+
+<dl><dt><strong>__dataclass_fields__</strong> = {'block_id': Field(name='block_id',type='str | None',default=...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'children': Field(name='children',type='list[FreeTreeItemSna...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'name': Field(name='name',type='str',default=&lt;dataclasse...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'node_id': Field(name='node_id',type='str',default=&lt;datacla...xy({}),kw_only=False,doc=None,_field_type=_FIELD), 'node_kind': Field(name='node_kind',type='str',default=&lt;datac...xy({}),kw_only=False,doc=None,_field_type=_FIELD)}</dl>
+
+<dl><dt><strong>__dataclass_params__</strong> = _DataclassParams(init=True,repr=True,eq=True,ord...True,kw_only=False,slots=True,weakref_slot=False)</dl>
+
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<dl><dt><strong>__match_args__</strong> = ('node_id', 'node_kind', 'name', 'block_id', 'children')</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="FreeTreeWorkspaceController">class <strong>FreeTreeWorkspaceController</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#FreeTreeWorkspaceController">FreeTreeWorkspaceController</a>()&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Controller&nbsp;rebuilding&nbsp;and&nbsp;mutating&nbsp;the&nbsp;virtual&nbsp;FreeTree&nbsp;view.<br>
+&nbsp;<br>
+The&nbsp;controller&nbsp;is&nbsp;the&nbsp;bridge&nbsp;between&nbsp;persisted&nbsp;block&nbsp;``container_paths``&nbsp;and<br>
+the&nbsp;interactive&nbsp;tree&nbsp;widget&nbsp;representation&nbsp;used&nbsp;by&nbsp;the&nbsp;UI.&nbsp;It&nbsp;preserves<br>
+compatibility&nbsp;with&nbsp;legacy&nbsp;persisted&nbsp;trees&nbsp;while&nbsp;keeping&nbsp;block&nbsp;paths&nbsp;as&nbsp;the<br>
+source&nbsp;of&nbsp;truth.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="FreeTreeWorkspaceController-__init__"><strong>__init__</strong></a>(self) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-add_folder"><strong>add_folder</strong></a>(self, name: str, parent_node_id: str | None = None) -&gt; str | None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-apply_persisted_tree"><strong>apply_persisted_tree</strong></a>(self, persisted_tree: FreeTree | None) -&gt; None</dt><dd><span class="code">Migrate&nbsp;a&nbsp;legacy&nbsp;persisted&nbsp;tree&nbsp;structure&nbsp;into&nbsp;block&nbsp;container_paths.<br>
+&nbsp;<br>
+The&nbsp;migration&nbsp;is&nbsp;conservative:&nbsp;explicit&nbsp;modern&nbsp;paths&nbsp;already&nbsp;stored&nbsp;on&nbsp;a<br>
+block&nbsp;are&nbsp;preserved&nbsp;instead&nbsp;of&nbsp;being&nbsp;overwritten&nbsp;by&nbsp;legacy&nbsp;values.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-find_node_id_for_block"><strong>find_node_id_for_block</strong></a>(self, block_id: str) -&gt; str | None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-find_parent_folder_id"><strong>find_parent_folder_id</strong></a>(self, node_id: str) -&gt; str | None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-find_parent_id"><strong>find_parent_id</strong></a>(self, node_id: str) -&gt; str | None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-is_deletable_folder"><strong>is_deletable_folder</strong></a>(self, node_id: str) -&gt; bool</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-move_node"><strong>move_node</strong></a>(self, node_id: str, new_parent_id: str | None) -&gt; None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-rebuild_from_snapshot"><strong>rebuild_from_snapshot</strong></a>(self, roots: list[FreeTreeItemSnapshot]) -&gt; None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-remove_folder"><strong>remove_folder</strong></a>(self, folder_node_id: str) -&gt; None</dt></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-set_blocks"><strong>set_blocks</strong></a>(self, blocks: list[Block], *, persisted_tree: FreeTree | None = None) -&gt; None</dt><dd><span class="code">Load&nbsp;blocks&nbsp;and&nbsp;rebuild&nbsp;the&nbsp;virtual&nbsp;tree&nbsp;from&nbsp;current&nbsp;container&nbsp;paths.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;blocks:&nbsp;Full&nbsp;block&nbsp;collection&nbsp;of&nbsp;the&nbsp;current&nbsp;workspace.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;persisted_tree:&nbsp;Optional&nbsp;legacy&nbsp;tree&nbsp;snapshot&nbsp;for&nbsp;migration&nbsp;support.</span></dd></dl>
+
+<dl><dt><a name="FreeTreeWorkspaceController-update_block_relative_path"><strong>update_block_relative_path</strong></a>(
+    self,
+    *,
+    block_id: str,
+    parent_container_id: str,
+    relative_path: str
+) -&gt; bool</dt></dl>
+
+<hr>
+Readonly properties defined here:<br>
+<dl><dt><strong>blocks</strong></dt>
+</dl>
+<dl><dt><strong>blocks_by_id</strong></dt>
+</dl>
+<dl><dt><strong>locked_node_ids</strong></dt>
+</dl>
+<dl><dt><strong>tree</strong></dt>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="UseCaseService">class <strong>UseCaseService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#UseCaseService">UseCaseService</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;block_service:&nbsp;BlockService,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;resolver:&nbsp;<a href="#ContainerResolver">ContainerResolver</a>&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;free_tree_service:&nbsp;FreeTreeService&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;free_graph_service:&nbsp;FreeGraphService&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+Application&nbsp;orchestration&nbsp;facade&nbsp;built&nbsp;on&nbsp;lower-level&nbsp;services.<br>
+&nbsp;<br>
+<a href="#UseCaseService">UseCaseService</a>&nbsp;keeps&nbsp;UI-facing&nbsp;workflows&nbsp;concise&nbsp;by&nbsp;coordinating:<br>
+block&nbsp;CRUD,&nbsp;container&nbsp;linkage,&nbsp;graph&nbsp;and&nbsp;tree&nbsp;operations,&nbsp;and&nbsp;block<br>
+creation&nbsp;from&nbsp;mounted&nbsp;library&nbsp;sources&nbsp;with&nbsp;provenance&nbsp;semantics.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="UseCaseService-__init__"><strong>__init__</strong></a>(
+    self,
+    block_service: BlockService,
+    resolver: ContainerResolver | None = None,
+    free_tree_service: FreeTreeService | None = None,
+    free_graph_service: FreeGraphService | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-add_block_to_graph"><strong>add_block_to_graph</strong></a>(
+    self,
+    container_id: str,
+    block_id: str,
+    x: float = 0,
+    y: float = 0
+)</dt><dd><span class="code">Add&nbsp;a&nbsp;graph&nbsp;node&nbsp;for&nbsp;an&nbsp;already-contained&nbsp;block.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-add_graph_edge"><strong>add_graph_edge</strong></a>(
+    self,
+    container_id: str,
+    source_node_id: str,
+    target_node_id: str,
+    label: str = ''
+)</dt><dd><span class="code">Add&nbsp;edge&nbsp;between&nbsp;existing&nbsp;graph&nbsp;nodes&nbsp;in&nbsp;the&nbsp;container&nbsp;graph.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-add_to_container"><strong>add_to_container</strong></a>(self, container_id: str, block_id: str) -&gt; Block</dt><dd><span class="code">Add&nbsp;block&nbsp;id&nbsp;to&nbsp;container.contains&nbsp;and&nbsp;mirror&nbsp;it&nbsp;in&nbsp;container&nbsp;tree.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-connect_input"><strong>connect_input</strong></a>(
+    self,
+    *,
+    target_block_id: str,
+    source_block_id: str,
+    port: str | PortType,
+    name: str = '',
+    enabled: bool = True,
+    order: int = 0,
+    metadata: dict[str, Any] | None = None
+) -&gt; Block</dt><dd><span class="code">Connect&nbsp;source&nbsp;block&nbsp;as&nbsp;input&nbsp;of&nbsp;target&nbsp;block.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-create_block"><strong>create_block</strong></a>(
+    self,
+    *,
+    type: str | BlockType,
+    domain: str | BlockDomain = &lt;BlockDomain.LIB: 'lib'&gt;,
+    profile: str = 'generic',
+    name: str,
+    shared: bool = False,
+    block_id: str | None = None,
+    description: str = '',
+    prompt_ref: str = '',
+    prompt_generated: str = '',
+    comment: str = '',
+    functional_name: str = '',
+    tags: list[str] | None = None,
+    content: dict[str, Any] | None = None,
+    access_mode: str | BlockAccessMode = &lt;BlockAccessMode.OWNED: 'owned'&gt;,
+    provenance: dict[str, Any] | None = None
+) -&gt; Block</dt><dd><span class="code">Create&nbsp;a&nbsp;block&nbsp;with&nbsp;normalized&nbsp;enum&nbsp;inputs&nbsp;and&nbsp;provenance&nbsp;defaults.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;the&nbsp;preferred&nbsp;entry&nbsp;point&nbsp;for&nbsp;UI&nbsp;and&nbsp;higher-level<br>
+workflows&nbsp;because&nbsp;it&nbsp;centralizes&nbsp;id&nbsp;generation&nbsp;and&nbsp;value&nbsp;coercion.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-create_block_from_library_source"><strong>create_block_from_library_source</strong></a>(
+    self,
+    *,
+    source_block: Block,
+    mount_id: str,
+    source_workspace_id: str = '',
+    source_workspace_path: str = '',
+    as_link: bool = False,
+    parent_container_id: str | None = None,
+    name: str | None = None
+) -&gt; Block</dt><dd><span class="code">Create&nbsp;a&nbsp;project&nbsp;block&nbsp;from&nbsp;a&nbsp;mounted&nbsp;library&nbsp;source&nbsp;block.<br>
+&nbsp;<br>
+Depending&nbsp;on&nbsp;``as_link``&nbsp;the&nbsp;new&nbsp;block&nbsp;is&nbsp;either:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;an&nbsp;owned&nbsp;clone&nbsp;(editable&nbsp;locally),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;or&nbsp;a&nbsp;read-only&nbsp;link&nbsp;preserving&nbsp;external&nbsp;source&nbsp;semantics.<br>
+&nbsp;<br>
+Provenance&nbsp;metadata&nbsp;is&nbsp;always&nbsp;written&nbsp;to&nbsp;keep&nbsp;source&nbsp;traceability.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-create_block_in_container"><strong>create_block_in_container</strong></a>(
+    self,
+    *,
+    parent_container_id: str,
+    type: str | BlockType,
+    name: str,
+    domain: str | BlockDomain = &lt;BlockDomain.LIB: 'lib'&gt;,
+    profile: str = 'generic',
+    shared: bool = False,
+    description: str = '',
+    prompt_ref: str = '',
+    prompt_generated: str = '',
+    comment: str = '',
+    functional_name: str = '',
+    tags: list[str] | None = None,
+    content: dict[str, Any] | None = None
+) -&gt; Block</dt><dd><span class="code">Create&nbsp;a&nbsp;block&nbsp;and&nbsp;immediately&nbsp;attach&nbsp;it&nbsp;to&nbsp;a&nbsp;parent&nbsp;container.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-get_graph"><strong>get_graph</strong></a>(self, container_id: str)</dt><dd><span class="code">Expose&nbsp;container&nbsp;FreeGraph&nbsp;for&nbsp;caller/UI/testing.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-get_tree"><strong>get_tree</strong></a>(self, container_id: str)</dt><dd><span class="code">Expose&nbsp;container&nbsp;FreeTree&nbsp;for&nbsp;caller/UI/testing.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-list_blocks_by_domain"><strong>list_blocks_by_domain</strong></a>(self, domain: str | BlockDomain) -&gt; list[Block]</dt><dd><span class="code">Filter&nbsp;blocks&nbsp;by&nbsp;domain.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-list_shared_blocks"><strong>list_shared_blocks</strong></a>(self, domain: str | BlockDomain | None = None) -&gt; list[Block]</dt><dd><span class="code">List&nbsp;shared&nbsp;blocks,&nbsp;optionally&nbsp;filtered&nbsp;by&nbsp;domain.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-remove_from_container"><strong>remove_from_container</strong></a>(self, container_id: str, block_id: str) -&gt; Block</dt><dd><span class="code">Remove&nbsp;block&nbsp;id&nbsp;from&nbsp;container&nbsp;and&nbsp;cleanup&nbsp;its&nbsp;tree&nbsp;refs.</span></dd></dl>
+
+<dl><dt><a name="UseCaseService-resolve_container"><strong>resolve_container</strong></a>(self, container_id: str) -&gt; dict[str, Any]</dt><dd><span class="code">Build&nbsp;a&nbsp;UI-friendly&nbsp;resolved&nbsp;view&nbsp;of&nbsp;one&nbsp;container.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>__all__</strong> = ['BlockTemplateService', 'ContainerResolver', 'FreeTreeItemSnapshot', 'FreeTreeWorkspaceController', 'UseCaseService']</td></tr></table>
+</body></html>

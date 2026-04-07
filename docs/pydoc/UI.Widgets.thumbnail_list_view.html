@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.Widgets.thumbnail_list_view</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.Widgets.html" class="white">Widgets</a>.thumbnail_list_view</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/thumbnail_list_view.py">/Users/fcdw3504/Documents/GitHub/SBCDEV/src/UI/Widgets/thumbnail_list_view.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a>(<a href="PySide6.QtWidgets.html#QAbstractItemView">PySide6.QtWidgets.QAbstractItemView</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.Widgets.thumbnail_list_view.html#ThumbnailListView">ThumbnailListView</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ThumbnailListView">class <strong>ThumbnailListView</strong></a>(<a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ThumbnailListView">ThumbnailListView</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent=None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on_block_click:&nbsp;Callable[[Block],&nbsp;None]&nbsp;|&nbsp;None&nbsp;=&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on_block_double_click:&nbsp;Callable[[Block],&nbsp;None]&nbsp;|&nbsp;None&nbsp;=&nbsp;None<br>
+)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+List&nbsp;view&nbsp;displaying&nbsp;blocks&nbsp;using&nbsp;a&nbsp;lightweight&nbsp;MVC&nbsp;delegate.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="UI.Widgets.thumbnail_list_view.html#ThumbnailListView">ThumbnailListView</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QAbstractItemView">PySide6.QtWidgets.QAbstractItemView</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QAbstractScrollArea">PySide6.QtWidgets.QAbstractScrollArea</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a></dd>
+<dd><a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a></dd>
+<dd><a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a></dd>
+<dd><a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ThumbnailListView-__init__"><strong>__init__</strong></a>(
+    self,
+    parent=None,
+    *,
+    on_block_click: Callable[[Block], None] | None = None,
+    on_block_double_click: Callable[[Block], None] | None = None
+) -&gt; None</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="ThumbnailListView-set_block_handlers"><strong>set_block_handlers</strong></a>(
+    self,
+    *,
+    on_block_click: Callable[[Block], None] | None = None,
+    on_block_double_click: Callable[[Block], None] | None = None
+) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-set_blocks"><strong>set_blocks</strong></a>(self, blocks: list[Block], *, project_root: Path | None = None) -&gt; None</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-startDrag"><strong>startDrag</strong></a>(self, supported_actions: Qt.DropActions) -&gt; None</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = PySide6.QtCore.QMetaObject("ThumbnailListView" inherits "QListView":
+)</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a>:<br>
+<dl><dt><a name="ThumbnailListView-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><span class="code">Implement&nbsp;delattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailListView-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><span class="code">Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailListView-batchSize"><strong>batchSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-clearPropertyFlags"><strong>clearPropertyFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-contentsSize"><strong>contentsSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-currentChanged"><strong>currentChanged</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dataChanged"><strong>dataChanged</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-doItemsLayout"><strong>doItemsLayout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dragMoveEvent"><strong>dragMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dropEvent"><strong>dropEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-event"><strong>event</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-flow"><strong>flow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-gridSize"><strong>gridSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalOffset"><strong>horizontalOffset</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-indexAt"><strong>indexAt</strong></a>(self, object, /)</dt></dl>
+
+<strong>indexesMoved</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-initViewItemOption"><strong>initViewItemOption</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isIndexHidden"><strong>isIndexHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isRowHidden"><strong>isRowHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isSelectionRectVisible"><strong>isSelectionRectVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isWrapping"><strong>isWrapping</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-itemAlignment"><strong>itemAlignment</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-layoutMode"><strong>layoutMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-modelColumn"><strong>modelColumn</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-moveCursor"><strong>moveCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-movement"><strong>movement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-paintEvent"><strong>paintEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-rectForIndex"><strong>rectForIndex</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-reset"><strong>reset</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-resizeContents"><strong>resizeContents</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-resizeEvent"><strong>resizeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-resizeMode"><strong>resizeMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-rowsAboutToBeRemoved"><strong>rowsAboutToBeRemoved</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-rowsInserted"><strong>rowsInserted</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollContentsBy"><strong>scrollContentsBy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollTo"><strong>scrollTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectedIndexes"><strong>selectedIndexes</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectionChanged"><strong>selectionChanged</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setBatchSize"><strong>setBatchSize</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFlow"><strong>setFlow</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setGridSize"><strong>setGridSize</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setItemAlignment"><strong>setItemAlignment</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setLayoutMode"><strong>setLayoutMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setModelColumn"><strong>setModelColumn</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMovement"><strong>setMovement</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setPositionForIndex"><strong>setPositionForIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setResizeMode"><strong>setResizeMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setRootIndex"><strong>setRootIndex</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setRowHidden"><strong>setRowHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSelection"><strong>setSelection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSelectionRectVisible"><strong>setSelectionRectVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSpacing"><strong>setSpacing</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setUniformItemSizes"><strong>setUniformItemSizes</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setViewMode"><strong>setViewMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWordWrap"><strong>setWordWrap</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWrapping"><strong>setWrapping</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-spacing"><strong>spacing</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-timerEvent"><strong>timerEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-uniformItemSizes"><strong>uniformItemSizes</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateGeometries"><strong>updateGeometries</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalOffset"><strong>verticalOffset</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-viewMode"><strong>viewMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-viewportSizeHint"><strong>viewportSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-visualRect"><strong>visualRect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-visualRegionForSelection"><strong>visualRegionForSelection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-wheelEvent"><strong>wheelEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-wordWrap"><strong>wordWrap</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a>:<br>
+<dl><dt><a name="ThumbnailListView-__new__"><strong>__new__</strong></a>(*args, **kwargs)<span class="grey"><span class="heading-text"> class method of <a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a></span></span></dt><dd><span class="code">Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QListView">PySide6.QtWidgets.QListView</a>:<br>
+<dl><dt><strong>Flow</strong> = &lt;enum 'Flow'&gt;</dl>
+
+<dl><dt><strong>LayoutMode</strong> = &lt;enum 'LayoutMode'&gt;</dl>
+
+<dl><dt><strong>Movement</strong> = &lt;enum 'Movement'&gt;</dl>
+
+<dl><dt><strong>ResizeMode</strong> = &lt;enum 'ResizeMode'&gt;</dl>
+
+<dl><dt><strong>ViewMode</strong> = &lt;enum 'ViewMode'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QAbstractItemView">PySide6.QtWidgets.QAbstractItemView</a>:<br>
+<strong>activated</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-alternatingRowColors"><strong>alternatingRowColors</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-autoScrollMargin"><strong>autoScrollMargin</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-clearSelection"><strong>clearSelection</strong></a>(self, /)</dt></dl>
+
+<strong>clicked</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-closeEditor"><strong>closeEditor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-closePersistentEditor"><strong>closePersistentEditor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-commitData"><strong>commitData</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-currentIndex"><strong>currentIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-defaultDropAction"><strong>defaultDropAction</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dirtyRegionOffset"><strong>dirtyRegionOffset</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-doAutoScroll"><strong>doAutoScroll</strong></a>(self, /)</dt></dl>
+
+<strong>doubleClicked</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-dragDropMode"><strong>dragDropMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dragDropOverwriteMode"><strong>dragDropOverwriteMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dragEnabled"><strong>dragEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dragEnterEvent"><strong>dragEnterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dropIndicatorPosition"><strong>dropIndicatorPosition</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-edit"><strong>edit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-editTriggers"><strong>editTriggers</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-editorDestroyed"><strong>editorDestroyed</strong></a>(self, object, /)</dt></dl>
+
+<strong>entered</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-executeDelayedItemsLayout"><strong>executeDelayedItemsLayout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusInEvent"><strong>focusInEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusOutEvent"><strong>focusOutEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hasAutoScroll"><strong>hasAutoScroll</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalScrollMode"><strong>horizontalScrollMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalScrollbarAction"><strong>horizontalScrollbarAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalScrollbarValueChanged"><strong>horizontalScrollbarValueChanged</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-iconSize"><strong>iconSize</strong></a>(self, /)</dt></dl>
+
+<strong>iconSizeChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-indexWidget"><strong>indexWidget</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-inputMethodEvent"><strong>inputMethodEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-inputMethodQuery"><strong>inputMethodQuery</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isPersistentEditorOpen"><strong>isPersistentEditorOpen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-itemDelegate"><strong>itemDelegate</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-itemDelegateForColumn"><strong>itemDelegateForColumn</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-itemDelegateForIndex"><strong>itemDelegateForIndex</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-itemDelegateForRow"><strong>itemDelegateForRow</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-keyPressEvent"><strong>keyPressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-keyboardSearch"><strong>keyboardSearch</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-keyboardSearchFlags"><strong>keyboardSearchFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-model"><strong>model</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mousePressEvent"><strong>mousePressEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-openPersistentEditor"><strong>openPersistentEditor</strong></a>(self, object, /)</dt></dl>
+
+<strong>pressed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-resetHorizontalScrollMode"><strong>resetHorizontalScrollMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-resetVerticalScrollMode"><strong>resetVerticalScrollMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-rootIndex"><strong>rootIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scheduleDelayedItemsLayout"><strong>scheduleDelayedItemsLayout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollDirtyRegion"><strong>scrollDirtyRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollToBottom"><strong>scrollToBottom</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollToTop"><strong>scrollToTop</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectAll"><strong>selectAll</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectionBehavior"><strong>selectionBehavior</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectionCommand"><strong>selectionCommand</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectionMode"><strong>selectionMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-selectionModel"><strong>selectionModel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAlternatingRowColors"><strong>setAlternatingRowColors</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAutoScroll"><strong>setAutoScroll</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAutoScrollMargin"><strong>setAutoScrollMargin</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setCurrentIndex"><strong>setCurrentIndex</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDefaultDropAction"><strong>setDefaultDropAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDirtyRegion"><strong>setDirtyRegion</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDragDropMode"><strong>setDragDropMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDragDropOverwriteMode"><strong>setDragDropOverwriteMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDragEnabled"><strong>setDragEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDropIndicatorShown"><strong>setDropIndicatorShown</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setEditTriggers"><strong>setEditTriggers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setHorizontalScrollMode"><strong>setHorizontalScrollMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setIconSize"><strong>setIconSize</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setIndexWidget"><strong>setIndexWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setItemDelegate"><strong>setItemDelegate</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setItemDelegateForColumn"><strong>setItemDelegateForColumn</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setItemDelegateForRow"><strong>setItemDelegateForRow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setKeyboardSearchFlags"><strong>setKeyboardSearchFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setModel"><strong>setModel</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSelectionBehavior"><strong>setSelectionBehavior</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSelectionMode"><strong>setSelectionMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSelectionModel"><strong>setSelectionModel</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setState"><strong>setState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setTabKeyNavigation"><strong>setTabKeyNavigation</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setTextElideMode"><strong>setTextElideMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setUpdateThreshold"><strong>setUpdateThreshold</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setVerticalScrollMode"><strong>setVerticalScrollMode</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showDropIndicator"><strong>showDropIndicator</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeHintForColumn"><strong>sizeHintForColumn</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeHintForIndex"><strong>sizeHintForIndex</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeHintForRow"><strong>sizeHintForRow</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-startAutoScroll"><strong>startAutoScroll</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-state"><strong>state</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-stopAutoScroll"><strong>stopAutoScroll</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-tabKeyNavigation"><strong>tabKeyNavigation</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-textElideMode"><strong>textElideMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateEditorData"><strong>updateEditorData</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateEditorGeometries"><strong>updateEditorGeometries</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateThreshold"><strong>updateThreshold</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalScrollMode"><strong>verticalScrollMode</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalScrollbarAction"><strong>verticalScrollbarAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalScrollbarValueChanged"><strong>verticalScrollbarValueChanged</strong></a>(self, object, /)</dt></dl>
+
+<strong>viewportEntered</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-viewportEvent"><strong>viewportEvent</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QAbstractItemView">PySide6.QtWidgets.QAbstractItemView</a>:<br>
+<dl><dt><strong>CursorAction</strong> = &lt;enum 'CursorAction'&gt;</dl>
+
+<dl><dt><strong>DragDropMode</strong> = &lt;enum 'DragDropMode'&gt;</dl>
+
+<dl><dt><strong>DropIndicatorPosition</strong> = &lt;enum 'DropIndicatorPosition'&gt;</dl>
+
+<dl><dt><strong>EditTrigger</strong> = &lt;flag 'EditTrigger'&gt;</dl>
+
+<dl><dt><strong>ScrollHint</strong> = &lt;enum 'ScrollHint'&gt;</dl>
+
+<dl><dt><strong>ScrollMode</strong> = &lt;enum 'ScrollMode'&gt;</dl>
+
+<dl><dt><strong>SelectionBehavior</strong> = &lt;enum 'SelectionBehavior'&gt;</dl>
+
+<dl><dt><strong>SelectionMode</strong> = &lt;enum 'SelectionMode'&gt;</dl>
+
+<dl><dt><strong>State</strong> = &lt;enum 'State'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QAbstractScrollArea">PySide6.QtWidgets.QAbstractScrollArea</a>:<br>
+<dl><dt><a name="ThumbnailListView-addScrollBarWidget"><strong>addScrollBarWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-contextMenuEvent"><strong>contextMenuEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-cornerWidget"><strong>cornerWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalScrollBar"><strong>horizontalScrollBar</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-horizontalScrollBarPolicy"><strong>horizontalScrollBarPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-maximumViewportSize"><strong>maximumViewportSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-minimumSizeHint"><strong>minimumSizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scrollBarWidgets"><strong>scrollBarWidgets</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setCornerWidget"><strong>setCornerWidget</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setHorizontalScrollBar"><strong>setHorizontalScrollBar</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setHorizontalScrollBarPolicy"><strong>setHorizontalScrollBarPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSizeAdjustPolicy"><strong>setSizeAdjustPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setVerticalScrollBar"><strong>setVerticalScrollBar</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setVerticalScrollBarPolicy"><strong>setVerticalScrollBarPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setViewport"><strong>setViewport</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setViewportMargins"><strong>setViewportMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setupViewport"><strong>setupViewport</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeAdjustPolicy"><strong>sizeAdjustPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeHint"><strong>sizeHint</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalScrollBar"><strong>verticalScrollBar</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-verticalScrollBarPolicy"><strong>verticalScrollBarPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-viewport"><strong>viewport</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-viewportMargins"><strong>viewportMargins</strong></a>(self, /)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QAbstractScrollArea">PySide6.QtWidgets.QAbstractScrollArea</a>:<br>
+<dl><dt><strong>SizeAdjustPolicy</strong> = &lt;enum 'SizeAdjustPolicy'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>:<br>
+<dl><dt><a name="ThumbnailListView-changeEvent"><strong>changeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-drawFrame"><strong>drawFrame</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameRect"><strong>frameRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameShadow"><strong>frameShadow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameShape"><strong>frameShape</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameStyle"><strong>frameStyle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameWidth"><strong>frameWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-initStyleOption"><strong>initStyleOption</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-lineWidth"><strong>lineWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-midLineWidth"><strong>midLineWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFrameRect"><strong>setFrameRect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFrameShadow"><strong>setFrameShadow</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFrameShape"><strong>setFrameShape</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFrameStyle"><strong>setFrameStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setLineWidth"><strong>setLineWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMidLineWidth"><strong>setMidLineWidth</strong></a>(self, object, /)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QFrame">PySide6.QtWidgets.QFrame</a>:<br>
+<dl><dt><strong>Shadow</strong> = &lt;enum 'Shadow'&gt;</dl>
+
+<dl><dt><strong>Shape</strong> = &lt;enum 'Shape'&gt;</dl>
+
+<dl><dt><strong>StyleMask</strong> = &lt;enum 'StyleMask'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ThumbnailListView-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailListView-acceptDrops"><strong>acceptDrops</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-accessibleDescription"><strong>accessibleDescription</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-accessibleIdentifier"><strong>accessibleIdentifier</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-accessibleName"><strong>accessibleName</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-actionEvent"><strong>actionEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-actions"><strong>actions</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-activateWindow"><strong>activateWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-addActions"><strong>addActions</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-adjustSize"><strong>adjustSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-autoFillBackground"><strong>autoFillBackground</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-backgroundRole"><strong>backgroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-backingStore"><strong>backingStore</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-baseSize"><strong>baseSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-childrenRect"><strong>childrenRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-childrenRegion"><strong>childrenRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-clearFocus"><strong>clearFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-clearMask"><strong>clearMask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-close"><strong>close</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-closeEvent"><strong>closeEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-contentsMargins"><strong>contentsMargins</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-contentsRect"><strong>contentsRect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-create"><strong>create</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-createWinId"><strong>createWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-cursor"><strong>cursor</strong></a>(self, /)</dt></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-devType"><strong>devType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-effectiveWinId"><strong>effectiveWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-ensurePolished"><strong>ensurePolished</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-enterEvent"><strong>enterEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusNextChild"><strong>focusNextChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusPolicy"><strong>focusPolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusPreviousChild"><strong>focusPreviousChild</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusProxy"><strong>focusProxy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-focusWidget"><strong>focusWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-font"><strong>font</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-fontInfo"><strong>fontInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-fontMetrics"><strong>fontMetrics</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-foregroundRole"><strong>foregroundRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameGeometry"><strong>frameGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-frameSize"><strong>frameSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-geometry"><strong>geometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-grab"><strong>grab</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-grabKeyboard"><strong>grabKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-graphicsEffect"><strong>graphicsEffect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hasFocus"><strong>hasFocus</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hasMouseTracking"><strong>hasMouseTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hasTabletTracking"><strong>hasTabletTracking</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-height"><strong>height</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-heightForWidth"><strong>heightForWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hide"><strong>hide</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-hideEvent"><strong>hideEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-initPainter"><strong>initPainter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-inputMethodHints"><strong>inputMethodHints</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-internalWinId"><strong>internalWinId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isActiveWindow"><strong>isActiveWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isAncestorOf"><strong>isAncestorOf</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isEnabled"><strong>isEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isEnabledTo"><strong>isEnabledTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isFullScreen"><strong>isFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isHidden"><strong>isHidden</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isLeftToRight"><strong>isLeftToRight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isMaximized"><strong>isMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isMinimized"><strong>isMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isModal"><strong>isModal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isRightToLeft"><strong>isRightToLeft</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isTopLevel"><strong>isTopLevel</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isVisible"><strong>isVisible</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isVisibleTo"><strong>isVisibleTo</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isWindow"><strong>isWindow</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isWindowModified"><strong>isWindowModified</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-layout"><strong>layout</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-layoutDirection"><strong>layoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-leaveEvent"><strong>leaveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-locale"><strong>locale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-lower"><strong>lower</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapFromGlobal"><strong>mapFromGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapFromParent"><strong>mapFromParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapToGlobal"><strong>mapToGlobal</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mapToParent"><strong>mapToParent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mask"><strong>mask</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-maximumHeight"><strong>maximumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-maximumSize"><strong>maximumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-maximumWidth"><strong>maximumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-metric"><strong>metric</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-minimumHeight"><strong>minimumHeight</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-minimumSize"><strong>minimumSize</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-minimumWidth"><strong>minimumWidth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-moveEvent"><strong>moveEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-nativeParentWidget"><strong>nativeParentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-nextInFocusChain"><strong>nextInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-normalGeometry"><strong>normalGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-overrideWindowState"><strong>overrideWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-paintEngine"><strong>paintEngine</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-palette"><strong>palette</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-parentWidget"><strong>parentWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-pos"><strong>pos</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-previousInFocusChain"><strong>previousInFocusChain</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-raise_"><strong>raise_</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-rect"><strong>rect</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-redirected"><strong>redirected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-releaseKeyboard"><strong>releaseKeyboard</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-releaseMouse"><strong>releaseMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-releaseShortcut"><strong>releaseShortcut</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-removeAction"><strong>removeAction</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-restoreGeometry"><strong>restoreGeometry</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-saveGeometry"><strong>saveGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-screen"><strong>screen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAcceptDrops"><strong>setAcceptDrops</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAccessibleIdentifier"><strong>setAccessibleIdentifier</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAccessibleName"><strong>setAccessibleName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setBackgroundRole"><strong>setBackgroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setCursor"><strong>setCursor</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setDisabled"><strong>setDisabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setEnabled"><strong>setEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFixedHeight"><strong>setFixedHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFixedWidth"><strong>setFixedWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFocusPolicy"><strong>setFocusPolicy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFocusProxy"><strong>setFocusProxy</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setFont"><strong>setFont</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setForegroundRole"><strong>setForegroundRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setHidden"><strong>setHidden</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setInputMethodHints"><strong>setInputMethodHints</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setLayout"><strong>setLayout</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setLayoutDirection"><strong>setLayoutDirection</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setLocale"><strong>setLocale</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMask"><strong>setMask</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMaximumHeight"><strong>setMaximumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMaximumWidth"><strong>setMaximumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMinimumHeight"><strong>setMinimumHeight</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMinimumWidth"><strong>setMinimumWidth</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setMouseTracking"><strong>setMouseTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setPalette"><strong>setPalette</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setScreen"><strong>setScreen</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setStatusTip"><strong>setStatusTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setStyle"><strong>setStyle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setStyleSheet"><strong>setStyleSheet</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setTabletTracking"><strong>setTabletTracking</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setToolTip"><strong>setToolTip</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setToolTipDuration"><strong>setToolTipDuration</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setVisible"><strong>setVisible</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWhatsThis"><strong>setWhatsThis</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowFilePath"><strong>setWindowFilePath</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowFlag"><strong>setWindowFlag</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowFlags"><strong>setWindowFlags</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowIcon"><strong>setWindowIcon</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowIconText"><strong>setWindowIconText</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowModality"><strong>setWindowModality</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowModified"><strong>setWindowModified</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowOpacity"><strong>setWindowOpacity</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowRole"><strong>setWindowRole</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowState"><strong>setWindowState</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setWindowTitle"><strong>setWindowTitle</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sharedPainter"><strong>sharedPainter</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-show"><strong>show</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showEvent"><strong>showEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showFullScreen"><strong>showFullScreen</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showMaximized"><strong>showMaximized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showMinimized"><strong>showMinimized</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-showNormal"><strong>showNormal</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-size"><strong>size</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizeIncrement"><strong>sizeIncrement</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sizePolicy"><strong>sizePolicy</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-stackUnder"><strong>stackUnder</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-statusTip"><strong>statusTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-style"><strong>style</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-styleSheet"><strong>styleSheet</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-tabletEvent"><strong>tabletEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-testAttribute"><strong>testAttribute</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-toolTip"><strong>toolTip</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-toolTipDuration"><strong>toolTipDuration</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-topLevelWidget"><strong>topLevelWidget</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-underMouse"><strong>underMouse</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-ungrabGesture"><strong>ungrabGesture</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-unsetCursor"><strong>unsetCursor</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-unsetLocale"><strong>unsetLocale</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateGeometry"><strong>updateGeometry</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-updatesEnabled"><strong>updatesEnabled</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-visibleRegion"><strong>visibleRegion</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-whatsThis"><strong>whatsThis</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-width"><strong>width</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-winId"><strong>winId</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-window"><strong>window</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowFilePath"><strong>windowFilePath</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowFlags"><strong>windowFlags</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowHandle"><strong>windowHandle</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowIcon"><strong>windowIcon</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-windowIconText"><strong>windowIconText</strong></a>(self, /)</dt></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-windowModality"><strong>windowModality</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowOpacity"><strong>windowOpacity</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowRole"><strong>windowRole</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowState"><strong>windowState</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-windowTitle"><strong>windowTitle</strong></a>(self, /)</dt></dl>
+
+<strong>windowTitleChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-windowType"><strong>windowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-x"><strong>x</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-y"><strong>y</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="ThumbnailListView-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-find"><strong>find</strong></a>(object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-keyboardGrabber"><strong>keyboardGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-mouseGrabber"><strong>mouseGrabber</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtWidgets.html#QWidget">PySide6.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>RenderFlag</strong> = &lt;flag 'RenderFlag'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailListView-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><span class="code">Return&nbsp;getattr(self,&nbsp;name).</span></dd></dl>
+
+<dl><dt><a name="ThumbnailListView-blockSignals"><strong>blockSignals</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-childEvent"><strong>childEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-children"><strong>children</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-connectNotify"><strong>connectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-customEvent"><strong>customEvent</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-deleteLater"><strong>deleteLater</strong></a>(self, /)</dt></dl>
+
+<strong>destroyed</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-disconnectNotify"><strong>disconnectNotify</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dumpObjectTree"><strong>dumpObjectTree</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-inherits"><strong>inherits</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-installEventFilter"><strong>installEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isQmlExposed"><strong>isQmlExposed</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isQuickItemType"><strong>isQuickItemType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isSignalConnected"><strong>isSignalConnected</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isWidgetType"><strong>isWidgetType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-isWindowType"><strong>isWindowType</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-killTimer"><strong>killTimer</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-metaObject"><strong>metaObject</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-moveToThread"><strong>moveToThread</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-objectName"><strong>objectName</strong></a>(self, /)</dt></dl>
+
+<strong>objectNameChanged</strong> = &lt;PySide6.QtCore.Signal object&gt;
+<dl><dt><a name="ThumbnailListView-parent"><strong>parent</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-property"><strong>property</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-receivers"><strong>receivers</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-removeEventFilter"><strong>removeEventFilter</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-sender"><strong>sender</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-senderSignalIndex"><strong>senderSignalIndex</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setObjectName"><strong>setObjectName</strong></a>(self, object, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-signalsBlocked"><strong>signalsBlocked</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-thread"><strong>thread</strong></a>(self, /)</dt></dl>
+
+<hr>
+Class methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailListView-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtCore.html#QObject">PySide6.QtCore.QObject</a>:<br>
+<dl><dt><a name="ThumbnailListView-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ThumbnailListView-colorCount"><strong>colorCount</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-depth"><strong>depth</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-devicePixelRatio"><strong>devicePixelRatio</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-devicePixelRatioF"><strong>devicePixelRatioF</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-heightMM"><strong>heightMM</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-logicalDpiX"><strong>logicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-logicalDpiY"><strong>logicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-paintingActive"><strong>paintingActive</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-physicalDpiX"><strong>physicalDpiX</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-physicalDpiY"><strong>physicalDpiY</strong></a>(self, /)</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-widthMM"><strong>widthMM</strong></a>(self, /)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="ThumbnailListView-devicePixelRatioFScale"><strong>devicePixelRatioFScale</strong></a>()</dt></dl>
+
+<dl><dt><a name="ThumbnailListView-encodeMetricF"><strong>encodeMetricF</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+<dd><span class="code">ushort</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide6.QtGui.html#QPaintDevice">PySide6.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;enum 'PaintDeviceMetric'&gt;</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>Callable</strong> = typing.Callable</td></tr></table>
+</body></html>

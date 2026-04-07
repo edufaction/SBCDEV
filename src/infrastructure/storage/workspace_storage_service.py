@@ -1,5 +1,14 @@
 from __future__ import annotations
 
+"""Workspace persistence layer used by project and library storage.
+
+This module owns on-disk workspace conventions: metadata file, UI state file,
+partitioned block files under workspaces, and imported media files.
+
+It also encapsulates mounted library metadata normalization so UI and
+application services can rely on a stable format.
+"""
+
 import json
 import mimetypes
 import shutil
@@ -14,16 +23,39 @@ from infrastructure.storage.serialization import block_from_dict, block_to_dict
 
 
 class WorkspaceStorageService:
-    """Generic block workspace storage used for projects and libraries."""
+    """Persistence service for workspace data (projects and libraries).
+
+    The class encapsulates file-system structure, metadata normalization,
+    and block partitioning by workspace root. It is intentionally shared by
+    project and library storage to keep one storage grammar across the app.
+    """
 
     _WORKSPACES_DIRNAME = "workspaces"
     _BLOCKS_FILENAME = "blocks.json"
     _STORAGE_LAYOUT_VERSION = 2
 
     def __init__(self, *, workspace_kind: str = "project") -> None:
+        """Initialize a storage service for one logical workspace kind.
+
+        Args:
+            workspace_kind: Default kind assigned to newly created workspaces
+                when no explicit kind is provided.
+        """
+
         self._workspace_kind = workspace_kind
 
     def create_workspace(self, workspace_path: Path, name: str, *, workspace_kind: str | None = None) -> None:
+        """Create a workspace directory with the canonical SBC2 layout.
+
+        The method initializes storage folders, baseline metadata, workspace
+        partition folder, and an empty UI state payload.
+
+        Args:
+            workspace_path: Target workspace root directory.
+            name: Human-readable workspace name persisted in metadata.
+            workspace_kind: Optional kind override (for example project or library).
+        """
+
         kind = (workspace_kind or self._workspace_kind).strip() or "workspace"
         timestamp = self._utc_now_iso()
         workspace_path.mkdir(parents=True, exist_ok=True)
@@ -50,12 +82,25 @@ class WorkspaceStorageService:
         self._write_json(workspace_path / "ui_state.json", {})
 
     def create_project(self, project_path: Path, name: str) -> None:
+        """Convenience wrapper creating a workspace with project kind."""
+
         self.create_workspace(project_path, name, workspace_kind="project")
 
     def create_library(self, library_path: Path, name: str) -> None:
+        """Convenience wrapper creating a workspace with library kind."""
+
         self.create_workspace(library_path, name, workspace_kind="library")
 
     def load_workspace_metadata(self, workspace_path: Path) -> dict:
+        """Load workspace metadata and normalize mounted library entries.
+
+        Args:
+            workspace_path: Workspace directory containing project.json.
+
+        Returns:
+            Metadata dictionary with guaranteed list-form mounted_libraries.
+        """
+
         metadata = self._read_json(workspace_path / "project.json")
         if not isinstance(metadata, dict):
             return {}
@@ -64,6 +109,12 @@ class WorkspaceStorageService:
         return metadata
 
     def save_workspace_metadata(self, workspace_path: Path, metadata: dict) -> None:
+        """Persist workspace metadata with schema defaults and timestamps.
+
+        The method keeps created_at stable when possible, updates updated_at on
+        every save, and normalizes mounted_libraries into canonical shape.
+        """
+
         payload = dict(metadata)
         existing_created = ""
         target_file = workspace_path / "project.json"
@@ -84,16 +135,24 @@ class WorkspaceStorageService:
         self._write_json(target_file, payload)
 
     def load_project_metadata(self, project_path: Path) -> dict:
+        """Backward-compatible alias for load_workspace_metadata."""
+
         return self.load_workspace_metadata(project_path)
 
     def save_project_metadata(self, project_path: Path, metadata: dict) -> None:
+        """Backward-compatible alias for save_workspace_metadata."""
+
         self.save_workspace_metadata(project_path, metadata)
 
     def list_mounted_libraries(self, workspace_path: Path) -> list[dict[str, Any]]:
+        """Return normalized mounted library descriptors for a workspace."""
+
         metadata = self.load_workspace_metadata(workspace_path)
         return [dict(item) for item in self._normalize_mounted_libraries(metadata.get("mounted_libraries", []))]
 
     def save_mounted_libraries(self, workspace_path: Path, mounts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Replace mounted library list after canonical normalization."""
+
         metadata = self.load_workspace_metadata(workspace_path)
         normalized = self._normalize_mounted_libraries(mounts)
         metadata["mounted_libraries"] = normalized
@@ -110,6 +169,12 @@ class WorkspaceStorageService:
         read_only: bool = True,
         mount_id: str | None = None,
     ) -> dict[str, Any]:
+        """Add or update one mounted library entry.
+
+        If the path already exists in metadata, the existing item is updated
+        in place. Otherwise, a new canonical mount descriptor is appended.
+        """
+
         mounts = self.list_mounted_libraries(workspace_path)
         resolved_path = Path(str(library_path)).expanduser().resolve().as_posix()
 
@@ -147,6 +212,8 @@ class WorkspaceStorageService:
         mount_id: str | None = None,
         library_path: str | Path | None = None,
     ) -> list[dict[str, Any]]:
+        """Remove mounted library entries by id and or path."""
+
         mounts = self.list_mounted_libraries(workspace_path)
         target_id = (mount_id or "").strip()
         target_path = ""
@@ -164,15 +231,28 @@ class WorkspaceStorageService:
         return self.save_mounted_libraries(workspace_path, filtered)
 
     def load_blocks(self, workspace_path: Path) -> list[Block]:
+        """Load all blocks from partitioned workspace files.
+
+        The current storage layout marker is also enforced on metadata.
+        """
+
         self._mark_storage_layout(workspace_path)
         return self._load_blocks_from_workspace_dirs(workspace_path)
 
     def save_blocks(self, workspace_path: Path, blocks: list[Block]) -> None:
+        """Persist blocks partitioned by workspace-root ownership.
+
+        Partitioning keeps each logical root in its own blocks file while
+        preserving deterministic ordering.
+        """
+
         partitions = self._partition_blocks_by_workspace(blocks)
         self._write_workspace_partitions(workspace_path, partitions)
         self._mark_storage_layout(workspace_path)
 
     def load_ui_state(self, workspace_path: Path) -> dict:
+        """Load UI state payload for a workspace, or an empty mapping."""
+
         path = workspace_path / "ui_state.json"
         if not path.exists():
             return {}
@@ -182,9 +262,19 @@ class WorkspaceStorageService:
         return {}
 
     def save_ui_state(self, workspace_path: Path, ui_state: dict) -> None:
+        """Persist UI state payload for a workspace."""
+
         self._write_json(workspace_path / "ui_state.json", dict(ui_state))
 
     def import_file(self, workspace_path: Path, source_file: Path) -> dict[str, str]:
+        """Import one external file into workspace-managed storage.
+
+        Video files are normalized to a UI-safe MP4 variant when ffmpeg is
+        available; otherwise the source file is copied as-is.
+
+        Returns a descriptor with storage path, mime type and original name.
+        """
+
         files_dir = workspace_path / "storage" / "files"
         files_dir.mkdir(parents=True, exist_ok=True)
 
@@ -212,6 +302,8 @@ class WorkspaceStorageService:
         }
 
     def resolve_path(self, workspace_path: Path, relative_path: str) -> Path:
+        """Resolve a stored path against workspace root when needed."""
+
         path = Path(relative_path)
         if path.is_absolute():
             return path
@@ -424,6 +516,8 @@ class WorkspaceStorageService:
 
     @staticmethod
     def _normalize_mounted_libraries(raw_mounts: Any) -> list[dict[str, Any]]:
+        """Normalize mounted library payload into canonical persisted schema."""
+
         if not isinstance(raw_mounts, list):
             return []
 
@@ -460,6 +554,8 @@ class WorkspaceStorageService:
 
     @staticmethod
     def _as_bool(value: Any, *, default: bool) -> bool:
+        """Convert arbitrary value to bool using tolerant string rules."""
+
         if isinstance(value, bool):
             return value
         if isinstance(value, (int, float)):
@@ -477,12 +573,16 @@ class WorkspaceStorageService:
 
     @staticmethod
     def _is_video_file(source_file: Path, mime_type: str) -> bool:
+        """Return True when the source should follow video import pipeline."""
+
         if mime_type.startswith("video/"):
             return True
         return source_file.suffix.lower() in {".mp4", ".mov", ".m4v", ".mkv", ".webm", ".avi"}
 
     @staticmethod
     def _normalize_video_for_ui(source_file: Path, target_file: Path) -> bool:
+        """Transcode source video into a broadly compatible MP4 variant."""
+
         ffmpeg_bin = shutil.which("ffmpeg")
         if ffmpeg_bin is None:
             return False
@@ -539,10 +639,14 @@ class WorkspaceStorageService:
 
 
 class ProjectStorageService(WorkspaceStorageService):
+    """Storage service specialization for project workspaces."""
+
     def __init__(self) -> None:
         super().__init__(workspace_kind="project")
 
 
 class LibraryStorageService(WorkspaceStorageService):
+    """Storage service specialization for standalone library workspaces."""
+
     def __init__(self) -> None:
         super().__init__(workspace_kind="library")

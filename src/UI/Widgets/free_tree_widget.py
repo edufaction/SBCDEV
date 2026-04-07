@@ -118,6 +118,8 @@ class FreeTreeWidget(QWidget):
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
         self.setProperty("panel", True)
+        self._interactive = True
+        self._actions_visible = True
         self._icons_dir = Path(__file__).resolve().parents[2] / "icons"
         self._icon_cache: dict[tuple[str, str], QIcon] = {}
         self._project_root: Path | None = None
@@ -176,6 +178,32 @@ class FreeTreeWidget(QWidget):
         self._delete_block_button.clicked.connect(self._prompt_delete_selected_block)
         self._sync_state_from_controller()
         initialize_widget_primitives(self)
+        self._refresh_action_state()
+
+    def set_header_visible(self, visible: bool) -> None:
+        self._header.setVisible(bool(visible))
+
+    def set_actions_visible(self, visible: bool) -> None:
+        self._actions_visible = bool(visible)
+        for button in (
+            self._add_folder_button,
+            self._delete_folder_button,
+            self._import_button,
+            self._add_template_button,
+            self._delete_block_button,
+        ):
+            button.setVisible(self._actions_visible)
+        self._refresh_action_state()
+
+    def set_interactive(self, enabled: bool) -> None:
+        self._interactive = bool(enabled)
+        self._tree_view.setDragEnabled(self._interactive)
+        self._tree_view.setAcceptDrops(self._interactive)
+        self._tree_view.setDropIndicatorShown(self._interactive)
+        if self._interactive:
+            self._tree_view.setDragDropMode(QAbstractItemView.DragDrop)
+        else:
+            self._tree_view.setDragDropMode(QAbstractItemView.NoDragDrop)
         self._refresh_action_state()
 
     def set_blocks(
@@ -983,6 +1011,20 @@ class FreeTreeWidget(QWidget):
         return None
 
     def _refresh_action_state(self) -> None:
+        if not self._actions_visible:
+            self._add_folder_button.setEnabled(False)
+            self._delete_folder_button.setEnabled(False)
+            self._import_button.setEnabled(False)
+            self._add_template_button.setEnabled(False)
+            self._delete_block_button.setEnabled(False)
+            return
+        if not self._interactive:
+            self._add_folder_button.setEnabled(False)
+            self._delete_folder_button.setEnabled(False)
+            self._import_button.setEnabled(False)
+            self._add_template_button.setEnabled(False)
+            self._delete_block_button.setEnabled(False)
+            return
         item = self._tree_view.currentItem()
         can_add_template = bool(self._template_target_folder_id())
         if item is None:

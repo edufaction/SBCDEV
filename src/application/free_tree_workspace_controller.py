@@ -18,7 +18,13 @@ class FreeTreeItemSnapshot:
 
 
 class FreeTreeWorkspaceController:
-    """Application controller that derives a virtual free-tree from block paths."""
+    """Controller rebuilding and mutating the virtual FreeTree view.
+
+    The controller is the bridge between persisted block ``container_paths`` and
+    the interactive tree widget representation used by the UI. It preserves
+    compatibility with legacy persisted trees while keeping block paths as the
+    source of truth.
+    """
 
     def __init__(self) -> None:
         self._blocks: list[Block] = []
@@ -44,6 +50,13 @@ class FreeTreeWorkspaceController:
         return set(self._locked_node_ids)
 
     def set_blocks(self, blocks: list[Block], *, persisted_tree: FreeTree | None = None) -> None:
+        """Load blocks and rebuild the virtual tree from current container paths.
+
+        Args:
+            blocks: Full block collection of the current workspace.
+            persisted_tree: Optional legacy tree snapshot for migration support.
+        """
+
         self._blocks = list(blocks)
         self._blocks_by_id = {block.id: block for block in self._blocks}
         self._tree, self._locked_node_ids = self._build_tree_from_paths()
@@ -51,7 +64,11 @@ class FreeTreeWorkspaceController:
             self.apply_persisted_tree(persisted_tree)
 
     def apply_persisted_tree(self, persisted_tree: FreeTree | None) -> None:
-        """Legacy compatibility: convert a persisted ui_state free-tree into block container_paths."""
+        """Migrate a legacy persisted tree structure into block container_paths.
+
+        The migration is conservative: explicit modern paths already stored on a
+        block are preserved instead of being overwritten by legacy values.
+        """
         if persisted_tree is None:
             return
         parent_map = self._parent_map_for_tree(persisted_tree)
