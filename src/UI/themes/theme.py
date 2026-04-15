@@ -24,8 +24,15 @@ _SHARED_TOKENS: dict[str, str] = {
     "rounded_full": "9999px",
     # Status and block type colors.
     "success": "#40c057",
+    "success_dim": "#2d8a42",
     "warning": "#f59f00",
+    "warning_dim": "#c47e00",
     "error_dim": "#d73357",
+    # Danger / destructive action — consistent across all themes.
+    "danger": "#e05252",
+    "danger_dim": "#c43a3a",
+    "on_danger": "#ffffff",
+    # Block type badge colors.
     "type_empty": "#6b7280",
     "type_container": "#5a6b88",
     "type_image": "#4f7fd1",
@@ -39,8 +46,8 @@ _SHARED_TOKENS: dict[str, str] = {
 _PALETTES: dict[str, dict[str, str]] = {
     "dark": {
         "surface_dim": "#0d1014",
-        "surface": "#d99a34",
-        "surface_container_lowest": "#14130d",
+        "surface": "#0d1014",
+        "surface_container_lowest": "#0b0e12",
         "surface_container_low": "#12161b",
         "surface_container": "#181d23",
         "surface_container_high": "#20262d",
@@ -146,6 +153,11 @@ def _build_theme_tokens(name: str) -> dict[str, str]:
     tokens["primary_alpha_05"] = _hex_to_rgba(primary, 13) or "rgba(0,0,0,13)"
     tokens["primary_alpha_15"] = _hex_to_rgba(primary, 38) or "rgba(0,0,0,38)"
     tokens["primary_alpha_25"] = _hex_to_rgba(primary, 64) or "rgba(0,0,0,64)"
+
+    # Danger alpha variants for hover/pressed states.
+    danger = tokens["danger"]
+    tokens["danger_alpha_15"] = _hex_to_rgba(danger, 38) or "rgba(224,82,82,38)"
+    tokens["danger_alpha_25"] = _hex_to_rgba(danger, 64) or "rgba(224,82,82,64)"
 
     # Semantic aliases used to simplify future QSS without breaking current code.
     tokens["bg_app"] = tokens["surface_dim"]

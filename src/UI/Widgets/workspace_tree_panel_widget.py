@@ -187,7 +187,7 @@ class WorkspaceTreePanelWidget(QWidget):
         for block in blocks:
             if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
                 continue
-            role = str(block.content.get("workspace_role", "") or "").strip().lower()
+            role = block.as_container().workspace_role
             if role == self._workspace_role:
                 return block
         if self._root_block_id:

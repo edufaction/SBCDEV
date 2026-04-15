@@ -1,3 +1,4 @@
+from .block_content import ContainerContent, MediaContent
 from .exceptions import DomainError, NotFoundError, ValidationError
 from .models import (
     Block,
@@ -15,7 +16,9 @@ from .models import (
 )
 
 __all__ = [
+    "ContainerContent",
     "DomainError",
+    "MediaContent",
     "NotFoundError",
     "ValidationError",
     "Block",

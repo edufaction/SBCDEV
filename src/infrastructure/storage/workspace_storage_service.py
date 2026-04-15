@@ -431,7 +431,7 @@ class WorkspaceStorageService:
     @staticmethod
     def _project_root_id(roots: list[Block]) -> str | None:
         for root in roots:
-            role = str(root.content.get("workspace_role", "") or "").strip().lower()
+            role = root.as_container().workspace_role
             if role == "project_root":
                 return root.id
         for root in roots:
@@ -440,7 +440,7 @@ class WorkspaceStorageService:
         return None
 
     def _workspace_key_for_root(self, block: Block) -> str:
-        role = str(block.content.get("workspace_role", "") or "").strip().lower()
+        role = block.as_container().workspace_role
         if role:
             return self._sanitize_workspace_key(role)
         name = (block.name or "").strip()

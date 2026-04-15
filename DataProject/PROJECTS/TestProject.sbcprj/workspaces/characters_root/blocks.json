@@ -109,6 +109,12 @@
           "block_id": "blk_character_ariane_form_casual",
           "x": -142.26494346680832,
           "y": -44.84747368282457
+        },
+        "gnode_0f86028d5f83": {
+          "id": "gnode_0f86028d5f83",
+          "block_id": "blk_character_ariane_form_stealth",
+          "x": 40.0,
+          "y": 40.0
         }
       },
       "edges": {}
@@ -204,14 +210,14 @@
         "gnode_3de722e721d8": {
           "id": "gnode_3de722e721d8",
           "block_id": "blk_img_ariane_casual_02",
-          "x": -516.4698943206997,
-          "y": 123.97536508510575
+          "x": -136.68203383904802,
+          "y": -247.81696149166905
         },
         "gnode_451ef1ecea8b": {
           "id": "gnode_451ef1ecea8b",
           "block_id": "blk_img_ariane_casual_03",
-          "x": 12.328399431807156,
-          "y": -138.99371957801083
+          "x": 669.9610631079304,
+          "y": -176.972505626176
         },
         "gnode_a1e346b3cdb8": {
           "id": "gnode_a1e346b3cdb8",

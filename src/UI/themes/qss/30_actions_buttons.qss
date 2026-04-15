@@ -96,3 +96,92 @@ QTabWidget#SettingsTabs QTabBar::tab:selected {
     border-bottom: 2px solid @primary;
     font-weight: 620;
 }
+
+/* ─── Disabled states ────────────────────────────────────────────────────────*/
+
+QPushButton:disabled,
+QToolButton:disabled {
+    color: @on_surface_muted;
+    border-color: @outline_ghost;
+    background-color: transparent;
+}
+
+QPushButton[accent="true"]:disabled,
+QToolButton[accent="true"]:disabled,
+QPushButton[primary="true"]:disabled,
+QToolButton[primary="true"]:disabled {
+    background-color: @surface_variant;
+    color: @on_surface_muted;
+    border: none;
+}
+
+/* ─── Checked / toggled state ────────────────────────────────────────────────
+   Used for toggle buttons and mode switches (e.g. view mode selectors). */
+
+QPushButton:checked,
+QToolButton:checked {
+    background-color: @primary_alpha_15;
+    color: @on_surface;
+    border-color: @primary_alpha_25;
+}
+
+QPushButton:checked:hover,
+QToolButton:checked:hover {
+    background-color: @primary_alpha_25;
+}
+
+QPushButton:checked:disabled,
+QToolButton:checked:disabled {
+    background-color: @surface_container;
+    color: @on_surface_muted;
+    border-color: @outline_ghost;
+}
+
+/* ─── Danger / destructive action ────────────────────────────────────────────
+   Ghost style by default; fills on hover. Use property danger="true". */
+
+QPushButton[danger="true"],
+QToolButton[danger="true"] {
+    background-color: transparent;
+    color: @danger;
+    border: 1px solid @danger_alpha_15;
+    border-radius: @rounded_md;
+    padding: @spacing_3 @spacing_5;
+}
+
+QPushButton[danger="true"]:hover,
+QToolButton[danger="true"]:hover {
+    background-color: @danger_alpha_15;
+    border-color: @danger_alpha_25;
+}
+
+QPushButton[danger="true"]:pressed,
+QToolButton[danger="true"]:pressed {
+    background-color: @danger_alpha_25;
+}
+
+QPushButton[danger="true"]:disabled,
+QToolButton[danger="true"]:disabled {
+    color: @on_surface_muted;
+    border-color: @outline_ghost;
+    background-color: transparent;
+}
+
+/* ─── AI / Magic action hover ────────────────────────────────────────────────*/
+
+QPushButton[aiMagic="true"]:hover,
+QToolButton[aiMagic="true"]:hover {
+    background-color: @surface_container_highest;
+    border-color: @tertiary;
+}
+
+/* ─── Icon-only compact button ───────────────────────────────────────────────
+   Small square button for toolbar / panel action icon buttons. */
+
+QPushButton[iconOnly="true"],
+QToolButton[iconOnly="true"] {
+    padding: @spacing_3;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: @rounded_md;
+}

@@ -2,6 +2,7 @@
 QFrame#Sidebar {
     background-color: @surface_container_low;
     border: none;
+    border-right: 1px solid @outline_ghost;
 }
 
 QWidget#SidebarHeader {
@@ -90,9 +91,9 @@ QPushButton[sidebarNav="true"]:checked,
 QPushButton[sidebarNav="true"][active="true"] {
     color: @on_surface;
     font-weight: 600;
-    border-left: 2px solid @primary;
+    border-left: 3px solid @primary;
     background-color: @primary_alpha_15;
-    padding-left: 12px;
+    padding-left: 11px;
 }
 
 QPushButton[sidebarNav="true"]:checked:hover,
@@ -137,4 +138,18 @@ QLabel[workspaceTitle="true"] {
 QLabel#WorkspaceHeader,
 QLabel#WorkspaceFooter {
     background-color: @surface_container;
+}
+
+/* ─── Panel header ───────────────────────────────────────────────────────────
+   Slightly elevated tonal band at the top of each panel. */
+
+QWidget[panelHeader="true"] {
+    background-color: @surface_container_high;
+    border-bottom: 1px solid @outline_ghost;
+    border-radius: 0px;
+}
+
+/* Workspace panel root: subtle top border to separate from toolbar above. */
+QWidget[workspacePanel="true"] {
+    border-top: 1px solid @outline_ghost;
 }

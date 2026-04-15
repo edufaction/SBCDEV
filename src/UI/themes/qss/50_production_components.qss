@@ -1,26 +1,44 @@
 /* Media cards: no divider line, separation by spacing + tonal shift. */
 QWidget[thumbnailCard="true"] {
     background-color: @surface_container_high;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 10px;
     padding: @spacing_2;
 }
 
 QWidget[thumbnailCard="true"]:hover {
     background-color: @surface_container_highest;
+    border-color: @outline_ghost;
+}
+
+/* Selected card: primary accent ring — clearly visible, not aggressive. */
+QWidget[thumbnailCard="true"][selected="true"] {
+    background-color: @primary_alpha_15;
+    border: 1px solid @primary_alpha_25;
+}
+
+QWidget[thumbnailCard="true"][selected="true"]:hover {
+    background-color: @primary_alpha_25;
+    border-color: @primary;
 }
 
 QFrame[carouselItem="true"],
 QWidget[carouselItem="true"] {
     background-color: @surface_container_high;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 10px;
     padding: 0px;
 }
 
+QFrame[carouselItem="true"]:hover,
+QWidget[carouselItem="true"]:hover {
+    border-color: @outline_ghost;
+}
+
 QFrame[carouselItem="true"][selected="true"],
 QWidget[carouselItem="true"][selected="true"] {
-    background-color: @surface_container_highest;
+    background-color: @primary_alpha_15;
+    border: 1px solid @primary_alpha_25;
 }
 
 /* Production-specific patterns */
@@ -83,4 +101,53 @@ QLabel[statValue="true"],
 QLabel[statValue="true"] {
     background: transparent;
     color: @primary;
+}
+
+/* ─── Empty state widget ─────────────────────────────────────────────────────
+   Centered placeholder content shown when a panel has no data. */
+
+QWidget[emptyState="true"] {
+    background: transparent;
+}
+
+QLabel[emptyStateTitle="true"] {
+    color: @on_surface_variant;
+    font-size: 14px;
+    font-weight: 600;
+    background: transparent;
+}
+
+QLabel[emptyStateHint="true"] {
+    color: @on_surface_muted;
+    font-size: 12px;
+    background: transparent;
+}
+
+/* ─── Inline notification chip ───────────────────────────────────────────────*/
+
+QLabel[chip="success"] {
+    background-color: @success_dim;
+    color: #ffffff;
+    border-radius: @rounded_full;
+    padding: @spacing_1 @spacing_4;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+QLabel[chip="warning"] {
+    background-color: @warning_dim;
+    color: #ffffff;
+    border-radius: @rounded_full;
+    padding: @spacing_1 @spacing_4;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+QLabel[chip="danger"] {
+    background-color: @danger_dim;
+    color: @on_danger;
+    border-radius: @rounded_full;
+    padding: @spacing_1 @spacing_4;
+    font-size: 11px;
+    font-weight: 600;
 }

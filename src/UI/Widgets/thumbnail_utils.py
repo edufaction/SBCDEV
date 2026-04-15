@@ -30,7 +30,16 @@ def resolve_media_path(content: dict, project_root: Path | None) -> Path | None:
 
 
 def resolve_block_asset_path(block: Block, project_root: Path | None) -> Path | None:
-    return resolve_media_path(block.content, project_root)
+    media = block.as_media()
+    for candidate_str in media.candidate_paths():
+        candidate = Path(candidate_str)
+        if candidate.is_absolute() and candidate.exists():
+            return candidate
+        if project_root is not None:
+            resolved = (project_root / candidate).resolve()
+            if resolved.exists():
+                return resolved
+    return None
 
 
 def load_image_safe(path: Path) -> QImage | None:

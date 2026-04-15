@@ -108,7 +108,7 @@ class CharacterWorkspaceService:
         for block in blocks:
             if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
                 continue
-            role = str(block.content.get("workspace_role", "") or "").strip().lower()
+            role = block.as_container().workspace_role
             if role == "characters_root":
                 return block
         fallback = by_id.get(CHARACTERS_ROOT_BLOCK_ID)

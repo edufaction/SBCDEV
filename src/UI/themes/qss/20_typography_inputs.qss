@@ -157,3 +157,65 @@ QLineEdit[commandBar="true"] {
     border-radius: @rounded_full;
     padding: @spacing_4 @spacing_6;
 }
+
+/* ─── Disabled input states ──────────────────────────────────────────────────*/
+
+QLineEdit:disabled,
+QTextEdit:disabled,
+QPlainTextEdit:disabled,
+QComboBox:disabled,
+QSpinBox:disabled,
+QDoubleSpinBox:disabled {
+    color: @on_surface_muted;
+    border-color: @outline_ghost;
+    background-color: @surface_container;
+}
+
+/* ─── SpinBox arrow buttons ──────────────────────────────────────────────────*/
+
+QSpinBox::up-button,
+QDoubleSpinBox::up-button {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 18px;
+    border: none;
+    border-left: 1px solid @outline_20;
+    border-top-right-radius: @rounded_md;
+    background: transparent;
+}
+
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right;
+    width: 18px;
+    border: none;
+    border-left: 1px solid @outline_20;
+    border-bottom-right-radius: @rounded_md;
+    background: transparent;
+}
+
+QSpinBox::up-button:hover,
+QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover,
+QDoubleSpinBox::down-button:hover {
+    background-color: @surface_container_high;
+}
+
+QSpinBox::up-button:pressed,
+QDoubleSpinBox::up-button:pressed,
+QSpinBox::down-button:pressed,
+QDoubleSpinBox::down-button:pressed {
+    background-color: @surface_container_highest;
+}
+
+/* ─── Enhanced focus ring ────────────────────────────────────────────────────
+   Slightly elevated background on focus to reinforce active field. */
+
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus,
+QSpinBox:focus,
+QDoubleSpinBox:focus {
+    background-color: @surface_container_high;
+}

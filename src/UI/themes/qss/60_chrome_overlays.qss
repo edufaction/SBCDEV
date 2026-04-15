@@ -1,0 +1,255 @@
+/* SBC2 Design System – Application Chrome & Overlay Layer
+   Covers: QMenuBar, QMenu, QToolBar, QStatusBar, QDockWidget, QDialog.
+   These were previously fully unstyled and fell back to the OS theme,
+   breaking visual consistency on non-macOS platforms.
+*/
+
+/* ─── Menu bar ───────────────────────────────────────────────────────────────
+   Flush with the top of the window; matches the app surface dim level. */
+
+QMenuBar {
+    background-color: @surface_dim;
+    color: @on_surface_variant;
+    border-bottom: 1px solid @outline_ghost;
+    padding: 1px @spacing_3;
+    spacing: 0px;
+}
+
+QMenuBar::item {
+    background: transparent;
+    padding: @spacing_3 @spacing_5;
+    border-radius: @rounded_sm;
+}
+
+QMenuBar::item:selected {
+    background-color: @surface_container;
+    color: @on_surface;
+}
+
+QMenuBar::item:pressed {
+    background-color: @surface_container_high;
+    color: @on_surface;
+}
+
+/* ─── Context / dropdown menus ───────────────────────────────────────────────
+   Slightly elevated panel feel; compact padding to maximize information density. */
+
+QMenu {
+    background-color: @surface_container;
+    color: @on_surface;
+    border: 1px solid @outline_ghost;
+    border-radius: @rounded_md;
+    padding: @spacing_2;
+    margin: 0px;
+}
+
+QMenu::item {
+    padding: @spacing_3 @spacing_8 @spacing_3 @spacing_5;
+    border-radius: @rounded_sm;
+    margin: 1px @spacing_1;
+}
+
+QMenu::item:selected {
+    background-color: @primary_alpha_15;
+    color: @on_surface;
+}
+
+QMenu::item:pressed {
+    background-color: @primary_alpha_25;
+}
+
+QMenu::item:disabled {
+    color: @on_surface_muted;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: @outline_ghost;
+    margin: @spacing_2 @spacing_4;
+    border: none;
+}
+
+QMenu::icon {
+    padding-left: @spacing_5;
+}
+
+/* Sub-menu arrow indicator. */
+QMenu::right-arrow {
+    width: 12px;
+    height: 12px;
+    padding-right: @spacing_3;
+}
+
+/* Checked menu item indicator. */
+QMenu::indicator {
+    width: 16px;
+    height: 16px;
+    padding-left: @spacing_4;
+}
+
+QMenu::indicator:checked {
+    background-color: @primary;
+    border-radius: 3px;
+}
+
+/* ─── Toolbar ────────────────────────────────────────────────────────────────
+   Sits below the menu bar; slightly elevated versus the sidebar. */
+
+QToolBar {
+    background-color: @surface_container_low;
+    border: none;
+    border-bottom: 1px solid @outline_ghost;
+    padding: @spacing_2 @spacing_4;
+    spacing: @spacing_2;
+}
+
+QToolBar::separator {
+    background-color: @outline_ghost;
+    width: 1px;
+    height: 18px;
+    margin: @spacing_3 @spacing_3;
+}
+
+/* ToolButton inside a QToolBar uses lighter base styles. */
+QToolBar QToolButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: @rounded_md;
+    padding: @spacing_3;
+    color: @on_surface_variant;
+}
+
+QToolBar QToolButton:hover {
+    background-color: @surface_container_high;
+    border-color: @outline_ghost;
+    color: @on_surface;
+}
+
+QToolBar QToolButton:pressed {
+    background-color: @surface_container_highest;
+}
+
+QToolBar QToolButton:checked {
+    background-color: @primary_alpha_15;
+    border-color: @primary_alpha_25;
+    color: @on_surface;
+}
+
+QToolBar QToolButton:disabled {
+    color: @on_surface_muted;
+    background: transparent;
+    border-color: transparent;
+}
+
+/* ─── Status bar ─────────────────────────────────────────────────────────────*/
+
+QStatusBar {
+    background-color: @surface_container_low;
+    color: @on_surface_variant;
+    border-top: 1px solid @outline_ghost;
+    font-size: 11px;
+}
+
+QStatusBar::item {
+    border: none;
+}
+
+QStatusBar QLabel {
+    color: @on_surface_variant;
+    font-size: 11px;
+    background: transparent;
+    padding: 0px @spacing_3;
+}
+
+/* ─── Dock widget ────────────────────────────────────────────────────────────*/
+
+QDockWidget {
+    color: @on_surface;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+QDockWidget::title {
+    background-color: @surface_container;
+    text-align: left;
+    padding: @spacing_3 @spacing_5;
+    border-bottom: 1px solid @outline_ghost;
+    letter-spacing: 0.5px;
+}
+
+QDockWidget::close-button,
+QDockWidget::float-button {
+    border: none;
+    background: transparent;
+    padding: 2px;
+    border-radius: @rounded_sm;
+}
+
+QDockWidget::close-button:hover,
+QDockWidget::float-button:hover {
+    background-color: @surface_container_high;
+}
+
+QDockWidget::close-button:pressed,
+QDockWidget::float-button:pressed {
+    background-color: @surface_container_highest;
+}
+
+/* ─── Dialog ─────────────────────────────────────────────────────────────────*/
+
+QDialog {
+    background-color: @surface_container;
+}
+
+QMessageBox {
+    background-color: @surface_container;
+    color: @on_surface;
+}
+
+QMessageBox QLabel {
+    color: @on_surface;
+    font-size: 13px;
+    background: transparent;
+}
+
+QMessageBox QPushButton {
+    min-width: 80px;
+}
+
+/* ─── Progress bar ───────────────────────────────────────────────────────────
+   Generic (non-AI) progress bar; clean tonal approach. */
+
+QProgressBar {
+    background-color: @surface_variant;
+    color: @on_surface_variant;
+    border: none;
+    border-radius: @rounded_sm;
+    text-align: center;
+    font-size: 11px;
+}
+
+QProgressBar::chunk {
+    background-color: @primary;
+    border-radius: @rounded_sm;
+}
+
+/* ─── Group box ──────────────────────────────────────────────────────────────*/
+
+QGroupBox {
+    color: @on_surface_variant;
+    border: 1px solid @outline_ghost;
+    border-radius: @rounded_md;
+    margin-top: 10px;
+    padding-top: @spacing_4;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 @spacing_3;
+    left: 8px;
+    color: @on_surface_variant;
+}

@@ -18,11 +18,9 @@ class ProjectWorkspaceService:
 
     @staticmethod
     def _resolve_block_asset_path(block: Block, project_root: Path | None) -> Path | None:
-        for key in ("thumbnail_path", "preview_path", "storage_path", "file_path", "path", "url"):
-            raw_value = block.content.get(key)
-            if not isinstance(raw_value, str) or not raw_value.strip():
-                continue
-            candidate = Path(raw_value)
+        media = block.as_media()
+        for candidate_str in media.candidate_paths():
+            candidate = Path(candidate_str)
             if candidate.is_absolute() and candidate.exists():
                 return candidate
             if project_root is not None:

@@ -1136,7 +1136,7 @@ class MainWindow(QMainWindow):
     def _workspace_root_role(block: Block) -> str:
         if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
             return ""
-        role = str(block.content.get("workspace_role", "") or "").strip().lower()
+        role = block.as_container().workspace_role
         if role:
             return role
         normalized_name = (block.name or "").strip().upper().replace(" ", "_")
@@ -1236,17 +1236,17 @@ class MainWindow(QMainWindow):
                 if block.domain != BlockDomain.LIB:
                     block.domain = BlockDomain.LIB
                     changed = True
-                if block.content.get("workspace_role") != "internal_lib":
+                if block.as_container().workspace_role != "internal_lib":
                     block.content["workspace_role"] = "internal_lib"
                     changed = True
             if block.id == INTERNAL_LIB_EMPTY_BLOCK_ID:
                 if block.profile != "internal_lib_empty":
                     block.profile = "internal_lib_empty"
                     changed = True
-                if not block.content.get("internal_lib"):
+                if not block.as_container().internal_lib:
                     block.content["internal_lib"] = True
                     changed = True
-                if not block.content.get("drop_target"):
+                if not block.as_container().drop_target:
                     block.content["drop_target"] = True
                     changed = True
 
@@ -1334,7 +1334,7 @@ class MainWindow(QMainWindow):
 
         def ensure_role(block: Block, role: str) -> None:
             nonlocal changed
-            if block.content.get("workspace_role") != role:
+            if block.as_container().workspace_role != role:
                 block.content["workspace_role"] = role
                 changed = True
 
@@ -1462,10 +1462,10 @@ class MainWindow(QMainWindow):
             by_id[internal_empty.id] = internal_empty
             changed = True
         else:
-            if not bool(internal_empty.content.get("drop_target")):
+            if not internal_empty.as_container().drop_target:
                 internal_empty.content["drop_target"] = True
                 changed = True
-            if not bool(internal_empty.content.get("internal_lib")):
+            if not internal_empty.as_container().internal_lib:
                 internal_empty.content["internal_lib"] = True
                 changed = True
             if not internal_empty.name.strip():

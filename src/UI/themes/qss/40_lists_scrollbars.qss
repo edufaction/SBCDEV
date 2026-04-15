@@ -31,41 +31,89 @@ QTreeWidget::item:selected {
     color: @on_surface;
 }
 
-/* Production scrollbar primitives (no-line, tonal layering, subtle hover intent). */
-QScrollBar[productionScrollBar="true"],
+/* ─── Header views ───────────────────────────────────────────────────────────
+   Used in block properties editor and any tree/table with visible headers. */
+
+QHeaderView {
+    background-color: @surface_container_low;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: @surface_container_low;
+    color: @on_surface_variant;
+    border: none;
+    border-bottom: 1px solid @outline_ghost;
+    border-right: 1px solid @outline_ghost;
+    padding: @spacing_2 @spacing_4;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+QHeaderView::section:last {
+    border-right: none;
+}
+
+QHeaderView::section:hover {
+    background-color: @surface_container;
+    color: @on_surface;
+}
+
+QHeaderView::section:pressed {
+    background-color: @surface_container_high;
+}
+
+/* ─── Tree view branch area ──────────────────────────────────────────────────
+   Match the tree background; keep platform expand/collapse arrows. */
+
+QTreeView::branch {
+    background-color: @surface_container_low;
+}
+
+/* ─── Production scrollbar primitives ───────────────────────────────────────
+   Overrides global (00_) for scroll areas explicitly tagged. Transparent track,
+   slightly heavier handle for touch-target comfort. */
+
 QScrollBar[productionScrollBar="true"] {
     background: transparent;
     border: none;
 }
 
-QScrollBar[productionScrollBar="true"]:vertical,
 QScrollBar[productionScrollBar="true"]:vertical {
-    background-color: @surface_container_low;
-    width: 12px;
+    background: transparent;
+    width: 10px;
     margin: 0;
 }
 
-QScrollBar[productionScrollBar="true"]:horizontal,
 QScrollBar[productionScrollBar="true"]:horizontal {
-    background-color: @surface_container_low;
-    height: 12px;
+    background: transparent;
+    height: 10px;
     margin: 0;
 }
 
-QScrollBar[productionScrollBar="true"]::handle:vertical,
 QScrollBar[productionScrollBar="true"]::handle:vertical {
-    background-color: @outline;
+    background-color: @outline_variant;
     min-height: 26px;
     border-radius: 4px;
-    margin: 2px;
+    margin: 2px 3px;
 }
 
-QScrollBar[productionScrollBar="true"]::handle:horizontal,
 QScrollBar[productionScrollBar="true"]::handle:horizontal {
-    background-color: @outline;
+    background-color: @outline_variant;
     min-width: 26px;
     border-radius: 4px;
-    margin: 2px;
+    margin: 3px 2px;
+}
+
+QScrollBar[productionScrollBar="true"]::handle:vertical:hover,
+QScrollBar[productionScrollBar="true"]::handle:horizontal:hover {
+    background-color: @outline;
+}
+
+QScrollBar[productionScrollBar="true"]::handle:vertical:pressed,
+QScrollBar[productionScrollBar="true"]::handle:horizontal:pressed {
+    background-color: @primary;
 }
 
 QScrollBar[productionScrollBar="true"]::add-line,
@@ -73,7 +121,6 @@ QScrollBar[productionScrollBar="true"]::sub-line,
 QScrollBar[productionScrollBar="true"]::up-arrow,
 QScrollBar[productionScrollBar="true"]::down-arrow,
 QScrollBar[productionScrollBar="true"]::left-arrow,
-QScrollBar[productionScrollBar="true"]::right-arrow,
 QScrollBar[productionScrollBar="true"]::right-arrow {
     width: 0px;
     height: 0px;
@@ -82,7 +129,6 @@ QScrollBar[productionScrollBar="true"]::right-arrow {
 }
 
 QScrollBar[productionScrollBar="true"]::add-page,
-QScrollBar[productionScrollBar="true"]::sub-page,
 QScrollBar[productionScrollBar="true"]::sub-page {
     background: transparent;
 }

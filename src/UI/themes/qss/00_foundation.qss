@@ -43,3 +43,155 @@ QWidget[panelAlt="true"] {
     border-radius: @rounded_md;
     padding: @spacing_4;
 }
+
+/* ─── Global scrollbars ─────────────────────────────────────────────────────
+   Thin, modern: transparent track, rounded handle — macOS/Windows 11 style.
+   The productionScrollBar property selector in 40_ overrides these where set. */
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+    border: none;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    background-color: @outline_variant;
+    min-height: 24px;
+    border-radius: 4px;
+    margin: 2px 3px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: @outline_variant;
+    min-width: 24px;
+    border-radius: 4px;
+    margin: 3px 2px;
+}
+
+QScrollBar::handle:vertical:hover,
+QScrollBar::handle:horizontal:hover {
+    background-color: @outline;
+}
+
+QScrollBar::handle:vertical:pressed,
+QScrollBar::handle:horizontal:pressed {
+    background-color: @primary;
+}
+
+QScrollBar::add-line,
+QScrollBar::sub-line,
+QScrollBar::up-arrow,
+QScrollBar::down-arrow,
+QScrollBar::left-arrow,
+QScrollBar::right-arrow {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar::add-page,
+QScrollBar::sub-page {
+    background: transparent;
+}
+
+/* ─── Splitter handles ───────────────────────────────────────────────────────
+   Invisible by default; soft primary tint on hover for discoverability. */
+
+QSplitter::handle {
+    background-color: @outline_ghost;
+}
+
+QSplitter::handle:horizontal {
+    width: 2px;
+}
+
+QSplitter::handle:vertical {
+    height: 2px;
+}
+
+QSplitter::handle:hover {
+    background-color: @primary_alpha_25;
+}
+
+/* ─── CheckBox ───────────────────────────────────────────────────────────────*/
+
+QCheckBox {
+    color: @on_surface;
+    spacing: 8px;
+    background: transparent;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid @outline;
+    border-radius: 3px;
+    background-color: @surface_container_highest;
+}
+
+QCheckBox::indicator:hover {
+    border-color: @primary;
+    background-color: @surface_container_high;
+}
+
+QCheckBox::indicator:checked {
+    background-color: @primary;
+    border-color: @primary;
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: @primary_hover;
+    border-color: @primary_hover;
+}
+
+QCheckBox::indicator:disabled {
+    border-color: @outline_ghost;
+    background-color: @surface_container;
+}
+
+QCheckBox:disabled {
+    color: @on_surface_muted;
+}
+
+/* ─── RadioButton ────────────────────────────────────────────────────────────*/
+
+QRadioButton {
+    color: @on_surface;
+    spacing: 8px;
+    background: transparent;
+}
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid @outline;
+    border-radius: 8px;
+    background-color: @surface_container_highest;
+}
+
+QRadioButton::indicator:hover {
+    border-color: @primary;
+}
+
+QRadioButton::indicator:checked {
+    background-color: @primary;
+    border-color: @primary;
+}
+
+QRadioButton::indicator:checked:hover {
+    background-color: @primary_hover;
+    border-color: @primary_hover;
+}
+
+QRadioButton:disabled {
+    color: @on_surface_muted;
+}

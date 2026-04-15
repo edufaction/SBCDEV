@@ -194,6 +194,42 @@ class Block:
 
         return not self.is_link()
 
+    def as_media(self) -> "MediaContent":
+        """Return a typed view of ``content`` for IMAGE, VIDEO and AUDIO blocks.
+
+        Values are read from the backing ``content`` dict; the returned object
+        is a snapshot and is **not** kept in sync with later dict mutations.
+        """
+
+        from .block_content import MediaContent  # local import avoids circular refs
+
+        return MediaContent(
+            storage_path=str(self.content.get("storage_path") or ""),
+            thumbnail_path=str(self.content.get("thumbnail_path") or ""),
+            preview_path=str(self.content.get("preview_path") or ""),
+            width=int(self.content.get("width") or 0),
+            height=int(self.content.get("height") or 0),
+            duration_ms=int(self.content.get("duration_ms") or 0),
+        )
+
+    def as_container(self) -> "ContainerContent":
+        """Return a typed view of ``content`` for CONTAINER / workspace-root blocks.
+
+        ``workspace_role`` is normalised to lowercase and stripped so callers
+        can compare directly without defensive casting.
+
+        The returned object is a snapshot and is **not** kept in sync with
+        later dict mutations.
+        """
+
+        from .block_content import ContainerContent  # local import avoids circular refs
+
+        return ContainerContent(
+            workspace_role=str(self.content.get("workspace_role") or "").strip().lower(),
+            internal_lib=bool(self.content.get("internal_lib")),
+            drop_target=bool(self.content.get("drop_target")),
+        )
+
 
 @dataclass(slots=True)
 class FreeTreeNode:

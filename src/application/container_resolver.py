@@ -42,10 +42,6 @@ class ContainerResolver:
             block
             for block in contained_blocks
             if block.functional_name.strip()
-            or (
-                isinstance(block.content.get("functional_name"), str)
-                and block.content.get("functional_name", "").strip()
-            )
         ]
 
         # Keep explicit IN/TOP/BOTTOM buckets for direct UI rendering.

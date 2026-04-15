@@ -751,7 +751,7 @@ class FreeTreeWidget(QWidget):
                 continue
             if block.id == "blk_internal_lib_root":
                 return node.id
-            role = str(block.content.get("workspace_role", "") or "").strip().lower()
+            role = block.as_container().workspace_role
             if role == "internal_lib":
                 return node.id
             normalized_name = (block.name or "").strip().upper().replace(" ", "_")

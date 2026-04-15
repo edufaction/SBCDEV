@@ -218,7 +218,7 @@ class StoryShotWorkspaceWidget(QWidget):
         for block in self._blocks:
             if block.profile != "workspace_root":
                 continue
-            role = str(block.content.get("workspace_role", "") or "").strip().lower()
+            role = block.as_container().workspace_role
             if role == "story_root":
                 return True
         return any(block.id == "blk_story_root" for block in self._blocks)

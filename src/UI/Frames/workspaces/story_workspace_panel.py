@@ -165,7 +165,7 @@ class StoryWorkspacePanel(QWidget):
         for block in self._blocks:
             if block.type != BlockType.CONTAINER:
                 continue
-            role = str(block.content.get("workspace_role", "") or "").strip().lower()
+            role = block.as_container().workspace_role
             if role == "story_root":
                 return block.id
         return ""
