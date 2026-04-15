@@ -67,14 +67,20 @@ QWidget[statTile="true"] {
     border-radius: 10px;
 }
 
+QWidget[statLabels="true"] {
+    background: transparent;
+    border: none;
+}
+
 QLabel[statIcon="true"],
-QLabel[statIcon=true] {
+QLabel[statIcon="true"] {
     background-color: @surface_container_high;
     border: 1px solid @outline_ghost;
     border-radius: 10px;
 }
 
 QLabel[statValue="true"],
-QLabel[statValue=true] {
-    color: @secondary;
+QLabel[statValue="true"] {
+    background: transparent;
+    color: @primary;
 }

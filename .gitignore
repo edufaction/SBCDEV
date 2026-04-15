@@ -2,3 +2,4 @@ BuildApp
 __pycache__
 DataProject/DATATEST
 *.pptx
+Mkdocs/site/

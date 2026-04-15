@@ -1,0 +1,31 @@
+site_name: SBCDEV
+site_description: Documentation technique et fonctionnelle de SBCDEV
+site_dir: site
+docs_dir: ../docs
+use_directory_urls: false
+
+theme:
+  name: material
+  language: fr
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Accueil: index.md
+  - Architecture:
+      - Vues Domaine: SBC_domain_views.md
+      - Catalogue Widgets: SBC_Widget_catalog.md
+  - UI:
+      - Guidelines: SBC_UI_guidelines.md
+      - Graph Spec: SBC_graph_spec.md
+      - Properties Editor Spec: SBC_PropertiesEditor_spec.md
+  - Référence API:
+      - Pydoc: pydoc/index.html

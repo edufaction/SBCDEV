@@ -5,6 +5,7 @@ from pathlib import Path
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QMainWindow, QSplitter
 
+from application import BlockWorkspaceService
 from domain import Block, FreeTree
 from UI.Widgets import BlockPropertyWidget, FreeTreeWidget, PanelContainerWidget
 from UI.themes import initialize_widget_primitives
@@ -34,6 +35,8 @@ class FreeTreeWindow(QMainWindow):
 
         if blocks is None:
             blocks = []
+        self._project_root = project_root
+        self._block_workspace_service = BlockWorkspaceService()
         self._free_tree_widget = FreeTreeWidget(self)
         self._property_widget = BlockPropertyWidget(self)
         self._content_splitter = QSplitter(Qt.Horizontal, self)
@@ -48,6 +51,7 @@ class FreeTreeWindow(QMainWindow):
         self._free_tree_widget.blocks_changed.connect(self.blocks_changed.emit)
         self._free_tree_widget.block_selected.connect(self._on_block_selected)
         self._property_widget.relative_path_changed.connect(self._on_relative_path_changed)
+        self._property_widget.property_change_requested.connect(self._on_property_change_requested)
 
         self._panel = PanelContainerWidget(self)
         self._panel.set_body_widget(self._content_splitter)
@@ -63,6 +67,20 @@ class FreeTreeWindow(QMainWindow):
 
     def _on_relative_path_changed(self, block_id: str, container_id: str, relative_path: str) -> None:
         self._free_tree_widget.set_block_relative_path(block_id, container_id, relative_path)
+
+    def _on_property_change_requested(self, payload: dict) -> None:
+        try:
+            updated_block = self._block_workspace_service.update_block_from_payload(self._free_tree_widget.blocks(), payload)
+        except ValueError:
+            return
+        current_tree = self._free_tree_widget.current_tree()
+        self._free_tree_widget.set_blocks(
+            self._free_tree_widget.blocks(),
+            persisted_tree=current_tree,
+            project_root=self._project_root,
+        )
+        self._free_tree_widget.select_block(updated_block.id)
+        self.blocks_changed.emit(self._free_tree_widget.blocks())
 
     def closeEvent(self, event) -> None:  # noqa: N802 (Qt naming)
         self.tree_changed.emit(self.current_tree())

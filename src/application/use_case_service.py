@@ -6,7 +6,7 @@ from typing import Any
 from uuid import uuid4
 
 from application.container_resolver import ContainerResolver
-from domain import Block, BlockAccessMode, BlockDomain, BlockProvenanceKind, BlockType, PortType
+from domain import Block, BlockAccessMode, BlockDomain, BlockProvenanceKind, BlockType, PortType, ValidationError
 from services import BlockService, FreeGraphService, FreeTreeService
 
 
@@ -183,8 +183,31 @@ class UseCaseService:
         order: int = 0,
         metadata: dict[str, Any] | None = None,
     ) -> Block:
-        """Connect source block as input of target block."""
-        return self._block_service.add_input(
+        """Connect source block as input of target block (domain source of truth)."""
+        return self.connect_blocks(
+            target_block_id=target_block_id,
+            source_block_id=source_block_id,
+            port=port,
+            name=name,
+            enabled=enabled,
+            order=order,
+            metadata=metadata,
+        )
+
+    def connect_blocks(
+        self,
+        *,
+        target_block_id: str,
+        source_block_id: str,
+        port: str | PortType,
+        name: str = "",
+        enabled: bool = True,
+        order: int = 0,
+        metadata: dict[str, Any] | None = None,
+        container_id: str | None = None,
+    ) -> Block:
+        """Create a business connection and optionally sync its graph projection."""
+        updated_target = self._block_service.add_input(
             target_id=target_block_id,
             source_block_id=source_block_id,
             port=self._as_port_type(port),
@@ -193,6 +216,40 @@ class UseCaseService:
             order=order,
             metadata=metadata,
         )
+        if container_id is not None and container_id.strip():
+            self._sync_graph_projection_for_connection(
+                container_id=container_id.strip(),
+                source_block_id=source_block_id,
+                target_block_id=target_block_id,
+                label=name,
+            )
+        return updated_target
+
+    def disconnect_blocks(
+        self,
+        *,
+        target_block_id: str,
+        source_block_id: str,
+        port: str | PortType,
+        name: str | None = None,
+        container_id: str | None = None,
+    ) -> Block:
+        """Remove a business connection and optionally sync its graph projection."""
+        resolved_port = self._as_port_type(port)
+        updated_target = self._block_service.remove_input(
+            target_id=target_block_id,
+            source_block_id=source_block_id,
+            port=resolved_port,
+            name=name,
+        )
+        if container_id is not None and container_id.strip():
+            self._remove_graph_projection_for_connection(
+                container_id=container_id.strip(),
+                source_block_id=source_block_id,
+                target_block_id=target_block_id,
+                remaining_target=updated_target,
+            )
+        return updated_target
 
     def list_blocks_by_domain(self, domain: str | BlockDomain) -> list[Block]:
         """Filter blocks by domain."""
@@ -237,17 +294,102 @@ class UseCaseService:
         self._block_service.update_block(container)
         return node
 
-    def add_graph_edge(self, container_id: str, source_node_id: str, target_node_id: str, label: str = ""):
-        """Add edge between existing graph nodes in the container graph."""
+    def move_block_in_graph(self, container_id: str, block_id: str, x: float, y: float):
+        """Persist one block graph position, creating its graph node on first move."""
         container = self._block_service.get_block(container_id)
-        edge = self._free_graph_service.add_edge(
+        _ = self._block_service.get_block(block_id)
+        graph = self._free_graph_service.ensure_graph(container)
+        node = next((item for item in graph.nodes.values() if item.block_id == block_id), None)
+        if node is None:
+            node = self._free_graph_service.add_block_node(container=container, block_id=block_id, x=x, y=y)
+        else:
+            node = self._free_graph_service.move_node(container=container, node_id=node.id, x=x, y=y)
+        self._block_service.update_block(container)
+        return node
+
+    def add_graph_edge(self, container_id: str, source_node_id: str, target_node_id: str, label: str = ""):
+        """Reject graph-only links. Graph links must come from business inputs."""
+        _ = (container_id, source_node_id, target_node_id, label)
+        raise ValidationError(
+            "Graph-only edge creation is forbidden. Use connect_blocks/connect_input and sync graph projection."
+        )
+
+    def _sync_graph_projection_for_connection(
+        self,
+        *,
+        container_id: str,
+        source_block_id: str,
+        target_block_id: str,
+        label: str,
+    ) -> None:
+        container = self._block_service.get_block(container_id)
+        had_no_graph = container.graph is None
+        graph = self._free_graph_service.ensure_graph(container)
+
+        # Graph projection is container-local: only contained blocks can be projected.
+        if source_block_id not in container.contains or target_block_id not in container.contains:
+            if had_no_graph:
+                self._block_service.update_block(container)
+            return
+
+        source_node_id = next((node.id for node in graph.nodes.values() if node.block_id == source_block_id), "")
+        target_node_id = next((node.id for node in graph.nodes.values() if node.block_id == target_block_id), "")
+        if not source_node_id or not target_node_id:
+            if had_no_graph:
+                self._block_service.update_block(container)
+            return
+
+        for edge in graph.edges.values():
+            if edge.source_node_id == source_node_id and edge.target_node_id == target_node_id:
+                if label and edge.label != label:
+                    edge.label = label
+                    self._block_service.update_block(container)
+                return
+
+        self._free_graph_service.add_edge(
             container=container,
             source_node_id=source_node_id,
             target_node_id=target_node_id,
             label=label,
         )
         self._block_service.update_block(container)
-        return edge
+
+    def _remove_graph_projection_for_connection(
+        self,
+        *,
+        container_id: str,
+        source_block_id: str,
+        target_block_id: str,
+        remaining_target: Block,
+    ) -> None:
+        container = self._block_service.get_block(container_id)
+        graph = container.graph
+        if graph is None:
+            return
+
+        has_remaining_from_same_source = any(
+            item.source_block_id == source_block_id
+            for item in remaining_target.inputs
+        )
+        if has_remaining_from_same_source:
+            return
+
+        source_node_id = next((node.id for node in graph.nodes.values() if node.block_id == source_block_id), "")
+        target_node_id = next((node.id for node in graph.nodes.values() if node.block_id == target_block_id), "")
+        if not source_node_id or not target_node_id:
+            return
+
+        edge_ids_to_remove = [
+            edge_id
+            for edge_id, edge in graph.edges.items()
+            if edge.source_node_id == source_node_id and edge.target_node_id == target_node_id
+        ]
+        if not edge_ids_to_remove:
+            return
+
+        for edge_id in edge_ids_to_remove:
+            graph.edges.pop(edge_id, None)
+        self._block_service.update_block(container)
 
     @staticmethod
     def _as_block_type(value: str | BlockType) -> BlockType:

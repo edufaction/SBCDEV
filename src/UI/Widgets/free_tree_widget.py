@@ -278,6 +278,22 @@ class FreeTreeWidget(QWidget):
             },
         )
 
+    def blocks(self) -> list[Block]:
+        return list(self._blocks)
+
+    def selected_block_id(self) -> str | None:
+        block = self._selected_block()
+        if block is None:
+            return None
+        return block.id
+
+    def select_block(self, block_id: str) -> bool:
+        node_id = self.find_node_id_for_block(block_id)
+        if not node_id:
+            return False
+        self._select_node(node_id)
+        return True
+
     def _sync_state_from_controller(self) -> None:
         self._blocks = self._controller.blocks
         self._blocks_by_id = self._controller.blocks_by_id

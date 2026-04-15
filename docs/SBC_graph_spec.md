@@ -162,10 +162,10 @@ Validation must be centralized in controller/service layer (not in widget-only c
 
 ### 7.1 Port layout (stable convention)
 
-- left side: `OUT`
-- right side top: `TOP`
-- right side center: `IN`
-- right side bottom: `BOTTOM`
+- left side center: `IN`
+-  top side center : `TOP`
+- right side center : `OUT`
+- bottom side center: `BOTTOM`
 
 ### 7.1.b Connector rendering and colors (required)
 

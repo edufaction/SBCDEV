@@ -42,8 +42,64 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
-      "edges": {}
+      "nodes": {
+        "gnode_b1370177a81a": {
+          "id": "gnode_b1370177a81a",
+          "block_id": "blk_story_shot_01",
+          "x": -351.57389239051196,
+          "y": -395.44863903654186
+        },
+        "gnode_f9f9fcd278a6": {
+          "id": "gnode_f9f9fcd278a6",
+          "block_id": "blk_story_shot_02",
+          "x": -279.0,
+          "y": 4.0
+        },
+        "gnode_655f425ac983": {
+          "id": "gnode_655f425ac983",
+          "block_id": "blk_story_shot_03",
+          "x": 137.08404521293158,
+          "y": -345.8337374554447
+        },
+        "gnode_e50982b8dd2b": {
+          "id": "gnode_e50982b8dd2b",
+          "block_id": "blk_story_shot_04",
+          "x": 792.0,
+          "y": 40.0
+        },
+        "gnode_eee95e8efcf7": {
+          "id": "gnode_eee95e8efcf7",
+          "block_id": "blk_story_shot_05",
+          "x": 40.0,
+          "y": 268.0
+        },
+        "gnode_c411dd552683": {
+          "id": "gnode_c411dd552683",
+          "block_id": "blk_shot_bb19940ea1",
+          "x": 416.0,
+          "y": 268.0
+        },
+        "gnode_49e0ec01359f": {
+          "id": "gnode_49e0ec01359f",
+          "block_id": "blk_shot_1de8dcde19",
+          "x": 792.0,
+          "y": 268.0
+        },
+        "gnode_232e2faf99f6": {
+          "id": "gnode_232e2faf99f6",
+          "block_id": "blk_shot_0eb74fb829",
+          "x": 40.0,
+          "y": 496.0
+        }
+      },
+      "edges": {
+        "gedge_ec2fd3b7367f": {
+          "id": "gedge_ec2fd3b7367f",
+          "source_node_id": "gnode_b1370177a81a",
+          "target_node_id": "gnode_655f425ac983",
+          "label": ""
+        }
+      }
     }
   },
   {
@@ -82,7 +138,20 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_ee448c008751": {
+          "id": "gnode_ee448c008751",
+          "block_id": "blk_img_story_shot_01",
+          "x": -245.48483701262836,
+          "y": -302.63783398706676
+        },
+        "gnode_267c3d8d7ad4": {
+          "id": "gnode_267c3d8d7ad4",
+          "block_id": "blk_vid_story_shot_01",
+          "x": 291.7259727795745,
+          "y": 147.79209681408895
+        }
+      },
       "edges": {}
     }
   },
@@ -148,7 +217,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_img_story_shot_01",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -188,7 +266,20 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_f273a35a78ea": {
+          "id": "gnode_f273a35a78ea",
+          "block_id": "blk_img_story_shot_02",
+          "x": -503.0,
+          "y": -398.0
+        },
+        "gnode_c453e9b2220c": {
+          "id": "gnode_c453e9b2220c",
+          "block_id": "blk_vid_story_shot_02",
+          "x": -507.0,
+          "y": -202.0
+        }
+      },
       "edges": {}
     }
   },
@@ -288,13 +379,35 @@
       "blk_img_story_shot_03",
       "blk_vid_story_shot_03"
     ],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_story_shot_01",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": {
       "root_ids": [],
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_fa073c7296a5": {
+          "id": "gnode_fa073c7296a5",
+          "block_id": "blk_img_story_shot_03",
+          "x": -535.0,
+          "y": -377.0
+        },
+        "gnode_91a32d16bb90": {
+          "id": "gnode_91a32d16bb90",
+          "block_id": "blk_vid_story_shot_03",
+          "x": -165.0,
+          "y": -128.0
+        }
+      },
       "edges": {}
     }
   },
@@ -400,7 +513,20 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_faa87270848a": {
+          "id": "gnode_faa87270848a",
+          "block_id": "blk_img_story_shot_04",
+          "x": 40.0,
+          "y": 40.0
+        },
+        "gnode_0fceb36fa0da": {
+          "id": "gnode_0fceb36fa0da",
+          "block_id": "blk_vid_story_shot_04",
+          "x": 416.0,
+          "y": 40.0
+        }
+      },
       "edges": {}
     }
   },
@@ -506,7 +632,20 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_f2b6535831c7": {
+          "id": "gnode_f2b6535831c7",
+          "block_id": "blk_img_story_shot_05",
+          "x": 40.0,
+          "y": 40.0
+        },
+        "gnode_270718995b44": {
+          "id": "gnode_270718995b44",
+          "block_id": "blk_vid_story_shot_05",
+          "x": 416.0,
+          "y": 40.0
+        }
+      },
       "edges": {}
     }
   },

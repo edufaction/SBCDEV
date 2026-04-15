@@ -82,6 +82,12 @@ class WorkspaceTreePanelWidget(QWidget):
             self._apply_filters()
         return changed
 
+    def selected_block_id(self) -> str | None:
+        return self._tree_widget.selected_block_id()
+
+    def select_block(self, block_id: str) -> bool:
+        return self._tree_widget.select_block(block_id)
+
     def _apply_filters(self) -> None:
         root, workspace_blocks = self._workspace_slice()
         if root is None:

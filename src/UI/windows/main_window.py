@@ -25,10 +25,12 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from application import FreeTreeWorkspaceController, StoryWorkspaceService
-from application.workspaces import ProjectWorkspaceService, SettingsWorkspaceService
-from domain import Block, BlockDomain, BlockType, FreeGraph, FreeTree, FreeTreeNode
+from application import BlockWorkspaceService, FreeTreeWorkspaceController, StoryWorkspaceService, UseCaseService
+from application.workspaces import CharacterWorkspaceService, ProjectWorkspaceService, SettingsWorkspaceService
+from domain import Block, BlockDomain, BlockType, FreeGraph, FreeTree, FreeTreeNode, ValidationError
+from infrastructure.repositories import BlockRepository
 from infrastructure.storage import ProjectStorageService, UserConfigService, resolve_storage_roots
+from services import BlockService
 from UI.Widgets import (
     EmptyStateWidget,
     InfoStatTileWidget,
@@ -36,7 +38,7 @@ from UI.Widgets import (
     SettingsWorkspaceWidget,
     SidebarMenu,
 )
-from UI.Frames import CharacterWorkspacePanel, ProjectWorkspacePanel, SettingsWorkspacePanel, StoryWorkspacePanel
+from UI.Frames import CharacterWorkspacePanel, LibraryWorkspacePanel, ProjectWorkspacePanel, SettingsWorkspacePanel, StoryWorkspacePanel
 from UI.themes import (
     FONT_SIZE_DEFAULT,
     active_theme_name,
@@ -112,6 +114,8 @@ class MainWindow(QMainWindow):
         self._media_carousel_window: MediaCarouselWindow | None = None
         self._free_tree_window: FreeTreeWindow | None = None
         self._project_workspace_service = ProjectWorkspaceService()
+        self._block_workspace_service = BlockWorkspaceService()
+        self._character_workspace_service = CharacterWorkspaceService()
         self._settings_workspace_service = SettingsWorkspaceService()
         self._story_workspace_service = StoryWorkspaceService()
         self._storage_roots = resolve_storage_roots()
@@ -137,9 +141,26 @@ class MainWindow(QMainWindow):
         self._project_workspace_panel = ProjectWorkspacePanel(self._project_workspace, self)
         self._character_workspace_panel = CharacterWorkspacePanel(self)
         self._character_workspace_panel.relative_path_changed.connect(self._on_character_block_relative_path_changed)
+        self._character_workspace_panel.block_update_requested.connect(self._update_character_block_from_workspace)
+        self._character_workspace_panel.graph_link_create_requested.connect(self._on_graph_link_create_requested)
+        self._character_workspace_panel.graph_link_delete_requested.connect(self._on_graph_link_delete_requested)
+        self._character_workspace_panel.graph_block_move_requested.connect(self._on_graph_block_move_requested)
+        self._character_workspace_panel.graph_layout_initialize_requested.connect(
+            self._on_graph_layout_initialize_requested
+        )
         self._story_workspace_panel = StoryWorkspacePanel(self)
         self._story_workspace_panel.relative_path_changed.connect(self._on_story_block_relative_path_changed)
+        self._story_workspace_panel.block_update_requested.connect(self._update_story_block_from_workspace)
+        self._story_workspace_panel.graph_link_create_requested.connect(self._on_graph_link_create_requested)
+        self._story_workspace_panel.graph_link_delete_requested.connect(self._on_graph_link_delete_requested)
+        self._story_workspace_panel.graph_block_move_requested.connect(self._on_graph_block_move_requested)
+        self._story_workspace_panel.graph_layout_initialize_requested.connect(
+            self._on_graph_layout_initialize_requested
+        )
+        self._library_workspace_panel = LibraryWorkspacePanel(self)
         self._settings_workspace_panel = SettingsWorkspacePanel(self._settings_workspace, self)
+        self._character_workspace_panel.character_create_requested.connect(self._create_character_from_workspace)
+        self._character_workspace_panel.character_update_requested.connect(self._update_character_from_workspace)
         self._settings_workspace_panel.theme_changed.connect(self._apply_theme_from_settings)
         self._settings_workspace_panel.set_current_theme(active_theme_name())
         self._settings_workspace_panel.set_storage_paths(
@@ -233,12 +254,7 @@ class MainWindow(QMainWindow):
         asset_library_layout = QVBoxLayout(self._workspace_asset_library_page)
         asset_library_layout.setContentsMargins(0, 0, 0, 0)
         asset_library_layout.setSpacing(9)
-        self._asset_library_empty_state = EmptyStateWidget(
-            "ASSET LIBRARY",
-            description="Aucune vue active pour le moment.",
-            parent=self._workspace_asset_library_page,
-        )
-        asset_library_layout.addWidget(self._asset_library_empty_state, 1)
+        asset_library_layout.addWidget(self._library_workspace_panel, 1)
 
         self._workspace_character_studio_page = QWidget(self)
         character_studio_layout = QVBoxLayout(self._workspace_character_studio_page)
@@ -386,12 +402,47 @@ class MainWindow(QMainWindow):
         )
 
     def _refresh_project_workspace(self) -> None:
+        character_active_container_id = self._character_workspace_panel._graph_widget.active_container_id()
+        story_active_container_id = self._story_workspace_panel._graph_widget.active_container_id()
+        character_tree_block_id = self._character_workspace_panel.current_tree_block_id() or ""
+        character_selected_block_id = self._character_workspace_panel.current_block_id() or ""
+        character_property_container_id = self._character_workspace_panel.current_property_container_id()
+        story_tree_block_id = self._story_workspace_panel.current_tree_block_id() or ""
+        story_selected_block_id = self._story_workspace_panel.current_block_id() or ""
+        story_property_container_id = self._story_workspace_panel.current_property_container_id()
         self._project_workspace_panel.set_project_metadata(
             project_path=self._project_root,
             metadata=self._project_metadata_view(),
         )
-        self._character_workspace_panel.set_blocks(self._blocks, project_root=self._project_root)
-        self._story_workspace_panel.set_blocks(self._blocks, project_root=self._project_root)
+        self._character_workspace_panel.set_blocks(
+            self._blocks,
+            project_root=self._project_root,
+            active_container_id=character_active_container_id,
+        )
+        self._story_workspace_panel.set_blocks(
+            self._blocks,
+            project_root=self._project_root,
+            active_container_id=story_active_container_id,
+        )
+        if character_tree_block_id:
+            self._character_workspace_panel.select_tree_block(character_tree_block_id)
+        if character_selected_block_id:
+            self._character_workspace_panel.inspect_block(
+                character_selected_block_id,
+                container_id=character_property_container_id,
+            )
+        if story_tree_block_id:
+            self._story_workspace_panel.select_tree_block(story_tree_block_id)
+        if story_selected_block_id:
+            self._story_workspace_panel.inspect_block(
+                story_selected_block_id,
+                container_id=story_property_container_id,
+            )
+        self._library_workspace_panel.set_context(
+            project_root=self._project_root,
+            user_libraries_root=self._storage_roots.user_libraries_root,
+            application_libraries_root=self._storage_roots.application_libraries_root,
+        )
         self._refresh_dashboard_stats()
 
     def _on_character_block_relative_path_changed(self, block_id: str, container_id: str, relative_path: str) -> None:
@@ -424,6 +475,133 @@ class MainWindow(QMainWindow):
         self._persist_project_blocks(self._blocks)
         self._story_workspace_panel.set_message("Story tree path updated.")
 
+    def _on_graph_link_create_requested(
+        self,
+        container_id: str,
+        source_block_id: str,
+        target_block_id: str,
+        target_port: str,
+        name: str,
+    ) -> None:
+        if self._project_root is None:
+            self._set_workspace_link_feedback(container_id, "Open a project first.")
+            return
+        try:
+            use_case = self._build_use_case_for_current_blocks()
+            use_case.connect_blocks(
+                target_block_id=target_block_id,
+                source_block_id=source_block_id,
+                port=target_port,
+                name=name,
+                container_id=container_id,
+            )
+        except ValidationError as exc:
+            self._set_workspace_link_feedback(container_id, str(exc))
+            return
+        except Exception:
+            self._set_workspace_link_feedback(container_id, "Link creation failed.")
+            return
+
+        self._persist_project_blocks(self._blocks)
+        self._set_workspace_link_feedback(container_id, f"Link added: {source_block_id} -> {target_block_id} ({target_port})")
+
+    def _on_graph_link_delete_requested(
+        self,
+        container_id: str,
+        source_block_id: str,
+        target_block_id: str,
+        target_port: str,
+        name: str,
+    ) -> None:
+        if self._project_root is None:
+            self._set_workspace_link_feedback(container_id, "Open a project first.")
+            return
+        try:
+            use_case = self._build_use_case_for_current_blocks()
+            use_case.disconnect_blocks(
+                target_block_id=target_block_id,
+                source_block_id=source_block_id,
+                port=target_port,
+                name=name or None,
+                container_id=container_id,
+            )
+        except ValidationError as exc:
+            self._set_workspace_link_feedback(container_id, str(exc))
+            return
+        except Exception:
+            self._set_workspace_link_feedback(container_id, "Link deletion failed.")
+            return
+
+        self._persist_project_blocks(self._blocks)
+        self._set_workspace_link_feedback(container_id, f"Link removed: {source_block_id} -> {target_block_id} ({target_port})")
+
+    def _on_graph_block_move_requested(
+        self,
+        container_id: str,
+        block_id: str,
+        x: float,
+        y: float,
+    ) -> None:
+        if self._project_root is None:
+            self._set_workspace_link_feedback(container_id, "Open a project first.")
+            return
+        try:
+            use_case = self._build_use_case_for_current_blocks()
+            use_case.move_block_in_graph(container_id, block_id, x=x, y=y)
+        except ValidationError as exc:
+            self._set_workspace_link_feedback(container_id, str(exc))
+            return
+        except Exception:
+            self._set_workspace_link_feedback(container_id, "Block move persistence failed.")
+            return
+
+        self._persist_project_blocks(self._blocks)
+
+    def _on_graph_layout_initialize_requested(self, container_id: str, positions: object) -> None:
+        if self._project_root is None:
+            return
+        if not isinstance(positions, list) or not positions:
+            return
+        try:
+            use_case = self._build_use_case_for_current_blocks()
+            for entry in positions:
+                if not isinstance(entry, (tuple, list)) or len(entry) != 3:
+                    continue
+                block_id = str(entry[0] or "").strip()
+                try:
+                    x = float(entry[1])
+                    y = float(entry[2])
+                except (TypeError, ValueError):
+                    continue
+                if not block_id:
+                    continue
+                use_case.move_block_in_graph(container_id, block_id, x=x, y=y)
+        except ValidationError as exc:
+            self._set_workspace_link_feedback(container_id, str(exc))
+            return
+        except Exception:
+            self._set_workspace_link_feedback(container_id, "Graph layout initialization failed.")
+            return
+
+        self._persist_project_blocks(self._blocks)
+
+    @staticmethod
+    def _build_use_case_for_blocks(blocks: list[Block]) -> UseCaseService:
+        repository = BlockRepository()
+        for block in blocks:
+            repository.add(block)
+        return UseCaseService(BlockService(repository))
+
+    def _build_use_case_for_current_blocks(self) -> UseCaseService:
+        return self._build_use_case_for_blocks(self._blocks)
+
+    def _set_workspace_link_feedback(self, container_id: str, message: str) -> None:
+        container = next((block for block in self._blocks if block.id == container_id), None)
+        if container is not None and container.domain == BlockDomain.CHARACTERS:
+            self._character_workspace_panel.set_message(message)
+            return
+        self._story_workspace_panel.set_message(message)
+
     def _create_story_shot_from_workspace(self, raw_name: str) -> None:
         if self._project_root is None:
             self._story_workspace_panel.set_message("Open a project first.")
@@ -435,6 +613,36 @@ class MainWindow(QMainWindow):
             return
         self._persist_project_blocks(self._blocks)
         self._story_workspace_panel.set_message(f"Shot created: {shot.name or shot.id}")
+
+    def _create_character_from_workspace(self, raw_name: str) -> None:
+        if self._project_root is None:
+            self._character_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            character = self._character_workspace_service.create_character(self._blocks, name=raw_name)
+        except ValueError as exc:
+            self._character_workspace_panel.set_message(str(exc))
+            return
+        except Exception:
+            self._character_workspace_panel.set_message("Character creation failed.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._character_workspace_panel.set_message(f"Character created: {character.name or character.id}")
+
+    def _update_character_from_workspace(self, payload: dict) -> None:
+        if self._project_root is None:
+            self._character_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            character = self._character_workspace_service.update_character_from_payload(self._blocks, payload)
+        except ValueError as exc:
+            self._character_workspace_panel.set_message(str(exc))
+            return
+        except Exception:
+            self._character_workspace_panel.set_message("Character update failed.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._character_workspace_panel.set_message(f"Character saved: {character.name or character.id}")
 
     def _update_story_shot_from_workspace(self, payload: dict) -> None:
         if self._project_root is None:
@@ -451,6 +659,36 @@ class MainWindow(QMainWindow):
 
         self._persist_project_blocks(self._blocks)
         self._story_workspace_panel.set_message(f"Shot saved: {shot.name or shot.id}")
+
+    def _update_character_block_from_workspace(self, payload: dict) -> None:
+        if self._project_root is None:
+            self._character_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            block = self._block_workspace_service.update_block_from_payload(self._blocks, payload)
+        except ValueError as exc:
+            self._character_workspace_panel.set_message(str(exc))
+            return
+        except Exception:
+            self._character_workspace_panel.set_message("Block update failed.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._character_workspace_panel.set_message(f"Block saved: {block.name or block.id}")
+
+    def _update_story_block_from_workspace(self, payload: dict) -> None:
+        if self._project_root is None:
+            self._story_workspace_panel.set_message("Open a project first.")
+            return
+        try:
+            block = self._block_workspace_service.update_block_from_payload(self._blocks, payload)
+        except ValueError as exc:
+            self._story_workspace_panel.set_message(str(exc))
+            return
+        except Exception:
+            self._story_workspace_panel.set_message("Block update failed.")
+            return
+        self._persist_project_blocks(self._blocks)
+        self._story_workspace_panel.set_message(f"Block saved: {block.name or block.id}")
 
     def _build_dashboard_stat_tiles(self) -> None:
         specs: list[tuple[str, str, str]] = [
@@ -772,6 +1010,7 @@ class MainWindow(QMainWindow):
     def _open_thumbnail_window(self) -> None:
         if self._thumbnail_window is None:
             self._thumbnail_window = ThumbnailListWindow(blocks=self._blocks, project_root=self._project_root)
+            self._thumbnail_window.blocks_changed.connect(self._persist_project_blocks)
             self._thumbnail_window.destroyed.connect(lambda *_: setattr(self, "_thumbnail_window", None))
         self._thumbnail_window.show()
         self._thumbnail_window.raise_()

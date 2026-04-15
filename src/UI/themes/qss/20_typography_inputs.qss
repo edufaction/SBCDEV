@@ -1,29 +1,26 @@
 /* Floating overlays (glass-like layer; blur should be handled in code when available). */
 QFrame[floating="true"],
 QWidget[floating="true"] {
-    background-color: rgba(35, 38, 42, 217);
+    background-color: @surface_container_highest;
     border: 1px solid @outline_ghost;
     border-radius: @rounded_md;
 }
 
-QLabel[title="true"],
-QLabel[title=true] {
+QLabel[title="true"] {
     color: @on_surface;
     font-family: @font_family_display;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 620;
 }
 
-QLabel[displayMd="true"],
-QLabel[displayMd=true] {
+QLabel[displayMd="true"] {
     color: @on_surface;
     font-family: @font_family_display;
-    font-size: 44px;
+    font-size: 38px;
     font-weight: 640;
 }
 
-QLabel[section="true"],
-QLabel[section=true] {
+QLabel[section="true"] {
     color: @on_surface_variant;
     font-size: 11px;
     font-weight: 600;
@@ -31,20 +28,17 @@ QLabel[section=true] {
     letter-spacing: 0.8px;
 }
 
-QLabel[muted="true"],
-QLabel[muted=true] {
+QLabel[muted="true"] {
     color: @on_surface_variant;
 }
 
-QLabel[technical="true"],
-QLabel[technical=true] {
+QLabel[technical="true"] {
     color: @on_surface_variant;
     font-family: @font_family_mono;
     font-size: 11px;
 }
 
-QLabel[typeBadge="true"],
-QLabel[typeBadge=true] {
+QLabel[typeBadge="true"] {
     background-color: @type_text;
     color: @type_badge_text;
     border: 1px solid @outline_20;
@@ -54,38 +48,31 @@ QLabel[typeBadge=true] {
     font-weight: 600;
 }
 
-QLabel[typeBadge="true"][blockType="container"],
-QLabel[typeBadge=true][blockType="container"] {
+QLabel[typeBadge="true"][blockType="container"] {
     background-color: @type_container;
 }
 
-QLabel[typeBadge="true"][blockType="empty"],
-QLabel[typeBadge=true][blockType="empty"] {
+QLabel[typeBadge="true"][blockType="empty"] {
     background-color: @type_empty;
 }
 
-QLabel[typeBadge="true"][blockType="image"],
-QLabel[typeBadge=true][blockType="image"] {
+QLabel[typeBadge="true"][blockType="image"] {
     background-color: @type_image;
 }
 
-QLabel[typeBadge="true"][blockType="video"],
-QLabel[typeBadge=true][blockType="video"] {
+QLabel[typeBadge="true"][blockType="video"] {
     background-color: @type_video;
 }
 
-QLabel[typeBadge="true"][blockType="audio"],
-QLabel[typeBadge=true][blockType="audio"] {
+QLabel[typeBadge="true"][blockType="audio"] {
     background-color: @type_audio;
 }
 
-QLabel[typeBadge="true"][blockType="text"],
-QLabel[typeBadge=true][blockType="text"] {
+QLabel[typeBadge="true"][blockType="text"] {
     background-color: @type_text;
 }
 
-QLabel[typeBadge="true"][blockType="prompt"],
-QLabel[typeBadge=true][blockType="prompt"] {
+QLabel[typeBadge="true"][blockType="prompt"] {
     background-color: @type_prompt;
 }
 
@@ -112,35 +99,21 @@ QComboBox:focus {
 
 /* Dropdown buttons (ComboBox): primary pill look */
 QComboBox {
-    background: qlineargradient(
-        x1: 0, y1: 0,
-        x2: 1, y2: 1,
-        stop: 0 @secondary,
-        stop: 1 @primary
-    );
-    color: @on_primary_fixed;
-    border: none;
-    border-radius: @rounded_full;
-    padding: @spacing_3 30px @spacing_3 @spacing_5;
-    font-weight: 620;
+    background-color: @surface_container_highest;
+    color: @on_surface;
+    border: 1px solid @outline_20;
+    border-radius: @rounded_md;
+    padding: @spacing_3 30px @spacing_3 @spacing_4;
+    font-weight: 500;
 }
 
 QComboBox:hover {
-    background: qlineargradient(
-        x1: 0, y1: 0,
-        x2: 1, y2: 1,
-        stop: 0 @secondary,
-        stop: 1 @primary_hover
-    );
+    background-color: @surface_container_high;
+    border: 1px solid @outline;
 }
 
 QComboBox:pressed {
-    background: qlineargradient(
-        x1: 0, y1: 0,
-        x2: 1, y2: 1,
-        stop: 0 @secondary_dim,
-        stop: 1 @primary_dim
-    );
+    background-color: @surface_container;
 }
 
 QComboBox:disabled {
@@ -153,10 +126,10 @@ QComboBox::drop-down {
     subcontrol-position: top right;
     width: 24px;
     border: none;
-    border-left: 1px solid @primary_alpha_25;
+    border-left: 1px solid @outline_20;
     background: transparent;
-    border-top-right-radius: @rounded_full;
-    border-bottom-right-radius: @rounded_full;
+    border-top-right-radius: @rounded_md;
+    border-bottom-right-radius: @rounded_md;
 }
 
 QComboBox QAbstractItemView {
@@ -178,9 +151,7 @@ QComboBox QAbstractItemView::item:hover {
 }
 
 QLineEdit[searchBar="true"],
-QLineEdit[searchBar=true],
-QLineEdit[commandBar="true"],
-QLineEdit[commandBar=true] {
+QLineEdit[commandBar="true"] {
     background-color: @surface_container_highest;
     border: 1px solid @outline_ghost;
     border-radius: @rounded_full;

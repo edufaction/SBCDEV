@@ -33,53 +33,48 @@ QTreeWidget::item:selected {
 
 /* Production scrollbar primitives (no-line, tonal layering, subtle hover intent). */
 QScrollBar[productionScrollBar="true"],
-QScrollBar[productionScrollBar=true] {
+QScrollBar[productionScrollBar="true"] {
     background: transparent;
     border: none;
 }
 
 QScrollBar[productionScrollBar="true"]:vertical,
-QScrollBar[productionScrollBar=true]:vertical {
+QScrollBar[productionScrollBar="true"]:vertical {
     background-color: @surface_container_low;
     width: 12px;
     margin: 0;
 }
 
 QScrollBar[productionScrollBar="true"]:horizontal,
-QScrollBar[productionScrollBar=true]:horizontal {
+QScrollBar[productionScrollBar="true"]:horizontal {
     background-color: @surface_container_low;
     height: 12px;
     margin: 0;
 }
 
 QScrollBar[productionScrollBar="true"]::handle:vertical,
-QScrollBar[productionScrollBar=true]::handle:vertical {
-    background-color: @primary;
+QScrollBar[productionScrollBar="true"]::handle:vertical {
+    background-color: @outline;
     min-height: 26px;
     border-radius: 4px;
     margin: 2px;
 }
 
 QScrollBar[productionScrollBar="true"]::handle:horizontal,
-QScrollBar[productionScrollBar=true]::handle:horizontal {
-    background-color: @primary;
+QScrollBar[productionScrollBar="true"]::handle:horizontal {
+    background-color: @outline;
     min-width: 26px;
     border-radius: 4px;
     margin: 2px;
 }
 
 QScrollBar[productionScrollBar="true"]::add-line,
-QScrollBar[productionScrollBar=true]::add-line,
 QScrollBar[productionScrollBar="true"]::sub-line,
-QScrollBar[productionScrollBar=true]::sub-line,
 QScrollBar[productionScrollBar="true"]::up-arrow,
-QScrollBar[productionScrollBar=true]::up-arrow,
 QScrollBar[productionScrollBar="true"]::down-arrow,
-QScrollBar[productionScrollBar=true]::down-arrow,
 QScrollBar[productionScrollBar="true"]::left-arrow,
-QScrollBar[productionScrollBar=true]::left-arrow,
 QScrollBar[productionScrollBar="true"]::right-arrow,
-QScrollBar[productionScrollBar=true]::right-arrow {
+QScrollBar[productionScrollBar="true"]::right-arrow {
     width: 0px;
     height: 0px;
     background: transparent;
@@ -87,8 +82,7 @@ QScrollBar[productionScrollBar=true]::right-arrow {
 }
 
 QScrollBar[productionScrollBar="true"]::add-page,
-QScrollBar[productionScrollBar=true]::add-page,
 QScrollBar[productionScrollBar="true"]::sub-page,
-QScrollBar[productionScrollBar=true]::sub-page {
+QScrollBar[productionScrollBar="true"]::sub-page {
     background: transparent;
 }

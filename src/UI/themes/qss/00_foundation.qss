@@ -10,6 +10,10 @@ QWidget {
     outline: none;
 }
 
+QLabel {
+    background: transparent;
+}
+
 QMainWindow,
 QDialog {
     background-color: @surface_dim;
@@ -25,9 +29,7 @@ QToolTip {
 
 /* No-line sectioning via chroma separation and tonal layering */
 QFrame[panel="true"],
-QFrame[panel=true],
-QWidget[panel="true"],
-QWidget[panel=true] {
+QWidget[panel="true"] {
     background-color: @surface_container;
     border: none;
     border-radius: @rounded_md;
@@ -35,9 +37,7 @@ QWidget[panel=true] {
 }
 
 QFrame[panelAlt="true"],
-QFrame[panelAlt=true],
-QWidget[panelAlt="true"],
-QWidget[panelAlt=true] {
+QWidget[panelAlt="true"] {
     background-color: @surface_container_high;
     border: none;
     border-radius: @rounded_md;

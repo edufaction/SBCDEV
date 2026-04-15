@@ -6,7 +6,7 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
 
-from UI.themes import SBC2_THEME_QSS_DIR, SBC2_THEME_QSS_PATH, apply_theme, load_qss_template, render_qss_template, theme_tokens
+from UI.themes import SBC2_THEME_QSS_DIR, apply_theme, load_qss_template, render_qss_template, theme_tokens
 
 
 def _app() -> QApplication:
@@ -23,7 +23,6 @@ def test_load_qss_template_default_path_exists() -> None:
     text = load_qss_template()
     assert isinstance(text, str)
     assert len(text) > 20
-    assert Path(SBC2_THEME_QSS_PATH).exists()
     assert Path(SBC2_THEME_QSS_DIR).exists()
 
 

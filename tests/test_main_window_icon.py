@@ -327,6 +327,114 @@ def test_sidebar_character_navigation_shows_character_workspace() -> None:
     assert window._character_workspace_panel.isVisible()
 
 
+def test_refresh_project_workspace_preserves_active_graph_container() -> None:
+    _ = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+        graph=main_window_module.FreeGraph(),
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Character 1",
+        content={},
+        graph=main_window_module.FreeGraph(),
+    )
+    window = MainWindow(blocks=[root, character], project_root=None)
+    window._character_workspace_panel._graph_widget.set_active_container(character.id)
+
+    window._refresh_project_workspace()
+
+    assert window._character_workspace_panel._graph_widget.active_container_id() == character.id
+
+
+def test_refresh_project_workspace_preserves_tree_selection_while_restoring_inspector_block() -> None:
+    app = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+        graph=main_window_module.FreeGraph(),
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Character 1",
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+        graph=main_window_module.FreeGraph(),
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Form 1",
+        container_paths={"char_1": ""},
+    )
+    window = MainWindow(blocks=[root, character, form], project_root=None)
+
+    assert window._character_workspace_panel.select_tree_block("char_1") is True
+    assert window._character_workspace_panel.inspect_block("form_1", container_id="char_1") is True
+    app.processEvents()
+
+    window._refresh_project_workspace()
+
+    assert window._character_workspace_panel.current_tree_block_id() == "char_1"
+    assert window._character_workspace_panel.current_block_id() == "form_1"
+
+
+def test_main_window_persists_missing_graph_layout_positions_on_initialization(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_graph_init"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Graph Init")
+
+    root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story Root",
+        contains=["shot_1"],
+        content={"workspace_role": "story_root"},
+        graph=main_window_module.FreeGraph(),
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=["img_1"],
+        graph=main_window_module.FreeGraph(),
+    )
+    image = Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1")
+
+    window = MainWindow(blocks=[root, shot, image], project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._on_graph_layout_initialize_requested("shot_1", [("img_1", 40.0, 40.0)])
+    app.processEvents()
+
+    loaded = storage.load_blocks(project_path)
+    persisted_shot = next(block for block in loaded if block.id == "shot_1")
+    assert persisted_shot.graph is not None
+    assert len(persisted_shot.graph.nodes) == 1
+    node = next(iter(persisted_shot.graph.nodes.values()))
+    assert node.block_id == "img_1"
+    assert node.x == 40.0
+    assert node.y == 40.0
+
+
 def test_project_workspace_save_persists_author_email_description(tmp_path) -> None:
     app = _app()
     project_path = tmp_path / "project_editable"

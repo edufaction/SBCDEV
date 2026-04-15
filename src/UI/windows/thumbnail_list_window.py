@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QComboBox, QMainWindow, QSplitter, QStackedWidget
 
+from application import BlockWorkspaceService
 from domain import Block
 from UI.Widgets import (
     AssetGridWidget,
@@ -23,6 +24,8 @@ from UI.windows.window_helpers import load_app_icon, open_with_system_default_ap
 class ThumbnailListWindow(QMainWindow):
     """Secondary window focused on the thumbnail list view."""
 
+    blocks_changed = Signal(object)
+
     def __init__(self, *, blocks: list[Block] | None = None, project_root: Path | None = None) -> None:
         super().__init__()
         self.setWindowTitle("SBC2 - Thumbnail List")
@@ -36,6 +39,8 @@ class ThumbnailListWindow(QMainWindow):
             blocks = []
         self._all_blocks = list(blocks)
         self._project_root = project_root
+        self._selected_block_id = ""
+        self._block_workspace_service = BlockWorkspaceService()
 
         self._search_bar = SearchBarWidget(self, placeholder="Search by tags...")
         # Compatibility alias kept for existing tests/callers.
@@ -65,6 +70,7 @@ class ThumbnailListWindow(QMainWindow):
         self._assets_stack.addWidget(self._grid_view)
         self._assets_stack.setCurrentWidget(self._list_view)
         self._property_widget = BlockPropertyWidget(self)
+        self._property_widget.property_change_requested.connect(self._on_property_change_requested)
         self._content_splitter = QSplitter(Qt.Horizontal, self)
         self._content_splitter.setChildrenCollapsible(False)
         self._content_splitter.addWidget(self._assets_stack)
@@ -81,10 +87,12 @@ class ThumbnailListWindow(QMainWindow):
         initialize_widget_primitives(self)
 
     def set_blocks(self, blocks: list[Block], *, project_root: Path | None = None) -> None:
+        preserved_block_id = self._selected_block_id or self._property_widget.current_block_id() or ""
         self._all_blocks = list(blocks)
         self._project_root = project_root
         self._rebuild_filter_controls()
         self._apply_filters()
+        self._restore_selected_block(preserved_block_id)
 
     def _open_asset_in_default_app(self, block: Block) -> None:
         asset_path = resolve_block_asset_path(block, self._project_root)
@@ -93,6 +101,7 @@ class ThumbnailListWindow(QMainWindow):
         open_with_system_default_app(asset_path)
 
     def _on_block_selected(self, block: Block) -> None:
+        self._selected_block_id = block.id
         self._property_widget.set_block(block)
 
     def _build_filter_controls(self) -> None:
@@ -155,4 +164,25 @@ class ThumbnailListWindow(QMainWindow):
 
         self._list_view.set_blocks(filtered, project_root=self._project_root)
         self._grid_view.set_blocks(filtered, project_root=self._project_root)
+        self._selected_block_id = ""
         self._property_widget.set_block(None)
+
+    def _on_property_change_requested(self, payload: dict) -> None:
+        try:
+            updated_block = self._block_workspace_service.update_block_from_payload(self._all_blocks, payload)
+        except ValueError:
+            return
+        self._selected_block_id = updated_block.id
+        self._apply_filters()
+        self._restore_selected_block(updated_block.id)
+        self.blocks_changed.emit(list(self._all_blocks))
+
+    def _restore_selected_block(self, block_id: str) -> None:
+        target = str(block_id or "").strip()
+        if not target:
+            return
+        block = next((candidate for candidate in self._all_blocks if candidate.id == target), None)
+        if block is None:
+            return
+        self._selected_block_id = block.id
+        self._property_widget.set_block(block)

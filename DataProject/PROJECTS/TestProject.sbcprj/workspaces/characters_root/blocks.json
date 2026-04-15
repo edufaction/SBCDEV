@@ -29,7 +29,8 @@
     "contains": [
       "blk_character_ariane",
       "blk_character_noe",
-      "blk_character_eric_26b1d4"
+      "blk_character_eric_26b1d4",
+      "blk_character_sandrine_e7b5f0"
     ],
     "inputs": [],
     "tree": {
@@ -37,7 +38,32 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_eee88601e5c3": {
+          "id": "gnode_eee88601e5c3",
+          "block_id": "blk_character_ariane",
+          "x": -133.22365320857654,
+          "y": -372.2810738147848
+        },
+        "gnode_72cfa2b2fe1f": {
+          "id": "gnode_72cfa2b2fe1f",
+          "block_id": "blk_character_eric_26b1d4",
+          "x": -312.65057532448475,
+          "y": 161.07609606600954
+        },
+        "gnode_3abe7133a343": {
+          "id": "gnode_3abe7133a343",
+          "block_id": "blk_character_noe",
+          "x": -411.42499025289794,
+          "y": -175.57626315858772
+        },
+        "gnode_71e7602024ac": {
+          "id": "gnode_71e7602024ac",
+          "block_id": "blk_character_sandrine_e7b5f0",
+          "x": 58.0,
+          "y": -49.0
+        }
+      },
       "edges": {}
     }
   },
@@ -77,7 +103,14 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_41841e0441f0": {
+          "id": "gnode_41841e0441f0",
+          "block_id": "blk_character_ariane_form_casual",
+          "x": -142.26494346680832,
+          "y": -44.84747368282457
+        }
+      },
       "edges": {}
     }
   },
@@ -161,8 +194,52 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
-      "edges": {}
+      "nodes": {
+        "gnode_ff334dbec915": {
+          "id": "gnode_ff334dbec915",
+          "block_id": "blk_img_ariane_casual_01",
+          "x": -492.6008643825237,
+          "y": -849.5418199367505
+        },
+        "gnode_3de722e721d8": {
+          "id": "gnode_3de722e721d8",
+          "block_id": "blk_img_ariane_casual_02",
+          "x": -516.4698943206997,
+          "y": 123.97536508510575
+        },
+        "gnode_451ef1ecea8b": {
+          "id": "gnode_451ef1ecea8b",
+          "block_id": "blk_img_ariane_casual_03",
+          "x": 12.328399431807156,
+          "y": -138.99371957801083
+        },
+        "gnode_a1e346b3cdb8": {
+          "id": "gnode_a1e346b3cdb8",
+          "block_id": "blk_vid_ariane_casual_01",
+          "x": 30.943301182283903,
+          "y": -694.409399444824
+        },
+        "gnode_73bcfb68b362": {
+          "id": "gnode_73bcfb68b362",
+          "block_id": "blk_text_2b9cd1d27be5",
+          "x": -434.9882641637629,
+          "y": -501.84741484877685
+        }
+      },
+      "edges": {
+        "gedge_7e0ebe3591cb": {
+          "id": "gedge_7e0ebe3591cb",
+          "source_node_id": "gnode_3de722e721d8",
+          "target_node_id": "gnode_451ef1ecea8b",
+          "label": ""
+        },
+        "gedge_c74f332833a1": {
+          "id": "gedge_c74f332833a1",
+          "source_node_id": "gnode_ff334dbec915",
+          "target_node_id": "gnode_a1e346b3cdb8",
+          "label": ""
+        }
+      }
     }
   },
   {
@@ -181,7 +258,7 @@
       "kind": "local"
     },
     "container_paths": {
-      "blk_character_ariane_form_casual": ""
+      "blk_character_ariane_form_casual": "Marine"
     },
     "functional_name": "",
     "tags": [
@@ -260,7 +337,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_img_ariane_casual_02",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -293,7 +379,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_img_ariane_casual_01",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -337,8 +432,46 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
-      "edges": {}
+      "nodes": {
+        "gnode_dab00d27c904": {
+          "id": "gnode_dab00d27c904",
+          "block_id": "blk_img_ariane_stealth_01",
+          "x": -555.1063874103801,
+          "y": -452.38173356754163
+        },
+        "gnode_7b6081b6fb84": {
+          "id": "gnode_7b6081b6fb84",
+          "block_id": "blk_img_ariane_stealth_02",
+          "x": 70.69036507457145,
+          "y": 45.84088899402735
+        },
+        "gnode_e447d0b74a2d": {
+          "id": "gnode_e447d0b74a2d",
+          "block_id": "blk_img_ariane_stealth_03",
+          "x": -530.4574354391295,
+          "y": -11.962162147954814
+        },
+        "gnode_701f798cb9c7": {
+          "id": "gnode_701f798cb9c7",
+          "block_id": "blk_vid_ariane_stealth_01",
+          "x": 71.45912201618202,
+          "y": -342.81704438689843
+        }
+      },
+      "edges": {
+        "gedge_a50b0141db6d": {
+          "id": "gedge_a50b0141db6d",
+          "source_node_id": "gnode_dab00d27c904",
+          "target_node_id": "gnode_701f798cb9c7",
+          "label": ""
+        },
+        "gedge_c9fc700fc28b": {
+          "id": "gedge_c9fc700fc28b",
+          "source_node_id": "gnode_e447d0b74a2d",
+          "target_node_id": "gnode_7b6081b6fb84",
+          "label": ""
+        }
+      }
     }
   },
   {
@@ -403,7 +536,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_img_ariane_stealth_03",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -469,7 +611,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_img_ariane_stealth_01",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -653,7 +804,7 @@
     "id": "blk_text_2b9cd1d27be5",
     "type": "text",
     "profile": "note",
-    "name": "GPT_PromptGenGrid3x3.prompt",
+    "name": "ESE",
     "description": "Imported from Finder: GPT_PromptGenGrid3x3.prompt.txt",
     "prompt_ref": "",
     "prompt_generated": "",
@@ -768,7 +919,38 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_856ebf6d807e": {
+          "id": "gnode_856ebf6d807e",
+          "block_id": "blk_slot_front_view_6f92bd",
+          "x": 40.0,
+          "y": 40.0
+        },
+        "gnode_bcd9f8215165": {
+          "id": "gnode_bcd9f8215165",
+          "block_id": "blk_slot_side_view_5c4e63",
+          "x": 416.0,
+          "y": 40.0
+        },
+        "gnode_56ece3e1e023": {
+          "id": "gnode_56ece3e1e023",
+          "block_id": "blk_slot_back_view_58e116",
+          "x": 792.0,
+          "y": 40.0
+        },
+        "gnode_8a57369899c9": {
+          "id": "gnode_8a57369899c9",
+          "block_id": "blk_slot_face_reference_df6bfd",
+          "x": 40.0,
+          "y": 268.0
+        },
+        "gnode_99132df55874": {
+          "id": "gnode_99132df55874",
+          "block_id": "blk_slot_voice_reference_15a5f5",
+          "x": 416.0,
+          "y": 268.0
+        }
+      },
       "edges": {}
     }
   },
@@ -1009,7 +1191,32 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_98e607ae2c56": {
+          "id": "gnode_98e607ae2c56",
+          "block_id": "blk_slot_sheet_main_5e5b68",
+          "x": 40.0,
+          "y": 40.0
+        },
+        "gnode_ad02a72044d7": {
+          "id": "gnode_ad02a72044d7",
+          "block_id": "blk_slot_pose_turnaround_aeaf98",
+          "x": 416.0,
+          "y": 40.0
+        },
+        "gnode_e4f80835e68c": {
+          "id": "gnode_e4f80835e68c",
+          "block_id": "blk_slot_notes_98793e",
+          "x": 792.0,
+          "y": 40.0
+        },
+        "gnode_8e49c3e2852a": {
+          "id": "gnode_8e49c3e2852a",
+          "block_id": "blk_slot_prompt_base_3780c3",
+          "x": 40.0,
+          "y": 268.0
+        }
+      },
       "edges": {}
     }
   },
@@ -1147,6 +1354,492 @@
     },
     "container_paths": {
       "blk_character_form_character_sheet_4f6efe": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "prompt_base"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "prompt_base",
+      "expected_types": [
+        "prompt"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_sandrine_e7b5f0",
+    "type": "container",
+    "profile": "character",
+    "name": "Sandrine",
+    "description": "Template root for character: Sandrine",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_characters_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character",
+      "character_standard"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard"
+    },
+    "contains": [
+      "blk_character_form_references_fd163e",
+      "blk_character_form_character_sheet_5ed60d"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_form_references_fd163e",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Sandrine - References",
+    "description": "Template form 'References' for Sandrine",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_sandrine_e7b5f0": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character_form",
+      "references"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard",
+      "template_form_key": "references",
+      "template_form_name": "References"
+    },
+    "contains": [
+      "blk_slot_front_view_ba472a",
+      "blk_slot_side_view_2a1618",
+      "blk_slot_back_view_97cd6c",
+      "blk_slot_face_reference_d037c6",
+      "blk_slot_voice_reference_9e8b78"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_slot_front_view_ba472a",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Front View",
+    "description": "Template slot 'Front View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_fd163e": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "front_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "front_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_side_view_2a1618",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Side View",
+    "description": "Template slot 'Side View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_fd163e": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "side_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "side_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_back_view_97cd6c",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Back View",
+    "description": "Template slot 'Back View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_fd163e": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "back_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "back_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_face_reference_d037c6",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Face Reference",
+    "description": "Template slot 'Face Reference'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_fd163e": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "face_reference"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "face_reference",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_voice_reference_9e8b78",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Voice Reference",
+    "description": "Template slot 'Voice Reference'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_fd163e": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "voice_reference"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "voice_reference",
+      "expected_types": [
+        "audio"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_character_form_character_sheet_5ed60d",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Sandrine - Character Sheet",
+    "description": "Template form 'Character Sheet' for Sandrine",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_sandrine_e7b5f0": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character_form",
+      "character_sheet"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard",
+      "template_form_key": "character_sheet",
+      "template_form_name": "Character Sheet"
+    },
+    "contains": [
+      "blk_slot_sheet_main_8a17b0",
+      "blk_slot_pose_turnaround_a976d3",
+      "blk_slot_notes_f68dc1",
+      "blk_slot_prompt_base_e4babe"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_slot_sheet_main_8a17b0",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Character Sheet",
+    "description": "Template slot 'Character Sheet'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_5ed60d": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "sheet_main"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "sheet_main",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_pose_turnaround_a976d3",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Pose Turnaround",
+    "description": "Template slot 'Pose Turnaround'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_5ed60d": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "pose_turnaround"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "pose_turnaround",
+      "expected_types": [
+        "video"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_notes_f68dc1",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Notes",
+    "description": "Template slot 'Notes'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_5ed60d": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "notes"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "character_sheet",
+      "template_slot_key": "notes",
+      "expected_types": [
+        "text"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_prompt_base_e4babe",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Prompt Base",
+    "description": "Template slot 'Prompt Base'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_character_sheet_5ed60d": ""
     },
     "functional_name": "",
     "tags": [

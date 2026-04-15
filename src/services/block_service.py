@@ -139,7 +139,10 @@ class BlockService:
         """Add an incoming connection on target block."""
         target = self._repository.get(target_id)
         self._ensure_editable(target, operation="add input")
-        _ = self._repository.get(source_block_id)
+        source = self._repository.get(source_block_id)
+        self._validate_connection_target_port(port)
+        self._validate_source_for_target_port(source=source, port=port)
+        self._validate_port_multiplicity(target=target, source_block_id=source_block_id, port=port, name=name)
 
         already_exists = any(
             item.source_block_id == source_block_id and item.port == port and item.name == name
@@ -159,6 +162,45 @@ class BlockService:
             )
         )
         return self._repository.update(target)
+
+    @staticmethod
+    def _validate_connection_target_port(port: PortType) -> None:
+        if port == PortType.OUT:
+            raise ValidationError("Target port 'out' is forbidden for input connections.")
+
+    @staticmethod
+    def _validate_source_for_target_port(*, source: Block, port: PortType) -> None:
+        source_profile = source.profile.strip().lower()
+        if port == PortType.TOP and source_profile != "preset":
+            raise ValidationError(
+                f"Target port 'top' accepts preset sources only: source={source.id} profile={source.profile!r}"
+            )
+        if port == PortType.BOTTOM and not (
+            source.type == BlockType.PROMPT or source_profile == "prompt"
+        ):
+            raise ValidationError(
+                f"Target port 'bottom' accepts prompt sources only: source={source.id} "
+                f"type={source.type.value} profile={source.profile!r}"
+            )
+
+    @staticmethod
+    def _validate_port_multiplicity(
+        *,
+        target: Block,
+        source_block_id: str,
+        port: PortType,
+        name: str,
+    ) -> None:
+        if port not in {PortType.TOP, PortType.BOTTOM}:
+            return
+        for existing in target.inputs:
+            if existing.port != port:
+                continue
+            if existing.source_block_id == source_block_id and existing.name == name:
+                continue
+            raise ValidationError(
+                f"Target port '{port.value}' accepts a single connection: target={target.id}"
+            )
 
     def remove_input(
         self,
