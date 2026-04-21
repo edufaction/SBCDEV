@@ -74,6 +74,33 @@ def test_workspace_graph_widget_renders_nodes_and_edges_with_size_policy() -> No
     assert "2 node(s), 1 edge(s)" in widget._status.text()
 
 
+def test_workspace_graph_widget_uses_postit_size_for_note_blocks() -> None:
+    app = _app()
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat idea"})
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=[note.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=note.id, x=40.0, y=80.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, note], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    note_item = widget._block_items["note_1"]
+    assert round(note_item.boundingRect().width()) == 220
+    assert round(note_item.boundingRect().height()) == 180
+
+
 def test_workspace_graph_widget_displays_contained_blocks_without_graph_nodes() -> None:
     app = _app()
     image = Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1")
@@ -240,6 +267,59 @@ def test_workspace_graph_widget_click_does_not_emit_block_move_request() -> None
 
     assert moved == []
     assert item.pos() == original_pos
+
+
+def test_workspace_graph_widget_emits_file_drop_request_with_target_block() -> None:
+    app = _app()
+    placeholder = Block(id="slot_1", type=BlockType.EMPTY, profile="template_slot", name="Slot 1")
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Character Form",
+        contains=[placeholder.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=placeholder.id, x=140.0, y=90.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, placeholder], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    emitted: list[tuple[str, str, object, float, float]] = []
+    widget.graph_files_drop_requested.connect(lambda *args: emitted.append(args))
+
+    target_item = widget._block_items["slot_1"]
+    scene_pos = target_item.sceneBoundingRect().center()
+    widget._on_external_files_dropped(["/tmp/ref.png"], scene_pos)
+    app.processEvents()
+
+    assert emitted == [(container.id, placeholder.id, ["/tmp/ref.png"], float(scene_pos.x()), float(scene_pos.y()))]
+
+
+def test_workspace_graph_widget_emits_file_drop_request_without_target_block_on_empty_area() -> None:
+    app = _app()
+    container, image, text = _sample_graph_blocks()
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, image, text], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    emitted: list[tuple[str, str, object, float, float]] = []
+    widget.graph_files_drop_requested.connect(lambda *args: emitted.append(args))
+
+    scene_pos = QPointF(-500.0, -500.0)
+    widget._on_external_files_dropped(["/tmp/ref.png"], scene_pos)
+    app.processEvents()
+
+    assert emitted == [(container.id, "", ["/tmp/ref.png"], -500.0, -500.0)]
 
 
 def test_workspace_graph_widget_fit_button_resets_view_to_scene() -> None:

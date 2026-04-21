@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from application import CharacterWorkspaceService, LibraryWorkspaceService
+from application import BlockWorkspaceService, CharacterWorkspaceService, LibraryWorkspaceService
 from domain import Block, BlockType
 from infrastructure.storage import ProjectStorageService
 
@@ -76,6 +76,17 @@ def test_character_workspace_service_updates_character_payload_and_normalizes_ta
     assert updated.functional_name == "hero_main"
     assert updated.comment == "Keep silhouette strong"
     assert updated.tags == ["Lead", "character", "hero"]
+
+
+def test_block_workspace_service_updates_note_text_content() -> None:
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Old"})
+    blocks = [note]
+
+    service = BlockWorkspaceService()
+    updated = service.update_block_from_payload(blocks, {"block_id": "note_1", "text_content": "New body"})
+
+    assert updated is note
+    assert updated.content["text"] == "New body"
 
 
 def test_library_workspace_service_mounts_and_unmounts_library(tmp_path: Path) -> None:

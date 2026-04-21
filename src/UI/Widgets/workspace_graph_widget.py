@@ -29,6 +29,8 @@ GRAPH_BLOCK_MEDIA_WIDTH = 320.0
 GRAPH_BLOCK_MEDIA_HEIGHT = 180.0
 GRAPH_BLOCK_COMPACT_WIDTH = GRAPH_BLOCK_MEDIA_WIDTH / 2.0
 GRAPH_BLOCK_COMPACT_HEIGHT = GRAPH_BLOCK_MEDIA_HEIGHT / 2.0
+GRAPH_BLOCK_NOTE_WIDTH = 220.0
+GRAPH_BLOCK_NOTE_HEIGHT = 180.0
 
 _TARGET_PORTS = (PortType.IN, PortType.TOP, PortType.BOTTOM)
 _PORT_COLORS: dict[PortType, str] = {
@@ -43,8 +45,32 @@ def _is_compact_block(block: Block) -> bool:
     return block.type in {BlockType.TEXT, BlockType.PROMPT} or block.profile.strip().lower() == "preset"
 
 
+def _is_note_block(block: Block) -> bool:
+    return block.type == BlockType.TEXT and block.profile.strip().lower() == "note"
+
+
+def _block_badge_label(block: Block) -> str:
+    if _is_note_block(block):
+        return "NOTE"
+    return type_badge_label(block.type)
+
+
+def _block_preview_text(block: Block) -> str:
+    if _is_note_block(block):
+        for value in (
+            str(block.content.get("text", "") or ""),
+            block.description or "",
+            block.comment or "",
+        ):
+            if value.strip():
+                return value.strip()
+        return "Sticky note"
+    return type_badge_label(block.type)
+
+
 class _WorkspaceGraphView(QGraphicsView):
     delete_pressed = Signal()
+    external_files_dropped = Signal(object, object)
     _MIN_SCALE = 0.08
     _MAX_SCALE = 20.0
     _INFINITE_SCENE_HALF = 1_000_000.0
@@ -62,12 +88,49 @@ class _WorkspaceGraphView(QGraphicsView):
         self.setViewportUpdateMode(QGraphicsView.BoundingRectViewportUpdate)
         self.setFrameShape(QFrame.NoFrame)
         self.setFocusPolicy(Qt.StrongFocus)
+        self.setAcceptDrops(True)
+        self.viewport().setAcceptDrops(True)
         self._zoom_steps = 0
         self._set_infinite_scene_rect()
+
+    @staticmethod
+    def _file_paths_from_mime(event) -> list[str]:
+        mime = event.mimeData()
+        if mime is None:
+            return []
+        paths: list[str] = []
+        for url in mime.urls():
+            if not url.isLocalFile():
+                continue
+            local = url.toLocalFile().strip()
+            if local:
+                paths.append(local)
+        return paths
 
     def mousePressEvent(self, event) -> None:  # noqa: N802 (Qt naming)
         self.setFocus()
         super().mousePressEvent(event)
+
+    def dragEnterEvent(self, event) -> None:  # noqa: N802 (Qt naming)
+        if self._file_paths_from_mime(event):
+            event.acceptProposedAction()
+            return
+        super().dragEnterEvent(event)
+
+    def dragMoveEvent(self, event) -> None:  # noqa: N802 (Qt naming)
+        if self._file_paths_from_mime(event):
+            event.acceptProposedAction()
+            return
+        super().dragMoveEvent(event)
+
+    def dropEvent(self, event) -> None:  # noqa: N802 (Qt naming)
+        file_paths = self._file_paths_from_mime(event)
+        if file_paths:
+            drop_point = event.position().toPoint() if hasattr(event, "position") else event.pos()
+            self.external_files_dropped.emit(file_paths, self.mapToScene(drop_point))
+            event.acceptProposedAction()
+            return
+        super().dropEvent(event)
 
     def wheelEvent(self, event: QWheelEvent) -> None:  # noqa: N802 (Qt naming)
         # Natural interaction:
@@ -332,14 +395,37 @@ class _GraphBlockItem(QGraphicsObject):
         panel_color = QColor(tokens.get("surface_container_high", "#2b2e35"))
         text_color = QColor(tokens.get("on_surface", "#f9f9fd"))
         muted_text_color = QColor(tokens.get("on_surface_variant", "#aaabaf"))
+        is_note = _is_note_block(self._block)
+        note_fill_color = QColor("#F6E27A")
+        note_fold_color = QColor("#E6CC57")
+        note_border_color = QColor("#B89C31")
+        note_text_color = QColor("#3D3320")
 
         painter.setRenderHint(QPainter.Antialiasing)
         painter.setRenderHint(QPainter.TextAntialiasing)
 
         frame_rect = self._rect.adjusted(1, 1, -1, -1)
-        painter.setPen(QPen(border_color, 1.0))
-        painter.setBrush(panel_color)
-        painter.drawRoundedRect(frame_rect, 10.0, 10.0)
+        if is_note:
+            painter.setPen(QPen(note_border_color, 1.2))
+            painter.setBrush(note_fill_color)
+            painter.drawRoundedRect(frame_rect, 8.0, 8.0)
+
+            fold_size = min(28.0, frame_rect.width() * 0.18)
+            fold_path = QPainterPath()
+            fold_path.moveTo(frame_rect.right() - fold_size, frame_rect.top())
+            fold_path.lineTo(frame_rect.right(), frame_rect.top())
+            fold_path.lineTo(frame_rect.right(), frame_rect.top() + fold_size)
+            fold_path.closeSubpath()
+            painter.fillPath(fold_path, note_fold_color)
+            painter.setPen(QPen(note_border_color, 1.0))
+            painter.drawLine(
+                QPointF(frame_rect.right() - fold_size, frame_rect.top()),
+                QPointF(frame_rect.right(), frame_rect.top() + fold_size),
+            )
+        else:
+            painter.setPen(QPen(border_color, 1.0))
+            painter.setBrush(panel_color)
+            painter.drawRoundedRect(frame_rect, 10.0, 10.0)
 
         if self._block.is_link():
             link_badge = frame_rect.adjusted(10, 6, -10, -6)
@@ -347,7 +433,14 @@ class _GraphBlockItem(QGraphicsObject):
             painter.drawText(link_badge, Qt.AlignTop | Qt.AlignLeft, "LINK")
 
         content_rect = frame_rect.adjusted(8, 8, -8, -32)
-        if self._pixmap is not None and not self._pixmap.isNull():
+        if is_note:
+            painter.setPen(note_text_color)
+            painter.drawText(
+                content_rect.adjusted(8, 14, -8, -8),
+                Qt.AlignTop | Qt.TextWordWrap,
+                _block_preview_text(self._block),
+            )
+        elif self._pixmap is not None and not self._pixmap.isNull():
             scaled = self._pixmap.scaled(
                 int(max(1.0, content_rect.width())),
                 int(max(1.0, content_rect.height())),
@@ -362,16 +455,16 @@ class _GraphBlockItem(QGraphicsObject):
             painter.drawText(
                 content_rect,
                 Qt.AlignCenter | Qt.TextWordWrap,
-                type_badge_label(self._block.type),
+                _block_badge_label(self._block),
             )
 
         name_rect = QRectF(frame_rect.x() + 8.0, frame_rect.bottom() - 22.0, frame_rect.width() - 16.0, 16.0)
-        painter.setPen(text_color)
+        painter.setPen(note_text_color if is_note else text_color)
         painter.drawText(name_rect, Qt.AlignLeft | Qt.AlignVCenter, self._block.name or self._block.id)
 
         badge_rect = frame_rect.adjusted(8, 8, -8, -8)
-        painter.setPen(base_type_color)
-        painter.drawText(badge_rect, Qt.AlignTop | Qt.AlignRight, type_badge_label(self._block.type))
+        painter.setPen(QColor("#6C5609") if is_note else base_type_color)
+        painter.drawText(badge_rect, Qt.AlignTop | Qt.AlignRight, _block_badge_label(self._block))
 
         connector_outline = QColor(tokens.get("surface_container_highest", "#23262a"))
         radius = 5.0 if frame_rect.width() >= 240.0 else 4.0
@@ -441,6 +534,7 @@ class WorkspaceGraphWidget(QWidget):
     link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
+    graph_files_drop_requested = Signal(str, str, object, float, float)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -457,6 +551,7 @@ class WorkspaceGraphWidget(QWidget):
         self._status.setProperty("technical", True)
         self._view = _WorkspaceGraphView(self)
         self._view.delete_pressed.connect(self._delete_selected_links)
+        self._view.external_files_dropped.connect(self._on_external_files_dropped)
 
         self._drag_source_block_id: str = ""
         self._drag_start_scene_pos = QPointF()
@@ -519,6 +614,20 @@ class WorkspaceGraphWidget(QWidget):
         if container_id != self._active_container_id:
             return
         self.graph_layout_initialize_requested.emit(container_id, payload)
+
+    def _on_external_files_dropped(self, file_paths: object, scene_pos: object) -> None:
+        if not self._active_container_id:
+            return
+        if not isinstance(file_paths, list) or not isinstance(scene_pos, QPointF):
+            return
+        target_block_id = self._block_id_at_scene_pos(scene_pos)
+        self.graph_files_drop_requested.emit(
+            self._active_container_id,
+            target_block_id,
+            list(file_paths),
+            float(scene_pos.x()),
+            float(scene_pos.y()),
+        )
 
     def _rebuild_scene(self) -> None:
         scene = self._view.scene()
@@ -634,6 +743,15 @@ class WorkspaceGraphWidget(QWidget):
                     continue
                 results.append((item.source_block_id, target_block.id, item.port, item.name))
         return results
+
+    def _block_id_at_scene_pos(self, scene_pos: QPointF) -> str:
+        scene = self._view.scene()
+        if scene is None:
+            return ""
+        for item in scene.items(scene_pos):
+            if isinstance(item, _GraphBlockItem):
+                return item._block.id
+        return ""
 
     def _on_start_link_drag(self, source_block_id: str, source_scene_pos: QPointF) -> None:
         if not self._active_container_id:
@@ -866,6 +984,8 @@ class WorkspaceGraphWidget(QWidget):
 
     @staticmethod
     def _block_size(block: Block) -> tuple[float, float]:
+        if _is_note_block(block):
+            return GRAPH_BLOCK_NOTE_WIDTH, GRAPH_BLOCK_NOTE_HEIGHT
         if _is_compact_block(block):
             return GRAPH_BLOCK_COMPACT_WIDTH, GRAPH_BLOCK_COMPACT_HEIGHT
         return GRAPH_BLOCK_MEDIA_WIDTH, GRAPH_BLOCK_MEDIA_HEIGHT

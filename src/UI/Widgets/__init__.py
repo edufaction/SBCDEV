@@ -24,6 +24,7 @@ from .thumbnail_widget import ThumbnailWidget
 from .thumbnail_utils import resolve_block_asset_path
 from .workspace_frame_widget import WorkspaceFrameWidget
 from .workspace_graph_widget import WorkspaceGraphWidget
+from .workspace_toolbar_widget import WorkspaceToolbarWidget
 from .workspace_tree_panel_widget import WorkspaceTreePanelWidget
 
 __all__ = [
@@ -45,6 +46,7 @@ __all__ = [
     "StoryShotWorkspaceWidget",
     "WorkspaceFrameWidget",
     "WorkspaceGraphWidget",
+    "WorkspaceToolbarWidget",
     "WorkspaceTreePanelWidget",
     "FreeTreeWidget",
     "BlockPropertiesEditor",

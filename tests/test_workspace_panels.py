@@ -76,6 +76,133 @@ def test_character_workspace_panel_emits_update_request_for_selected_character()
     assert received[0]["tags"] == ["character", "lead"]
 
 
+def test_character_workspace_panel_emits_note_create_request_for_active_container() -> None:
+    app = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Ariane",
+        container_paths={"blk_characters_root": ""},
+    )
+
+    panel = CharacterWorkspacePanel()
+    panel.set_blocks([root, character], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    received: list[str] = []
+    panel.note_create_requested.connect(received.append)
+    panel._graph_widget.set_active_container("char_1")
+
+    QTest.mouseClick(panel._create_note_button, Qt.LeftButton)
+    app.processEvents()
+
+    assert received == ["char_1"]
+
+
+def test_character_workspace_panel_add_block_button_is_enabled_only_for_character_form() -> None:
+    app = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Ariane",
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Sheet",
+        container_paths={"char_1": ""},
+    )
+
+    panel = CharacterWorkspacePanel()
+    panel.set_blocks([root, character, form], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    panel._graph_widget.set_active_container("char_1")
+    panel._refresh_toolbar_action_state()
+    app.processEvents()
+    assert panel._add_block_button.isEnabled() is False
+
+    panel._graph_widget.set_active_container("form_1")
+    panel._refresh_toolbar_action_state()
+    app.processEvents()
+    assert panel._add_block_button.isEnabled() is True
+
+
+def test_character_workspace_panel_emits_import_and_placeholder_requests_for_character_form(monkeypatch) -> None:
+    app = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Ariane",
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Sheet",
+        container_paths={"char_1": ""},
+    )
+
+    panel = CharacterWorkspacePanel()
+    panel.set_blocks([root, character, form], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    panel._graph_widget.set_active_container("form_1")
+    panel._refresh_toolbar_action_state()
+    monkeypatch.setattr(
+        "UI.Frames.workspaces.character_workspace_panel.QFileDialog.getOpenFileNames",
+        lambda *_args, **_kwargs: (["/tmp/a.png", "/tmp/b.mp4"], ""),
+    )
+
+    imported: list[tuple[str, object]] = []
+    placeholders: list[str] = []
+    panel.block_files_add_requested.connect(lambda container_id, file_paths: imported.append((container_id, file_paths)))
+    panel.placeholder_block_create_requested.connect(placeholders.append)
+
+    panel._import_files_action.trigger()
+    app.processEvents()
+    panel._placeholder_action.trigger()
+    app.processEvents()
+
+    assert imported == [("form_1", ["/tmp/a.png", "/tmp/b.mp4"])]
+    assert placeholders == ["form_1"]
+
+
 def test_character_workspace_panel_keeps_parent_free_tree_context_for_container_path_edit() -> None:
     app = _app()
     root = Block(
@@ -187,6 +314,39 @@ def test_story_workspace_panel_graph_inspection_does_not_change_tree_selection()
 
     assert panel.current_tree_block_id() == "shot_1"
     assert panel.current_block_id() == "note_1"
+
+
+def test_story_workspace_panel_emits_note_create_request_for_active_container() -> None:
+    app = _app()
+    root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story Root",
+        contains=["shot_1"],
+        content={"workspace_role": "story_root"},
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        container_paths={"blk_story_root": ""},
+    )
+
+    panel = StoryWorkspacePanel()
+    panel.set_blocks([root, shot], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    received: list[str] = []
+    panel.note_create_requested.connect(received.append)
+    panel._graph_widget.set_active_container("shot_1")
+
+    QTest.mouseClick(panel._create_note_button, Qt.LeftButton)
+    app.processEvents()
+
+    assert received == ["shot_1"]
 
 
 def test_library_workspace_panel_discovers_mounts_and_loads_blocks(tmp_path: Path) -> None:

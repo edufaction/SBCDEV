@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from domain import Block
+from domain import Block, BlockType
 
 EDITABLE_BLOCK_FIELDS = {
     "name",
@@ -8,6 +8,7 @@ EDITABLE_BLOCK_FIELDS = {
     "functional_name",
     "comment",
     "tags",
+    "text_content",
     "prompt_ref",
     "prompt_generated",
 }
@@ -39,6 +40,10 @@ class BlockWorkspaceService:
             block.functional_name = str(payload.get("functional_name", "") or "").strip()
         if "comment" in payload:
             block.comment = str(payload.get("comment", "") or "").strip()
+        if "text_content" in payload:
+            if block.type != BlockType.TEXT:
+                raise ValueError("Text content is only editable for TEXT blocks.")
+            block.content["text"] = str(payload.get("text_content", "") or "").strip()
         if "prompt_ref" in payload:
             block.prompt_ref = str(payload.get("prompt_ref", "") or "").strip()
         if "prompt_generated" in payload:

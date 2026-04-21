@@ -4,7 +4,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtWidgets import QApplication, QStyleOptionViewItem
 
-from domain import Block, BlockDomain, BlockType
+from domain import Block, BlockDomain, BlockType, FreeGraph, FreeGraphNode
 from infrastructure.storage import ProjectStorageService
 from UI.Widgets import BlockPropertyWidget
 from UI.windows.free_tree_window import FreeTreeWindow
@@ -34,6 +34,20 @@ def test_block_property_widget_emits_property_change_requested_for_editable_fiel
 
     assert captured == [{"block_id": "blk_note", "name": "New Name"}]
     assert widget.current_block_id() == "blk_note"
+
+
+def test_block_property_widget_emits_text_content_change_for_note_blocks() -> None:
+    app = _app()
+    block = Block(id="blk_note", type=BlockType.TEXT, profile="note", name="Note", content={"text": "Old body"})
+    widget = BlockPropertyWidget()
+    captured: list[dict] = []
+    widget.property_change_requested.connect(captured.append)
+
+    widget.set_block(block)
+    _set_property_value(widget, "text_content", "Updated body")
+    app.processEvents()
+
+    assert captured == [{"block_id": "blk_note", "text_content": "Updated body"}]
 
 
 def test_block_property_widget_uses_group_icons_and_distinct_value_styles() -> None:
@@ -182,3 +196,292 @@ def test_main_window_character_block_property_update_persists_and_preserves_sele
     updated_character = next(block for block in persisted_blocks if block.id == "char_1")
     assert updated_character.name == "Alice Updated"
     assert window._character_workspace_panel.current_block_id() == "char_1"
+
+
+def test_main_window_creates_postit_note_in_story_container_and_selects_it(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_notes.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Notes")
+
+    story_root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story",
+        domain=BlockDomain.STORY,
+        contains=["shot_1"],
+        content={"workspace_role": "story_root"},
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        domain=BlockDomain.STORY,
+        container_paths={"blk_story_root": ""},
+    )
+    storage.save_blocks(project_path, [story_root, shot])
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._story_workspace_controller.create_note("shot_1")
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    note_blocks = [block for block in persisted_blocks if block.type == BlockType.TEXT and block.profile == "note"]
+    assert len(note_blocks) == 1
+    note = note_blocks[0]
+    updated_shot = next(block for block in persisted_blocks if block.id == "shot_1")
+
+    assert note.id in updated_shot.contains
+    assert note.content["note_style"] == "postit"
+    assert note.content["text"] == ""
+    assert note.container_paths["shot_1"] == ""
+    assert window._story_workspace_panel.current_block_id() == note.id
+
+
+def test_main_window_creates_placeholder_block_in_character_form(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_placeholders.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Placeholders")
+
+    characters_root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters",
+        domain=BlockDomain.CHARACTERS,
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Alice",
+        domain=BlockDomain.CHARACTERS,
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Main Form",
+        domain=BlockDomain.CHARACTERS,
+        container_paths={"char_1": ""},
+    )
+    storage.save_blocks(project_path, [characters_root, character, form])
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._character_workspace_controller.create_placeholder("form_1")
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    placeholders = [block for block in persisted_blocks if block.type == BlockType.EMPTY and block.profile == "placeholder"]
+    assert len(placeholders) == 1
+    placeholder = placeholders[0]
+    updated_form = next(block for block in persisted_blocks if block.id == "form_1")
+
+    assert placeholder.id in updated_form.contains
+    assert placeholder.container_paths["form_1"] == ""
+    assert placeholder.content["placeholder"] is True
+    assert window._character_workspace_panel.current_block_id() == placeholder.id
+
+
+def test_main_window_imports_file_into_character_form(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_imports.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Imports")
+
+    characters_root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters",
+        domain=BlockDomain.CHARACTERS,
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Alice",
+        domain=BlockDomain.CHARACTERS,
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Main Form",
+        domain=BlockDomain.CHARACTERS,
+        container_paths={"char_1": ""},
+    )
+    storage.save_blocks(project_path, [characters_root, character, form])
+
+    source_file = tmp_path / "pose.png"
+    source_file.write_bytes(b"fake-png-content")
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._character_workspace_controller.import_blocks("form_1", [str(source_file)])
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    imported_assets = [block for block in persisted_blocks if block.type == BlockType.IMAGE and block.profile == "asset"]
+    assert len(imported_assets) == 1
+    imported = imported_assets[0]
+    updated_form = next(block for block in persisted_blocks if block.id == "form_1")
+
+    assert imported.id in updated_form.contains
+    assert imported.container_paths["form_1"] == ""
+    assert imported.content["storage_path"].startswith("storage/files/")
+    assert window._character_workspace_panel.current_block_id() == imported.id
+
+
+def test_main_window_graph_drop_replaces_placeholder_with_imported_asset(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_drop_replace.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Drop Replace")
+
+    characters_root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters",
+        domain=BlockDomain.CHARACTERS,
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Alice",
+        domain=BlockDomain.CHARACTERS,
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    placeholder = Block(
+        id="slot_front",
+        type=BlockType.EMPTY,
+        profile="template_slot",
+        name="Front View",
+        domain=BlockDomain.CHARACTERS,
+        container_paths={"form_1": ""},
+        content={"template_slot": True, "expected_types": ["image"]},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Main Form",
+        domain=BlockDomain.CHARACTERS,
+        contains=[placeholder.id],
+        container_paths={"char_1": ""},
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=placeholder.id, x=48.0, y=84.0),
+            }
+        ),
+    )
+    storage.save_blocks(project_path, [characters_root, character, form, placeholder])
+
+    source_file = tmp_path / "front.png"
+    source_file.write_bytes(b"fake-png-content")
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._on_graph_files_drop_requested("form_1", "slot_front", [str(source_file)], 260.0, 310.0)
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    replaced = next(block for block in persisted_blocks if block.id == "slot_front")
+    updated_form = next(block for block in persisted_blocks if block.id == "form_1")
+    node = updated_form.graph.nodes["n1"]
+
+    assert replaced.type == BlockType.IMAGE
+    assert replaced.profile == "asset"
+    assert replaced.container_paths["form_1"] == ""
+    assert replaced.content["storage_path"].startswith("storage/files/")
+    assert replaced.id in updated_form.contains
+    assert node.block_id == replaced.id
+    assert node.x == 48.0
+    assert node.y == 84.0
+    assert window._character_workspace_panel.current_block_id() == replaced.id
+
+
+def test_main_window_graph_drop_creates_imported_block_and_positions_it(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_drop_create.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Drop Create")
+
+    characters_root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters",
+        domain=BlockDomain.CHARACTERS,
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Alice",
+        domain=BlockDomain.CHARACTERS,
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Main Form",
+        domain=BlockDomain.CHARACTERS,
+        container_paths={"char_1": ""},
+        graph=FreeGraph(),
+    )
+    storage.save_blocks(project_path, [characters_root, character, form])
+
+    source_file = tmp_path / "pose.png"
+    source_file.write_bytes(b"fake-png-content")
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    window._on_graph_files_drop_requested("form_1", "", [str(source_file)], 222.0, 333.0)
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    imported = next(
+        block for block in persisted_blocks if block.type == BlockType.IMAGE and block.profile == "asset"
+    )
+    updated_form = next(block for block in persisted_blocks if block.id == "form_1")
+    node = next(item for item in updated_form.graph.nodes.values() if item.block_id == imported.id)
+
+    assert imported.id in updated_form.contains
+    assert imported.container_paths["form_1"] == ""
+    assert imported.content["storage_path"].startswith("storage/files/")
+    assert node.x == 222.0
+    assert node.y == 333.0
+    assert window._character_workspace_panel.current_block_id() == imported.id

@@ -54,8 +54,8 @@
         "gnode_3abe7133a343": {
           "id": "gnode_3abe7133a343",
           "block_id": "blk_character_noe",
-          "x": -411.42499025289794,
-          "y": -175.57626315858772
+          "x": -582.6714941510929,
+          "y": -160.00839916784275
         },
         "gnode_71e7602024ac": {
           "id": "gnode_71e7602024ac",
@@ -192,20 +192,67 @@
       "blk_img_ariane_casual_02",
       "blk_img_ariane_casual_03",
       "blk_vid_ariane_casual_01",
-      "blk_text_2b9cd1d27be5"
+      "blk_text_2b9cd1d27be5",
+      "blk_ab7b5a624ce0",
+      "blk_4d8811ec60ec",
+      "blk_9d00b35819d2",
+      "blk_e440e5cb132e",
+      "blk_b588ae0b714d"
     ],
     "inputs": [],
     "tree": {
-      "root_ids": [],
-      "nodes": {}
+      "root_ids": [
+        "node_f21e0da66c7d",
+        "node_a71e75d11dcd",
+        "node_2743a2663497",
+        "node_67830bba6445",
+        "node_d85760d2f38d"
+      ],
+      "nodes": {
+        "node_f21e0da66c7d": {
+          "id": "node_f21e0da66c7d",
+          "kind": "block_ref",
+          "name": "all",
+          "block_id": "blk_ab7b5a624ce0",
+          "children": []
+        },
+        "node_a71e75d11dcd": {
+          "id": "node_a71e75d11dcd",
+          "kind": "block_ref",
+          "name": "Note",
+          "block_id": "blk_4d8811ec60ec",
+          "children": []
+        },
+        "node_2743a2663497": {
+          "id": "node_2743a2663497",
+          "kind": "block_ref",
+          "name": "Placeholder",
+          "block_id": "blk_9d00b35819d2",
+          "children": []
+        },
+        "node_67830bba6445": {
+          "id": "node_67830bba6445",
+          "kind": "block_ref",
+          "name": "Placeholder",
+          "block_id": "blk_e440e5cb132e",
+          "children": []
+        },
+        "node_d85760d2f38d": {
+          "id": "node_d85760d2f38d",
+          "kind": "block_ref",
+          "name": "train.render",
+          "block_id": "blk_b588ae0b714d",
+          "children": []
+        }
+      }
     },
     "graph": {
       "nodes": {
         "gnode_ff334dbec915": {
           "id": "gnode_ff334dbec915",
           "block_id": "blk_img_ariane_casual_01",
-          "x": -492.6008643825237,
-          "y": -849.5418199367505
+          "x": -481.7730176014021,
+          "y": -837.440108828438
         },
         "gnode_3de722e721d8": {
           "id": "gnode_3de722e721d8",
@@ -222,14 +269,44 @@
         "gnode_a1e346b3cdb8": {
           "id": "gnode_a1e346b3cdb8",
           "block_id": "blk_vid_ariane_casual_01",
-          "x": 30.943301182283903,
-          "y": -694.409399444824
+          "x": 211.6824212155309,
+          "y": -911.2963434847203
         },
         "gnode_73bcfb68b362": {
           "id": "gnode_73bcfb68b362",
           "block_id": "blk_text_2b9cd1d27be5",
-          "x": -434.9882641637629,
-          "y": -501.84741484877685
+          "x": -854.29429144913,
+          "y": -1083.7379965567175
+        },
+        "gnode_0a5fe8995ed6": {
+          "id": "gnode_0a5fe8995ed6",
+          "block_id": "blk_ab7b5a624ce0",
+          "x": -430.0,
+          "y": -91.0
+        },
+        "gnode_b94de657ed96": {
+          "id": "gnode_b94de657ed96",
+          "block_id": "blk_4d8811ec60ec",
+          "x": 350.0,
+          "y": 47.0
+        },
+        "gnode_0d27050e42b7": {
+          "id": "gnode_0d27050e42b7",
+          "block_id": "blk_9d00b35819d2",
+          "x": -711.8840287700255,
+          "y": 522.2476928631197
+        },
+        "gnode_102bad8f4573": {
+          "id": "gnode_102bad8f4573",
+          "block_id": "blk_e440e5cb132e",
+          "x": -708.152005584427,
+          "y": 270.3902214233052
+        },
+        "gnode_2a6c709d6031": {
+          "id": "gnode_2a6c709d6031",
+          "block_id": "blk_b588ae0b714d",
+          "x": 29.901234512728706,
+          "y": 529.257227251672
         }
       },
       "edges": {
@@ -263,9 +340,7 @@
     "provenance": {
       "kind": "local"
     },
-    "container_paths": {
-      "blk_character_ariane_form_casual": "Marine"
-    },
+    "container_paths": {},
     "functional_name": "",
     "tags": [
       "character",
@@ -811,7 +886,7 @@
     "type": "text",
     "profile": "note",
     "name": "ESE",
-    "description": "Imported from Finder: GPT_PromptGenGrid3x3.prompt.txt",
+    "description": "Ceci est un texte",
     "prompt_ref": "",
     "prompt_generated": "",
     "comment": "",
@@ -1862,6 +1937,171 @@
       "expected_types": [
         "prompt"
       ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_ab7b5a624ce0",
+    "type": "image",
+    "profile": "asset",
+    "name": "all",
+    "description": "Imported from disk: all.png",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "imported",
+      "workspace_toolbar",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/all.png",
+      "mime_type": "image/png",
+      "original_name": "all.png"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_4d8811ec60ec",
+    "type": "text",
+    "profile": "note",
+    "name": "Note",
+    "description": "",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "note",
+      "postit"
+    ],
+    "content": {
+      "text": "kljkj",
+      "note_style": "postit"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_9d00b35819d2",
+    "type": "image",
+    "profile": "asset",
+    "name": "ChatGPT Image 1 janv. 2026, 23_29_34",
+    "description": "Imported from disk: ChatGPT Image 1 janv. 2026, 23_29_34.png",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "imported",
+      "workspace_graph_drop",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/ChatGPT Image 1 janv. 2026, 23_29_34.png",
+      "mime_type": "image/png",
+      "original_name": "ChatGPT Image 1 janv. 2026, 23_29_34.png"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_e440e5cb132e",
+    "type": "empty",
+    "profile": "placeholder",
+    "name": "Placeholder",
+    "description": "Manual placeholder block.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "placeholder",
+      "workspace_toolbar"
+    ],
+    "content": {
+      "placeholder": true
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_b588ae0b714d",
+    "type": "video",
+    "profile": "asset",
+    "name": "train.render",
+    "description": "Imported from disk: train.render.mp4",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane_form_casual": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "imported",
+      "workspace_graph_drop",
+      "video"
+    ],
+    "content": {
+      "storage_path": "storage/files/train.render.mp4",
+      "mime_type": "video/mp4",
+      "original_name": "train.render.mp4"
     },
     "contains": [],
     "inputs": [],

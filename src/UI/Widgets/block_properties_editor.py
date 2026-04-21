@@ -9,7 +9,7 @@ from PySide6.QtGui import QColor, QFont, QFontDatabase, QIcon, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import QHeaderView, QLineEdit, QStyledItemDelegate, QTextEdit, QTreeView, QVBoxLayout, QWidget
 
-from domain import Block, InputConnection
+from domain import Block, BlockType, InputConnection
 from UI.themes import active_theme_tokens_ref, initialize_widget_primitives
 
 ROLE_FIELD_KEY = Qt.UserRole + 610
@@ -65,6 +65,7 @@ FIELD_SPECS: tuple[PropertyFieldSpec, ...] = (
     PropertyFieldSpec(key="shared", label="Shared", group="general"),
     PropertyFieldSpec(key="functional_name", label="Functional Name", group="general", editable=True),
     PropertyFieldSpec(key="description", label="Description", group="text", editable=True, multiline=True, editor_kind="multiline"),
+    PropertyFieldSpec(key="text_content", label="Text", group="text", editable=True, multiline=True, editor_kind="multiline"),
     PropertyFieldSpec(key="comment", label="Comment", group="text", editable=True, multiline=True, editor_kind="multiline"),
     PropertyFieldSpec(key="prompt_ref", label="Prompt Ref", group="prompt", editable=True, multiline=True, editor_kind="multiline"),
     PropertyFieldSpec(
@@ -337,6 +338,8 @@ class BlockPropertiesEditor(QWidget):
             return block.functional_name or ""
         if key == "description":
             return block.description or ""
+        if key == "text_content":
+            return str(block.content.get("text", "") or "")
         if key == "comment":
             return block.comment or ""
         if key == "prompt_ref":
@@ -379,6 +382,8 @@ class BlockPropertiesEditor(QWidget):
             return block.functional_name.strip()
         if key == "description":
             return block.description.strip()
+        if key == "text_content":
+            return str(block.content.get("text", "") or "").strip()
         if key == "comment":
             return block.comment.strip()
         if key == "prompt_ref":
@@ -395,6 +400,8 @@ class BlockPropertiesEditor(QWidget):
             return False
         if not block.is_editable():
             return False
+        if key == "text_content":
+            return block.type == BlockType.TEXT
         if key == "container_path":
             return bool(str(self._current_container_id or "").strip())
         return True

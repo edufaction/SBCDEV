@@ -37,8 +37,8 @@ def _normalize_profile(value: str) -> str:
 
 _DEFAULT_RULES: dict[str, ContainerChildRule] = {
     "character": ContainerChildRule(
-        allowed_child_types={BlockType.CONTAINER},
-        allowed_child_profiles={"character_form"},
+        allowed_child_types={BlockType.CONTAINER, BlockType.TEXT},
+        allowed_child_profiles={"character_form", "note"},
     ),
     "character_form": ContainerChildRule(
         allowed_child_types={

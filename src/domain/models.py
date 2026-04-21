@@ -59,6 +59,7 @@ PROFILES = {
     # technical (optional)
     "metadata",
     "config",
+    "placeholder",
     "internal_lib_empty",
     "template_slot",
 }

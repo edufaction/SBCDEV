@@ -261,6 +261,57 @@ Préférer :
 
 ---
 
+## Politique explicite sur `MainWindow`
+
+### Rôle autorisé de `MainWindow`
+`MainWindow` doit rester une **composition root UI**.
+
+Il peut :
+- créer les widgets principaux,
+- instancier les controllers et services applicatifs,
+- connecter les signaux,
+- gérer la navigation globale,
+- coordonner l’ouverture et la fermeture des fenêtres secondaires,
+- déclencher le rafraîchissement global de l’interface.
+- déclencher le cycle de vie projet via des services dédiés, sans contenir leur logique.
+
+### Rôle interdit à `MainWindow`
+`MainWindow` ne doit pas porter directement :
+- la logique métier de création, mise à jour ou validation des blocks,
+- la logique d’import média,
+- la logique d’ajout dans les containers,
+- la logique de drag & drop métier,
+- la logique de graph (liens, placement, projection),
+- la logique de persistance détaillée hors orchestration de haut niveau.
+- la logique de seed, bootstrap ou migration de structure projet/workspace.
+
+Si une méthode de `MainWindow` commence à :
+- valider des règles métier,
+- muter plusieurs `Block`,
+- interpréter des types ou profils métier,
+- décider comment un container accepte ou remplace un contenu,
+
+alors cette logique doit être extraite vers un service applicatif ou un controller.
+
+### Architecture cible à privilégier
+Pour toute évolution importante, privilégier la structure suivante :
+- `ProjectSession` : état vivant du projet, accès aux blocks, persistance, reconstruction des cas d’usage.
+- `WorkspaceController` : orchestration UI d’un workspace, traduction des signaux des panels en actions applicatives.
+- `ProjectStructureService` : seed, normalisation et migration de la structure canonique du projet.
+- `Services applicatifs transverses` : import média, contenu de container, graph, édition de block.
+- `Panels / Widgets` : affichage, signaux, setters, aucune logique métier complexe.
+
+### Règle de décision
+Avant d’ajouter une méthode dans `MainWindow`, vérifier :
+1. est-ce uniquement du wiring UI ou de la navigation ?
+2. si non, cela doit aller ailleurs.
+
+### Conséquence attendue
+À terme, `MainWindow` doit être lisible comme un fichier d’assemblage.
+Si sa lecture ressemble à une liste de cas d’usage métier, l’architecture dérive et doit être corrigée.
+
+---
+
 ## Architecture de stockage projet / LIBS
 
 ### Principes

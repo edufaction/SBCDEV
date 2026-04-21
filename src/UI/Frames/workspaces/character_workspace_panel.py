@@ -2,12 +2,30 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QHBoxLayout, QInputDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtWidgets import (
+    QFileDialog,
+    QHBoxLayout,
+    QInputDialog,
+    QLabel,
+    QLineEdit,
+    QMenu,
+    QPushButton,
+    QToolButton,
+    QVBoxLayout,
+    QWidget,
+)
 
 from application import CharacterWorkspaceService
 from domain import Block, BlockType
-from UI.Widgets import BlockPropertyWidget, WorkspaceFrameWidget, WorkspaceGraphWidget, WorkspaceTreePanelWidget
+from UI.Widgets import (
+    BlockPropertyWidget,
+    WorkspaceFrameWidget,
+    WorkspaceGraphWidget,
+    WorkspaceToolbarWidget,
+    WorkspaceTreePanelWidget,
+)
 from UI.themes import initialize_widget_primitives
 
 
@@ -20,8 +38,12 @@ class CharacterWorkspacePanel(QWidget):
     graph_link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
+    graph_files_drop_requested = Signal(str, str, object, float, float)
     character_create_requested = Signal(str)
     character_update_requested = Signal(dict)
+    note_create_requested = Signal(str)
+    block_files_add_requested = Signal(str, object)
+    placeholder_block_create_requested = Signal(str)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -45,13 +67,21 @@ class CharacterWorkspacePanel(QWidget):
         self._selected_character_id = ""
         self._selected_property_container_id = ""
 
-        top_bar = QWidget(self._frame)
-        top_bar.setProperty("panelAlt", True)
-        top_layout = QHBoxLayout(top_bar)
-        top_layout.setContentsMargins(9, 9, 9, 9)
-        top_layout.setSpacing(9)
+        top_bar = WorkspaceToolbarWidget("CHARACTER TOOLS", parent=self._frame)
         self._create_character_button = QPushButton("NEW CHARACTER", top_bar)
         self._create_character_button.setProperty("primary", True)
+        self._create_note_button = QPushButton("NEW NOTE", top_bar)
+        self._create_note_button.setProperty("ghost", True)
+        self._add_block_button = QToolButton(top_bar)
+        self._add_block_button.setText("ADD BLOCK")
+        self._add_block_button.setPopupMode(QToolButton.InstantPopup)
+        self._add_block_button.setProperty("ghost", True)
+        self._add_block_menu = QMenu(self._add_block_button)
+        self._import_files_action = QAction("Import From Disk", self._add_block_menu)
+        self._placeholder_action = QAction("Add Empty Placeholder", self._add_block_menu)
+        self._add_block_menu.addAction(self._import_files_action)
+        self._add_block_menu.addAction(self._placeholder_action)
+        self._add_block_button.setMenu(self._add_block_menu)
         self._character_name_edit = QLineEdit(top_bar)
         self._character_name_edit.setPlaceholderText("Selected character name")
         self._character_tags_edit = QLineEdit(top_bar)
@@ -61,12 +91,17 @@ class CharacterWorkspacePanel(QWidget):
         self._character_summary_label = QLabel("0 character(s)", top_bar)
         self._character_summary_label.setProperty("muted", True)
         self._character_summary_label.setProperty("technical", True)
-        top_layout.addWidget(self._create_character_button, 0, Qt.AlignLeft)
-        top_layout.addWidget(self._character_name_edit, 2)
-        top_layout.addWidget(self._character_tags_edit, 2)
-        top_layout.addWidget(self._save_character_button, 0, Qt.AlignLeft)
-        top_layout.addStretch(1)
-        top_layout.addWidget(self._character_summary_label, 0, Qt.AlignRight)
+        top_bar.set_leading_widgets(
+            [
+                self._create_character_button,
+                self._create_note_button,
+                self._add_block_button,
+                self._character_name_edit,
+                self._character_tags_edit,
+                self._save_character_button,
+            ]
+        )
+        top_bar.set_trailing_widgets([self._character_summary_label])
 
         bottom_bar = QWidget(self._frame)
         bottom_bar.setProperty("panelAlt", True)
@@ -97,10 +132,15 @@ class CharacterWorkspacePanel(QWidget):
         self._graph_widget.link_delete_requested.connect(self.graph_link_delete_requested.emit)
         self._graph_widget.graph_block_move_requested.connect(self.graph_block_move_requested.emit)
         self._graph_widget.graph_layout_initialize_requested.connect(self.graph_layout_initialize_requested.emit)
+        self._graph_widget.graph_files_drop_requested.connect(self.graph_files_drop_requested.emit)
         self._create_character_button.clicked.connect(self._prompt_create_character)
+        self._create_note_button.clicked.connect(self._emit_note_create_request)
+        self._import_files_action.triggered.connect(self._prompt_add_block_files)
+        self._placeholder_action.triggered.connect(self._emit_placeholder_block_create_request)
         self._save_character_button.clicked.connect(self._emit_character_update)
         initialize_widget_primitives(self)
         self._set_character_editor_enabled(False)
+        self._refresh_toolbar_action_state()
 
     def set_blocks(
         self,
@@ -117,6 +157,7 @@ class CharacterWorkspacePanel(QWidget):
         self._graph_widget.set_active_container(preferred_container_id or self._default_graph_container_id())
         self._property_widget.set_block(None)
         self._refresh_character_toolbar()
+        self._refresh_toolbar_action_state()
 
     def set_message(self, message: str) -> None:
         self._message_label.setText(message.strip())
@@ -174,6 +215,7 @@ class CharacterWorkspacePanel(QWidget):
             self._graph_container_for_selection(block=block, container_id=normalized_container_id)
         )
         self._load_character_editor(block)
+        self._refresh_toolbar_action_state()
 
     def _on_graph_node_selected(self, block_id: str) -> None:
         block = self._blocks_by_id.get(str(block_id).strip())
@@ -182,6 +224,7 @@ class CharacterWorkspacePanel(QWidget):
         self._selected_property_container_id = property_container_id
         self._property_widget.set_block(block, container_id=property_container_id or None)
         self._load_character_editor(block)
+        self._refresh_toolbar_action_state()
 
     def _prompt_create_character(self) -> None:
         character_name, accepted = QInputDialog.getText(self, "New Character", "Character name:")
@@ -206,6 +249,35 @@ class CharacterWorkspacePanel(QWidget):
         }
         self.character_update_requested.emit(payload)
 
+    def _emit_note_create_request(self) -> None:
+        container_id = self._graph_widget.active_container_id().strip() or self._default_graph_container_id()
+        if not container_id:
+            self.set_message("Select a container first.")
+            return
+        self.note_create_requested.emit(container_id)
+
+    def _prompt_add_block_files(self) -> None:
+        container = self._active_container()
+        if container is None or not self._can_add_non_container_blocks(container):
+            self.set_message("Select a character form to add blocks.")
+            return
+        file_paths, _selected_filter = QFileDialog.getOpenFileNames(
+            self,
+            "Import Blocks Into Character Form",
+            "",
+            "All Supported Files (*.png *.jpg *.jpeg *.webp *.bmp *.tif *.tiff *.mp4 *.mov *.m4v *.avi *.mkv *.webm *.wav *.mp3 *.aac *.m4a *.flac *.ogg *.txt *.md *.markdown *.json *.yaml *.yml *.prompt);;All Files (*)",
+        )
+        if not file_paths:
+            return
+        self.block_files_add_requested.emit(container.id, list(file_paths))
+
+    def _emit_placeholder_block_create_request(self) -> None:
+        container = self._active_container()
+        if container is None or not self._can_add_non_container_blocks(container):
+            self.set_message("Select a character form to add blocks.")
+            return
+        self.placeholder_block_create_requested.emit(container.id)
+
     def _refresh_character_toolbar(self) -> None:
         characters = self._character_service.list_characters(self._blocks)
         preview = ", ".join(character.name or character.id for character in characters[:3])
@@ -216,6 +288,7 @@ class CharacterWorkspacePanel(QWidget):
         self._character_summary_label.setText(summary)
         selected = self._selected_character()
         self._load_character_editor(selected)
+        self._refresh_toolbar_action_state()
 
     def _load_character_editor(self, block: Block | None) -> None:
         character = self._resolve_character_from_block(block)
@@ -254,6 +327,28 @@ class CharacterWorkspacePanel(QWidget):
         self._character_name_edit.setEnabled(enabled)
         self._character_tags_edit.setEnabled(enabled)
         self._save_character_button.setEnabled(enabled)
+
+    def _refresh_toolbar_action_state(self) -> None:
+        container = self._active_container()
+        can_add = self._can_add_non_container_blocks(container)
+        self._add_block_button.setEnabled(can_add)
+        if can_add:
+            self._add_block_button.setToolTip("Import a media block or add an empty placeholder to the current character form.")
+            return
+        self._add_block_button.setToolTip("Select a CHARACTER FORM container to add blocks.")
+
+    def _active_container(self) -> Block | None:
+        container_id = self._graph_widget.active_container_id().strip()
+        candidate = self._blocks_by_id.get(container_id)
+        if candidate is None or candidate.type != BlockType.CONTAINER:
+            return None
+        return candidate
+
+    @staticmethod
+    def _can_add_non_container_blocks(container: Block | None) -> bool:
+        if container is None:
+            return False
+        return container.profile == "character_form"
 
     @staticmethod
     def _parse_tags(text: str) -> list[str]:

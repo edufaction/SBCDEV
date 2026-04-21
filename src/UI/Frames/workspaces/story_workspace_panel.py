@@ -3,10 +3,16 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from domain import Block, BlockType
-from UI.Widgets import BlockPropertyWidget, WorkspaceFrameWidget, WorkspaceGraphWidget, WorkspaceTreePanelWidget
+from UI.Widgets import (
+    BlockPropertyWidget,
+    WorkspaceFrameWidget,
+    WorkspaceGraphWidget,
+    WorkspaceToolbarWidget,
+    WorkspaceTreePanelWidget,
+)
 from UI.themes import initialize_widget_primitives
 
 
@@ -19,6 +25,8 @@ class StoryWorkspacePanel(QWidget):
     graph_link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
+    graph_files_drop_requested = Signal(str, str, object, float, float)
+    note_create_requested = Signal(str)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -40,15 +48,10 @@ class StoryWorkspacePanel(QWidget):
         self._blocks_by_id: dict[str, Block] = {}
         self._selected_property_container_id = ""
 
-        top_bar = QWidget(self._frame)
-        top_bar.setProperty("panelAlt", True)
-        top_layout = QHBoxLayout(top_bar)
-        top_layout.setContentsMargins(9, 9, 9, 9)
-        top_layout.setSpacing(9)
-        self._toolbar_label = QLabel("STORY TOOLBAR AREA", top_bar)
-        self._toolbar_label.setProperty("section", True)
-        top_layout.addWidget(self._toolbar_label, 0, Qt.AlignLeft)
-        top_layout.addStretch(1)
+        top_bar = WorkspaceToolbarWidget("STORY TOOLS", parent=self._frame)
+        self._create_note_button = QPushButton("NEW NOTE", top_bar)
+        self._create_note_button.setProperty("ghost", True)
+        top_bar.set_leading_widgets([self._create_note_button])
 
         bottom_bar = QWidget(self._frame)
         bottom_bar.setProperty("panelAlt", True)
@@ -79,6 +82,8 @@ class StoryWorkspacePanel(QWidget):
         self._graph_widget.link_delete_requested.connect(self.graph_link_delete_requested.emit)
         self._graph_widget.graph_block_move_requested.connect(self.graph_block_move_requested.emit)
         self._graph_widget.graph_layout_initialize_requested.connect(self.graph_layout_initialize_requested.emit)
+        self._graph_widget.graph_files_drop_requested.connect(self.graph_files_drop_requested.emit)
+        self._create_note_button.clicked.connect(self._emit_note_create_request)
         initialize_widget_primitives(self)
 
     def set_blocks(
@@ -224,3 +229,10 @@ class StoryWorkspacePanel(QWidget):
         if len(container_ids) == 1:
             return container_ids[0]
         return ""
+
+    def _emit_note_create_request(self) -> None:
+        container_id = self._graph_widget.active_container_id().strip() or self._default_graph_container_id()
+        if not container_id:
+            self.set_message("Select a container first.")
+            return
+        self.note_create_requested.emit(container_id)

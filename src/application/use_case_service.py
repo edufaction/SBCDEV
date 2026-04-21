@@ -256,6 +256,10 @@ class UseCaseService:
         target_domain = self._as_block_domain(domain)
         return [block for block in self._block_service.list_blocks() if block.domain == target_domain]
 
+    def list_blocks(self) -> list[Block]:
+        """Return all known blocks from the current repository."""
+        return self._block_service.list_blocks()
+
     def list_shared_blocks(self, domain: str | BlockDomain | None = None) -> list[Block]:
         """List shared blocks, optionally filtered by domain."""
         blocks = [block for block in self._block_service.list_blocks() if block.shared]
