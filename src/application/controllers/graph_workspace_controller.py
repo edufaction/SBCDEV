@@ -121,3 +121,18 @@ class GraphWorkspaceController:
             self._set_feedback(container_id, "Graph layout initialization failed.")
             return
         self._persist_blocks(self._session.blocks)
+
+    def resize_block(self, *, container_id: str, block_id: str, width: float, height: float) -> None:
+        if self._session.project_root is None:
+            self._set_feedback(container_id, "Open a project first.")
+            return
+        try:
+            use_case = self._session.rebuild_use_case()
+            use_case.resize_block_in_graph(container_id, block_id, width=width, height=height)
+        except ValidationError as exc:
+            self._set_feedback(container_id, str(exc))
+            return
+        except Exception:
+            self._set_feedback(container_id, "Block resize persistence failed.")
+            return
+        self._persist_blocks(self._session.blocks)

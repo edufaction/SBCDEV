@@ -9,7 +9,6 @@ from domain import (
     Block,
     BlockAccessMode,
     BlockDomain,
-    BlockProvenanceKind,
     BlockType,
     FreeGraph,
     FreeTree,
@@ -17,6 +16,7 @@ from domain import (
     NotFoundError,
     PortType,
     ValidationError,
+    normalize_block_provenance,
 )
 from infrastructure.repositories import BlockRepository
 from services.container_rules import ContainerRulesService
@@ -40,7 +40,7 @@ class BlockService:
         prompt_ref: str = "",
         prompt_generated: str = "",
         comment: str = "",
-        shared: bool = False,
+        exposed: bool = False,
         domain: BlockDomain = BlockDomain.LIB,
         access_mode: BlockAccessMode = BlockAccessMode.OWNED,
         provenance: dict[str, Any] | None = None,
@@ -63,7 +63,7 @@ class BlockService:
             prompt_ref=prompt_ref,
             prompt_generated=prompt_generated,
             comment=comment,
-            shared=shared,
+            exposed=exposed,
             domain=domain,
             access_mode=access_mode,
             provenance=self._normalize_provenance(provenance, access_mode=access_mode),
@@ -264,17 +264,4 @@ class BlockService:
         *,
         access_mode: BlockAccessMode,
     ) -> dict[str, Any]:
-        payload = dict(provenance or {})
-        raw_kind = str(payload.get("kind", "") or "").strip().lower()
-        if raw_kind in {kind.value for kind in BlockProvenanceKind}:
-            kind = raw_kind
-        else:
-            kind = (
-                BlockProvenanceKind.LIB_LINK.value
-                if access_mode == BlockAccessMode.LINK
-                else BlockProvenanceKind.LOCAL.value
-            )
-        if access_mode == BlockAccessMode.LINK and kind == BlockProvenanceKind.LOCAL.value:
-            kind = BlockProvenanceKind.LIB_LINK.value
-        payload["kind"] = kind
-        return payload
+        return normalize_block_provenance(provenance, access_mode=access_mode)

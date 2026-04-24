@@ -3,13 +3,13 @@ from domain import Block, BlockDomain, BlockType, FreeGraph, FreeTree
 
 
 def _workspace_roots() -> list[Block]:
-    project_root = Block(
-        id="blk_project_root",
+    project_storage_root = Block(
+        id="blk_storage_project_root",
         type=BlockType.CONTAINER,
-        profile="workspace_root",
-        name="PROJET",
+        profile="storage_root",
+        name="Project Storage",
         domain=BlockDomain.LIB,
-        content={"workspace_role": "project_root"},
+        content={"storage_kind": "project_space", "source_kind": "project"},
         tree=FreeTree(),
         graph=FreeGraph(),
     )
@@ -19,12 +19,12 @@ def _workspace_roots() -> list[Block]:
         profile="workspace_root",
         name="Story Root",
         domain=BlockDomain.STORY,
-        content={"workspace_role": "story_root"},
+        content={"workspace_role": "story_root", "workspace_scope": "project", "storage_root_id": project_storage_root.id},
         tree=FreeTree(),
         graph=FreeGraph(),
     )
-    project_root.contains = [story_root.id]
-    return [project_root, story_root]
+    project_storage_root.contains = [story_root.id]
+    return [project_storage_root, story_root]
 
 
 def test_create_shot_attaches_block_to_story_root() -> None:
@@ -56,12 +56,12 @@ def test_create_shot_requires_story_root() -> None:
     service = StoryShotService()
     blocks = [
         Block(
-            id="blk_project_root",
+            id="blk_characters_root",
             type=BlockType.CONTAINER,
             profile="workspace_root",
-            name="PROJET",
-            domain=BlockDomain.LIB,
-            content={"workspace_role": "project_root"},
+            name="Characters Root",
+            domain=BlockDomain.CHARACTERS,
+            content={"workspace_role": "characters_root"},
             tree=FreeTree(),
             graph=FreeGraph(),
         )

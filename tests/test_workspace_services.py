@@ -1,19 +1,33 @@
 from pathlib import Path
 
 from application import BlockWorkspaceService, CharacterWorkspaceService, LibraryWorkspaceService
-from domain import Block, BlockType
+from domain import Block, BlockDomain, BlockType
 from infrastructure.storage import ProjectStorageService
 
 
 def test_character_workspace_service_creates_template_under_characters_root() -> None:
+    storage_root = Block(
+        id="blk_storage_project_root",
+        type=BlockType.CONTAINER,
+        profile="storage_root",
+        name="Project Storage",
+        domain=BlockDomain.LIB,
+        content={"storage_kind": "project_space", "source_kind": "project"},
+    )
     root = Block(
         id="blk_characters_root",
         type=BlockType.CONTAINER,
         profile="workspace_root",
         name="Characters Root",
-        content={"workspace_role": "characters_root"},
+        domain=BlockDomain.CHARACTERS,
+        content={
+            "workspace_role": "characters_root",
+            "workspace_scope": "project",
+            "storage_root_id": storage_root.id,
+        },
     )
-    blocks = [root]
+    storage_root.contains = [root.id]
+    blocks = [storage_root, root]
 
     service = CharacterWorkspaceService()
     character = service.create_character(blocks, name="Ariane")
@@ -36,17 +50,31 @@ def test_character_workspace_service_creates_template_under_characters_root() ->
 
 
 def test_character_workspace_service_lists_root_order_then_fallback() -> None:
+    storage_root = Block(
+        id="blk_storage_project_root",
+        type=BlockType.CONTAINER,
+        profile="storage_root",
+        name="Project Storage",
+        domain=BlockDomain.LIB,
+        content={"storage_kind": "project_space", "source_kind": "project"},
+    )
     root = Block(
         id="blk_characters_root",
         type=BlockType.CONTAINER,
         profile="workspace_root",
         name="Characters Root",
         contains=["char_b"],
-        content={"workspace_role": "characters_root"},
+        domain=BlockDomain.CHARACTERS,
+        content={
+            "workspace_role": "characters_root",
+            "workspace_scope": "project",
+            "storage_root_id": storage_root.id,
+        },
     )
     char_a = Block(id="char_a", type=BlockType.CONTAINER, profile="character", name="Alpha")
     char_b = Block(id="char_b", type=BlockType.CONTAINER, profile="character", name="Beta")
-    blocks = [root, char_a, char_b]
+    storage_root.contains = [root.id]
+    blocks = [storage_root, root, char_a, char_b]
 
     service = CharacterWorkspaceService()
 

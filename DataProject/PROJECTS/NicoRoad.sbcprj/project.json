@@ -1,0 +1,24 @@
+{
+  "id": "project_8576bdfe",
+  "kind": "project",
+  "name": "NicoRoad",
+  "version": 1,
+  "storage_layout_version": 2,
+  "description": "",
+  "preview_image_path": "",
+  "author_name": "fcdw3504",
+  "author_email": "",
+  "mounted_libraries": [
+    {
+      "id": "lib_mount_b9dde38b",
+      "kind": "LIB",
+      "path": "/Users/fcdw3504/Documents/GitHub/SBCDEV/DataProject/PROJECTS/LIBRARIES/USER/BASE",
+      "label": "BASE",
+      "enabled": true,
+      "read_only": true,
+      "mounted_at": "2026-04-24T12:15:17Z"
+    }
+  ],
+  "created_at": "2026-04-22T07:56:44Z",
+  "updated_at": "2026-04-24T12:15:17Z"
+}

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Callable
 
-from application.services import ContainerContentService, ImportRequest
+from application.services import BlockDeletionService, ContainerContentService, ImportRequest
 from application.session import ProjectSession
 from application.workspaces import BlockWorkspaceService, CharacterWorkspaceService
 from domain import ValidationError
@@ -20,6 +20,7 @@ class CharacterWorkspaceController:
         panel: CharacterWorkspacePanel,
         session: ProjectSession,
         content_service: ContainerContentService,
+        block_deletion_service: BlockDeletionService,
         block_workspace_service: BlockWorkspaceService,
         character_workspace_service: CharacterWorkspaceService,
         persist_blocks: Callable[[object], None],
@@ -27,6 +28,7 @@ class CharacterWorkspaceController:
         self._panel = panel
         self._session = session
         self._content_service = content_service
+        self._block_deletion_service = block_deletion_service
         self._block_workspace_service = block_workspace_service
         self._character_workspace_service = character_workspace_service
         self._persist_blocks = persist_blocks
@@ -145,3 +147,18 @@ class CharacterWorkspaceController:
             return
         self._panel.select_block(result.affected_block_ids[-1], container_id=result.container_id)
         self._panel.set_message(result.message)
+
+    def delete_block(self, block_id: str) -> None:
+        if self._session.project_root is None:
+            self._panel.set_message("Open a project first.")
+            return
+        try:
+            result = self._block_deletion_service.delete(self._session.blocks, block_id=str(block_id or "").strip())
+        except ValueError as exc:
+            self._panel.set_message(str(exc))
+            return
+        except Exception:
+            self._panel.set_message("Block deletion failed.")
+            return
+        self._persist_blocks(self._session.blocks)
+        self._panel.set_message(f"Deleted {len(result.deleted_ids)} block(s): {result.deleted_names[0]}")

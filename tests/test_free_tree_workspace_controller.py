@@ -130,7 +130,7 @@ def test_rebuild_from_snapshot_keeps_block_refs_without_children() -> None:
     assert "node_folder_user" in controller.tree.root_ids
 
 
-def test_apply_persisted_tree_deduplicates_same_block_between_container_and_root() -> None:
+def test_replay_tree_snapshot_deduplicates_same_block_between_container_and_root() -> None:
     controller = FreeTreeWorkspaceController()
     controller.set_blocks(_sample_blocks())
 

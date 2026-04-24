@@ -31,6 +31,15 @@ class FreeGraphService:
         node.y = y
         return node
 
+    def resize_node(self, container: Block, node_id: str, width: float, height: float) -> FreeGraphNode:
+        graph = self.ensure_graph(container)
+        node = graph.nodes.get(node_id)
+        if node is None:
+            raise NotFoundError(f"Graph node not found: {node_id}")
+        node.width = width
+        node.height = height
+        return node
+
     def remove_node(self, container: Block, node_id: str) -> None:
         graph = self.ensure_graph(container)
         if node_id not in graph.nodes:
@@ -75,4 +84,3 @@ class FreeGraphService:
     def _assert_container(container: Block) -> None:
         if container.type != BlockType.CONTAINER:
             raise ValidationError(f"Block is not a container: {container.id}")
-

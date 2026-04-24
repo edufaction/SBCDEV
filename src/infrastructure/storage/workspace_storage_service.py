@@ -6,7 +6,7 @@ This module owns on-disk workspace conventions: metadata file, UI state file,
 partitioned block files under workspaces, and imported media files.
 
 It also encapsulates mounted library metadata normalization so UI and
-application services can rely on a stable format.
+application services can rely on a stable canonical format.
 """
 
 import json
@@ -333,28 +333,25 @@ class WorkspaceStorageService:
             return {}
 
         by_id = {block.id: block for block in blocks}
-        workspace_roots = [
+        partition_roots = [
             block
             for block in blocks
-            if block.type == BlockType.CONTAINER and block.profile == "workspace_root"
+            if block.type == BlockType.CONTAINER and block.profile in {"storage_root", "workspace_root"}
         ]
-        if not workspace_roots:
+        if not partition_roots:
             return {"default": list(blocks)}
 
-        root_ids = {block.id for block in workspace_roots}
-        root_key_by_id = self._workspace_keys_for_roots(workspace_roots)
-        project_root_id = self._project_root_id(workspace_roots)
+        root_ids = {block.id for block in partition_roots}
+        root_key_by_id = self._workspace_keys_for_roots(partition_roots)
         partitions: dict[str, list[Block]] = {key: [] for key in root_key_by_id.values()}
         assigned: dict[str, str] = {}
 
-        for root in workspace_roots:
+        for root in partition_roots:
             key = root_key_by_id[root.id]
             partitions[key].append(root)
             assigned[root.id] = key
 
-        for root in workspace_roots:
-            if root.id == project_root_id:
-                continue
+        for root in partition_roots:
             key = root_key_by_id[root.id]
             for block_id in self._collect_descendants(root.id, by_id, root_ids):
                 if block_id in assigned:
@@ -365,12 +362,8 @@ class WorkspaceStorageService:
                 partitions[key].append(block)
                 assigned[block_id] = key
 
-        fallback_key = root_key_by_id.get(project_root_id or "", "")
-        if not fallback_key and partitions:
-            fallback_key = next(iter(partitions.keys()))
-        if not fallback_key:
-            fallback_key = "default"
-            partitions.setdefault(fallback_key, [])
+        fallback_key = "default"
+        partitions.setdefault(fallback_key, [])
 
         for block in blocks:
             if block.id in assigned:
@@ -428,21 +421,22 @@ class WorkspaceStorageService:
             keys[root.id] = candidate
         return keys
 
-    @staticmethod
-    def _project_root_id(roots: list[Block]) -> str | None:
-        for root in roots:
-            role = root.as_container().workspace_role
-            if role == "project_root":
-                return root.id
-        for root in roots:
-            if root.id == "blk_project_root":
-                return root.id
-        return None
-
     def _workspace_key_for_root(self, block: Block) -> str:
-        role = block.as_container().workspace_role
+        content = block.as_container()
+        if block.profile == "storage_root":
+            kind = self._sanitize_workspace_key(content.storage_kind)
+            mount_suffix = self._sanitize_workspace_key(content.mount_id)
+            if mount_suffix:
+                return f"storage_{kind or 'root'}_{mount_suffix}"
+            return f"storage_{kind or self._sanitize_workspace_key(block.id) or 'root'}"
+        role = content.workspace_role
+        scope = content.workspace_scope
         if role:
-            return self._sanitize_workspace_key(role)
+            base = self._sanitize_workspace_key(role)
+            scoped = self._sanitize_workspace_key(scope)
+            if scoped:
+                return f"{base}_{scoped}"
+            return base
         name = (block.name or "").strip()
         if name:
             return self._sanitize_workspace_key(name)

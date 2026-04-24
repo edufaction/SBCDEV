@@ -62,6 +62,23 @@ class ContainerContent:
         ``workspace_role`` – semantic role string (e.g. ``"story_root"``,
                              ``"characters_root"``, ``"internal_lib"``).
                              Always lowercase and stripped.
+        ``workspace_scope`` – logical scope qualifier for one workspace root
+                              (e.g. ``"project"``, ``"internal"``,
+                              ``"mount:lib_mount_01"``).
+        ``storage_root_id`` – identifier of the parent technical storage root
+                              when this container is bound to one.
+        ``storage_kind``   – technical storage root kind
+                             (e.g. ``"project_space"``, ``"internal_lib"``,
+                             ``"mounted_lib"``).
+        ``source_kind``    – origin of the storage root
+                             (e.g. ``"project"``, ``"internal"``,
+                             ``"mounted"``).
+        ``mount_id``       – mount identifier when this container comes from
+                             a mounted external source.
+        ``library_enabled`` – ``True`` when this storage root can be exposed
+                              as a library source.
+        ``read_only``      – ``True`` when this storage root is not locally
+                             editable.
         ``internal_lib``   – ``True`` when this block belongs to the internal
                              library workspace.
         ``drop_target``    – ``True`` when this block acts as a drag-and-drop
@@ -69,5 +86,12 @@ class ContainerContent:
     """
 
     workspace_role: str = ""
+    workspace_scope: str = ""
+    storage_root_id: str = ""
+    storage_kind: str = ""
+    source_kind: str = ""
+    mount_id: str = ""
+    library_enabled: bool = False
+    read_only: bool = False
     internal_lib: bool = False
     drop_target: bool = False

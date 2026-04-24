@@ -36,6 +36,24 @@ def test_character_workspace_panel_emits_create_request(monkeypatch) -> None:
     assert received == ["Nova"]
 
 
+def test_character_workspace_panel_toolbar_buttons_load_icons() -> None:
+    app = _app()
+    panel = CharacterWorkspacePanel()
+    panel.show()
+    app.processEvents()
+
+    buttons = [
+        panel._create_character_button,
+        panel._create_note_button,
+        panel._add_block_button,
+        panel._save_character_button,
+        panel._delete_block_button,
+    ]
+
+    for button in buttons:
+        assert button.icon().isNull() is False
+
+
 def test_character_workspace_panel_emits_update_request_for_selected_character() -> None:
     app = _app()
     root = Block(
@@ -106,6 +124,57 @@ def test_character_workspace_panel_emits_note_create_request_for_active_containe
     QTest.mouseClick(panel._create_note_button, Qt.LeftButton)
     app.processEvents()
 
+    assert received == ["char_1"]
+
+
+def test_character_workspace_panel_emits_delete_request_with_descendant_preview(monkeypatch) -> None:
+    app = _app()
+    root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters Root",
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Ariane",
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Sheet",
+        contains=["note_1"],
+        container_paths={"char_1": ""},
+    )
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Sticky", container_paths={"form_1": ""})
+
+    panel = CharacterWorkspacePanel()
+    panel.set_blocks([root, character, form, note], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    prompted: list[tuple[str, list[str]]] = []
+    monkeypatch.setattr(
+        panel,
+        "confirm_block_deletion",
+        lambda *, block_name, descendant_names: prompted.append((block_name, list(descendant_names))) or True,
+    )
+
+    received: list[str] = []
+    panel.block_delete_requested.connect(received.append)
+    panel._on_tree_block_selected(character, root.id)
+
+    QTest.mouseClick(panel._delete_block_button, Qt.LeftButton)
+    app.processEvents()
+
+    assert prompted == [("Ariane", ["Sheet", "Sticky"])]
     assert received == ["char_1"]
 
 
@@ -278,6 +347,7 @@ def test_character_workspace_panel_graph_inspection_does_not_change_tree_selecti
 
     assert panel.current_tree_block_id() == "char_1"
     assert panel.current_block_id() == "form_1"
+    assert panel._graph_widget._block_items["form_1"]._active is True
 
 
 def test_story_workspace_panel_graph_inspection_does_not_change_tree_selection() -> None:
@@ -314,6 +384,7 @@ def test_story_workspace_panel_graph_inspection_does_not_change_tree_selection()
 
     assert panel.current_tree_block_id() == "shot_1"
     assert panel.current_block_id() == "note_1"
+    assert panel._graph_widget._block_items["note_1"]._active is True
 
 
 def test_story_workspace_panel_emits_note_create_request_for_active_container() -> None:
@@ -346,6 +417,49 @@ def test_story_workspace_panel_emits_note_create_request_for_active_container() 
     QTest.mouseClick(panel._create_note_button, Qt.LeftButton)
     app.processEvents()
 
+    assert received == ["shot_1"]
+
+
+def test_story_workspace_panel_emits_delete_request_with_descendant_preview(monkeypatch) -> None:
+    app = _app()
+    root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story Root",
+        contains=["shot_1"],
+        content={"workspace_role": "story_root"},
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=["note_1"],
+        container_paths={"blk_story_root": ""},
+    )
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Beat", container_paths={"shot_1": ""})
+
+    panel = StoryWorkspacePanel()
+    panel.set_blocks([root, shot, note], project_root=None)
+    panel.show()
+    app.processEvents()
+
+    prompted: list[tuple[str, list[str]]] = []
+    monkeypatch.setattr(
+        panel,
+        "confirm_block_deletion",
+        lambda *, block_name, descendant_names: prompted.append((block_name, list(descendant_names))) or True,
+    )
+
+    received: list[str] = []
+    panel.block_delete_requested.connect(received.append)
+    panel._on_tree_block_selected(shot, root.id)
+
+    QTest.mouseClick(panel._delete_block_button, Qt.LeftButton)
+    app.processEvents()
+
+    assert prompted == [("Shot 1", ["Beat"])]
     assert received == ["shot_1"]
 
 

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "blk_internal_lib_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "INTERNALLIB",
+    "description": "Internal import workspace root.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {},
+    "functional_name": "",
+    "tags": [
+      "workspace_root",
+      "internal_lib"
+    ],
+    "content": {
+      "workspace_role": "internal_lib",
+      "workspace_scope": "internal",
+      "storage_root_id": "blk_storage_internal_root"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  }
+]

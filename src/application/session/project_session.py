@@ -7,6 +7,7 @@ from domain import Block, BlockType
 from infrastructure.repositories import BlockRepository
 from infrastructure.storage import ProjectStorageService
 from services import BlockService
+from application.services.mounted_storage_projection_service import MountedStorageProjectionService
 
 
 class ProjectSession:
@@ -18,8 +19,12 @@ class ProjectSession:
         project_root: Path | None = None,
         blocks: list[Block] | None = None,
         storage: ProjectStorageService | None = None,
+        mounted_storage_projection: MountedStorageProjectionService | None = None,
     ) -> None:
         self._storage = storage or ProjectStorageService()
+        self._mounted_storage_projection = mounted_storage_projection or MountedStorageProjectionService(
+            project_storage=self._storage
+        )
         self._project_root = project_root.expanduser().resolve() if project_root is not None else None
         self._blocks = list(blocks or [])
 
@@ -41,14 +46,14 @@ class ProjectSession:
 
     def load(self, project_root: Path) -> list[Block]:
         resolved_root = project_root.expanduser().resolve()
-        blocks = list(self._storage.load_blocks(resolved_root))
+        blocks = list(self._mounted_storage_projection.load_project_blocks(resolved_root))
         self.set_state(project_root=resolved_root, blocks=blocks)
         return self._blocks
 
     def persist(self) -> None:
         if self._project_root is None:
             return
-        self._storage.save_blocks(self._project_root, self._blocks)
+        self._storage.save_blocks(self._project_root, self._mounted_storage_projection.persistable_blocks(self._blocks))
 
     def rebuild_use_case(self) -> UseCaseService:
         repository = BlockRepository()

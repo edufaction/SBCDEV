@@ -34,8 +34,8 @@ def test_resolve_container_with_mixed_assets_shared_and_ports() -> None:
         domain="lib",
         profile="asset",
         name="Main Ref",
-        shared=True,
-        content={"functional_name": "main_ref"},
+        exposed=True,
+        functional_name="main_ref",
     )
     video = use_case.create_block(type="video", domain="story", profile="footage", name="Action Take")
     preset = use_case.create_block(
@@ -43,8 +43,8 @@ def test_resolve_container_with_mixed_assets_shared_and_ports() -> None:
         domain="story",
         profile="preset",
         name="Preset Line",
-        shared=True,
-        content={"functional_name": "preset_main"},
+        exposed=True,
+        functional_name="preset_main",
     )
     prompt = use_case.create_block(type="prompt", domain="story", profile="prompt", name="Prompt Input")
 
@@ -61,7 +61,7 @@ def test_resolve_container_with_mixed_assets_shared_and_ports() -> None:
 
     assert {block.id for block in resolved["contained_blocks"]} == {image.id, video.id, preset.id, prompt.id}
     assert set(resolved["contained_by_type"]) >= {"image", "video", "text", "prompt"}
-    assert {block.id for block in resolved["shared_contained_blocks"]} == {image.id, preset.id}
+    assert {block.id for block in resolved["exposed_contained_blocks"]} == {image.id, preset.id}
     assert len(resolved["inputs_by_port"]["in"]) == 1
     assert len(resolved["inputs_by_port"]["top"]) == 1
     assert len(resolved["inputs_by_port"]["bottom"]) == 1

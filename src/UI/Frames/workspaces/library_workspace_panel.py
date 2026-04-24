@@ -275,7 +275,11 @@ class LibraryWorkspacePanel(QWidget):
             loaded = self._service.load_library_blocks(library_path)
         except Exception:
             loaded = []
-        self._library_blocks = [block for block in loaded if block.profile != "workspace_root"]
+        self._library_blocks = [
+            block
+            for block in loaded
+            if block.profile not in {"workspace_root", "storage_root"}
+        ]
         self._refresh_asset_grid()
         self._clear_preview()
         self._detail_labels["library"].setText(str(selected["label"]))

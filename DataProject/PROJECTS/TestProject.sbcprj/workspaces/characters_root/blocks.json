@@ -43,25 +43,33 @@
           "id": "gnode_eee88601e5c3",
           "block_id": "blk_character_ariane",
           "x": -133.22365320857654,
-          "y": -372.2810738147848
+          "y": -372.2810738147848,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_72cfa2b2fe1f": {
           "id": "gnode_72cfa2b2fe1f",
           "block_id": "blk_character_eric_26b1d4",
-          "x": -312.65057532448475,
-          "y": 161.07609606600954
+          "x": 48.34942467551525,
+          "y": 161.07609606600954,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_3abe7133a343": {
           "id": "gnode_3abe7133a343",
           "block_id": "blk_character_noe",
           "x": -582.6714941510929,
-          "y": -160.00839916784275
+          "y": -160.00839916784275,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_71e7602024ac": {
           "id": "gnode_71e7602024ac",
           "block_id": "blk_character_sandrine_e7b5f0",
           "x": 58.0,
-          "y": -49.0
+          "y": -49.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -95,26 +103,49 @@
     },
     "contains": [
       "blk_character_ariane_form_casual",
-      "blk_character_ariane_form_stealth"
+      "blk_character_ariane_form_stealth",
+      "blk_888ec52ee861"
     ],
     "inputs": [],
     "tree": {
-      "root_ids": [],
-      "nodes": {}
+      "root_ids": [
+        "node_d11f4c8367e0"
+      ],
+      "nodes": {
+        "node_d11f4c8367e0": {
+          "id": "node_d11f4c8367e0",
+          "kind": "block_ref",
+          "name": "Note",
+          "block_id": "blk_888ec52ee861",
+          "children": []
+        }
+      }
     },
     "graph": {
       "nodes": {
         "gnode_41841e0441f0": {
           "id": "gnode_41841e0441f0",
           "block_id": "blk_character_ariane_form_casual",
-          "x": -142.26494346680832,
-          "y": -44.84747368282457
+          "x": -204.26494346680832,
+          "y": -182.84747368282456,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_0f86028d5f83": {
           "id": "gnode_0f86028d5f83",
           "block_id": "blk_character_ariane_form_stealth",
-          "x": 40.0,
-          "y": 40.0
+          "x": -199.0,
+          "y": 18.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_f7b359bac084": {
+          "id": "gnode_f7b359bac084",
+          "block_id": "blk_888ec52ee861",
+          "x": 184.0,
+          "y": -186.0,
+          "width": 339.0,
+          "height": 185.0
         }
       },
       "edges": {}
@@ -155,7 +186,16 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_79d5ef0e6478": {
+          "id": "gnode_79d5ef0e6478",
+          "block_id": "blk_character_noe_form_default",
+          "x": 40.0,
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
+        }
+      },
       "edges": {}
     }
   },
@@ -252,61 +292,81 @@
           "id": "gnode_ff334dbec915",
           "block_id": "blk_img_ariane_casual_01",
           "x": -481.7730176014021,
-          "y": -837.440108828438
+          "y": -837.440108828438,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_3de722e721d8": {
           "id": "gnode_3de722e721d8",
           "block_id": "blk_img_ariane_casual_02",
-          "x": -136.68203383904802,
-          "y": -247.81696149166905
+          "x": -105.37029879347182,
+          "y": -433.2787767616203,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_451ef1ecea8b": {
           "id": "gnode_451ef1ecea8b",
           "block_id": "blk_img_ariane_casual_03",
           "x": 669.9610631079304,
-          "y": -176.972505626176
+          "y": -176.972505626176,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_a1e346b3cdb8": {
           "id": "gnode_a1e346b3cdb8",
           "block_id": "blk_vid_ariane_casual_01",
           "x": 211.6824212155309,
-          "y": -911.2963434847203
+          "y": -911.2963434847203,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_73bcfb68b362": {
           "id": "gnode_73bcfb68b362",
           "block_id": "blk_text_2b9cd1d27be5",
-          "x": -854.29429144913,
-          "y": -1083.7379965567175
+          "x": -490.02513115833835,
+          "y": -1021.4898505004287,
+          "width": 225.0538497060793,
+          "height": 140.0
         },
         "gnode_0a5fe8995ed6": {
           "id": "gnode_0a5fe8995ed6",
           "block_id": "blk_ab7b5a624ce0",
-          "x": -430.0,
-          "y": -91.0
+          "x": -971.9338757888189,
+          "y": -172.89223011919924,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_b94de657ed96": {
           "id": "gnode_b94de657ed96",
           "block_id": "blk_4d8811ec60ec",
           "x": 350.0,
-          "y": 47.0
+          "y": 47.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_0d27050e42b7": {
           "id": "gnode_0d27050e42b7",
           "block_id": "blk_9d00b35819d2",
           "x": -711.8840287700255,
-          "y": 522.2476928631197
+          "y": 522.2476928631197,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_102bad8f4573": {
           "id": "gnode_102bad8f4573",
           "block_id": "blk_e440e5cb132e",
           "x": -708.152005584427,
-          "y": 270.3902214233052
+          "y": 270.3902214233052,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_2a6c709d6031": {
           "id": "gnode_2a6c709d6031",
           "block_id": "blk_b588ae0b714d",
           "x": 29.901234512728706,
-          "y": 529.257227251672
+          "y": 529.257227251672,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {
@@ -320,6 +380,12 @@
           "id": "gedge_c74f332833a1",
           "source_node_id": "gnode_ff334dbec915",
           "target_node_id": "gnode_a1e346b3cdb8",
+          "label": ""
+        },
+        "gedge_7e9b711bbbac": {
+          "id": "gedge_7e9b711bbbac",
+          "source_node_id": "gnode_0a5fe8995ed6",
+          "target_node_id": "gnode_3de722e721d8",
           "label": ""
         }
       }
@@ -385,7 +451,16 @@
       "source": "TESTPROJ_DATATEST_RELATIVE"
     },
     "contains": [],
-    "inputs": [],
+    "inputs": [
+      {
+        "source_block_id": "blk_ab7b5a624ce0",
+        "port": "in",
+        "name": "",
+        "enabled": true,
+        "order": 0,
+        "metadata": {}
+      }
+    ],
     "tree": null,
     "graph": null
   },
@@ -518,25 +593,33 @@
           "id": "gnode_dab00d27c904",
           "block_id": "blk_img_ariane_stealth_01",
           "x": -555.1063874103801,
-          "y": -452.38173356754163
+          "y": -452.38173356754163,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_7b6081b6fb84": {
           "id": "gnode_7b6081b6fb84",
           "block_id": "blk_img_ariane_stealth_02",
           "x": 70.69036507457145,
-          "y": 45.84088899402735
+          "y": 45.84088899402735,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_e447d0b74a2d": {
           "id": "gnode_e447d0b74a2d",
           "block_id": "blk_img_ariane_stealth_03",
           "x": -530.4574354391295,
-          "y": -11.962162147954814
+          "y": -11.962162147954814,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_701f798cb9c7": {
           "id": "gnode_701f798cb9c7",
           "block_id": "blk_vid_ariane_stealth_01",
           "x": 71.45912201618202,
-          "y": -342.81704438689843
+          "y": -342.81704438689843,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {
@@ -908,7 +991,8 @@
     "content": {
       "storage_path": "storage/files/GPT_PromptGenGrid3x3.prompt.txt",
       "mime_type": "text/plain",
-      "original_name": "GPT_PromptGenGrid3x3.prompt.txt"
+      "original_name": "GPT_PromptGenGrid3x3.prompt.txt",
+      "text": "Ceci est une note de texte ...\nEssai de texte"
     },
     "contains": [],
     "inputs": [],
@@ -1004,32 +1088,42 @@
         "gnode_856ebf6d807e": {
           "id": "gnode_856ebf6d807e",
           "block_id": "blk_slot_front_view_6f92bd",
-          "x": 40.0,
-          "y": 40.0
+          "x": -90.0,
+          "y": -81.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_bcd9f8215165": {
           "id": "gnode_bcd9f8215165",
           "block_id": "blk_slot_side_view_5c4e63",
           "x": 416.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_56ece3e1e023": {
           "id": "gnode_56ece3e1e023",
           "block_id": "blk_slot_back_view_58e116",
           "x": 792.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_8a57369899c9": {
           "id": "gnode_8a57369899c9",
           "block_id": "blk_slot_face_reference_df6bfd",
-          "x": 40.0,
-          "y": 268.0
+          "x": -70.0,
+          "y": 173.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_99132df55874": {
           "id": "gnode_99132df55874",
           "block_id": "blk_slot_voice_reference_15a5f5",
           "x": 416.0,
-          "y": 268.0
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -1277,25 +1371,33 @@
           "id": "gnode_98e607ae2c56",
           "block_id": "blk_slot_sheet_main_5e5b68",
           "x": 40.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_ad02a72044d7": {
           "id": "gnode_ad02a72044d7",
           "block_id": "blk_slot_pose_turnaround_aeaf98",
           "x": 416.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_e4f80835e68c": {
           "id": "gnode_e4f80835e68c",
           "block_id": "blk_slot_notes_98793e",
           "x": 792.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_8e49c3e2852a": {
           "id": "gnode_8e49c3e2852a",
           "block_id": "blk_slot_prompt_base_3780c3",
           "x": 40.0,
-          "y": 268.0
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -1783,7 +1885,40 @@
       "nodes": {}
     },
     "graph": {
-      "nodes": {},
+      "nodes": {
+        "gnode_b79ff3696267": {
+          "id": "gnode_b79ff3696267",
+          "block_id": "blk_slot_sheet_main_8a17b0",
+          "x": 40.0,
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_fda628ec5648": {
+          "id": "gnode_fda628ec5648",
+          "block_id": "blk_slot_pose_turnaround_a976d3",
+          "x": 416.0,
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_ff71f20f03f0": {
+          "id": "gnode_ff71f20f03f0",
+          "block_id": "blk_slot_notes_f68dc1",
+          "x": 792.0,
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_08ba57ad60ff": {
+          "id": "gnode_08ba57ad60ff",
+          "block_id": "blk_slot_prompt_base_e4babe",
+          "x": 40.0,
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
+        }
+      },
       "edges": {}
     }
   },
@@ -2001,7 +2136,7 @@
       "postit"
     ],
     "content": {
-      "text": "kljkj",
+      "text": "sdqqsd",
       "note_style": "postit"
     },
     "contains": [],
@@ -2102,6 +2237,38 @@
       "storage_path": "storage/files/train.render.mp4",
       "mime_type": "video/mp4",
       "original_name": "train.render.mp4"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_888ec52ee861",
+    "type": "text",
+    "profile": "note",
+    "name": "Note",
+    "description": "",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "shared": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_ariane": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "note",
+      "postit"
+    ],
+    "content": {
+      "text": "qsdqd est un texet de noyet",
+      "note_style": "postit"
     },
     "contains": [],
     "inputs": [],

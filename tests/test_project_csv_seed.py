@@ -9,7 +9,7 @@ def _write_minimal_csv(path: Path) -> None:
     path.write_text(
         "\n".join(
             [
-                "Tree,container,id,type,domain,profile,name,shared,description,tags,content_json,contains_ids,input_links",
+                "Tree,container,id,type,domain,profile,name,exposed,description,tags,content_json,contains_ids,input_links",
                 "Root,,blk_root,container,lib,workspace_root,Root,false,Root node,root|lib,{},blk_img,",
                 'Root/Images,blk_root,blk_img,image,lib,asset,Ref,true,Image ref,asset|image,"{""storage_path"": ""storage/files/ref.png""}",,',
             ]

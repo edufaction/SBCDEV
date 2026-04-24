@@ -37,7 +37,7 @@ class ContainerResolver:
         for block in contained_blocks:
             contained_by_type[block.type.value].append(block)
 
-        shared_contained_blocks = [block for block in contained_blocks if block.shared]
+        exposed_contained_blocks = [block for block in contained_blocks if block.exposed]
         functional_blocks = [
             block
             for block in contained_blocks
@@ -70,7 +70,7 @@ class ContainerResolver:
                     "domain": block.domain.value,
                     "profile": block.profile,
                     "name": block.name,
-                    "shared": block.shared,
+                    "exposed": block.exposed,
                 },
             )
 
@@ -101,7 +101,7 @@ class ContainerResolver:
             "container": container,
             "contained_blocks": contained_blocks,
             "contained_by_type": dict(contained_by_type),
-            "shared_contained_blocks": shared_contained_blocks,
+            "exposed_contained_blocks": exposed_contained_blocks,
             "inputs_by_port": inputs_by_port,
             "functional_blocks": functional_blocks,
             "nodes": list(node_index.values()),

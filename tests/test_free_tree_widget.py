@@ -7,6 +7,7 @@ from PySide6.QtCore import Qt
 
 from domain import Block, BlockAccessMode, BlockProvenanceKind, BlockType
 from infrastructure.storage import ProjectStorageService
+from UI.block_icon_resolver import block_icon_name_for
 from UI.Widgets import FreeTreeWidget
 
 
@@ -189,6 +190,42 @@ def test_folder_color_is_primary_only_for_user_folders() -> None:
     assert widget._folder_icon_color(container_folder_node) == widget._on_surface_color()
 
 
+def test_block_icon_resolver_prefers_profile_specific_icons() -> None:
+    assert block_icon_name_for(profile="workspace_root", block_type=BlockType.CONTAINER) == "project_folder_root.svg"
+    assert block_icon_name_for(profile="character_form", block_type=BlockType.CONTAINER) == "project_file_description.svg"
+    assert block_icon_name_for(profile="note", block_type=BlockType.TEXT) == "project_notes.svg"
+    assert block_icon_name_for(profile="footage", block_type=BlockType.VIDEO) == "media_photo_video.svg"
+    assert block_icon_name_for(profile="asset", block_type=BlockType.IMAGE) == "media_photo_search.svg"
+
+
+def test_free_tree_widget_caches_profile_icons_for_block_nodes_and_container_folders() -> None:
+    _ = _app()
+    blocks = [
+        Block(
+            id="root_1",
+            type=BlockType.CONTAINER,
+            profile="workspace_root",
+            name="STORY",
+            contains=["shot_1"],
+        ),
+        Block(
+            id="shot_1",
+            type=BlockType.CONTAINER,
+            profile="shot",
+            name="Shot 1",
+            contains=["note_1"],
+        ),
+        Block(id="note_1", type=BlockType.TEXT, profile="note", name="Beat 1"),
+    ]
+    widget = FreeTreeWidget()
+    widget.set_blocks(blocks)
+
+    cached_filenames = {filename for filename, _color in widget._icon_cache}
+    assert "project_folder_root.svg" in cached_filenames
+    assert "project_file_stack.svg" in cached_filenames
+    assert "project_notes.svg" in cached_filenames
+
+
 def test_external_thumbnail_drop_creates_new_block_inside_target_container() -> None:
     _ = _app()
     blocks = [
@@ -197,13 +234,7 @@ def test_external_thumbnail_drop_creates_new_block_inside_target_container() -> 
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
         Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1", content={"storage_path": "a.png"}),
     ]
@@ -220,7 +251,7 @@ def test_external_thumbnail_drop_creates_new_block_inside_target_container() -> 
     widget._handle_external_block_drop(["img_1"], virtual_node_id)
 
     assert len(widget._blocks) == before_count + 1
-    created_blocks = [block for block in widget._blocks if block.id not in {"blk_internal_lib_root", "blk_internal_lib_empty", "img_1"}]
+    created_blocks = [block for block in widget._blocks if block.id not in {"blk_internal_lib_root", "img_1"}]
     assert len(created_blocks) == 1
     created = created_blocks[0]
     assert created.type == BlockType.IMAGE
@@ -236,13 +267,7 @@ def test_external_thumbnail_drop_from_link_source_creates_clone_with_lib_provena
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
         Block(
             id="img_link_1",
@@ -272,7 +297,7 @@ def test_external_thumbnail_drop_from_link_source_creates_clone_with_lib_provena
     created = next(
         block
         for block in widget._blocks
-        if block.id not in {"blk_internal_lib_root", "blk_internal_lib_empty", "img_link_1"}
+        if block.id not in {"blk_internal_lib_root", "img_link_1"}
     )
     assert created.access_mode is BlockAccessMode.OWNED
     assert created.provenance.get("kind") == BlockProvenanceKind.LIB_CLONE.value
@@ -292,13 +317,7 @@ def test_external_finder_file_drop_imports_and_creates_block(tmp_path) -> None:
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
     ]
     widget = FreeTreeWidget()
@@ -316,7 +335,7 @@ def test_external_finder_file_drop_imports_and_creates_block(tmp_path) -> None:
     widget._handle_external_files_drop([str(source_file)], virtual_node_id)
 
     assert len(widget._blocks) == before_count + 1
-    created_blocks = [block for block in widget._blocks if block.id not in {"blk_internal_lib_root", "blk_internal_lib_empty"}]
+    created_blocks = [block for block in widget._blocks if block.id not in {"blk_internal_lib_root"}]
     assert len(created_blocks) == 1
     created = created_blocks[0]
     assert created.type == BlockType.IMAGE
@@ -335,13 +354,7 @@ def test_external_drop_on_user_subfolder_attaches_to_nearest_container() -> None
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
         Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1", content={"storage_path": "a.png"}),
     ]
@@ -374,24 +387,21 @@ def test_external_drop_on_block_node_attaches_to_same_ancestor_container() -> No
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
         Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1", content={"storage_path": "a.png"}),
     ]
     widget = FreeTreeWidget()
     widget.set_blocks(blocks)
 
-    empty_node_id = widget.find_node_id_for_block("blk_internal_lib_empty")
-    assert empty_node_id is not None
+    internal_lib_node_id = next(
+        node_id
+        for node_id, node in widget._tree.nodes.items()
+        if node.kind == "folder" and node.block_id == "blk_internal_lib_root"
+    )
 
     before_contains = list(widget._blocks_by_id["blk_internal_lib_root"].contains)
-    widget._handle_external_block_drop(["img_1"], empty_node_id)
+    widget._handle_external_block_drop(["img_1"], internal_lib_node_id)
 
     assert len(widget._blocks_by_id["blk_internal_lib_root"].contains) == len(before_contains) + 1
     created_block_ids = [bid for bid in widget._blocks_by_id["blk_internal_lib_root"].contains if bid not in before_contains]
@@ -408,13 +418,7 @@ def test_delete_block_button_removes_container_and_descendants(monkeypatch) -> N
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty", "cnt_story"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=["cnt_story"],
         ),
         Block(
             id="cnt_story",
@@ -456,13 +460,7 @@ def test_add_import_button_imports_into_selected_container(tmp_path, monkeypatch
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
     ]
     widget = FreeTreeWidget()
@@ -503,21 +501,18 @@ def test_add_import_button_imports_when_block_inside_container_is_selected(tmp_p
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
     ]
     widget = FreeTreeWidget()
     widget.set_blocks(blocks, project_root=project_path)
 
-    empty_node_id = widget.find_node_id_for_block("blk_internal_lib_empty")
-    assert empty_node_id is not None
-    assert _select_node(widget, empty_node_id)
+    internal_lib_node_id = next(
+        node_id
+        for node_id, node in widget._tree.nodes.items()
+        if node.kind == "folder" and node.block_id == "blk_internal_lib_root"
+    )
+    assert _select_node(widget, internal_lib_node_id)
 
     source_file = tmp_path / "button_import_block_selected.png"
     source_file.write_bytes(b"pngdata")
@@ -546,13 +541,7 @@ def test_add_import_button_imports_into_internal_lib_when_no_selection(tmp_path,
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
     ]
     widget = FreeTreeWidget()
@@ -591,13 +580,7 @@ def test_add_character_template_creates_character_hierarchy_in_characters_root(m
             type=BlockType.CONTAINER,
             profile="workspace_root",
             name="INTERNALLIB",
-            contains=["blk_internal_lib_empty"],
-        ),
-        Block(
-            id="blk_internal_lib_empty",
-            type=BlockType.EMPTY,
-            profile="internal_lib_empty",
-            name="Drop Resources Here",
+            contains=[],
         ),
     ]
     widget = FreeTreeWidget()

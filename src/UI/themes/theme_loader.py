@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtGui import QColor, QFontDatabase, QPalette
 from PySide6.QtWidgets import QApplication
 
 from UI.themes.theme import FONT_SIZE_DEFAULT, theme_tokens
@@ -96,6 +96,31 @@ def _resolve_runtime_font_tokens(app: QApplication, tokens: dict[str, str]) -> d
     return resolved
 
 
+def _apply_palette(app: QApplication, tokens: dict[str, str]) -> None:
+    palette = QPalette()
+    palette.setColor(QPalette.ColorRole.Window, QColor(tokens["surface_dim"]))
+    palette.setColor(QPalette.ColorRole.WindowText, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.Base, QColor(tokens["surface_container_lowest"]))
+    palette.setColor(QPalette.ColorRole.AlternateBase, QColor(tokens["surface_container"]))
+    palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(tokens["surface_container"]))
+    palette.setColor(QPalette.ColorRole.ToolTipText, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.Text, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.Button, QColor(tokens["surface_container"]))
+    palette.setColor(QPalette.ColorRole.ButtonText, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.BrightText, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.Highlight, QColor(tokens["selection"]))
+    palette.setColor(QPalette.ColorRole.HighlightedText, QColor(tokens["on_surface"]))
+    palette.setColor(QPalette.ColorRole.PlaceholderText, QColor(tokens["on_surface_muted"]))
+
+    disabled_text = QColor(tokens["on_surface_muted"])
+    disabled_button = QColor(tokens["surface_container_low"])
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, disabled_text)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, disabled_text)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, disabled_text)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, disabled_button)
+    app.setPalette(palette)
+
+
 def apply_theme(
     app: QApplication,
     *,
@@ -112,6 +137,7 @@ def apply_theme(
     app.setProperty("sbc2_theme_tokens", dict(tokens))
     app.setProperty("sbc2_theme_apply_in_progress", True)
     try:
+        _apply_palette(app, tokens)
         app.setStyleSheet(render_qss_template(qss_template, tokens))
     finally:
         app.setProperty("sbc2_theme_apply_in_progress", False)

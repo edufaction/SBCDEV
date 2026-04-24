@@ -14,11 +14,11 @@ from application import UseCaseService
 
 
 def test_block_from_dict_defaults_to_owned_local_when_fields_are_missing() -> None:
-    legacy_payload = {
-        "id": "blk_legacy",
+    minimal_payload = {
+        "id": "blk_minimal",
         "type": "image",
         "profile": "asset",
-        "name": "Legacy Image",
+        "name": "Minimal Image",
         "domain": "lib",
         "content": {},
         "contains": [],
@@ -27,7 +27,7 @@ def test_block_from_dict_defaults_to_owned_local_when_fields_are_missing() -> No
         "graph": None,
     }
 
-    block = block_from_dict(legacy_payload)
+    block = block_from_dict(minimal_payload)
 
     assert block.access_mode is BlockAccessMode.OWNED
     assert block.provenance.get("kind") == BlockProvenanceKind.LOCAL.value

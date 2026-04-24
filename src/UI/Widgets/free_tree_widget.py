@@ -24,6 +24,7 @@ from application.block_template_service import BlockTemplateService
 from application.free_tree_workspace_controller import FreeTreeItemSnapshot, FreeTreeWorkspaceController
 from domain import Block, BlockAccessMode, BlockDomain, BlockProvenanceKind, BlockType, FreeTree, FreeTreeNode
 from infrastructure.storage import ProjectStorageService
+from UI.block_icon_resolver import block_icon_name
 from UI.Widgets.panel_header_widget import PanelHeaderWidget
 from UI.themes import active_theme_tokens_ref
 from UI.themes import initialize_widget_primitives
@@ -404,9 +405,12 @@ class FreeTreeWidget(QWidget):
         if not is_locked:
             flags |= Qt.ItemIsDragEnabled
         if node.kind == "folder":
-            item.setIcon(0, self._icon_for("project_folder_open.svg", self._folder_icon_color(node)))
-            flags |= Qt.ItemIsDropEnabled
             container_block = self._blocks_by_id.get(node.block_id or "")
+            icon_name = "project_folder_open.svg"
+            if container_block is not None and container_block.type == BlockType.CONTAINER:
+                icon_name = block_icon_name(container_block)
+            item.setIcon(0, self._icon_for(icon_name, self._folder_icon_color(node)))
+            flags |= Qt.ItemIsDropEnabled
             if container_block is not None and container_block.type == BlockType.CONTAINER:
                 item.setToolTip(0, f"{container_block.profile} | {container_block.type.value} | non deletable")
         else:
@@ -414,7 +418,7 @@ class FreeTreeWidget(QWidget):
             if block is not None:
                 item.setText(0, block.name or block.id)
                 item.setToolTip(0, f"{block.profile} | {block.type.value}")
-                item.setIcon(0, self._icon_for(self._icon_for_profile(block.profile), self._on_surface_variant_color()))
+                item.setIcon(0, self._icon_for(block_icon_name(block), self._on_surface_variant_color()))
             flags &= ~Qt.ItemIsDropEnabled
         item.setFlags(flags)
 
@@ -526,7 +530,7 @@ class FreeTreeWidget(QWidget):
                 profile=profile,
                 name=source_path.stem or source_path.name,
                 description=f"Imported from Finder: {source_path.name}",
-                shared=False,
+                exposed=False,
                 domain=(target_container.domain if target_container is not None else BlockDomain.LIB),
                 tags=["imported", "finder_drop", block_type.value],
                 content=content,
@@ -584,7 +588,7 @@ class FreeTreeWidget(QWidget):
             prompt_ref=source.prompt_ref,
             prompt_generated=source.prompt_generated,
             comment=source.comment,
-            shared=False,
+            exposed=False,
             domain=(target_domain or source.domain),
             access_mode=BlockAccessMode.OWNED,
             provenance=provenance,
@@ -1032,22 +1036,6 @@ class FreeTreeWidget(QWidget):
         self._import_button.setEnabled(self._project_root is not None and self._project_root.exists() and bool(self._import_target_folder_id()))
         self._add_template_button.setEnabled(can_add_template)
         self._delete_block_button.setEnabled(self._selected_block() is not None)
-
-    def _icon_for_profile(self, profile: str) -> str:
-        value = (profile or "").lower()
-        if value in {"character", "character_form"}:
-            return "story_world_user_star.svg"
-        if value in {"voice", "music", "sfx"}:
-            return "story_world_message_circle_user.svg"
-        if value in {"prompt", "preset"}:
-            return "edit_filter_2_spark.svg"
-        if value in {"asset", "reference", "generated", "variation", "image", "video"}:
-            return "project_folder_open.svg"
-        if value in {"placeholder", "empty"}:
-            return "actions_plus_minus.svg"
-        if value in {"note", "description", "dialogue"}:
-            return "project_notebook.svg"
-        return "actions_adjustments_search.svg"
 
     def _on_surface_color(self) -> str:
         return active_theme_tokens_ref().get("on_surface", "#f9f9fd")

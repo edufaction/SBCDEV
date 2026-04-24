@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from application.block_template_service import BlockTemplateService
+from application.services import RootLocatorService
 from domain import Block, BlockType
 
 
@@ -10,8 +11,13 @@ CHARACTERS_ROOT_BLOCK_ID = "blk_characters_root"
 class CharacterWorkspaceService:
     """Workspace-level orchestration for Character domain actions."""
 
-    def __init__(self, template_service: BlockTemplateService | None = None) -> None:
+    def __init__(
+        self,
+        template_service: BlockTemplateService | None = None,
+        root_locator: RootLocatorService | None = None,
+    ) -> None:
         self._template_service = template_service or BlockTemplateService()
+        self._root_locator = root_locator or RootLocatorService()
 
     def list_characters(self, blocks: list[Block]) -> list[Block]:
         characters_root = self._find_characters_root(blocks)
@@ -102,25 +108,11 @@ class CharacterWorkspaceService:
             if child.type == BlockType.CONTAINER:
                 CharacterWorkspaceService._assign_child_container_paths(parent=child, created_by_id=created_by_id)
 
-    @staticmethod
-    def _find_characters_root(blocks: list[Block]) -> Block | None:
-        by_id = {block.id: block for block in blocks}
-        for block in blocks:
-            if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
-                continue
-            role = block.as_container().workspace_role
-            if role == "characters_root":
-                return block
-        fallback = by_id.get(CHARACTERS_ROOT_BLOCK_ID)
-        if fallback is not None and fallback.type == BlockType.CONTAINER:
-            return fallback
-        for block in blocks:
-            if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
-                continue
-            normalized_name = (block.name or "").strip().upper()
-            if "CHARACTER" in normalized_name:
-                return block
-        return None
+    def _find_characters_root(self, blocks: list[Block]) -> Block | None:
+        return self._root_locator.find_workspace_root(
+            blocks,
+            role="characters_root",
+        )
 
     @staticmethod
     def _find_character(blocks: list[Block], character_id: str) -> Block | None:

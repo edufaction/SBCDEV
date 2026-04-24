@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from application import ProjectSession
-from domain import Block, BlockDomain, BlockType
+from domain import Block, BlockAccessMode, BlockDomain, BlockType
 from infrastructure.storage import ProjectStorageService
 
 
@@ -38,3 +38,24 @@ def test_project_session_persists_and_loads_blocks(tmp_path: Path) -> None:
     assert [block.id for block in loaded] == ["blk_story_root", "shot_1"]
     assert restored.find_container("shot_1") is not None
 
+
+def test_project_session_persist_skips_projected_mount_blocks(tmp_path: Path) -> None:
+    storage = ProjectStorageService()
+    project_path = tmp_path / "session_mounted_skip.sbcprj"
+    storage.create_project(project_path, "Session Mounted Skip")
+
+    local = Block(id="blk_story_root", type=BlockType.CONTAINER, profile="workspace_root", name="Story")
+    projected = Block(
+        id="blk_mount_demo_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Mounted Story",
+        access_mode=BlockAccessMode.LINK,
+        provenance={"kind": "lib_link", "projected_mount": True, "mount_id": "demo"},
+    )
+
+    session = ProjectSession(project_root=project_path, blocks=[local, projected])
+    session.persist()
+
+    loaded = storage.load_blocks(project_path)
+    assert [block.id for block in loaded] == ["blk_story_root"]

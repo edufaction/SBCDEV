@@ -319,14 +319,43 @@ Si sa lecture ressemble à une liste de cas d’usage métier, l’architecture 
 - Les bibliothèques externes montées sont référencées dans `project.json` via `mounted_libraries`.
 - `INTERNALLIB` est la librairie interne au projet (partage intra-projet).
 - Le format legacy `blocks.json` à la racine n’est plus utilisé.
+- `storage_root` est la racine technique publiable / montable.
+- `workspace_root` reste la racine métier/logique visible par les services et l’UI.
+- `library` n’est pas un type de workspace : c’est un mode d’exposition ou de montage d’un `storage_root`.
 
 ### Structure de blocs attendue
 À l’ouverture, la structure workspace doit être garantie:
-- racine `PROJET` (container `workspace_root`)
-- sous-racines de workspace: `Characters Root`, `Story Root`, `Library Root`, `INTERNALLIB`
+- racine technique `storage_root[project_space]`
+- racine technique `storage_root[internal_lib]`
+- sous-racines de workspace: `Characters Root`, `Story Root`, `INTERNALLIB`
 - aucun bloc final directement à la racine absolue
 
-`INTERNALLIB` doit contenir un bloc `EMPTY` de drop/import (`profile=internal_lib_empty`) si absent.
+La hiérarchie canonique est:
+- `storage_root -> workspace_root -> blocks métier`
+- un `storage_root` de projet attache directement ses `workspace_root`
+- ne pas recréer de `workspace_root` artificiel de type `project_root` ou nommé `PROJET`
+
+`INTERNALLIB` est directement un conteneur d’import ; ne pas recréer de bloc technique `internal_lib_empty`.
+
+Chaque `workspace_root` doit porter explicitement :
+- `workspace_role`
+- `workspace_scope`
+- `storage_root_id`
+
+### Règle d’architecture
+- Ne pas faire dépendre les services métier directement d’IDs hardcodés de roots si un locator dédié existe.
+- Préférer un service central de résolution (`RootLocatorService`) pour trouver :
+  - un `storage_root`
+  - un `workspace_root`
+  - un root par rôle + scope
+- Toute normalisation transverse de payload métier persistant (`provenance`, mounts, roots) doit être factorisée dans un helper unique partagé, pas dupliquée entre service métier et couche de storage.
+- Pour l’exposition métier d’un block dans un catalogue de réutilisation, utiliser `exposed` et non `shared`.
+- `shared` ne doit plus être utilisé comme concept métier courant ; au mieux, il reste toléré comme alias technique transitoire à la lecture.
+
+### Politique legacy
+- Ne pas réintroduire de compatibilité pour d’anciens layouts de structure projet/workspace.
+- Les nouveaux développements partent du principe qu’un projet respecte déjà l’architecture canonique `storage_root`.
+- Si une migration de structure est nécessaire plus tard, elle doit être explicite, bornée, et ne pas polluer les services métier courants.
 
 ### Modèle de montage des LIBS externes (phase A)
 Chaque entrée `mounted_libraries` doit être normalisée avec:
@@ -340,6 +369,11 @@ Chaque entrée `mounted_libraries` doit être normalisée avec:
 
 La phase A couvre la persistance et la normalisation.
 La phase B couvrira le chargement/navigation UI des LIBS externes.
+
+### Projection des mounts
+- Les LIBS montées doivent être projetées en mémoire comme des blocks read-only (`storage_root`, `workspace_root`, descendants) pour unifier l’UI et les services.
+- Ces blocks projetés ne sont jamais persistés dans le projet hôte.
+- La projection doit intervenir après la normalisation de structure du projet local, pas avant.
 
 ---
 

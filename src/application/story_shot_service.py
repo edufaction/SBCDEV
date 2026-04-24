@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from uuid import uuid4
 
+from application.services import RootLocatorService
 from domain import Block, BlockDomain, BlockType, FreeGraph, FreeTree
 
 
@@ -10,6 +11,9 @@ STORY_ROOT_BLOCK_ID = "blk_story_root"
 
 class StoryShotService:
     """Application workflow service for Story shot creation and listing."""
+
+    def __init__(self, root_locator: RootLocatorService | None = None) -> None:
+        self._root_locator = root_locator or RootLocatorService()
 
     def list_shots(self, blocks: list[Block]) -> list[Block]:
         story_root = self._find_story_root(blocks)
@@ -44,7 +48,7 @@ class StoryShotService:
             name=shot_name,
             description=f"Story shot container: {shot_name}",
             domain=BlockDomain.STORY,
-            shared=False,
+            exposed=False,
             tags=["story", "shot"],
             content={"kind": "story_shot"},
             tree=FreeTree(),
@@ -90,25 +94,11 @@ class StoryShotService:
             if candidate not in used_ids:
                 return candidate
 
-    @staticmethod
-    def _find_story_root(blocks: list[Block]) -> Block | None:
-        by_id = {block.id: block for block in blocks}
-        for block in blocks:
-            if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
-                continue
-            role = block.as_container().workspace_role
-            if role == "story_root":
-                return block
-        fallback = by_id.get(STORY_ROOT_BLOCK_ID)
-        if fallback is not None and fallback.type == BlockType.CONTAINER:
-            return fallback
-        for block in blocks:
-            if block.type != BlockType.CONTAINER or block.profile != "workspace_root":
-                continue
-            normalized_name = (block.name or "").strip().upper()
-            if "STORY" in normalized_name:
-                return block
-        return None
+    def _find_story_root(self, blocks: list[Block]) -> Block | None:
+        return self._root_locator.find_workspace_root(
+            blocks,
+            role="story_root",
+        )
 
     @staticmethod
     def _find_shot(blocks: list[Block], shot_id: str) -> Block | None:

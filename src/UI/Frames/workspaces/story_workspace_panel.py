@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QMessageBox, QPushButton, QVBoxLayout, QWidget
 
 from domain import Block, BlockType
 from UI.Widgets import (
@@ -24,9 +24,11 @@ class StoryWorkspacePanel(QWidget):
     graph_link_create_requested = Signal(str, str, str, str, str)
     graph_link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
+    graph_block_resize_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
     graph_files_drop_requested = Signal(str, str, object, float, float)
     note_create_requested = Signal(str)
+    block_delete_requested = Signal(str)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -51,7 +53,9 @@ class StoryWorkspacePanel(QWidget):
         top_bar = WorkspaceToolbarWidget("STORY TOOLS", parent=self._frame)
         self._create_note_button = QPushButton("NEW NOTE", top_bar)
         self._create_note_button.setProperty("ghost", True)
-        top_bar.set_leading_widgets([self._create_note_button])
+        self._delete_block_button = QPushButton("DELETE BLOCK", top_bar)
+        self._delete_block_button.setProperty("ghost", True)
+        top_bar.set_leading_widgets([self._create_note_button, self._delete_block_button])
 
         bottom_bar = QWidget(self._frame)
         bottom_bar.setProperty("panelAlt", True)
@@ -81,10 +85,14 @@ class StoryWorkspacePanel(QWidget):
         self._graph_widget.link_create_requested.connect(self.graph_link_create_requested.emit)
         self._graph_widget.link_delete_requested.connect(self.graph_link_delete_requested.emit)
         self._graph_widget.graph_block_move_requested.connect(self.graph_block_move_requested.emit)
+        self._graph_widget.graph_block_resize_requested.connect(self.graph_block_resize_requested.emit)
         self._graph_widget.graph_layout_initialize_requested.connect(self.graph_layout_initialize_requested.emit)
         self._graph_widget.graph_files_drop_requested.connect(self.graph_files_drop_requested.emit)
+        self._graph_widget.block_update_requested.connect(self.block_update_requested.emit)
         self._create_note_button.clicked.connect(self._emit_note_create_request)
+        self._delete_block_button.clicked.connect(self._emit_delete_block_request)
         initialize_widget_primitives(self)
+        self._refresh_toolbar_action_state()
 
     def set_blocks(
         self,
@@ -100,9 +108,24 @@ class StoryWorkspacePanel(QWidget):
         preferred_container_id = self._resolve_preferred_container_id(active_container_id)
         self._graph_widget.set_active_container(preferred_container_id or self._default_graph_container_id())
         self._property_widget.set_block(None)
+        self._refresh_toolbar_action_state()
 
     def set_message(self, message: str) -> None:
         self._message_label.setText(message.strip())
+
+    def confirm_block_deletion(self, *, block_name: str, descendant_names: list[str]) -> bool:
+        message = f"Delete '{block_name}'?"
+        if descendant_names:
+            lines = "\n".join(f"- {name}" for name in descendant_names)
+            message = f"{message}\n\nContained block(s) that will also be deleted:\n{lines}"
+        answer = QMessageBox.question(
+            self,
+            "Confirm Block Deletion",
+            message,
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        return answer == QMessageBox.Yes
 
     def current_block_id(self) -> str | None:
         return self._property_widget.current_block_id()
@@ -138,6 +161,8 @@ class StoryWorkspacePanel(QWidget):
         property_container_id = self._resolve_property_container_id(block, container_id)
         self._selected_property_container_id = property_container_id
         self._property_widget.set_block(block, container_id=property_container_id or None)
+        self._graph_widget.set_active_block(block.id)
+        self._refresh_toolbar_action_state()
         return True
 
     def set_block_relative_path(self, *, block_id: str, container_id: str, relative_path: str) -> bool:
@@ -155,6 +180,8 @@ class StoryWorkspacePanel(QWidget):
         self._graph_widget.set_active_container(
             self._graph_container_for_selection(block=block, container_id=normalized_container_id)
         )
+        self._graph_widget.set_active_block(block.id if block is not None else "")
+        self._refresh_toolbar_action_state()
 
     def _on_graph_node_selected(self, block_id: str) -> None:
         block = self._blocks_by_id.get(str(block_id).strip())
@@ -162,6 +189,8 @@ class StoryWorkspacePanel(QWidget):
         property_container_id = self._resolve_property_container_id(block, active_container_id)
         self._selected_property_container_id = property_container_id
         self._property_widget.set_block(block, container_id=property_container_id or None)
+        self._graph_widget.set_active_block(block.id if block is not None else "")
+        self._refresh_toolbar_action_state()
 
     def _default_graph_container_id(self) -> str:
         candidate = self._blocks_by_id.get("blk_story_root")
@@ -236,3 +265,52 @@ class StoryWorkspacePanel(QWidget):
             self.set_message("Select a container first.")
             return
         self.note_create_requested.emit(container_id)
+
+    def _emit_delete_block_request(self) -> None:
+        block = self._selected_deletable_block()
+        if block is None:
+            self.set_message("Select a deletable block first.")
+            return
+        descendants = self._collect_descendant_names(block.id)
+        if not self.confirm_block_deletion(block_name=block.name or block.id, descendant_names=descendants):
+            return
+        self.block_delete_requested.emit(block.id)
+
+    def _refresh_toolbar_action_state(self) -> None:
+        deletable_block = self._selected_deletable_block()
+        self._delete_block_button.setEnabled(deletable_block is not None)
+        if deletable_block is not None:
+            self._delete_block_button.setToolTip(f"Delete '{deletable_block.name or deletable_block.id}'.")
+            return
+        self._delete_block_button.setToolTip("Select a non-root block to delete.")
+
+    def _selected_deletable_block(self) -> Block | None:
+        candidate_id = str(self.current_block_id() or self.current_tree_block_id() or "").strip()
+        if not candidate_id:
+            return None
+        candidate = self._blocks_by_id.get(candidate_id)
+        if candidate is None:
+            return None
+        if candidate.type == BlockType.CONTAINER and candidate.profile == "workspace_root":
+            return None
+        return candidate
+
+    def _collect_descendant_names(self, root_block_id: str) -> list[str]:
+        root = self._blocks_by_id.get(root_block_id)
+        if root is None or root.type != BlockType.CONTAINER:
+            return []
+        descendants: list[str] = []
+        pending = list(reversed(root.contains))
+        seen: set[str] = set()
+        while pending:
+            current_id = pending.pop()
+            if current_id in seen:
+                continue
+            seen.add(current_id)
+            current = self._blocks_by_id.get(current_id)
+            if current is None:
+                continue
+            descendants.append(current.name or current.id)
+            if current.type == BlockType.CONTAINER and current.contains:
+                pending.extend(reversed(current.contains))
+        return descendants

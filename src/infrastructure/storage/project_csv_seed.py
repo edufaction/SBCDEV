@@ -99,7 +99,7 @@ def _block_from_row(row: dict[str, str]) -> Block:
         name=(row.get("name", "").strip() or row["id"].strip()),
         description=row.get("description", "").strip(),
         prompt_generated=prompt_generated,
-        shared=_parse_bool(row.get("shared", "")),
+        exposed=_parse_bool(row.get("exposed", row.get("shared", ""))),
         domain=_as_block_domain(row.get("domain", "")),
         tags=_parse_tags(row.get("tags", "")),
         content=content,

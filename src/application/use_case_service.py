@@ -37,7 +37,7 @@ class UseCaseService:
         domain: str | BlockDomain = BlockDomain.LIB,
         profile: str = "generic",
         name: str,
-        shared: bool = False,
+        exposed: bool = False,
         block_id: str | None = None,
         description: str = "",
         prompt_ref: str = "",
@@ -62,7 +62,7 @@ class UseCaseService:
             domain=self._as_block_domain(domain),
             profile=profile,
             name=name,
-            shared=shared,
+            exposed=exposed,
             block_id=resolved_block_id,
             description=description,
             prompt_ref=prompt_ref,
@@ -96,7 +96,7 @@ class UseCaseService:
         name: str,
         domain: str | BlockDomain = BlockDomain.LIB,
         profile: str = "generic",
-        shared: bool = False,
+        exposed: bool = False,
         description: str = "",
         prompt_ref: str = "",
         prompt_generated: str = "",
@@ -111,7 +111,7 @@ class UseCaseService:
             domain=domain,
             profile=profile,
             name=name,
-            shared=shared,
+            exposed=exposed,
             description=description,
             prompt_ref=prompt_ref,
             prompt_generated=prompt_generated,
@@ -161,7 +161,7 @@ class UseCaseService:
             prompt_ref=source_block.prompt_ref,
             prompt_generated=source_block.prompt_generated,
             comment=source_block.comment,
-            shared=False,
+            exposed=False,
             functional_name=source_block.functional_name,
             tags=list(source_block.tags),
             content=dict(source_block.content),
@@ -260,9 +260,9 @@ class UseCaseService:
         """Return all known blocks from the current repository."""
         return self._block_service.list_blocks()
 
-    def list_shared_blocks(self, domain: str | BlockDomain | None = None) -> list[Block]:
-        """List shared blocks, optionally filtered by domain."""
-        blocks = [block for block in self._block_service.list_blocks() if block.shared]
+    def list_exposed_blocks(self, domain: str | BlockDomain | None = None) -> list[Block]:
+        """List exposed blocks, optionally filtered by domain."""
+        blocks = [block for block in self._block_service.list_blocks() if block.exposed]
         if domain is None:
             return blocks
         target_domain = self._as_block_domain(domain)
@@ -308,6 +308,18 @@ class UseCaseService:
             node = self._free_graph_service.add_block_node(container=container, block_id=block_id, x=x, y=y)
         else:
             node = self._free_graph_service.move_node(container=container, node_id=node.id, x=x, y=y)
+        self._block_service.update_block(container)
+        return node
+
+    def resize_block_in_graph(self, container_id: str, block_id: str, width: float, height: float):
+        """Persist one block graph size, creating its graph node on first resize."""
+        container = self._block_service.get_block(container_id)
+        _ = self._block_service.get_block(block_id)
+        graph = self._free_graph_service.ensure_graph(container)
+        node = next((item for item in graph.nodes.values() if item.block_id == block_id), None)
+        if node is None:
+            node = self._free_graph_service.add_block_node(container=container, block_id=block_id, x=0.0, y=0.0)
+        node = self._free_graph_service.resize_node(container=container, node_id=node.id, width=width, height=height)
         self._block_service.update_block(container)
         return node
 

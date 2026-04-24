@@ -1,0 +1,39 @@
+[
+  {
+    "id": "blk_story_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "Story Root",
+    "description": "Story workspace root.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "story",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {},
+    "functional_name": "",
+    "tags": [
+      "workspace_root",
+      "story_root"
+    ],
+    "content": {
+      "workspace_role": "story_root",
+      "workspace_scope": "project",
+      "storage_root_id": "blk_storage_project_root"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  }
+]

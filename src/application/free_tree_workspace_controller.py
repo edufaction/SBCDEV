@@ -21,9 +21,9 @@ class FreeTreeWorkspaceController:
     """Controller rebuilding and mutating the virtual FreeTree view.
 
     The controller is the bridge between persisted block ``container_paths`` and
-    the interactive tree widget representation used by the UI. It preserves
-    compatibility with legacy persisted trees while keeping block paths as the
-    source of truth.
+    the interactive tree widget representation used by the UI. Snapshot trees
+    coming from the widget are replayed onto ``container_paths``, which remain
+    the single source of truth.
     """
 
     def __init__(self) -> None:
@@ -54,7 +54,8 @@ class FreeTreeWorkspaceController:
 
         Args:
             blocks: Full block collection of the current workspace.
-            persisted_tree: Optional legacy tree snapshot for migration support.
+            persisted_tree: Optional in-memory tree snapshot to replay after a
+                widget-side reordering or refresh.
         """
 
         self._blocks = list(blocks)
@@ -64,10 +65,10 @@ class FreeTreeWorkspaceController:
             self.apply_persisted_tree(persisted_tree)
 
     def apply_persisted_tree(self, persisted_tree: FreeTree | None) -> None:
-        """Migrate a legacy persisted tree structure into block container_paths.
+        """Replay a tree snapshot into block ``container_paths``.
 
-        The migration is conservative: explicit modern paths already stored on a
-        block are preserved instead of being overwritten by legacy values.
+        The replay is conservative: explicit current paths already stored on a
+        block are preserved instead of being erased by a flatter snapshot.
         """
         if persisted_tree is None:
             return
@@ -80,7 +81,7 @@ class FreeTreeWorkspaceController:
             block = self._blocks_by_id.get(node.block_id)
             if block is None:
                 continue
-            parent_container_id, rel_path = self._extract_path_from_legacy_tree(
+            parent_container_id, rel_path = self._extract_path_from_snapshot_tree(
                 persisted_tree,
                 parent_map=parent_map,
                 node_id=node_id,
@@ -91,7 +92,7 @@ class FreeTreeWorkspaceController:
             existing = self._normalize_rel_path(block.container_paths.get(parent_container_id, ""))
             if existing == normalized:
                 continue
-            # Do not overwrite an explicit modern path with legacy data.
+            # Do not overwrite an explicit path with a less specific snapshot.
             if existing and not normalized:
                 continue
             block.container_paths[parent_container_id] = normalized
@@ -504,7 +505,7 @@ class FreeTreeWorkspaceController:
             cursor = parent_map.get(cursor)
         return "", ""
 
-    def _extract_path_from_legacy_tree(
+    def _extract_path_from_snapshot_tree(
         self,
         tree: FreeTree,
         *,

@@ -1,0 +1,536 @@
+[
+  {
+    "id": "blk_characters_root",
+    "type": "container",
+    "profile": "workspace_root",
+    "name": "Characters Root",
+    "description": "Characters workspace root.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {},
+    "functional_name": "",
+    "tags": [
+      "workspace_root",
+      "characters_root"
+    ],
+    "content": {
+      "workspace_role": "characters_root",
+      "storage_root_id": "blk_storage_project_root",
+      "workspace_scope": "project"
+    },
+    "contains": [
+      "blk_character_nico_ea7dc0"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {
+        "gnode_6725875e9b56": {
+          "id": "gnode_6725875e9b56",
+          "block_id": "blk_character_nico_ea7dc0",
+          "x": 123.50873786407766,
+          "y": -242.20194174757287,
+          "width": 0.0,
+          "height": 0.0
+        }
+      },
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_nico_ea7dc0",
+    "type": "container",
+    "profile": "character",
+    "name": "Nico",
+    "description": "Template root for character: Nico",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_characters_root": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character",
+      "character_standard"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard"
+    },
+    "contains": [
+      "blk_character_form_references_186307",
+      "blk_e7f59cd7577c"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [
+        "node_dacf6d9df192"
+      ],
+      "nodes": {
+        "node_dacf6d9df192": {
+          "id": "node_dacf6d9df192",
+          "kind": "block_ref",
+          "name": "Note",
+          "block_id": "blk_e7f59cd7577c",
+          "children": []
+        }
+      }
+    },
+    "graph": {
+      "nodes": {
+        "gnode_f8f998c64f66": {
+          "id": "gnode_f8f998c64f66",
+          "block_id": "blk_character_form_references_186307",
+          "x": 59.59703075291631,
+          "y": 127.29586426299045,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_c732f88eaa77": {
+          "id": "gnode_c732f88eaa77",
+          "block_id": "blk_e7f59cd7577c",
+          "x": -47.29586426299039,
+          "y": -43.73276776246021,
+          "width": 281.1664899257688,
+          "height": 140.0
+        }
+      },
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_character_form_references_186307",
+    "type": "container",
+    "profile": "character_form",
+    "name": "Gendarme",
+    "description": "Template form 'References' for Nico",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_nico_ea7dc0": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "character_form",
+      "references"
+    ],
+    "content": {
+      "template_key": "character_standard",
+      "template_label": "Character Standard",
+      "template_form_key": "references",
+      "template_form_name": "References"
+    },
+    "contains": [
+      "blk_slot_side_view_559c6c",
+      "blk_slot_back_view_8284e8",
+      "blk_slot_face_reference_59af01",
+      "blk_33a61bcf646b",
+      "blk_7ec24a188f50",
+      "blk_dea88b4ac83b",
+      "blk_86c07cd93b91"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [
+        "node_4df098b4951c",
+        "node_7807c3e10867",
+        "node_581f7b2480e2",
+        "node_976e44609e12"
+      ],
+      "nodes": {
+        "node_4df098b4951c": {
+          "id": "node_4df098b4951c",
+          "kind": "block_ref",
+          "name": "Placeholder",
+          "block_id": "blk_33a61bcf646b",
+          "children": []
+        },
+        "node_7807c3e10867": {
+          "id": "node_7807c3e10867",
+          "kind": "block_ref",
+          "name": "Note",
+          "block_id": "blk_7ec24a188f50",
+          "children": []
+        },
+        "node_581f7b2480e2": {
+          "id": "node_581f7b2480e2",
+          "kind": "block_ref",
+          "name": "Placeholder 2",
+          "block_id": "blk_dea88b4ac83b",
+          "children": []
+        },
+        "node_976e44609e12": {
+          "id": "node_976e44609e12",
+          "kind": "block_ref",
+          "name": "07_CLASS2_noir",
+          "block_id": "blk_86c07cd93b91",
+          "children": []
+        }
+      }
+    },
+    "graph": {
+      "nodes": {
+        "gnode_1227b8d45f13": {
+          "id": "gnode_1227b8d45f13",
+          "block_id": "blk_slot_side_view_559c6c",
+          "x": 183.6151751933935,
+          "y": -759.9253736670594,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_9e1cc8ad8a76": {
+          "id": "gnode_9e1cc8ad8a76",
+          "block_id": "blk_slot_back_view_8284e8",
+          "x": -198.09694227120357,
+          "y": -752.9407910049223,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_2a1b81bc9d78": {
+          "id": "gnode_2a1b81bc9d78",
+          "block_id": "blk_slot_face_reference_59af01",
+          "x": -168.81409316529937,
+          "y": -312.01153523122116,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_5b9e07717387": {
+          "id": "gnode_5b9e07717387",
+          "block_id": "blk_33a61bcf646b",
+          "x": 563.6762197026985,
+          "y": -728.8399917358881,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_0e281e122822": {
+          "id": "gnode_0e281e122822",
+          "block_id": "blk_7ec24a188f50",
+          "x": -115.08737864077669,
+          "y": -496.7766990291263,
+          "width": 281.0,
+          "height": 140.0
+        },
+        "gnode_511a20063d4f": {
+          "id": "gnode_511a20063d4f",
+          "block_id": "blk_dea88b4ac83b",
+          "x": -95.54809858866318,
+          "y": 35.771525222779104,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "gnode_506893894a90": {
+          "id": "gnode_506893894a90",
+          "block_id": "blk_86c07cd93b91",
+          "x": 242.25398969319173,
+          "y": -512.0167552614208,
+          "width": 0.0,
+          "height": 0.0
+        }
+      },
+      "edges": {}
+    }
+  },
+  {
+    "id": "blk_slot_side_view_559c6c",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "SideView",
+    "description": "Template slot 'Side View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "SideView",
+    "tags": [
+      "template",
+      "slot",
+      "side_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "side_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_back_view_8284e8",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Back View",
+    "description": "Template slot 'Back View'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "back_view"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "back_view",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_slot_face_reference_59af01",
+    "type": "empty",
+    "profile": "template_slot",
+    "name": "Face Reference",
+    "description": "Template slot 'Face Reference'",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "template",
+      "slot",
+      "face_reference"
+    ],
+    "content": {
+      "template_slot": true,
+      "drop_target": true,
+      "template_key": "character_standard",
+      "template_form_key": "references",
+      "template_slot_key": "face_reference",
+      "expected_types": [
+        "image"
+      ]
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_33a61bcf646b",
+    "type": "empty",
+    "profile": "placeholder",
+    "name": "Placeholder",
+    "description": "Manual placeholder block.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "placeholder",
+      "workspace_toolbar"
+    ],
+    "content": {
+      "placeholder": true
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_7ec24a188f50",
+    "type": "text",
+    "profile": "note",
+    "name": "Note",
+    "description": "",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "note",
+      "postit"
+    ],
+    "content": {
+      "text": "Face de base",
+      "note_style": "postit"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_dea88b4ac83b",
+    "type": "empty",
+    "profile": "placeholder",
+    "name": "Placeholder 2",
+    "description": "Manual placeholder block.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "placeholder",
+      "workspace_toolbar"
+    ],
+    "content": {
+      "placeholder": true
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_86c07cd93b91",
+    "type": "image",
+    "profile": "asset",
+    "name": "07_CLASS2_noir",
+    "description": "Imported from disk: 07_CLASS2_noir.jpg",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_form_references_186307": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "imported",
+      "workspace_graph_drop",
+      "image"
+    ],
+    "content": {
+      "storage_path": "storage/files/07_CLASS2_noir.jpg",
+      "mime_type": "image/jpeg",
+      "original_name": "07_CLASS2_noir.jpg"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  },
+  {
+    "id": "blk_e7f59cd7577c",
+    "type": "text",
+    "profile": "note",
+    "name": "Note",
+    "description": "",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "characters",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {
+      "blk_character_nico_ea7dc0": ""
+    },
+    "functional_name": "",
+    "tags": [
+      "note",
+      "postit"
+    ],
+    "content": {
+      "text": "",
+      "note_style": "postit"
+    },
+    "contains": [],
+    "inputs": [],
+    "tree": null,
+    "graph": null
+  }
+]

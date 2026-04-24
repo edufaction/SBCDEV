@@ -28,6 +28,7 @@ but this set documents the currently recognized values.
 """
 
 PROFILES = {
+    "storage_root",
     # containers
     "workspace_root",
     "container",
@@ -35,6 +36,7 @@ PROFILES = {
     "character",
     "character_form",
     "location",
+    "location_scene"
     "library",
     "library_folder",
 
@@ -60,7 +62,6 @@ PROFILES = {
     "metadata",
     "config",
     "placeholder",
-    "internal_lib_empty",
     "template_slot",
 }
 
@@ -167,7 +168,7 @@ class Block:
     prompt_ref: str = ""
     prompt_generated: str = ""
     comment: str = ""
-    shared: bool = False
+    exposed: bool = False
     domain: BlockDomain = BlockDomain.LIB
     access_mode: BlockAccessMode = BlockAccessMode.OWNED
     provenance: dict[str, Any] = field(default_factory=lambda: {"kind": BlockProvenanceKind.LOCAL.value})
@@ -194,6 +195,16 @@ class Block:
         """Return ``True`` when local mutations are allowed."""
 
         return not self.is_link()
+
+    @property
+    def shared(self) -> bool:
+        """Temporary compatibility alias for the old `shared` field name."""
+
+        return self.exposed
+
+    @shared.setter
+    def shared(self, value: bool) -> None:
+        self.exposed = bool(value)
 
     def as_media(self) -> "MediaContent":
         """Return a typed view of ``content`` for IMAGE, VIDEO and AUDIO blocks.
@@ -227,6 +238,13 @@ class Block:
 
         return ContainerContent(
             workspace_role=str(self.content.get("workspace_role") or "").strip().lower(),
+            workspace_scope=str(self.content.get("workspace_scope") or "").strip().lower(),
+            storage_root_id=str(self.content.get("storage_root_id") or "").strip(),
+            storage_kind=str(self.content.get("storage_kind") or "").strip().lower(),
+            source_kind=str(self.content.get("source_kind") or "").strip().lower(),
+            mount_id=str(self.content.get("mount_id") or "").strip(),
+            library_enabled=bool(self.content.get("library_enabled")),
+            read_only=bool(self.content.get("read_only")),
             internal_lib=bool(self.content.get("internal_lib")),
             drop_target=bool(self.content.get("drop_target")),
         )
@@ -272,6 +290,8 @@ class FreeGraphNode:
     block_id: str
     x: float = 0.0
     y: float = 0.0
+    width: float = 0.0
+    height: float = 0.0
 
 
 @dataclass(slots=True)

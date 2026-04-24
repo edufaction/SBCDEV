@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PySide6.QtGui import QAction
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QSize, Qt, Signal
+from PySide6.QtGui import QAction, QColor, QIcon, QPainter, QPixmap
+from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import (
     QFileDialog,
     QHBoxLayout,
@@ -11,7 +12,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QLineEdit,
     QMenu,
-    QPushButton,
+    QMessageBox,
     QToolButton,
     QVBoxLayout,
     QWidget,
@@ -26,7 +27,9 @@ from UI.Widgets import (
     WorkspaceToolbarWidget,
     WorkspaceTreePanelWidget,
 )
-from UI.themes import initialize_widget_primitives
+from UI.themes import active_theme_tokens_ref, initialize_widget_primitives
+
+_ICONS_DIR = Path(__file__).resolve().parents[3] / "icons"
 
 
 class CharacterWorkspacePanel(QWidget):
@@ -37,6 +40,7 @@ class CharacterWorkspacePanel(QWidget):
     graph_link_create_requested = Signal(str, str, str, str, str)
     graph_link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
+    graph_block_resize_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
     graph_files_drop_requested = Signal(str, str, object, float, float)
     character_create_requested = Signal(str)
@@ -44,6 +48,7 @@ class CharacterWorkspacePanel(QWidget):
     note_create_requested = Signal(str)
     block_files_add_requested = Signal(str, object)
     placeholder_block_create_requested = Signal(str)
+    block_delete_requested = Signal(str)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -68,14 +73,23 @@ class CharacterWorkspacePanel(QWidget):
         self._selected_property_container_id = ""
 
         top_bar = WorkspaceToolbarWidget("CHARACTER TOOLS", parent=self._frame)
-        self._create_character_button = QPushButton("NEW CHARACTER", top_bar)
-        self._create_character_button.setProperty("primary", True)
-        self._create_note_button = QPushButton("NEW NOTE", top_bar)
-        self._create_note_button.setProperty("ghost", True)
-        self._add_block_button = QToolButton(top_bar)
-        self._add_block_button.setText("ADD BLOCK")
+        self._create_character_button = self._create_toolbar_button(
+            top_bar,
+            icon_name="story_world_users_plus.svg",
+            tooltip="Create a new character",
+            style_property="primary",
+        )
+        self._create_note_button = self._create_toolbar_button(
+            top_bar,
+            icon_name="project_notes.svg",
+            tooltip="Create a new note in the active container",
+        )
+        self._add_block_button = self._create_toolbar_button(
+            top_bar,
+            icon_name="project_file_plus.svg",
+            tooltip="Add a block to the active character form",
+        )
         self._add_block_button.setPopupMode(QToolButton.InstantPopup)
-        self._add_block_button.setProperty("ghost", True)
         self._add_block_menu = QMenu(self._add_block_button)
         self._import_files_action = QAction("Import From Disk", self._add_block_menu)
         self._placeholder_action = QAction("Add Empty Placeholder", self._add_block_menu)
@@ -86,8 +100,17 @@ class CharacterWorkspacePanel(QWidget):
         self._character_name_edit.setPlaceholderText("Selected character name")
         self._character_tags_edit = QLineEdit(top_bar)
         self._character_tags_edit.setPlaceholderText("Tags (comma separated)")
-        self._save_character_button = QPushButton("SAVE CHARACTER", top_bar)
-        self._save_character_button.setProperty("ghost", True)
+        self._save_character_button = self._create_toolbar_button(
+            top_bar,
+            icon_name="project_file_check.svg",
+            tooltip="Save the selected character",
+        )
+        self._delete_block_button = self._create_toolbar_button(
+            top_bar,
+            icon_name="actions_trash_x.svg",
+            tooltip="Delete the selected block",
+            style_property="danger",
+        )
         self._character_summary_label = QLabel("0 character(s)", top_bar)
         self._character_summary_label.setProperty("muted", True)
         self._character_summary_label.setProperty("technical", True)
@@ -99,6 +122,7 @@ class CharacterWorkspacePanel(QWidget):
                 self._character_name_edit,
                 self._character_tags_edit,
                 self._save_character_button,
+                self._delete_block_button,
             ]
         )
         top_bar.set_trailing_widgets([self._character_summary_label])
@@ -131,13 +155,16 @@ class CharacterWorkspacePanel(QWidget):
         self._graph_widget.link_create_requested.connect(self.graph_link_create_requested.emit)
         self._graph_widget.link_delete_requested.connect(self.graph_link_delete_requested.emit)
         self._graph_widget.graph_block_move_requested.connect(self.graph_block_move_requested.emit)
+        self._graph_widget.graph_block_resize_requested.connect(self.graph_block_resize_requested.emit)
         self._graph_widget.graph_layout_initialize_requested.connect(self.graph_layout_initialize_requested.emit)
         self._graph_widget.graph_files_drop_requested.connect(self.graph_files_drop_requested.emit)
+        self._graph_widget.block_update_requested.connect(self.block_update_requested.emit)
         self._create_character_button.clicked.connect(self._prompt_create_character)
         self._create_note_button.clicked.connect(self._emit_note_create_request)
         self._import_files_action.triggered.connect(self._prompt_add_block_files)
         self._placeholder_action.triggered.connect(self._emit_placeholder_block_create_request)
         self._save_character_button.clicked.connect(self._emit_character_update)
+        self._delete_block_button.clicked.connect(self._emit_delete_block_request)
         initialize_widget_primitives(self)
         self._set_character_editor_enabled(False)
         self._refresh_toolbar_action_state()
@@ -161,6 +188,20 @@ class CharacterWorkspacePanel(QWidget):
 
     def set_message(self, message: str) -> None:
         self._message_label.setText(message.strip())
+
+    def confirm_block_deletion(self, *, block_name: str, descendant_names: list[str]) -> bool:
+        message = f"Delete '{block_name}'?"
+        if descendant_names:
+            lines = "\n".join(f"- {name}" for name in descendant_names)
+            message = f"{message}\n\nContained block(s) that will also be deleted:\n{lines}"
+        answer = QMessageBox.question(
+            self,
+            "Confirm Block Deletion",
+            message,
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        return answer == QMessageBox.Yes
 
     def current_block_id(self) -> str | None:
         return self._property_widget.current_block_id()
@@ -196,7 +237,9 @@ class CharacterWorkspacePanel(QWidget):
         property_container_id = self._resolve_property_container_id(block, container_id)
         self._selected_property_container_id = property_container_id
         self._property_widget.set_block(block, container_id=property_container_id or None)
+        self._graph_widget.set_active_block(block.id)
         self._load_character_editor(block)
+        self._refresh_toolbar_action_state()
         return True
 
     def set_block_relative_path(self, *, block_id: str, container_id: str, relative_path: str) -> bool:
@@ -214,6 +257,7 @@ class CharacterWorkspacePanel(QWidget):
         self._graph_widget.set_active_container(
             self._graph_container_for_selection(block=block, container_id=normalized_container_id)
         )
+        self._graph_widget.set_active_block(block.id if block is not None else "")
         self._load_character_editor(block)
         self._refresh_toolbar_action_state()
 
@@ -223,6 +267,7 @@ class CharacterWorkspacePanel(QWidget):
         property_container_id = self._resolve_property_container_id(block, active_container_id)
         self._selected_property_container_id = property_container_id
         self._property_widget.set_block(block, container_id=property_container_id or None)
+        self._graph_widget.set_active_block(block.id if block is not None else "")
         self._load_character_editor(block)
         self._refresh_toolbar_action_state()
 
@@ -278,6 +323,16 @@ class CharacterWorkspacePanel(QWidget):
             return
         self.placeholder_block_create_requested.emit(container.id)
 
+    def _emit_delete_block_request(self) -> None:
+        block = self._selected_deletable_block()
+        if block is None:
+            self.set_message("Select a deletable block first.")
+            return
+        descendants = self._collect_descendant_names(block.id)
+        if not self.confirm_block_deletion(block_name=block.name or block.id, descendant_names=descendants):
+            return
+        self.block_delete_requested.emit(block.id)
+
     def _refresh_character_toolbar(self) -> None:
         characters = self._character_service.list_characters(self._blocks)
         preview = ", ".join(character.name or character.id for character in characters[:3])
@@ -331,11 +386,17 @@ class CharacterWorkspacePanel(QWidget):
     def _refresh_toolbar_action_state(self) -> None:
         container = self._active_container()
         can_add = self._can_add_non_container_blocks(container)
+        deletable_block = self._selected_deletable_block()
         self._add_block_button.setEnabled(can_add)
+        self._delete_block_button.setEnabled(deletable_block is not None)
         if can_add:
             self._add_block_button.setToolTip("Import a media block or add an empty placeholder to the current character form.")
-            return
-        self._add_block_button.setToolTip("Select a CHARACTER FORM container to add blocks.")
+        else:
+            self._add_block_button.setToolTip("Select a CHARACTER FORM container to add blocks.")
+        if deletable_block is not None:
+            self._delete_block_button.setToolTip(f"Delete '{deletable_block.name or deletable_block.id}'.")
+        else:
+            self._delete_block_button.setToolTip("Select a non-root block to delete.")
 
     def _active_container(self) -> Block | None:
         container_id = self._graph_widget.active_container_id().strip()
@@ -345,10 +406,93 @@ class CharacterWorkspacePanel(QWidget):
         return candidate
 
     @staticmethod
+    def _icon_for(path: Path, color_hex: str) -> QIcon:
+        if not path.exists():
+            return QIcon()
+        renderer = QSvgRenderer(str(path))
+        if not renderer.isValid():
+            return QIcon()
+
+        icon = QIcon()
+        tint = QColor(color_hex)
+        for size in (16, 18, 20, 24):
+            pixmap = QPixmap(size, size)
+            pixmap.fill(Qt.transparent)
+            painter = QPainter(pixmap)
+            renderer.render(painter)
+            painter.setCompositionMode(QPainter.CompositionMode_SourceIn)
+            painter.fillRect(pixmap.rect(), tint)
+            painter.end()
+            icon.addPixmap(pixmap)
+        return icon
+
+    def _create_toolbar_button(
+        self,
+        parent: QWidget,
+        *,
+        icon_name: str,
+        tooltip: str,
+        style_property: str | None = None,
+    ) -> QToolButton:
+        button = QToolButton(parent)
+        button.setText("")
+        button.setProperty("iconOnly", True)
+        if style_property:
+            button.setProperty(style_property, True)
+        else:
+            button.setProperty("ghost", True)
+        button.setToolTip(tooltip)
+        button.setAccessibleName(tooltip)
+        button.setIcon(self._icon_for(_ICONS_DIR / icon_name, self._button_icon_color(style_property)))
+        button.setIconSize(QSize(16, 16))
+        button.setMinimumSize(QSize(30, 30))
+        return button
+
+    @staticmethod
+    def _button_icon_color(style_property: str | None) -> str:
+        tokens = active_theme_tokens_ref()
+        if style_property == "primary":
+            return tokens.get("on_primary_fixed", "#081019")
+        if style_property == "danger":
+            return tokens.get("danger", "#e05252")
+        return tokens.get("on_surface", "#f3f5f8")
+
+    @staticmethod
     def _can_add_non_container_blocks(container: Block | None) -> bool:
         if container is None:
             return False
         return container.profile == "character_form"
+
+    def _selected_deletable_block(self) -> Block | None:
+        candidate_id = str(self.current_block_id() or self.current_tree_block_id() or "").strip()
+        if not candidate_id:
+            return None
+        candidate = self._blocks_by_id.get(candidate_id)
+        if candidate is None:
+            return None
+        if candidate.type == BlockType.CONTAINER and candidate.profile == "workspace_root":
+            return None
+        return candidate
+
+    def _collect_descendant_names(self, root_block_id: str) -> list[str]:
+        root = self._blocks_by_id.get(root_block_id)
+        if root is None or root.type != BlockType.CONTAINER:
+            return []
+        descendants: list[str] = []
+        pending = list(reversed(root.contains))
+        seen: set[str] = set()
+        while pending:
+            current_id = pending.pop()
+            if current_id in seen:
+                continue
+            seen.add(current_id)
+            current = self._blocks_by_id.get(current_id)
+            if current is None:
+                continue
+            descendants.append(current.name or current.id)
+            if current.type == BlockType.CONTAINER and current.contains:
+                pending.extend(reversed(current.contains))
+        return descendants
 
     @staticmethod
     def _parse_tags(text: str) -> list[str]:

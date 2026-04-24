@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from PySide6.QtCore import QSize, Qt, Signal
+from PySide6.QtCore import QSize, Qt, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QFontDatabase, QIcon, QPainter, QPixmap, QStandardItem, QStandardItemModel
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import QHeaderView, QLineEdit, QStyledItemDelegate, QTextEdit, QTreeView, QVBoxLayout, QWidget
@@ -62,7 +62,7 @@ FIELD_SPECS: tuple[PropertyFieldSpec, ...] = (
     PropertyFieldSpec(key="profile", label="Profile", group="general"),
     PropertyFieldSpec(key="domain", label="Domain", group="general"),
     PropertyFieldSpec(key="access_mode", label="Access", group="general"),
-    PropertyFieldSpec(key="shared", label="Shared", group="general"),
+    PropertyFieldSpec(key="exposed", label="Exposed", group="general"),
     PropertyFieldSpec(key="functional_name", label="Functional Name", group="general", editable=True),
     PropertyFieldSpec(key="description", label="Description", group="text", editable=True, multiline=True, editor_kind="multiline"),
     PropertyFieldSpec(key="text_content", label="Text", group="text", editable=True, multiline=True, editor_kind="multiline"),
@@ -180,6 +180,8 @@ class BlockPropertiesEditor(QWidget):
         self._readonly_value_font.setFixedPitch(True)
         self._editable_value_font = QFont(self.font())
         self._editable_value_font.setWeight(QFont.DemiBold)
+        self._group_label_font = QFont(self.font())
+        self._group_label_font.setBold(True)
 
         self._tree_view = QTreeView(self)
         self._tree_view.setRootIsDecorated(True)
@@ -239,6 +241,7 @@ class BlockPropertiesEditor(QWidget):
             value_item.setEditable(False)
             label_item.setSelectable(False)
             value_item.setSelectable(False)
+            label_item.setFont(self._group_label_font)
             icon = self._group_icon(group.id)
             if not icon.isNull():
                 label_item.setIcon(icon)
@@ -258,6 +261,10 @@ class BlockPropertiesEditor(QWidget):
             editable = self._is_field_editable(block, field.key)
             value_item.setData(editable, ROLE_EDITABLE_VALUE)
             value_item.setEditable(editable)
+            if editable:
+                label_item.setForeground(QColor(self._theme_tokens.get("secondary", "#5ea7a0")))
+            else:
+                label_item.setForeground(QColor(self._theme_tokens.get("on_surface_variant", "#a7afba")))
             if editable:
                 value_item.setForeground(QColor(self._theme_tokens.get("primary_hover", "#8caef2")))
                 value_item.setFont(self._editable_value_font)
@@ -295,7 +302,13 @@ class BlockPropertiesEditor(QWidget):
             return
 
         self._reset_item_text(item, self._display_text_for_payload_value(key, payload_value))
-        self.property_change_requested.emit({"block_id": self._current_block.id, key: payload_value})
+        block_id = self._current_block.id
+        QTimer.singleShot(
+            0,
+            lambda block_id=block_id, key=key, payload_value=payload_value: self.property_change_requested.emit(
+                {"block_id": block_id, key: payload_value}
+            ),
+        )
 
     def _emit_relative_path_change(self, item: QStandardItem) -> None:
         block = self._current_block
@@ -312,7 +325,14 @@ class BlockPropertiesEditor(QWidget):
             self._reset_item_text(item, current_path)
             return
         self._reset_item_text(item, relative_path)
-        self.relative_path_changed.emit(block_id, container_id, relative_path)
+        QTimer.singleShot(
+            0,
+            lambda block_id=block_id, container_id=container_id, relative_path=relative_path: self.relative_path_changed.emit(
+                block_id,
+                container_id,
+                relative_path,
+            ),
+        )
 
     def _reset_item_text(self, item: QStandardItem, text: str) -> None:
         self._rebuilding_model = True
@@ -332,8 +352,8 @@ class BlockPropertiesEditor(QWidget):
             return block.domain.value
         if key == "access_mode":
             return block.access_mode.value.upper()
-        if key == "shared":
-            return "yes" if block.shared else "no"
+        if key == "exposed":
+            return "yes" if block.exposed else "no"
         if key == "functional_name":
             return block.functional_name or ""
         if key == "description":

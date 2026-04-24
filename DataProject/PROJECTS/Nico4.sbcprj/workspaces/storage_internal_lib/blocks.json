@@ -1,0 +1,43 @@
+[
+  {
+    "id": "blk_storage_internal_root",
+    "type": "container",
+    "profile": "storage_root",
+    "name": "Internal Library Storage",
+    "description": "Technical storage root for the project internal library.",
+    "prompt_ref": "",
+    "prompt_generated": "",
+    "comment": "",
+    "exposed": false,
+    "domain": "lib",
+    "access_mode": "owned",
+    "provenance": {
+      "kind": "local"
+    },
+    "container_paths": {},
+    "functional_name": "",
+    "tags": [
+      "storage_root",
+      "internal_lib",
+      "internal"
+    ],
+    "content": {
+      "storage_kind": "internal_lib",
+      "source_kind": "internal",
+      "read_only": false,
+      "library_enabled": true
+    },
+    "contains": [
+      "blk_internal_lib_root"
+    ],
+    "inputs": [],
+    "tree": {
+      "root_ids": [],
+      "nodes": {}
+    },
+    "graph": {
+      "nodes": {},
+      "edges": {}
+    }
+  }
+]

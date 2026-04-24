@@ -4,7 +4,6 @@ from domain import (
     Block,
     BlockAccessMode,
     BlockDomain,
-    BlockProvenanceKind,
     BlockType,
     FreeGraph,
     FreeGraphEdge,
@@ -13,12 +12,13 @@ from domain import (
     FreeTreeNode,
     InputConnection,
     PortType,
+    normalize_block_provenance,
 )
 
 
 def block_to_dict(block: Block) -> dict:
     access_mode = _as_access_mode(block.access_mode)
-    provenance = _normalize_provenance(block.provenance, access_mode=access_mode)
+    provenance = normalize_block_provenance(block.provenance, access_mode=access_mode)
     return {
         "id": block.id,
         "type": block.type.value,
@@ -28,7 +28,7 @@ def block_to_dict(block: Block) -> dict:
         "prompt_ref": block.prompt_ref,
         "prompt_generated": block.prompt_generated,
         "comment": block.comment,
-        "shared": block.shared,
+        "exposed": block.exposed,
         "domain": block.domain.value,
         "access_mode": access_mode.value,
         "provenance": provenance,
@@ -71,7 +71,7 @@ def block_from_dict(data: dict) -> Block:
     ]
 
     access_mode = _as_access_mode(data.get("access_mode"))
-    provenance = _normalize_provenance(data.get("provenance"), access_mode=access_mode)
+    provenance = normalize_block_provenance(data.get("provenance"), access_mode=access_mode)
 
     return Block(
         id=data["id"],
@@ -82,7 +82,7 @@ def block_from_dict(data: dict) -> Block:
         prompt_ref=data.get("prompt_ref", ""),
         prompt_generated=data.get("prompt_generated", ""),
         comment=data.get("comment", ""),
-        shared=data.get("shared", False),
+        exposed=data.get("exposed", data.get("shared", False)),
         domain=BlockDomain(data.get("domain", BlockDomain.LIB.value)),
         access_mode=access_mode,
         provenance=provenance,
@@ -110,20 +110,6 @@ def _as_access_mode(value: object) -> BlockAccessMode:
         except ValueError:
             return BlockAccessMode.OWNED
     return BlockAccessMode.OWNED
-
-
-def _normalize_provenance(raw: object, *, access_mode: BlockAccessMode) -> dict:
-    payload = dict(raw) if isinstance(raw, dict) else {}
-    raw_kind = str(payload.get("kind", "") or "").strip().lower()
-    try:
-        kind = BlockProvenanceKind(raw_kind)
-    except ValueError:
-        kind = BlockProvenanceKind.LIB_LINK if access_mode == BlockAccessMode.LINK else BlockProvenanceKind.LOCAL
-    if access_mode == BlockAccessMode.LINK and kind == BlockProvenanceKind.LOCAL:
-        kind = BlockProvenanceKind.LIB_LINK
-    payload["kind"] = kind.value
-    return payload
-
 
 def _tree_to_dict(tree: FreeTree | None) -> dict | None:
     if tree is None:
@@ -169,6 +155,8 @@ def _graph_to_dict(graph: FreeGraph | None) -> dict | None:
                 "block_id": node.block_id,
                 "x": node.x,
                 "y": node.y,
+                "width": node.width,
+                "height": node.height,
             }
             for node_id, node in graph.nodes.items()
         },
@@ -193,6 +181,8 @@ def _graph_from_dict(data: dict | None) -> FreeGraph | None:
             block_id=node_data["block_id"],
             x=float(node_data.get("x", 0.0)),
             y=float(node_data.get("y", 0.0)),
+            width=float(node_data.get("width", 0.0)),
+            height=float(node_data.get("height", 0.0)),
         )
         for node_id, node_data in data.get("nodes", {}).items()
     }

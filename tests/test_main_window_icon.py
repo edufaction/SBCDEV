@@ -14,9 +14,11 @@ from domain import Block, BlockDomain, BlockType
 from infrastructure.storage import ProjectStorageService, UserConfigService
 from UI.Widgets import BlockPropertyWidget, ThumbnailListView
 from UI.windows.main_window import (
+    APP_NAME,
     FreeTreeWindow,
     MainWindow,
     ThumbnailListWindow,
+    _configure_application_metadata,
     _resolve_app_icon_path,
     _resolve_data_project_dir,
 )
@@ -34,6 +36,15 @@ def test_main_window_uses_icon_from_appicons_folder() -> None:
 
     window = MainWindow()
     assert not window.windowIcon().isNull()
+
+
+def test_configure_application_metadata_sets_app_name() -> None:
+    app = _app()
+
+    _configure_application_metadata(app)
+
+    assert app.applicationName() == APP_NAME
+    assert app.applicationDisplayName() == APP_NAME
 
 
 def test_main_window_resolves_local_data_project_directory() -> None:
@@ -164,9 +175,9 @@ def test_open_project_dialog_lists_only_sbcprj_directories(tmp_path, monkeypatch
 
     storage = ProjectStorageService()
     valid_project = projects_root / "project_a.sbcprj"
-    legacy_project = projects_root / "project_legacy"
+    invalid_project = projects_root / "project_without_suffix"
     storage.create_project(valid_project, "Project A")
-    storage.create_project(legacy_project, "Project Legacy")
+    storage.create_project(invalid_project, "Project Without Suffix")
 
     captured: dict[str, list[str]] = {}
 
@@ -253,6 +264,20 @@ def test_main_window_has_project_action_buttons() -> None:
     assert window._open_free_tree_button not in window._workspace_action_buttons
     assert window._select_project_visual_button.text() == "SELECT VISUAL"
     assert window._select_project_visual_button not in window._workspace_action_buttons
+
+
+def test_main_window_builds_application_menu() -> None:
+    _ = _app()
+    window = MainWindow()
+
+    action_texts = {action.text() for action in window._application_menu_actions.values()}
+    menu_titles = [action.text() for action in window.menuBar().actions()]
+
+    assert {"&File", "&View", "&Window", "&Help"} <= set(menu_titles)
+    assert "New Project" in action_texts
+    assert "Open Project" in action_texts
+    assert "Preferences" in action_texts
+    assert "Project Tree" in action_texts
 
 
 def test_dashboard_shows_project_workspace_and_stats() -> None:
@@ -503,7 +528,7 @@ def test_select_project_visual_button_updates_project_preview_metadata(tmp_path,
 
 def test_new_project_workspace_structure_defaults_are_seeded(tmp_path) -> None:
     _ = _app()
-    project_path = tmp_path / "project_virtual_seed"
+    project_path = tmp_path / "project_storage_seed"
     storage = ProjectStorageService()
     storage.create_project(project_path, "Project Virtual Seed")
 
@@ -512,27 +537,23 @@ def test_new_project_workspace_structure_defaults_are_seeded(tmp_path) -> None:
 
     blocks = storage.load_blocks(project_path)
     by_id = {block.id: block for block in blocks}
-    assert "blk_project_root" in by_id
     assert "blk_characters_root" in by_id
     assert "blk_story_root" in by_id
-    assert "blk_lib_root" in by_id
     assert "blk_internal_lib_root" in by_id
-    assert "blk_internal_lib_empty" in by_id
 
-    assert by_id["blk_project_root"].type is BlockType.CONTAINER
-    assert by_id["blk_project_root"].profile == "workspace_root"
-    assert by_id["blk_project_root"].name == "PROJET"
     assert by_id["blk_internal_lib_root"].type is BlockType.CONTAINER
     assert by_id["blk_internal_lib_root"].profile == "workspace_root"
     assert by_id["blk_internal_lib_root"].name == "INTERNALLIB"
-    assert by_id["blk_internal_lib_empty"].type is BlockType.EMPTY
-    assert by_id["blk_internal_lib_empty"].id in by_id["blk_internal_lib_root"].contains
-    assert by_id["blk_internal_lib_root"].id in by_id["blk_project_root"].contains
+    assert by_id["blk_storage_project_root"].profile == "storage_root"
+    assert by_id["blk_storage_internal_root"].profile == "storage_root"
+    assert by_id["blk_characters_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_story_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_internal_lib_root"].id in by_id["blk_storage_internal_root"].contains
 
 
 def test_open_project_creates_workspace_structure_defaults_when_missing(tmp_path) -> None:
     app = _app()
-    project_path = tmp_path / "project_without_virtual"
+    project_path = tmp_path / "project_without_workspace_structure"
     storage = ProjectStorageService()
     storage.create_project(project_path, "Project Without Virtual")
     storage.save_blocks(
@@ -548,23 +569,18 @@ def test_open_project_creates_workspace_structure_defaults_when_missing(tmp_path
 
     loaded = storage.load_blocks(project_path)
     by_id = {block.id: block for block in loaded}
-    assert "blk_project_root" in by_id
     assert "blk_internal_lib_root" in by_id
-    assert "blk_internal_lib_empty" in by_id
-    assert by_id["blk_project_root"].type is BlockType.CONTAINER
-    assert by_id["blk_project_root"].profile == "workspace_root"
-    assert by_id["blk_project_root"].name == "PROJET"
     assert by_id["blk_internal_lib_root"].type is BlockType.CONTAINER
     assert by_id["blk_internal_lib_root"].profile == "workspace_root"
     assert by_id["blk_internal_lib_root"].name == "INTERNALLIB"
-    assert by_id["blk_internal_lib_empty"].type is BlockType.EMPTY
-    assert by_id["blk_internal_lib_empty"].id in by_id["blk_internal_lib_root"].contains
-    assert by_id["blk_internal_lib_root"].id in by_id["blk_project_root"].contains
+    assert by_id["blk_characters_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_story_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_internal_lib_root"].id in by_id["blk_storage_internal_root"].contains
 
 
 def test_constructor_load_project_creates_workspace_structure_defaults_when_missing(tmp_path) -> None:
     app = _app()
-    project_path = tmp_path / "project_without_virtual_ctor"
+    project_path = tmp_path / "project_without_workspace_structure_ctor"
     storage = ProjectStorageService()
     storage.create_project(project_path, "Project Without Virtual Ctor")
     storage.save_blocks(
@@ -578,87 +594,13 @@ def test_constructor_load_project_creates_workspace_structure_defaults_when_miss
 
     loaded = storage.load_blocks(project_path)
     by_id = {block.id: block for block in loaded}
-    assert "blk_project_root" in by_id
     assert "blk_internal_lib_root" in by_id
-    assert "blk_internal_lib_empty" in by_id
-    assert by_id["blk_project_root"].type is BlockType.CONTAINER
-    assert by_id["blk_project_root"].profile == "workspace_root"
-    assert by_id["blk_project_root"].name == "PROJET"
     assert by_id["blk_internal_lib_root"].type is BlockType.CONTAINER
     assert by_id["blk_internal_lib_root"].profile == "workspace_root"
     assert by_id["blk_internal_lib_root"].name == "INTERNALLIB"
-    assert by_id["blk_internal_lib_empty"].type is BlockType.EMPTY
-    assert by_id["blk_internal_lib_empty"].id in by_id["blk_internal_lib_root"].contains
-    assert by_id["blk_internal_lib_root"].id in by_id["blk_project_root"].contains
-
-
-def test_open_project_migrates_legacy_virtual_to_project_root_and_internallib(tmp_path) -> None:
-    app = _app()
-    project_path = tmp_path / "project_legacy_virtual_layout"
-    storage = ProjectStorageService()
-    storage.create_project(project_path, "Project Legacy Virtual")
-    storage.save_blocks(
-        project_path,
-        [
-            Block(
-                id="blk_characters_root",
-                type=BlockType.CONTAINER,
-                profile="workspace_root",
-                name="Characters Root",
-                domain=BlockDomain.CHARACTERS,
-                contains=[],
-            ),
-            Block(
-                id="blk_story_root",
-                type=BlockType.CONTAINER,
-                profile="workspace_root",
-                name="Story Root",
-                domain=BlockDomain.STORY,
-                contains=[],
-            ),
-            Block(
-                id="blk_lib_root",
-                type=BlockType.CONTAINER,
-                profile="workspace_root",
-                name="Library Root",
-                domain=BlockDomain.LIB,
-                contains=[],
-            ),
-            Block(
-                id="blk_virtual_root",
-                type=BlockType.CONTAINER,
-                profile="workspace_root",
-                name="VIRTUAL",
-                domain=BlockDomain.LIB,
-                contains=["blk_virtual_empty"],
-            ),
-            Block(
-                id="blk_virtual_empty",
-                type=BlockType.EMPTY,
-                profile="virtual_empty",
-                name="Drop Resources Here",
-                domain=BlockDomain.LIB,
-            ),
-        ],
-    )
-
-    window = MainWindow()
-    window.show()
-    app.processEvents()
-    window._load_project(project_path)
-    app.processEvents()
-
-    loaded = storage.load_blocks(project_path)
-    by_id = {block.id: block for block in loaded}
-    assert "blk_project_root" in by_id
-    assert "blk_internal_lib_root" in by_id
-    assert "blk_internal_lib_empty" in by_id
-    assert "blk_virtual_root" not in by_id
-    assert "blk_virtual_empty" not in by_id
-    assert by_id["blk_internal_lib_root"].name == "INTERNALLIB"
-    assert by_id["blk_internal_lib_empty"].id in by_id["blk_internal_lib_root"].contains
-    for child_id in ("blk_characters_root", "blk_story_root", "blk_lib_root", "blk_internal_lib_root"):
-        assert child_id in by_id["blk_project_root"].contains
+    assert by_id["blk_characters_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_story_root"].id in by_id["blk_storage_project_root"].contains
+    assert by_id["blk_internal_lib_root"].id in by_id["blk_storage_internal_root"].contains
 
 def test_settings_workspace_is_shown_and_theme_changes_dynamically() -> None:
     app = _app()

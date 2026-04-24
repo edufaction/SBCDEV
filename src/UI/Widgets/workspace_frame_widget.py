@@ -1,7 +1,20 @@
 from __future__ import annotations
 
-from PySide6.QtCore import Qt
+from pathlib import Path
+
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QColor, QIcon, QPainter, QPixmap
+from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import QHBoxLayout, QPushButton, QSplitter, QVBoxLayout, QWidget
+from UI.themes import active_theme_tokens_ref
+
+
+_ICONS_DIR = Path(__file__).resolve().parents[2] / "icons"
+_ZONE_TOGGLE_ICONS = {
+    "LEFT": _ICONS_DIR / "navigation_arrows_left.svg",
+    "RIGHT": _ICONS_DIR / "navigation_arrows_right.svg",
+    "BOTTOM": _ICONS_DIR / "navigation_arrows_down.svg",
+}
 
 
 class WorkspaceFrameWidget(QWidget):
@@ -113,13 +126,42 @@ class WorkspaceFrameWidget(QWidget):
         self._bottom_toggle_button.setChecked(bool(visible))
 
     def _create_zone_toggle_button(self, text: str, callback) -> QPushButton:
-        button = QPushButton(text, self._top_toggles_host)
+        button = QPushButton("", self._top_toggles_host)
         button.setCheckable(True)
         button.setChecked(True)
         button.setProperty("ghost", True)
+        button.setProperty("iconOnly", True)
         button.setMinimumHeight(26)
+        button.setMinimumWidth(30)
+        icon_path = _ZONE_TOGGLE_ICONS.get(text)
+        if icon_path is not None and icon_path.exists():
+            button.setIcon(self._icon_for(icon_path, active_theme_tokens_ref().get("on_surface", "#f3f5f8")))
+            button.setIconSize(QSize(16, 16))
+        button.setToolTip(f"Toggle {text.lower()} panel")
+        button.setAccessibleName(f"Toggle {text.lower()} panel")
         button.toggled.connect(callback)
         return button
+
+    @staticmethod
+    def _icon_for(path: Path, color_hex: str) -> QIcon:
+        if not path.exists():
+            return QIcon()
+        renderer = QSvgRenderer(str(path))
+        if not renderer.isValid():
+            return QIcon()
+
+        icon = QIcon()
+        tint = QColor(color_hex)
+        for size in (16, 18, 20, 24):
+            pixmap = QPixmap(size, size)
+            pixmap.fill(Qt.transparent)
+            painter = QPainter(pixmap)
+            renderer.render(painter)
+            painter.setCompositionMode(QPainter.CompositionMode_SourceIn)
+            painter.fillRect(pixmap.rect(), tint)
+            painter.end()
+            icon.addPixmap(pixmap)
+        return icon
 
     def _on_left_toggled(self, visible: bool) -> None:
         self._apply_side_zone_visibility(left_visible=visible, right_visible=self._right_toggle_button.isChecked())

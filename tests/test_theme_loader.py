@@ -4,6 +4,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from pathlib import Path
 
+from PySide6.QtGui import QPalette
 from PySide6.QtWidgets import QApplication
 
 from UI.themes import SBC2_THEME_QSS_DIR, apply_theme, load_qss_template, render_qss_template, theme_tokens
@@ -39,6 +40,9 @@ def test_apply_theme_sets_app_stylesheet_and_tokens() -> None:
     assert theme_name == "dark"
     assert tokens.get("font_size_px") == "13px"
     assert "@bg_main" not in stylesheet
+    palette = app.palette()
+    assert palette.color(QPalette.ColorRole.Window).name().lower() == tokens["surface_dim"].lower()
+    assert palette.color(QPalette.ColorRole.Base).name().lower() == tokens["surface_container_lowest"].lower()
 
 
 def test_theme_tokens_expose_content_type_base_colors() -> None:

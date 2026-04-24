@@ -4,7 +4,8 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from pathlib import Path
 
-from PySide6.QtCore import QPoint, QPointF, Qt
+from PySide6.QtCore import QEvent, QPoint, QPointF, Qt
+from PySide6.QtGui import QKeyEvent
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication
 from PySide6.QtWidgets import QGraphicsItem
@@ -99,6 +100,188 @@ def test_workspace_graph_widget_uses_postit_size_for_note_blocks() -> None:
     note_item = widget._block_items["note_1"]
     assert round(note_item.boundingRect().width()) == 220
     assert round(note_item.boundingRect().height()) == 180
+
+
+def test_workspace_graph_widget_uses_persisted_note_size_from_graph_node() -> None:
+    app = _app()
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat idea"})
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=[note.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=note.id, x=40.0, y=80.0, width=310.0, height=250.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, note], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    note_item = widget._block_items["note_1"]
+    assert round(note_item.boundingRect().width()) == 310
+    assert round(note_item.boundingRect().height()) == 250
+
+
+def test_workspace_graph_widget_highlights_active_block() -> None:
+    app = _app()
+    container, image, text = _sample_graph_blocks()
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, image, text], project_root=None)
+    widget.set_active_container(container.id)
+    widget.set_active_block("img_1")
+    widget.show()
+    app.processEvents()
+
+    assert widget._block_items["img_1"]._active is True
+    assert widget._block_items["txt_1"]._active is False
+
+
+def test_workspace_graph_widget_uses_profile_specific_icons_for_nodes() -> None:
+    app = _app()
+    container, image, text = _sample_graph_blocks()
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, image, text], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    assert widget._block_items["img_1"]._profile_icon_name == "media_photo_search.svg"
+    assert widget._block_items["txt_1"]._profile_icon_name == "edit_filter_2_spark.svg"
+
+
+def test_workspace_graph_widget_commits_inline_note_text_on_focus_out() -> None:
+    app = _app()
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat idea"})
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=[note.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=note.id, x=40.0, y=80.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, note], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    updates: list[dict] = []
+    widget.block_update_requested.connect(lambda payload: updates.append(dict(payload)))
+
+    note_item = widget._block_items["note_1"]
+    editor = note_item._note_editor
+    assert editor is not None
+    editor.setFocus()
+    editor.selectAll()
+    QTest.keyClicks(editor, "Updated beat")
+    app.processEvents()
+
+    QTest.mouseClick(widget._view.viewport(), Qt.LeftButton, Qt.NoModifier, QPoint(5, 5))
+    app.processEvents()
+
+    assert updates == [{"block_id": "note_1", "text_content": "Updated beat"}]
+
+
+def test_workspace_graph_widget_keeps_backspace_for_inline_note_editor() -> None:
+    app = _app()
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat idea"})
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=[note.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=note.id, x=40.0, y=80.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, note], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    deleted: list[bool] = []
+    widget._view.delete_pressed.connect(lambda: deleted.append(True))
+
+    note_item = widget._block_items["note_1"]
+    editor = note_item._note_editor
+    assert editor is not None
+    editor.setFocus()
+    app.processEvents()
+
+    event = QKeyEvent(QEvent.KeyPress, Qt.Key_Backspace, Qt.NoModifier)
+    widget._view.keyPressEvent(event)
+    app.processEvents()
+
+    assert deleted == []
+
+    QTest.keyClick(editor, Qt.Key_End)
+    QTest.keyClick(editor, Qt.Key_Backspace)
+    app.processEvents()
+
+    assert editor.toPlainText() == "Beat ide"
+
+
+def test_workspace_graph_widget_emits_note_resize_request() -> None:
+    app = _app()
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat idea"})
+    container = Block(
+        id="cnt_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=[note.id],
+        graph=FreeGraph(
+            nodes={
+                "n1": FreeGraphNode(id="n1", block_id=note.id, x=40.0, y=80.0),
+            }
+        ),
+    )
+    widget = WorkspaceGraphWidget()
+    widget.resize(900, 500)
+    widget.set_blocks([container, note], project_root=None)
+    widget.set_active_container(container.id)
+    widget.show()
+    app.processEvents()
+
+    emitted: list[tuple[str, str, float, float]] = []
+    widget.graph_block_resize_requested.connect(lambda *args: emitted.append(args))
+
+    note_item = widget._block_items["note_1"]
+    handle_scene_pos = note_item.mapToScene(note_item._resize_handle_rect().center())
+    start = widget._view.mapFromScene(handle_scene_pos)
+    target = start + QPoint(70, 45)
+
+    QTest.mousePress(widget._view.viewport(), Qt.LeftButton, Qt.NoModifier, start)
+    QTest.mouseMove(widget._view.viewport(), target, delay=20)
+    QTest.mouseRelease(widget._view.viewport(), Qt.LeftButton, Qt.NoModifier, target)
+    app.processEvents()
+
+    assert emitted
+    container_id, block_id, width, height = emitted[-1]
+    assert container_id == "cnt_1"
+    assert block_id == "note_1"
+    assert width > 220.0
+    assert height > 180.0
 
 
 def test_workspace_graph_widget_displays_contained_blocks_without_graph_nodes() -> None:
@@ -405,6 +588,48 @@ def test_moving_graph_block_position_is_persisted_in_storage(tmp_path: Path) -> 
     assert node.block_id == image.id
     assert node.x == 222.0
     assert node.y == 333.0
+
+
+def test_resizing_graph_block_size_is_persisted_in_storage(tmp_path: Path) -> None:
+    storage = ProjectStorageService()
+    project_path = tmp_path / "demo_resize.sbcprj"
+    storage.create_project(project_path, "Demo Resize")
+
+    root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story Root",
+        content={"workspace_role": "story_root"},
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        contains=["note_1"],
+        domain=root.domain,
+        content={"workspace_role": "shot"},
+        graph=FreeGraph(),
+    )
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", content={"text": "Beat"})
+    root.contains.append(shot.id)
+    blocks = [root, shot, note]
+
+    repository = BlockRepository()
+    use_case = UseCaseService(BlockService(repository))
+    for block in blocks:
+        repository.add(block)
+    use_case.resize_block_in_graph(shot.id, note.id, width=300.0, height=260.0)
+
+    storage.save_blocks(project_path, blocks)
+    reloaded = storage.load_blocks(project_path)
+    reloaded_shot = next(block for block in reloaded if block.id == shot.id)
+    assert reloaded_shot.graph is not None
+    node = next(iter(reloaded_shot.graph.nodes.values()))
+    assert node.block_id == note.id
+    assert node.width == 300.0
+    assert node.height == 260.0
 
 
 def test_story_workspace_panel_updates_graph_container_from_tree_selection() -> None:

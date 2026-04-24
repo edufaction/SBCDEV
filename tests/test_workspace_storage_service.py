@@ -101,10 +101,10 @@ def test_project_storage_mounted_libraries_add_and_remove_roundtrip(tmp_path: Pa
     assert mounts_after_remove == []
 
 
-def test_project_storage_normalizes_legacy_mounted_libraries_payload(tmp_path: Path) -> None:
+def test_project_storage_normalizes_non_canonical_mounted_libraries_payload(tmp_path: Path) -> None:
     service = ProjectStorageService()
-    project_path = tmp_path / "project_mounts_legacy"
-    service.create_project(project_path, "Project Mounts Legacy")
+    project_path = tmp_path / "project_mounts_non_canonical"
+    service.create_project(project_path, "Project Mounts Non Canonical")
 
     a = (tmp_path / "LIBRARIES" / "USER" / "A").resolve()
     b = (tmp_path / "LIBRARIES" / "USER" / "B").resolve()

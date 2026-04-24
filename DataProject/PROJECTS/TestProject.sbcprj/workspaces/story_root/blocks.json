@@ -47,49 +47,65 @@
           "id": "gnode_b1370177a81a",
           "block_id": "blk_story_shot_01",
           "x": -351.57389239051196,
-          "y": -395.44863903654186
+          "y": -395.44863903654186,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_f9f9fcd278a6": {
           "id": "gnode_f9f9fcd278a6",
           "block_id": "blk_story_shot_02",
           "x": -279.0,
-          "y": 4.0
+          "y": 4.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_655f425ac983": {
           "id": "gnode_655f425ac983",
           "block_id": "blk_story_shot_03",
           "x": 137.08404521293158,
-          "y": -345.8337374554447
+          "y": -345.8337374554447,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_e50982b8dd2b": {
           "id": "gnode_e50982b8dd2b",
           "block_id": "blk_story_shot_04",
           "x": 792.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_eee95e8efcf7": {
           "id": "gnode_eee95e8efcf7",
           "block_id": "blk_story_shot_05",
           "x": 40.0,
-          "y": 268.0
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_c411dd552683": {
           "id": "gnode_c411dd552683",
           "block_id": "blk_shot_bb19940ea1",
           "x": 416.0,
-          "y": 268.0
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_49e0ec01359f": {
           "id": "gnode_49e0ec01359f",
           "block_id": "blk_shot_1de8dcde19",
           "x": 792.0,
-          "y": 268.0
+          "y": 268.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_232e2faf99f6": {
           "id": "gnode_232e2faf99f6",
           "block_id": "blk_shot_0eb74fb829",
           "x": 40.0,
-          "y": 496.0
+          "y": 496.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {
@@ -143,13 +159,17 @@
           "id": "gnode_ee448c008751",
           "block_id": "blk_img_story_shot_01",
           "x": -493.4848370126283,
-          "y": -244.63783398706676
+          "y": -244.63783398706676,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_267c3d8d7ad4": {
           "id": "gnode_267c3d8d7ad4",
           "block_id": "blk_vid_story_shot_01",
           "x": -64.27402722042552,
-          "y": -384.20790318591105
+          "y": -384.20790318591105,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -271,13 +291,17 @@
           "id": "gnode_f273a35a78ea",
           "block_id": "blk_img_story_shot_02",
           "x": -523.0,
-          "y": -410.0
+          "y": -410.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_c453e9b2220c": {
           "id": "gnode_c453e9b2220c",
           "block_id": "blk_vid_story_shot_02",
           "x": -179.0,
-          "y": -416.0
+          "y": -416.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -399,13 +423,17 @@
           "id": "gnode_fa073c7296a5",
           "block_id": "blk_img_story_shot_03",
           "x": -535.0,
-          "y": -377.0
+          "y": -377.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_91a32d16bb90": {
           "id": "gnode_91a32d16bb90",
           "block_id": "blk_vid_story_shot_03",
           "x": -165.0,
-          "y": -128.0
+          "y": -128.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -518,13 +546,17 @@
           "id": "gnode_faa87270848a",
           "block_id": "blk_img_story_shot_04",
           "x": 40.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_0fceb36fa0da": {
           "id": "gnode_0fceb36fa0da",
           "block_id": "blk_vid_story_shot_04",
           "x": 416.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}
@@ -637,13 +669,17 @@
           "id": "gnode_f2b6535831c7",
           "block_id": "blk_img_story_shot_05",
           "x": 40.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         },
         "gnode_270718995b44": {
           "id": "gnode_270718995b44",
           "block_id": "blk_vid_story_shot_05",
           "x": 416.0,
-          "y": 40.0
+          "y": 40.0,
+          "width": 0.0,
+          "height": 0.0
         }
       },
       "edges": {}

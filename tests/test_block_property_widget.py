@@ -2,7 +2,9 @@ import os
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtWidgets import QApplication, QStyleOptionViewItem
+from PySide6.QtCore import Qt
+from PySide6.QtTest import QTest
+from PySide6.QtWidgets import QApplication, QLineEdit, QStyleOptionViewItem
 
 from domain import Block, BlockDomain, BlockType, FreeGraph, FreeGraphNode
 from infrastructure.storage import ProjectStorageService
@@ -84,6 +86,34 @@ def test_block_property_widget_uses_group_icons_and_distinct_value_styles() -> N
 
     assert editable_item.foreground().color() != readonly_item.foreground().color()
     assert readonly_item.font().fixedPitch() is True
+
+
+def test_block_property_widget_uses_bold_group_labels_and_secondary_editable_property_labels() -> None:
+    app = _app()
+    block = Block(id="blk_note", type=BlockType.TEXT, profile="note", name="Old Name")
+    widget = BlockPropertyWidget()
+    widget.set_block(block)
+    app.processEvents()
+
+    model = widget._editor._model
+    general_group_item = model.item(0, 0)
+    assert general_group_item is not None
+    assert general_group_item.font().bold() is True
+
+    name_parent = widget._editor._items_by_key["name"].parent()
+    id_parent = widget._editor._items_by_key["id"].parent()
+    assert name_parent is not None
+    assert id_parent is not None
+
+    editable_label_item = name_parent.child(widget._editor._items_by_key["name"].row(), 0)
+    readonly_label_item = id_parent.child(widget._editor._items_by_key["id"].row(), 0)
+    assert editable_label_item is not None
+    assert readonly_label_item is not None
+
+    secondary = widget._editor._theme_tokens["secondary"]
+    on_surface_variant = widget._editor._theme_tokens["on_surface_variant"]
+    assert editable_label_item.foreground().color().name().lower() == secondary.lower()
+    assert readonly_label_item.foreground().color().name().lower() == on_surface_variant.lower()
 
 
 def test_block_property_widget_delegate_gives_editable_values_enough_height() -> None:
@@ -196,6 +226,72 @@ def test_main_window_character_block_property_update_persists_and_preserves_sele
     updated_character = next(block for block in persisted_blocks if block.id == "char_1")
     assert updated_character.name == "Alice Updated"
     assert window._character_workspace_panel.current_block_id() == "char_1"
+
+
+def test_main_window_character_form_name_inline_edit_persists_and_preserves_selection(tmp_path) -> None:
+    app = _app()
+    project_path = tmp_path / "project_character_form_props.sbcprj"
+    storage = ProjectStorageService()
+    storage.create_project(project_path, "Project Character Form Props")
+
+    characters_root = Block(
+        id="blk_characters_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Characters",
+        domain=BlockDomain.CHARACTERS,
+        contains=["char_1"],
+        content={"workspace_role": "characters_root"},
+    )
+    character = Block(
+        id="char_1",
+        type=BlockType.CONTAINER,
+        profile="character",
+        name="Alice",
+        domain=BlockDomain.CHARACTERS,
+        contains=["form_1"],
+        container_paths={"blk_characters_root": ""},
+    )
+    form = Block(
+        id="form_1",
+        type=BlockType.CONTAINER,
+        profile="character_form",
+        name="Main Form",
+        domain=BlockDomain.CHARACTERS,
+        container_paths={"char_1": ""},
+    )
+    storage.save_blocks(project_path, [characters_root, character, form])
+
+    window = MainWindow(project_root=project_path)
+    window.show()
+    app.processEvents()
+
+    assert window._character_workspace_panel.select_block("form_1") is True
+    app.processEvents()
+
+    editor_widget = window._character_workspace_panel._property_widget._editor
+    name_item = editor_widget._items_by_key["name"]
+    view = editor_widget._tree_view
+    view.edit(name_item.index())
+    app.processEvents()
+
+    line_edits = view.findChildren(QLineEdit)
+    assert line_edits
+    line_edit = line_edits[-1]
+    line_edit.setFocus()
+    line_edit.selectAll()
+    app.processEvents()
+
+    QTest.keyClicks(line_edit, "Main Form Updated")
+    app.processEvents()
+    QTest.keyClick(line_edit, Qt.Key_Return)
+    app.processEvents()
+    app.processEvents()
+
+    persisted_blocks = storage.load_blocks(project_path)
+    updated_form = next(block for block in persisted_blocks if block.id == "form_1")
+    assert updated_form.name == "Main Form Updated"
+    assert window._character_workspace_panel.current_block_id() == "form_1"
 
 
 def test_main_window_creates_postit_note_in_story_container_and_selects_it(tmp_path) -> None:

@@ -14,6 +14,7 @@ from .models import (
     InputConnection,
     PortType,
 )
+from .provenance import normalize_block_provenance
 
 __all__ = [
     "ContainerContent",
@@ -33,4 +34,5 @@ __all__ = [
     "FreeTreeNode",
     "InputConnection",
     "PortType",
+    "normalize_block_provenance",
 ]

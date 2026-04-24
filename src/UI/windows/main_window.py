@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (
     QApplication,
     QFileDialog,
@@ -18,10 +19,12 @@ from PySide6.QtWidgets import (
 )
 
 from application import (
+    BlockDeletionService,
     BlockWorkspaceService,
     CharacterWorkspaceController,
     ContainerContentService,
     GraphWorkspaceController,
+    MountedStorageProjectionService,
     ProjectLifecycleController,
     ProjectStructureService,
     ProjectWindowController,
@@ -45,7 +48,9 @@ from UI.themes import (
     install_widget_primitives,
 )
 from UI.windows.free_tree_window import FreeTreeWindow
+from UI.windows.application_menu import ApplicationMenuBuilder
 from UI.windows.media_carousel_window import MediaCarouselWindow
+from UI.windows.native_window_chrome import apply_native_window_chrome
 from UI.windows.project_visual_picker_dialog import ProjectVisualPickerDialog
 from UI.windows.workspace_action_buttons import WorkspaceActionButtonFactory
 from UI.windows.thumbnail_list_window import ThumbnailListWindow
@@ -55,6 +60,18 @@ from UI.windows.window_helpers import (
     resolve_app_icon_path as _resolve_app_icon_path,
     resolve_data_project_dir as _resolve_data_project_dir,
 )
+
+APP_NAME = "SBC2"
+APP_ORGANIZATION = "SBCDEV"
+
+
+def _configure_application_metadata(app: QApplication) -> None:
+    app.setApplicationName(APP_NAME)
+    app.setApplicationDisplayName(APP_NAME)
+    app.setOrganizationName(APP_ORGANIZATION)
+    app.setOrganizationDomain("sbcdev.local")
+    app.setDesktopFileName(APP_NAME.lower())
+
 
 class MainWindow(QMainWindow):
     """Primary application shell coordinating workspaces and secondary windows.
@@ -75,6 +92,7 @@ class MainWindow(QMainWindow):
         self._section_key = "dashboard"
         self._user_config = UserConfigService()
         self._project_structure_service = ProjectStructureService()
+        self._mounted_storage_projection_service = MountedStorageProjectionService()
 
         resolved_blocks: list[Block] | None = list(blocks) if blocks is not None else None
         resolved_project_root = project_root
@@ -98,9 +116,17 @@ class MainWindow(QMainWindow):
         elif resolved_project_root is not None:
             normalized_project_root = resolved_project_root.expanduser().resolve()
             resolved_blocks = self._ensure_workspace_structure_on_open(normalized_project_root, resolved_blocks)
+            resolved_blocks = self._mounted_storage_projection_service.merge_mounted_libraries(
+                normalized_project_root,
+                resolved_blocks,
+            )
             resolved_project_root = normalized_project_root
 
-        self._session = ProjectSession(project_root=resolved_project_root, blocks=resolved_blocks)
+        self._session = ProjectSession(
+            project_root=resolved_project_root,
+            blocks=resolved_blocks,
+            mounted_storage_projection=self._mounted_storage_projection_service,
+        )
         self._blocks = self._session.blocks
         self._project_root = self._session.project_root
         self._thumbnail_window: ThumbnailListWindow | None = None
@@ -108,6 +134,7 @@ class MainWindow(QMainWindow):
         self._free_tree_window: FreeTreeWindow | None = None
         self._project_workspace_service = ProjectWorkspaceService()
         self._block_workspace_service = BlockWorkspaceService()
+        self._block_deletion_service = BlockDeletionService()
         self._container_content_service = ContainerContentService()
         self._character_workspace_service = CharacterWorkspaceService()
         self._settings_workspace_service = SettingsWorkspaceService()
@@ -137,6 +164,7 @@ class MainWindow(QMainWindow):
         self._character_workspace_panel.graph_link_create_requested.connect(self._on_graph_link_create_requested)
         self._character_workspace_panel.graph_link_delete_requested.connect(self._on_graph_link_delete_requested)
         self._character_workspace_panel.graph_block_move_requested.connect(self._on_graph_block_move_requested)
+        self._character_workspace_panel.graph_block_resize_requested.connect(self._on_graph_block_resize_requested)
         self._character_workspace_panel.graph_layout_initialize_requested.connect(
             self._on_graph_layout_initialize_requested
         )
@@ -146,6 +174,7 @@ class MainWindow(QMainWindow):
         self._story_workspace_panel.graph_link_create_requested.connect(self._on_graph_link_create_requested)
         self._story_workspace_panel.graph_link_delete_requested.connect(self._on_graph_link_delete_requested)
         self._story_workspace_panel.graph_block_move_requested.connect(self._on_graph_block_move_requested)
+        self._story_workspace_panel.graph_block_resize_requested.connect(self._on_graph_block_resize_requested)
         self._story_workspace_panel.graph_layout_initialize_requested.connect(
             self._on_graph_layout_initialize_requested
         )
@@ -156,6 +185,7 @@ class MainWindow(QMainWindow):
             panel=self._character_workspace_panel,
             session=self._session,
             content_service=self._container_content_service,
+            block_deletion_service=self._block_deletion_service,
             block_workspace_service=self._block_workspace_service,
             character_workspace_service=self._character_workspace_service,
             persist_blocks=self._persist_project_blocks,
@@ -164,6 +194,7 @@ class MainWindow(QMainWindow):
             panel=self._story_workspace_panel,
             session=self._session,
             content_service=self._container_content_service,
+            block_deletion_service=self._block_deletion_service,
             block_workspace_service=self._block_workspace_service,
             story_workspace_service=self._story_workspace_service,
             persist_blocks=self._persist_project_blocks,
@@ -184,6 +215,7 @@ class MainWindow(QMainWindow):
             close_secondary_windows=self._close_secondary_windows,
             save_last_project_path=self._user_config.save_last_project_path,
             ensure_workspace_structure_on_open=self._project_structure_service.ensure_workspace_structure_on_open,
+            merge_mounted_libraries=self._mounted_storage_projection_service.merge_mounted_libraries,
             load_blocks_safely=self._load_blocks_safely,
             refresh_dashboard_stats=self._refresh_dashboard_stats,
             get_user_libraries_root=lambda: self._storage_roots.user_libraries_root,
@@ -226,8 +258,10 @@ class MainWindow(QMainWindow):
         self._character_workspace_panel.note_create_requested.connect(self._character_workspace_controller.create_note)
         self._character_workspace_panel.block_files_add_requested.connect(self._character_workspace_controller.import_blocks)
         self._character_workspace_panel.placeholder_block_create_requested.connect(self._character_workspace_controller.create_placeholder)
+        self._character_workspace_panel.block_delete_requested.connect(self._character_workspace_controller.delete_block)
         self._story_workspace_panel.block_update_requested.connect(self._story_workspace_controller.update_block)
         self._story_workspace_panel.note_create_requested.connect(self._story_workspace_controller.create_note)
+        self._story_workspace_panel.block_delete_requested.connect(self._story_workspace_controller.delete_block)
         self._character_workspace_panel.character_create_requested.connect(
             self._character_workspace_controller.create_character
         )
@@ -247,6 +281,16 @@ class MainWindow(QMainWindow):
         self._project_workspace_panel.project_tree_requested.connect(self._open_free_tree_window)
         self._project_workspace_panel.select_visual_requested.connect(self._select_project_visual_from_carousel)
         self._project_workspace_panel.save_requested.connect(self._save_project_metadata_from_workspace)
+        self._application_menu_actions: dict[str, QAction] = ApplicationMenuBuilder(
+            window=self,
+            create_project=self._create_new_project,
+            open_project=self._open_project_from_dialog,
+            close_project=self._close_current_project,
+            open_project_tree=self._open_free_tree_window,
+            open_thumbnail_browser=self._open_thumbnail_window,
+            open_media_carousel=self._open_media_carousel_window,
+            navigate_to_section=self._navigate_to_workspace_section,
+        ).build()
         # Public aliases kept for compatibility with existing tests/callers.
         self._new_project_button = self._project_workspace._new_project_button
         self._open_project_button = self._project_workspace._open_project_button
@@ -329,6 +373,7 @@ class MainWindow(QMainWindow):
         self._update_workspace_footer()
         self._refresh_project_workspace()
         initialize_widget_primitives(self)
+        self._apply_native_window_chrome()
 
     def _on_sidebar_navigation(self, key: str) -> None:
         self._window_navigation_controller.navigate(key)
@@ -428,6 +473,20 @@ class MainWindow(QMainWindow):
         y: float,
     ) -> None:
         self._graph_workspace_controller.move_block(container_id=container_id, block_id=block_id, x=x, y=y)
+
+    def _on_graph_block_resize_requested(
+        self,
+        container_id: str,
+        block_id: str,
+        width: float,
+        height: float,
+    ) -> None:
+        self._graph_workspace_controller.resize_block(
+            container_id=container_id,
+            block_id=block_id,
+            width=width,
+            height=height,
+        )
 
     def _on_graph_layout_initialize_requested(self, container_id: str, positions: object) -> None:
         self._graph_workspace_controller.initialize_layout(container_id=container_id, positions=positions)
@@ -534,6 +593,7 @@ class MainWindow(QMainWindow):
         self._workspace_action_button_factory.refresh_icons(self._workspace_action_buttons)
         self._sidebar.set_active(self._section_key)
         self._settings_workspace_panel.set_current_theme(theme_name)
+        self._apply_native_window_chrome()
 
     def _create_new_project(self) -> None:
         self._project_lifecycle_controller.create_new_project()
@@ -570,8 +630,7 @@ class MainWindow(QMainWindow):
         self._secondary_windows_controller.close_all()
         self._sync_secondary_window_refs()
 
-    @staticmethod
-    def _load_blocks_safely(project_path: Path) -> list[Block] | None:
+    def _load_blocks_safely(self, project_path: Path) -> list[Block] | None:
         if not project_path.exists():
             return None
         try:
@@ -626,16 +685,6 @@ class MainWindow(QMainWindow):
     def _ensure_workspace_structure_on_open(self, project_path: Path, blocks: list[Block]) -> list[Block]:
         return self._project_structure_service.ensure_workspace_structure_on_open(project_path, blocks)
 
-    def _migrate_legacy_project_tree_to_block_paths(self, project_path: Path, blocks: list[Block]) -> bool:
-        return self._project_structure_service.migrate_legacy_project_tree_to_block_paths(project_path, blocks)
-
-    def _load_legacy_project_free_tree(self, project_path: Path):
-        return self._project_structure_service.load_legacy_project_free_tree(project_path)
-
-    @staticmethod
-    def _legacy_tree_from_payload(data: dict):
-        return ProjectStructureService.legacy_tree_from_payload(data)
-
     def closeEvent(self, event) -> None:  # noqa: N802 (Qt naming)
         # Ensure all auxiliary windows are closed when main shell is closed.
         self._close_secondary_windows()
@@ -650,10 +699,18 @@ class MainWindow(QMainWindow):
 
         super().closeEvent(event)
 
+    def showEvent(self, event) -> None:  # noqa: N802 (Qt naming)
+        super().showEvent(event)
+        self._apply_native_window_chrome()
+
+    def _apply_native_window_chrome(self) -> None:
+        apply_native_window_chrome(self, theme_name=active_theme_name())
+
 def run_main_window() -> None:
     """Bootstrap and execute the Qt application main window."""
 
     app = QApplication.instance() or QApplication(sys.argv)
+    _configure_application_metadata(app)
     icon = _load_app_icon()
     if icon is not None:
         app.setWindowIcon(icon)

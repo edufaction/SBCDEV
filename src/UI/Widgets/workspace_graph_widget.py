@@ -2,18 +2,22 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer, Signal
-from PySide6.QtGui import QColor, QNativeGestureEvent, QPainter, QPainterPath, QPen, QPixmap, QTransform, QWheelEvent
+from PySide6.QtCore import QEvent, QPointF, QRectF, QSize, Qt, QTimer, Signal
+from PySide6.QtGui import QColor, QFocusEvent, QIcon, QMouseEvent, QNativeGestureEvent, QPainter, QPainterPath, QPen, QPixmap, QTransform, QWheelEvent
+from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import (
+    QApplication,
     QFrame,
     QGraphicsItem,
     QGraphicsObject,
     QGraphicsPathItem,
+    QGraphicsProxyWidget,
     QGraphicsScene,
     QGraphicsSceneMouseEvent,
     QGraphicsView,
     QHBoxLayout,
     QLabel,
+    QPlainTextEdit,
     QPushButton,
     QStyleOptionGraphicsItem,
     QVBoxLayout,
@@ -22,15 +26,22 @@ from PySide6.QtWidgets import (
 from shiboken6 import isValid as shiboken_is_valid
 
 from domain import Block, BlockType, PortType
+from UI.block_icon_resolver import block_icon_name
 from UI.themes import active_theme_tokens_ref, initialize_widget_primitives, resolve_type_color, type_badge_label
 from UI.Widgets.thumbnail_utils import extract_video_preview, load_image_safe, resolve_block_asset_path
 
+_ICONS_DIR = Path(__file__).resolve().parents[2] / "icons"
+_ICON_CACHE: dict[tuple[str, str], QIcon] = {}
 GRAPH_BLOCK_MEDIA_WIDTH = 320.0
 GRAPH_BLOCK_MEDIA_HEIGHT = 180.0
 GRAPH_BLOCK_COMPACT_WIDTH = GRAPH_BLOCK_MEDIA_WIDTH / 2.0
 GRAPH_BLOCK_COMPACT_HEIGHT = GRAPH_BLOCK_MEDIA_HEIGHT / 2.0
 GRAPH_BLOCK_NOTE_WIDTH = 220.0
 GRAPH_BLOCK_NOTE_HEIGHT = 180.0
+GRAPH_BLOCK_NOTE_MIN_WIDTH = 180.0
+GRAPH_BLOCK_NOTE_MIN_HEIGHT = 140.0
+GRAPH_BLOCK_NOTE_MAX_WIDTH = 520.0
+GRAPH_BLOCK_NOTE_MAX_HEIGHT = 420.0
 
 _TARGET_PORTS = (PortType.IN, PortType.TOP, PortType.BOTTOM)
 _PORT_COLORS: dict[PortType, str] = {
@@ -39,6 +50,32 @@ _PORT_COLORS: dict[PortType, str] = {
     PortType.TOP: "#58a6ff",
     PortType.BOTTOM: "#f2cc60",
 }
+
+
+def _icon_for(path: Path, color_hex: str) -> QIcon:
+    key = (str(path), color_hex)
+    cached = _ICON_CACHE.get(key)
+    if cached is not None:
+        return cached
+    if not path.exists():
+        return QIcon()
+    renderer = QSvgRenderer(str(path))
+    if not renderer.isValid():
+        return QIcon()
+
+    icon = QIcon()
+    tint = QColor(color_hex)
+    for size in (16, 18, 20, 24):
+        pixmap = QPixmap(size, size)
+        pixmap.fill(Qt.transparent)
+        painter = QPainter(pixmap)
+        renderer.render(painter)
+        painter.setCompositionMode(QPainter.CompositionMode_SourceIn)
+        painter.fillRect(pixmap.rect(), tint)
+        painter.end()
+        icon.addPixmap(pixmap)
+    _ICON_CACHE[key] = icon
+    return icon
 
 
 def _is_compact_block(block: Block) -> bool:
@@ -160,6 +197,14 @@ class _WorkspaceGraphView(QGraphicsView):
 
     def keyPressEvent(self, event) -> None:  # noqa: N802 (Qt naming)
         if event.key() in {Qt.Key_Delete, Qt.Key_Backspace}:
+            focus_widget = QApplication.focusWidget()
+            focus_item = self.scene().focusItem() if self.scene() is not None else None
+            if (
+                (focus_widget is not None and focus_widget not in {self, self.viewport()})
+                or isinstance(focus_item, QGraphicsProxyWidget)
+            ):
+                super().keyPressEvent(event)
+                return
             self.delete_pressed.emit()
             event.accept()
             return
@@ -220,6 +265,54 @@ class _WorkspaceGraphView(QGraphicsView):
             self.centerOn(center)
 
 
+class _InlineNoteEditor(QPlainTextEdit):
+    text_commit_requested = Signal(str)
+    activated = Signal()
+
+    def __init__(self, *, initial_text: str, parent: QWidget | None = None) -> None:
+        super().__init__(parent)
+        self._last_committed_text = str(initial_text or "")
+        self.setPlainText(self._last_committed_text)
+        self.setPlaceholderText("Sticky note")
+        self.setFrameStyle(QFrame.NoFrame)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setWordWrapMode(self.wordWrapMode())
+        self.setStyleSheet(
+            "QPlainTextEdit { background: transparent; border: none; color: #3D3320; selection-background-color: rgba(61,51,32,0.18); }"
+        )
+
+    def focusInEvent(self, event: QFocusEvent) -> None:  # noqa: N802 (Qt naming)
+        self.activated.emit()
+        super().focusInEvent(event)
+
+    def focusOutEvent(self, event: QFocusEvent) -> None:  # noqa: N802 (Qt naming)
+        super().focusOutEvent(event)
+        self._commit_if_needed()
+
+    def mousePressEvent(self, event: QMouseEvent) -> None:  # noqa: N802 (Qt naming)
+        self.activated.emit()
+        super().mousePressEvent(event)
+
+    def set_note_text(self, text: str) -> None:
+        normalized = str(text or "")
+        self._last_committed_text = normalized
+        if self.toPlainText() != normalized:
+            self.setPlainText(normalized)
+
+    def _commit_if_needed(self) -> None:
+        if not shiboken_is_valid(self):
+            return
+        try:
+            normalized = self.toPlainText().strip()
+        except RuntimeError:
+            return
+        if normalized == self._last_committed_text:
+            return
+        self._last_committed_text = normalized
+        self.text_commit_requested.emit(normalized)
+
+
 class _GraphBlockItem(QGraphicsObject):
     _MOVE_THRESHOLD = 3.0
 
@@ -229,6 +322,9 @@ class _GraphBlockItem(QGraphicsObject):
     link_drag_released = Signal(object)
     position_changed = Signal(str, object)
     move_finished = Signal(str, object)
+    size_changed = Signal(str)
+    resize_finished = Signal(str, float, float)
+    note_text_commit_requested = Signal(str, str)
 
     def __init__(
         self,
@@ -245,16 +341,25 @@ class _GraphBlockItem(QGraphicsObject):
         self._pixmap = pixmap
         self._rect = QRectF(0, 0, width, height)
         self._theme_tokens = dict(theme_tokens)
+        self._profile_icon_name = block_icon_name(block)
+        self._active = False
         self._hover_port: PortType | None = None
         self._dragging_link = False
         self._drag_start_pos = QPointF()
         self._moved_since_press = False
         self._suspend_position_signals = False
+        self._resizing = False
+        self._resize_start_scene_pos = QPointF()
+        self._resize_start_size = QPointF(width, height)
+        self._note_editor_proxy: QGraphicsProxyWidget | None = None
+        self._note_editor: _InlineNoteEditor | None = None
         self.setCacheMode(QGraphicsItem.CacheMode.DeviceCoordinateCache)
         self.setAcceptedMouseButtons(Qt.LeftButton)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
+        if _is_note_block(self._block):
+            self._install_note_editor()
 
     def boundingRect(self) -> QRectF:  # noqa: N802 (Qt naming)
         return QRectF(self._rect)
@@ -270,6 +375,14 @@ class _GraphBlockItem(QGraphicsObject):
         if self._hover_port == port:
             return
         self._hover_port = port
+        self.update()
+
+    def set_active(self, active: bool) -> None:
+        normalized = bool(active)
+        if self._active == normalized:
+            return
+        self._active = normalized
+        self.setSelected(normalized)
         self.update()
 
     def connector_scene_pos(self, port: PortType) -> QPointF:
@@ -309,6 +422,13 @@ class _GraphBlockItem(QGraphicsObject):
 
     def mousePressEvent(self, event: QGraphicsSceneMouseEvent) -> None:  # noqa: N802 (Qt naming)
         if event.button() == Qt.LeftButton:
+            if _is_note_block(self._block) and self._resize_handle_rect().contains(event.pos()):
+                self._resizing = True
+                self._resize_start_scene_pos = QPointF(event.scenePos())
+                self._resize_start_size = QPointF(self._rect.width(), self._rect.height())
+                self.clicked.emit(self._block.id)
+                event.accept()
+                return
             self._drag_start_pos = QPointF(self.pos())
             self._moved_since_press = False
             port, _distance = self.connector_port_at_scene(
@@ -325,6 +445,14 @@ class _GraphBlockItem(QGraphicsObject):
         super().mousePressEvent(event)
 
     def mouseMoveEvent(self, event: QGraphicsSceneMouseEvent) -> None:  # noqa: N802 (Qt naming)
+        if self._resizing:
+            delta = event.scenePos() - self._resize_start_scene_pos
+            self._set_size(
+                width=self._resize_start_size.x() + delta.x(),
+                height=self._resize_start_size.y() + delta.y(),
+            )
+            event.accept()
+            return
         if self._dragging_link:
             self.link_drag_moved.emit(event.scenePos())
             event.accept()
@@ -332,6 +460,11 @@ class _GraphBlockItem(QGraphicsObject):
         super().mouseMoveEvent(event)
 
     def mouseReleaseEvent(self, event: QGraphicsSceneMouseEvent) -> None:  # noqa: N802 (Qt naming)
+        if self._resizing:
+            self._resizing = False
+            self.resize_finished.emit(self._block.id, self._rect.width(), self._rect.height())
+            event.accept()
+            return
         if self._dragging_link:
             self._dragging_link = False
             self.link_drag_released.emit(event.scenePos())
@@ -400,6 +533,9 @@ class _GraphBlockItem(QGraphicsObject):
         note_fold_color = QColor("#E6CC57")
         note_border_color = QColor("#B89C31")
         note_text_color = QColor("#3D3320")
+        active_outline_color = QColor(tokens.get("primary", "#8dacff"))
+        active_fill_color = QColor(tokens.get("primary", "#8dacff"))
+        active_fill_color.setAlpha(28)
 
         painter.setRenderHint(QPainter.Antialiasing)
         painter.setRenderHint(QPainter.TextAntialiasing)
@@ -426,20 +562,26 @@ class _GraphBlockItem(QGraphicsObject):
             painter.setPen(QPen(border_color, 1.0))
             painter.setBrush(panel_color)
             painter.drawRoundedRect(frame_rect, 10.0, 10.0)
+        if self._active:
+            highlight_rect = frame_rect.adjusted(-2.0, -2.0, 2.0, 2.0)
+            painter.setPen(QPen(active_outline_color, 2.2))
+            painter.setBrush(active_fill_color)
+            painter.drawRoundedRect(highlight_rect, 9.0 if is_note else 11.0, 9.0 if is_note else 11.0)
 
         if self._block.is_link():
-            link_badge = frame_rect.adjusted(10, 6, -10, -6)
+            link_badge = frame_rect.adjusted(10, 28, -10, -6)
             painter.setPen(QColor(tokens.get("warning", "#f59f00")))
             painter.drawText(link_badge, Qt.AlignTop | Qt.AlignLeft, "LINK")
 
+        icon_color = note_text_color.name() if is_note else base_type_color.name()
+        profile_icon = _icon_for(_ICONS_DIR / self._profile_icon_name, icon_color)
+        if not profile_icon.isNull():
+            icon_pixmap = profile_icon.pixmap(QSize(18, 18))
+            painter.drawPixmap(int(frame_rect.x() + 8.0), int(frame_rect.y() + 8.0), icon_pixmap)
+
         content_rect = frame_rect.adjusted(8, 8, -8, -32)
         if is_note:
-            painter.setPen(note_text_color)
-            painter.drawText(
-                content_rect.adjusted(8, 14, -8, -8),
-                Qt.AlignTop | Qt.TextWordWrap,
-                _block_preview_text(self._block),
-            )
+            pass
         elif self._pixmap is not None and not self._pixmap.isNull():
             scaled = self._pixmap.scaled(
                 int(max(1.0, content_rect.width())),
@@ -477,6 +619,53 @@ class _GraphBlockItem(QGraphicsObject):
             painter.setPen(QPen(connector_outline, 1.0))
             painter.setBrush(QColor(color_value))
             painter.drawEllipse(center, radius, radius)
+        if is_note:
+            self._paint_resize_handle(painter, frame_rect)
+
+    def _paint_resize_handle(self, painter: QPainter, frame_rect: QRectF) -> None:
+        handle_rect = self._resize_handle_rect().translated(frame_rect.topLeft())
+        painter.setPen(QPen(QColor("#8A7222"), 1.2))
+        painter.drawLine(handle_rect.left() + 4.0, handle_rect.bottom() - 4.0, handle_rect.right() - 4.0, handle_rect.top() + 4.0)
+        painter.drawLine(handle_rect.left() + 8.0, handle_rect.bottom() - 4.0, handle_rect.right() - 4.0, handle_rect.top() + 8.0)
+
+    def _install_note_editor(self) -> None:
+        editor = _InlineNoteEditor(initial_text=str(self._block.content.get("text", "") or ""))
+        editor.activated.connect(lambda: self.clicked.emit(self._block.id))
+        editor.text_commit_requested.connect(lambda text: self._note_text_commit_requested(text))
+        proxy = QGraphicsProxyWidget(self)
+        proxy.setWidget(editor)
+        proxy.setZValue(1.0)
+        self._note_editor = editor
+        self._note_editor_proxy = proxy
+        self._update_note_editor_geometry()
+
+    def _note_text_commit_requested(self, text: str) -> None:
+        self._block.content["text"] = text
+        self.note_text_commit_requested.emit(self._block.id, text)
+
+    def _update_note_editor_geometry(self) -> None:
+        if self._note_editor_proxy is None:
+            return
+        self._note_editor_proxy.setGeometry(self._note_content_rect())
+
+    def _note_content_rect(self) -> QRectF:
+        frame_rect = self._rect.adjusted(1, 1, -1, -1)
+        return frame_rect.adjusted(16.0, 28.0, -16.0, -38.0)
+
+    def _resize_handle_rect(self) -> QRectF:
+        size = 18.0
+        return QRectF(self._rect.width() - size - 6.0, self._rect.height() - size - 6.0, size, size)
+
+    def _set_size(self, *, width: float, height: float) -> None:
+        bounded_width = min(max(width, GRAPH_BLOCK_NOTE_MIN_WIDTH), GRAPH_BLOCK_NOTE_MAX_WIDTH)
+        bounded_height = min(max(height, GRAPH_BLOCK_NOTE_MIN_HEIGHT), GRAPH_BLOCK_NOTE_MAX_HEIGHT)
+        if abs(self._rect.width() - bounded_width) < 0.1 and abs(self._rect.height() - bounded_height) < 0.1:
+            return
+        self.prepareGeometryChange()
+        self._rect = QRectF(0, 0, bounded_width, bounded_height)
+        self._update_note_editor_geometry()
+        self.update()
+        self.size_changed.emit(self._block.id)
 
 
 class _GraphEdgeItem(QGraphicsPathItem):
@@ -533,8 +722,10 @@ class WorkspaceGraphWidget(QWidget):
     link_create_requested = Signal(str, str, str, str, str)
     link_delete_requested = Signal(str, str, str, str, str)
     graph_block_move_requested = Signal(str, str, float, float)
+    graph_block_resize_requested = Signal(str, str, float, float)
     graph_layout_initialize_requested = Signal(str, object)
     graph_files_drop_requested = Signal(str, str, object, float, float)
+    block_update_requested = Signal(dict)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -544,6 +735,7 @@ class WorkspaceGraphWidget(QWidget):
         self._blocks: list[Block] = []
         self._blocks_by_id: dict[str, Block] = {}
         self._active_container_id: str = ""
+        self._active_block_id: str = ""
         self._block_items: dict[str, _GraphBlockItem] = {}
         self._edge_items_by_block_id: dict[str, list[_GraphEdgeItem]] = {}
         self._status = QLabel("Select a container to display its graph.", self)
@@ -562,8 +754,18 @@ class WorkspaceGraphWidget(QWidget):
 
         title = QLabel("CONTAINER GRAPH", self)
         title.setProperty("section", True)
-        self._fit_view_button = QPushButton("FIT GRAPH", self)
+        self._fit_view_button = QPushButton("", self)
         self._fit_view_button.setProperty("ghost", True)
+        self._fit_view_button.setProperty("iconOnly", True)
+        self._fit_view_button.setToolTip("Fit graph to view")
+        self._fit_view_button.setAccessibleName("Fit graph to view")
+        self._fit_view_button.setIcon(
+            _icon_for(
+                _ICONS_DIR / "navigation_arrows_maximize.svg",
+                self._theme_tokens.get("on_surface", "#f3f5f8"),
+            )
+        )
+        self._fit_view_button.setIconSize(QSize(16, 16))
         self._fit_view_button.clicked.connect(self.reset_view_to_scene)
 
         header = QWidget(self)
@@ -597,6 +799,10 @@ class WorkspaceGraphWidget(QWidget):
 
     def active_container_id(self) -> str:
         return self._active_container_id
+
+    def set_active_block(self, block_id: str | None) -> None:
+        self._active_block_id = str(block_id or "").strip()
+        self._apply_active_block_selection()
 
     def reset_view_to_scene(self) -> None:
         self._view.reset_zoom_to_scene()
@@ -641,43 +847,46 @@ class WorkspaceGraphWidget(QWidget):
         self._edge_items_by_block_id = {}
 
         if not self._active_container_id:
+            self._active_block_id = ""
             self._status.setText("Select a container to display its graph.")
             return
 
         container = self._blocks_by_id.get(self._active_container_id)
         if container is None:
+            self._active_block_id = ""
             self._status.setText(f"Container not found: {self._active_container_id}")
             return
         if container.type != BlockType.CONTAINER:
+            self._active_block_id = ""
             self._status.setText(f"Selected block is not a container: {container.name or container.id}")
             return
 
-        positioned_blocks: dict[str, QPointF] = {}
+        positioned_nodes: dict[str, object] = {}
         if container.graph is not None:
             for node in container.graph.nodes.values():
                 block = self._blocks_by_id.get(node.block_id)
                 if block is None:
                     continue
-                positioned_blocks[block.id] = QPointF(node.x, node.y)
+                positioned_nodes[block.id] = node
 
         auto_index = 0
         missing_positions: list[tuple[str, float, float]] = []
         for child_id in container.contains:
-            if child_id in positioned_blocks:
+            if child_id in positioned_nodes:
                 continue
             child = self._blocks_by_id.get(child_id)
             if child is None:
                 continue
             auto_position = self._auto_layout_position(auto_index)
-            positioned_blocks[child.id] = auto_position
+            positioned_nodes[child.id] = type("_AutoNode", (), {"x": auto_position.x(), "y": auto_position.y(), "width": 0.0, "height": 0.0})()
             missing_positions.append((child.id, float(auto_position.x()), float(auto_position.y())))
             auto_index += 1
 
-        for block_id, position in positioned_blocks.items():
+        for block_id, graph_node in positioned_nodes.items():
             block = self._blocks_by_id.get(block_id)
             if block is None:
                 continue
-            width, height = self._block_size(block)
+            width, height = self._block_size(block, graph_node)
             item = _GraphBlockItem(
                 block=block,
                 pixmap=self._load_block_pixmap(block),
@@ -685,15 +894,20 @@ class WorkspaceGraphWidget(QWidget):
                 height=height,
                 theme_tokens=self._theme_tokens,
             )
-            item.set_graph_position(position)
+            item.set_graph_position(QPointF(float(graph_node.x), float(graph_node.y)))
+            item.clicked.connect(self.set_active_block)
             item.clicked.connect(self.node_selected.emit)
             item.start_link_drag.connect(self._on_start_link_drag)
             item.link_drag_moved.connect(self._on_link_drag_moved)
             item.link_drag_released.connect(self._on_link_drag_released)
             item.position_changed.connect(self._on_block_position_changed)
             item.move_finished.connect(self._on_block_move_finished)
+            item.size_changed.connect(self._on_block_size_changed)
+            item.resize_finished.connect(self._on_block_resize_finished)
+            item.note_text_commit_requested.connect(self._on_note_text_commit_requested)
             scene.addItem(item)
             self._block_items[block.id] = item
+        self._apply_active_block_selection()
 
         visible_edges = 0
         for source_block_id, target_block_id, port, name in self._iter_business_connections(container):
@@ -774,6 +988,9 @@ class WorkspaceGraphWidget(QWidget):
     def _on_block_position_changed(self, block_id: str, _position: QPointF) -> None:
         self._refresh_edges_for_block(block_id)
 
+    def _on_block_size_changed(self, block_id: str) -> None:
+        self._refresh_edges_for_block(block_id)
+
     def _on_block_move_finished(self, block_id: str, position: QPointF) -> None:
         if not self._active_container_id:
             return
@@ -783,6 +1000,24 @@ class WorkspaceGraphWidget(QWidget):
             float(position.x()),
             float(position.y()),
         )
+
+    def _on_block_resize_finished(self, block_id: str, width: float, height: float) -> None:
+        if not self._active_container_id:
+            return
+        self.graph_block_resize_requested.emit(self._active_container_id, block_id, float(width), float(height))
+
+    def _on_note_text_commit_requested(self, block_id: str, text: str) -> None:
+        self.block_update_requested.emit({"block_id": block_id, "text_content": text})
+
+    def _apply_active_block_selection(self) -> None:
+        active_id = self._active_block_id.strip()
+        has_active_item = False
+        for block_id, item in self._block_items.items():
+            is_active = bool(active_id) and block_id == active_id
+            item.set_active(is_active)
+            has_active_item = has_active_item or is_active
+        if active_id and not has_active_item:
+            self._active_block_id = ""
 
     def _on_link_drag_moved(self, scene_pos: QPointF) -> None:
         if not self._drag_source_block_id or self._drag_preview_item is None:
@@ -983,9 +1218,13 @@ class WorkspaceGraphWidget(QWidget):
             item.set_hover_port(None)
 
     @staticmethod
-    def _block_size(block: Block) -> tuple[float, float]:
+    def _block_size(block: Block, graph_node: object | None = None) -> tuple[float, float]:
         if _is_note_block(block):
-            return GRAPH_BLOCK_NOTE_WIDTH, GRAPH_BLOCK_NOTE_HEIGHT
+            node_width = float(getattr(graph_node, "width", 0.0) or 0.0)
+            node_height = float(getattr(graph_node, "height", 0.0) or 0.0)
+            width = node_width if node_width > 0.0 else GRAPH_BLOCK_NOTE_WIDTH
+            height = node_height if node_height > 0.0 else GRAPH_BLOCK_NOTE_HEIGHT
+            return width, height
         if _is_compact_block(block):
             return GRAPH_BLOCK_COMPACT_WIDTH, GRAPH_BLOCK_COMPACT_HEIGHT
         return GRAPH_BLOCK_MEDIA_WIDTH, GRAPH_BLOCK_MEDIA_HEIGHT

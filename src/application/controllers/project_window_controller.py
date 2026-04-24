@@ -27,6 +27,7 @@ class ProjectWindowController:
         close_secondary_windows: Callable[[], None],
         save_last_project_path: Callable[[Path | None], None],
         ensure_workspace_structure_on_open: Callable[[Path, list[Block]], list[Block]],
+        merge_mounted_libraries: Callable[[Path, list[Block]], list[Block]],
         load_blocks_safely: Callable[[Path], list[Block] | None],
         refresh_dashboard_stats: Callable[[], None],
         get_user_libraries_root: Callable[[], Path],
@@ -42,6 +43,7 @@ class ProjectWindowController:
         self._close_secondary_windows = close_secondary_windows
         self._save_last_project_path = save_last_project_path
         self._ensure_workspace_structure_on_open = ensure_workspace_structure_on_open
+        self._merge_mounted_libraries = merge_mounted_libraries
         self._load_blocks_safely = load_blocks_safely
         self._refresh_dashboard_stats = refresh_dashboard_stats
         self._get_user_libraries_root = get_user_libraries_root
@@ -103,6 +105,7 @@ class ProjectWindowController:
         if blocks is None:
             return False
         blocks = self._ensure_workspace_structure_on_open(resolved_path, blocks)
+        blocks = self._merge_mounted_libraries(resolved_path, blocks)
         self._session.set_state(project_root=resolved_path, blocks=blocks)
         self._save_last_project_path(resolved_path)
         self._update_workspace_footer()

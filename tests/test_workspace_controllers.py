@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from application import (
+    BlockDeletionService,
     BlockWorkspaceService,
     CharacterWorkspaceController,
     CharacterWorkspaceService,
@@ -24,6 +25,8 @@ class _FakePanel:
     def __init__(self) -> None:
         self.messages: list[str] = []
         self.selected: list[tuple[str, str | None]] = []
+        self.confirmations: list[tuple[str, list[str]]] = []
+        self.confirm_result = True
 
     def set_message(self, message: str) -> None:
         self.messages.append(message)
@@ -31,6 +34,10 @@ class _FakePanel:
     def select_block(self, block_id: str, *, container_id: str | None = None) -> bool:
         self.selected.append((block_id, container_id))
         return True
+
+    def confirm_block_deletion(self, *, block_name: str, descendant_names: list[str]) -> bool:
+        self.confirmations.append((block_name, list(descendant_names)))
+        return self.confirm_result
 
 
 def test_character_workspace_controller_creates_note_and_selects_it(tmp_path: Path) -> None:
@@ -62,6 +69,7 @@ def test_character_workspace_controller_creates_note_and_selects_it(tmp_path: Pa
         panel=panel,
         session=session,
         content_service=ContainerContentService(),
+        block_deletion_service=BlockDeletionService(),
         block_workspace_service=BlockWorkspaceService(),
         character_workspace_service=CharacterWorkspaceService(),
         persist_blocks=lambda blocks: persisted.append(len(list(blocks))),
@@ -96,6 +104,7 @@ def test_story_workspace_controller_updates_block_message(tmp_path: Path) -> Non
         panel=panel,
         session=session,
         content_service=ContainerContentService(),
+        block_deletion_service=BlockDeletionService(),
         block_workspace_service=BlockWorkspaceService(),
         story_workspace_service=StoryWorkspaceService(),
         persist_blocks=lambda blocks: persisted.append(len(list(blocks))),
@@ -106,6 +115,53 @@ def test_story_workspace_controller_updates_block_message(tmp_path: Path) -> Non
     assert note.name == "Updated"
     assert persisted == [1]
     assert panel.messages[-1] == "Block saved: Updated"
+
+
+def test_story_workspace_controller_deletes_container_and_descendants(tmp_path: Path) -> None:
+    project_path = tmp_path / "controller_story_delete.sbcprj"
+    ProjectStorageService().create_project(project_path, "Controller Story Delete")
+
+    root = Block(
+        id="blk_story_root",
+        type=BlockType.CONTAINER,
+        profile="workspace_root",
+        name="Story Root",
+        domain=BlockDomain.STORY,
+        contains=["shot_1"],
+        content={"workspace_role": "story_root"},
+    )
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        domain=BlockDomain.STORY,
+        contains=["note_1", "img_1"],
+        container_paths={"blk_story_root": ""},
+        graph=FreeGraph(),
+    )
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", domain=BlockDomain.STORY)
+    image = Block(id="img_1", type=BlockType.IMAGE, profile="asset", name="Image 1", domain=BlockDomain.STORY)
+    session = ProjectSession(project_root=project_path, blocks=[root, shot, note, image])
+    panel = _FakePanel()
+    persisted: list[int] = []
+
+    controller = StoryWorkspaceController(
+        panel=panel,
+        session=session,
+        content_service=ContainerContentService(),
+        block_deletion_service=BlockDeletionService(),
+        block_workspace_service=BlockWorkspaceService(),
+        story_workspace_service=StoryWorkspaceService(),
+        persist_blocks=lambda blocks: persisted.append(len(list(blocks))),
+    )
+
+    controller.delete_block("shot_1")
+
+    assert [block.id for block in session.blocks] == ["blk_story_root"]
+    assert root.contains == []
+    assert persisted == [1]
+    assert panel.messages[-1] == "Deleted 3 block(s): Shot 1"
 
 
 def test_graph_workspace_controller_creates_link_and_reports_feedback(tmp_path: Path) -> None:
@@ -177,6 +233,39 @@ def test_graph_workspace_controller_initializes_layout_positions(tmp_path: Path)
     assert node.block_id == "img_1"
     assert node.x == 40.0
     assert node.y == 60.0
+    assert persisted == [2]
+
+
+def test_graph_workspace_controller_persists_block_resize(tmp_path: Path) -> None:
+    project_path = tmp_path / "controller_graph_resize.sbcprj"
+    ProjectStorageService().create_project(project_path, "Controller Graph Resize")
+
+    note = Block(id="note_1", type=BlockType.TEXT, profile="note", name="Note 1", domain=BlockDomain.STORY)
+    shot = Block(
+        id="shot_1",
+        type=BlockType.CONTAINER,
+        profile="shot",
+        name="Shot 1",
+        domain=BlockDomain.STORY,
+        contains=[note.id],
+        graph=FreeGraph(),
+    )
+    session = ProjectSession(project_root=project_path, blocks=[shot, note])
+    persisted: list[int] = []
+
+    controller = GraphWorkspaceController(
+        session=session,
+        persist_blocks=lambda blocks: persisted.append(len(list(blocks))),
+        set_feedback=lambda *_args: None,
+    )
+
+    controller.resize_block(container_id="shot_1", block_id="note_1", width=280.0, height=240.0)
+
+    updated_shot = next(block for block in session.blocks if block.id == "shot_1")
+    node = next(iter(updated_shot.graph.nodes.values()))
+    assert node.block_id == "note_1"
+    assert node.width == 280.0
+    assert node.height == 240.0
     assert persisted == [2]
 
 
@@ -360,6 +449,7 @@ def test_project_window_controller_loads_and_refreshes_workspace(tmp_path: Path)
         close_secondary_windows=lambda: closed.append(True),
         save_last_project_path=saved_paths.append,
         ensure_workspace_structure_on_open=lambda _project_root, blocks: blocks,
+        merge_mounted_libraries=lambda _project_root, blocks: blocks,
         load_blocks_safely=lambda path: list(storage.load_blocks(path)),
         refresh_dashboard_stats=lambda: dashboard_refreshes.append(True),
         get_user_libraries_root=lambda: tmp_path / "user_libs",
@@ -450,6 +540,7 @@ def test_project_window_controller_closes_project_and_resets_feedback(tmp_path: 
         close_secondary_windows=lambda: closed.append(True),
         save_last_project_path=saved_paths.append,
         ensure_workspace_structure_on_open=lambda _project_root, blocks: blocks,
+        merge_mounted_libraries=lambda _project_root, blocks: blocks,
         load_blocks_safely=lambda _path: [],
         refresh_dashboard_stats=lambda: None,
         get_user_libraries_root=lambda: tmp_path / "user_libs",
